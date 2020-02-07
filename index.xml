@@ -1,454 +1,413 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>bugsuse | bugsuse</title>
-        <link>https://atmosai.github.io/</link>
-        <description>bugsuse | bugsuse</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 28 Jan 2020 18:58:51 +0800</lastBuildDate><atom:link href="https://atmosai.github.io/" rel="self" type="application/rss+xml" /><item>
-                <title>Posts</title>
-                <link>https://atmosai.github.io/posts/</link>
-                <pubDate>Tue, 28 Jan 2020 18:58:51 +0800</pubDate><guid>https://atmosai.github.io/posts/</guid>
-                <description></description>
-            </item><item>
-                <title></title>
-                <link>https://atmosai.github.io/cheats/</link>
-                <pubDate>Fri, 07 Dec 2018 21:40:19 +0000</pubDate><guid>https://atmosai.github.io/cheats/</guid>
-                <description>&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/arslanbilal/git-cheat-sheet&#34; target=&#34;_blank&#34;&gt;Git&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://cenalulu.github.io/linux/all-vim-cheatsheat/&#34; target=&#34;_blank&#34;&gt;Vi&lt;/a&gt;&lt;/p&gt;
-&lt;center&gt;经典版&lt;/center&gt;
-&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;https://atmosai.github.io/svg/loading.min.svg&#34; data-sizes=&#34;auto&#34; data-src=&#34;https://ws2.sinaimg.cn/large/006tNbRwgy1fygvls3qsqg30sg0k4tcq.gif&#34; alt=&#34;&#34; class=&#34;lazyload&#34;&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html&#34; target=&#34;_blank&#34;&gt;教程在此&lt;/a&gt;&lt;/p&gt;
-&lt;center&gt;入门版&lt;/center&gt;
-&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;https://atmosai.github.io/svg/loading.min.svg&#34; data-sizes=&#34;auto&#34; data-src=&#34;https://ws1.sinaimg.cn/large/006tNbRwgy1fygvpj956yj31400u04qp.jpg&#34; alt=&#34;&#34; class=&#34;lazyload&#34;&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;center&gt;进阶版&lt;/center&gt;
-&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;https://atmosai.github.io/svg/loading.min.svg&#34; data-sizes=&#34;auto&#34; data-src=&#34;https://ws4.sinaimg.cn/large/006tNbRwgy1fygvq6u574j312u0u0qv5.jpg&#34; alt=&#34;&#34; class=&#34;lazyload&#34;&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;center&gt;现代版&lt;/center&gt;
-&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;https://atmosai.github.io/svg/loading.min.svg&#34; data-sizes=&#34;auto&#34; data-src=&#34;https://ws3.sinaimg.cn/large/006tNbRwgy1fygvkri2fhj31840u0dog.jpg&#34; alt=&#34;&#34; class=&#34;lazyload&#34;&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-            </item><item>
-                <title></title>
-                <link>https://atmosai.github.io/life/</link>
-                <pubDate>Fri, 07 Dec 2018 21:40:19 +0000</pubDate><guid>https://atmosai.github.io/life/</guid>
-                <description>&lt;h3 id=&#34;闲暇之余&#34;&gt;闲暇之余&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.yinfans.com/&#34; target=&#34;_blank&#34;&gt;音范丝&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://neets.cc/&#34; target=&#34;_blank&#34;&gt;neets&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://gaoqing.la/&#34; target=&#34;_blank&#34;&gt;中国高清网&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-            </item><item>
-                <title></title>
-                <link>https://atmosai.github.io/about/</link>
-                <pubDate>Fri, 07 Dec 2018 12:53:51 +0800</pubDate><guid>https://atmosai.github.io/about/</guid>
-                <description>&lt;p&gt;Happy coding&amp;hellip;&lt;/p&gt;
-&lt;h3 id=&#34;兴趣&#34;&gt;兴趣&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;数值模式(Numerical Model)和数据同化(Data Assimilation)&lt;/li&gt;
-&lt;li&gt;数据可视化(Data Visualization)&lt;/li&gt;
-&lt;li&gt;机器学习(Machine Learning)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote class=&#34;blockquote-center&#34;&gt;
-&lt;center&gt;
- You explore the meaning of life in death.&lt;br&gt;
- You witness the breath of life into the air after death.&lt;br&gt;
- The couple are not known, the old long gone.&lt;br&gt; 
- The soul has no time when the body is exhausted.&lt;br&gt;
- Walk with time while you are happy.&lt;br&gt;
- Go to eternal life.&lt;br&gt;
-&lt;/center&gt;
-&lt;div align=right&gt;--福尔克·格莱维尔 《卡伊利卡》&lt;/div&gt;
-&lt;/blockquote&gt;
-</description>
-            </item><item>
-                <title></title>
-                <link>https://atmosai.github.io/atmos/</link>
-                <pubDate>Fri, 07 Dec 2018 12:53:51 +0800</pubDate><guid>https://atmosai.github.io/atmos/</guid>
-                <description>&lt;h3 id=&#34;博客&#34;&gt;博客&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.met.rdg.ac.uk/~ross/&#34; target=&#34;_blank&#34;&gt;ross&lt;/a&gt;: DA&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.zhangqibot.com/&#34; target=&#34;_blank&#34;&gt;zhangqibot&lt;/a&gt;: Meteo, ML, DL&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;网站&#34;&gt;网站&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://dtcenter.org/&#34; target=&#34;_blank&#34;&gt;DTC&lt;/a&gt;: DTC is a distributed facility where the NWP community can test and evaluate new models and techniques for use in research and operations.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;模式&#34;&gt;模式&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://www2.mmm.ucar.edu/wrf/users/&#34; target=&#34;_blank&#34;&gt;WRF&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://meteo.unican.es/trac/wiki/WRF4G&#34; target=&#34;_blank&#34;&gt;WRF4G&lt;/a&gt;：分布式计算系统的WRF模式运行和监控框架&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://gis4wrf.github.io/&#34; target=&#34;_blank&#34;&gt;GIS4WRF&lt;/a&gt;：QGIS WRF GUI操作插件&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www2.mmm.ucar.edu/wrf/users/download/get_sources_pproc_util.html&#34; target=&#34;_blank&#34;&gt;Post-Processing&lt;/a&gt;：后处理工具&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://www2.mmm.ucar.edu/wrf/users/wrfda/index.html&#34; target=&#34;_blank&#34;&gt;WRFDA&lt;/a&gt;：WRF数据同化系统&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://dtcenter.org/com-GSI/users/&#34; target=&#34;_blank&#34;&gt;GSI&lt;/a&gt;：格点统计插值系统&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://ruc.noaa.gov/wrf/WG11/&#34; target=&#34;_blank&#34;&gt;WRF-Chem&lt;/a&gt;：大气化学模式&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.epa.gov/cmaq&#34; target=&#34;_blank&#34;&gt;CMAQ&lt;/a&gt;：空气质量模型&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.camx.com/&#34; target=&#34;_blank&#34;&gt;CAMx&lt;/a&gt;：多尺度光化学模型&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://mpas-dev.github.io/&#34; target=&#34;_blank&#34;&gt;MPAS&lt;/a&gt;：跨尺度预测模型&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://www2.mmm.ucar.edu/people/bryan/cm1/&#34; target=&#34;_blank&#34;&gt;CM1&lt;/a&gt;：云模式&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.cesm.ucar.edu&#34; target=&#34;_blank&#34;&gt;CESM&lt;/a&gt;：地球系统模式&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://glossary.ametsoc.org/wiki/Main_Page&#34; target=&#34;_blank&#34;&gt;气象名词解释&lt;/a&gt;：美国气象学会构建的气象名词解释wiki&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://wiki.harvard.edu/confluence/display/climatemodeling/Harvard&amp;#43;Climate&amp;#43;Modeling&amp;#43;Home&#34; target=&#34;_blank&#34;&gt;哈佛气候模型主页&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.mcgovern-fagg.org/idea/index.html&#34; target=&#34;_blank&#34;&gt;IDEAL&lt;/a&gt;：人工智能/机器学习在大气科学中的应用研究机构&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://darribas.org/gds15/index.html&#34; target=&#34;_blank&#34;&gt;Geographic Data Science&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://automating-gis-processes.github.io/CSC18/index.html&#34; target=&#34;_blank&#34;&gt;Python GIS&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;数据&#34;&gt;数据&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;卫星&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.tropomi.eu&#34; target=&#34;_blank&#34;&gt;TROPOMI&lt;/a&gt;：大气组成卫星观测计划&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;其它&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://data.ess.tsinghua.edu.cn/&#34; target=&#34;_blank&#34;&gt;清华大学全球陆盖数据&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.weather.uwyo.edu/upperair/sounding.html&#34; target=&#34;_blank&#34;&gt;怀俄明大学探空数据&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://data.giss.nasa.gov/&#34; target=&#34;_blank&#34;&gt;NASA-GISS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.meicmodel.org/dataset-mix.html&#34; target=&#34;_blank&#34;&gt;MEIC&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.marcopolo-panda.eu/products/toolbox/emission-data/&#34; target=&#34;_blank&#34;&gt;Marcopolo-Panda&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://eccad.aeris-data.fr&#34; target=&#34;_blank&#34;&gt;ECCAD&lt;/a&gt;: 大气化合物排放数据&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;气象环境可视化&#34;&gt;气象/环境可视化&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;实时空气质量&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://aqicn.org&#34; target=&#34;_blank&#34;&gt;AQI&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.airvisual.com/earth&#34; target=&#34;_blank&#34;&gt;AirVisualEarth&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;实时气象流场&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://embed.windy.com/&#34; target=&#34;_blank&#34;&gt;Windy&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;卫星云图&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://himawari8.nict.go.jp&#34; target=&#34;_blank&#34;&gt;Himawari-8&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://fy4.nsmc.org.cn/portal/cn/theme/FY4A.html&#34; target=&#34;_blank&#34;&gt;FY4&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://worldview.earthdata.nasa.gov&#34; target=&#34;_blank&#34;&gt;NASA&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;预报网站&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.weatheronline.cn&#34; target=&#34;_blank&#34;&gt;WaetherOnline&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://sunsetwx.com&#34; target=&#34;_blank&#34;&gt;Sunset&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://rammb-slider.cira.colostate.edu&#34; target=&#34;_blank&#34;&gt;rammb&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-            </item><item>
-                <title></title>
-                <link>https://atmosai.github.io/tools/</link>
-                <pubDate>Fri, 07 Dec 2018 12:53:51 +0800</pubDate><guid>https://atmosai.github.io/tools/</guid>
-                <description>&lt;h3 id=&#34;编程语言&#34;&gt;编程语言&lt;/h3&gt;
-&lt;p&gt;&lt;a href=&#34;nothing&#34;&gt;Linux&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;教程
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html&#34; target=&#34;_blank&#34;&gt;Linux工具快速教程&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.python.org&#34; target=&#34;_blank&#34;&gt;Python&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;配色&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://colormap.readthedocs.io/en/latest/&#34; target=&#34;_blank&#34;&gt;colormap&lt;/a&gt;: 用于颜色类型转换以及构建colormap&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://matplotlib.org/cmocean&#34; target=&#34;_blank&#34;&gt;cmocean&lt;/a&gt;: 海洋科学绘图colormap，除python版外，还有对应的其他版本&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://colorcet.pyviz.org&#34; target=&#34;_blank&#34;&gt;colorcet&lt;/a&gt;: 提供了很多可选的colormap&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://jiffyclub.github.io/palettable&#34; target=&#34;_blank&#34;&gt;palettable&lt;/a&gt;: 支持很多颜色模式&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/colour-science/colour&#34; target=&#34;_blank&#34;&gt;colour&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;气象/环境&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;雷达&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ARM-DOE/pyart&#34; target=&#34;_blank&#34;&gt;PyART&lt;/a&gt;: $\rightarrow$ &lt;a href=&#34;https://arm-doe.github.io/pyart-docs-travis/&#34; target=&#34;_blank&#34;&gt;文档&lt;/a&gt; 兼容国内S波段雷达版&lt;a href=&#34;https://github.com/zxdawn/pyart&#34; target=&#34;_blank&#34;&gt;见这里&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://wradlib.org/&#34; target=&#34;_blank&#34;&gt;wradlib&lt;/a&gt;：天气雷达处理工具&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/nasa/DualPol&#34; target=&#34;_blank&#34;&gt;DualPol&lt;/a&gt;：双偏振多普勒雷达算法Python接口&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/nasa/SingleDop&#34; target=&#34;_blank&#34;&gt;SingleDop&lt;/a&gt;：单多普勒雷达反演工具&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/nguy/artview&#34; target=&#34;_blank&#34;&gt;ARTVieW&lt;/a&gt;：交互式雷达可视化&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;卫星&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://pyresample.readthedocs.io/en/latest/&#34; target=&#34;_blank&#34;&gt;Pyresample&lt;/a&gt;：卫星图像重采样&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pytroll/satpy&#34; target=&#34;_blank&#34;&gt;satpy&lt;/a&gt;：卫星数据处理&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://dev.knmi.nl/projects/pycama&#34; target=&#34;_blank&#34;&gt;PyCAMA&lt;/a&gt;: TROPOMI Sentinel-5P Level2 Product&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/rmvanhees/pys5p&#34; target=&#34;_blank&#34;&gt;pys5p&lt;/a&gt;: TROPOMI Sentinel-5P&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;模式&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://wrf-python.readthedocs.io/en/latest/&#34; target=&#34;_blank&#34;&gt;wrf-python&lt;/a&gt;：WRF模式后处理库&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://salem.readthedocs.io/en/latest/&#34; target=&#34;_blank&#34;&gt;salem&lt;/a&gt;：地球科学数据处理和绘图库，其中提供了WRF模式相关函数，比如WPS绘图，垂直插值等。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/barronh/geos2cmaq&#34; target=&#34;_blank&#34;&gt;geos2cmaq&lt;/a&gt;：映射GEOS-Chem结果作为CMAQ边界条件&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/noaa-oar-arl/MONET&#34; target=&#34;_blank&#34;&gt;MONET&lt;/a&gt;：模式和观测评估工具&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/barronh/pseudonetcdf&#34; target=&#34;_blank&#34;&gt;PseudoNetCDF&lt;/a&gt;：类NetCDF工具，用于处理大气科学数据格式，比如CAMx，CMAQ，GEOS-Chem等&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pyviz/EarthSim&#34; target=&#34;_blank&#34;&gt;EarthSim&lt;/a&gt;：环境模拟可视化工具&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/jaegunjung/CAMxtools&#34; target=&#34;_blank&#34;&gt;CAMxTools&lt;/a&gt;：CAMx和CMAQ前处理后后处理工具&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;其它&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://unidata.github.io/MetPy/latest/index.html&#34; target=&#34;_blank&#34;&gt;Metpy&lt;/a&gt;：气象数据读取，计算和可视化工具&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/sharppy/SHARPpy&#34; target=&#34;_blank&#34;&gt;Sharppy&lt;/a&gt;：探空和风场分析工具&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://unidata.github.io/siphon/latest/index.html&#34; target=&#34;_blank&#34;&gt;Siphon&lt;/a&gt;：远程数据下载工具&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/ajdawson/eofs&#34; target=&#34;_blank&#34;&gt;EOF&lt;/a&gt;：Python EOF分析 $\rightarrow$ &lt;a href=&#34;https://ajdawson.github.io/eofs/&#34; target=&#34;_blank&#34;&gt;文档👇&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/noaa-oar-arl/MONET&#34; target=&#34;_blank&#34;&gt;MONET&lt;/a&gt;：模式和观测评估工具(CMAQ等模式结果处理)&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/SciTools-incubator/python-stratify&#34; target=&#34;_blank&#34;&gt;python-stratify&lt;/a&gt;：大气和海洋数据垂直插值&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/fatiando/verde&#34; target=&#34;_blank&#34;&gt;verde&lt;/a&gt;: 空间数据处理和插值&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/ylikx/forpy&#34; target=&#34;_blank&#34;&gt;Forpy&lt;/a&gt;: Fortran调用Python&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;http://www.fatiando.org/&#34; target=&#34;_blank&#34;&gt;fatiando&lt;/a&gt;：面向地球物理学的Python库&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;数据分析&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;数据处理&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pandas-dev/pandas&#34; target=&#34;_blank&#34;&gt;Pandas&lt;/a&gt;：强大的数据处理工具&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;可视化&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ResidentMario/missingno&#34; target=&#34;_blank&#34;&gt;missingno&lt;/a&gt;：Python缺失数据可视化&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://pythonhosted.org/calmap/&#34; target=&#34;_blank&#34;&gt;calmap&lt;/a&gt;：绘制日历热力图&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://seaborn.pydata.org/&#34; target=&#34;_blank&#34;&gt;Seaborn&lt;/a&gt;：绘制统计图形&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;地图&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://matplotlib.org/basemap/&#34; target=&#34;_blank&#34;&gt;Basemap&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://scitools.org.uk/cartopy/docs/latest/&#34; target=&#34;_blank&#34;&gt;Cartopy&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;教程&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://pythonhowto.readthedocs.io/zh_CN/latest/&#34; target=&#34;_blank&#34;&gt;Python 从入门到深入&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://mlhowto.readthedocs.io/en/latest/index.html&#34; target=&#34;_blank&#34;&gt;数据科学和机器学习&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://pda.readthedocs.io/en/latest/index.html&#34; target=&#34;_blank&#34;&gt;Python数据分析&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jianshu.com/p/04d180d90a3f&#34; target=&#34;_blank&#34;&gt;利用Python进行数据分析&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;其它&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ecmwf/cfgrib&#34; target=&#34;_blank&#34;&gt;cfgrib&lt;/a&gt;：GRIB转换NetCDF库&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/shoyer/h5netcdf&#34; target=&#34;_blank&#34;&gt;h5netcdf&lt;/a&gt;：基于h5py的处理NetCDF文件库&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/lvmgeo/GISPython&#34; target=&#34;_blank&#34;&gt;GISPython&lt;/a&gt;: GISPython &lt;a href=&#34;https://gispython.readthedocs.io/en/latest/&#34; target=&#34;_blank&#34;&gt;文档&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.r-project.org&#34; target=&#34;_blank&#34;&gt;R&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;气象/环境
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/atmoschem/EmissV&#34; target=&#34;_blank&#34;&gt;EmissV&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/Schuch666/inventory&#34; target=&#34;_blank&#34;&gt;Inventory&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/atmoschem/vein&#34; target=&#34;_blank&#34;&gt;vein&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/atmoschem/eixport&#34; target=&#34;_blank&#34;&gt;exiport&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/rich-iannone/SplitR&#34; target=&#34;_blank&#34;&gt;SplitR&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>bugsuse | bugsuse</title><link>https://atmosai.github.io/</link><description>bugsuse | bugsuse</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 28 Jan 2020 18:58:51 +0800</lastBuildDate><atom:link href="https://atmosai.github.io/" rel="self" type="application/rss+xml"/><item><title>Posts</title><link>https://atmosai.github.io/posts/</link><pubDate>Tue, 28 Jan 2020 18:58:51 +0800</pubDate><guid>https://atmosai.github.io/posts/</guid><description/></item><item><title/><link>https://atmosai.github.io/cheats/</link><pubDate>Fri, 07 Dec 2018 21:40:19 +0000</pubDate><guid>https://atmosai.github.io/cheats/</guid><description>&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/arslanbilal/git-cheat-sheet" target="_blank">Git&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://cenalulu.github.io/linux/all-vim-cheatsheat/" target="_blank">Vi&lt;/a>&lt;/p>
+&lt;center>经典版&lt;/center>
+&lt;p>&lt;figure>&lt;img src="https://atmosai.github.io/svg/loading.min.svg" data-sizes="auto" data-src="https://ws2.sinaimg.cn/large/006tNbRwgy1fygvls3qsqg30sg0k4tcq.gif" alt="" class="lazyload">&lt;/figure>&lt;/p>
+&lt;p>&lt;a href="http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html" target="_blank">教程在此&lt;/a>&lt;/p>
+&lt;center>入门版&lt;/center>
+&lt;p>&lt;figure>&lt;img src="https://atmosai.github.io/svg/loading.min.svg" data-sizes="auto" data-src="https://ws1.sinaimg.cn/large/006tNbRwgy1fygvpj956yj31400u04qp.jpg" alt="" class="lazyload">&lt;/figure>&lt;/p>
+&lt;center>进阶版&lt;/center>
+&lt;p>&lt;figure>&lt;img src="https://atmosai.github.io/svg/loading.min.svg" data-sizes="auto" data-src="https://ws4.sinaimg.cn/large/006tNbRwgy1fygvq6u574j312u0u0qv5.jpg" alt="" class="lazyload">&lt;/figure>&lt;/p>
+&lt;center>现代版&lt;/center>
+&lt;p>&lt;figure>&lt;img src="https://atmosai.github.io/svg/loading.min.svg" data-sizes="auto" data-src="https://ws3.sinaimg.cn/large/006tNbRwgy1fygvkri2fhj31840u0dog.jpg" alt="" class="lazyload">&lt;/figure>&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title/><link>https://atmosai.github.io/life/</link><pubDate>Fri, 07 Dec 2018 21:40:19 +0000</pubDate><guid>https://atmosai.github.io/life/</guid><description>&lt;h3 id="闲暇之余">闲暇之余&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="http://www.yinfans.com/" target="_blank">音范丝&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://neets.cc/" target="_blank">neets&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://gaoqing.la/" target="_blank">中国高清网&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title/><link>https://atmosai.github.io/about/</link><pubDate>Fri, 07 Dec 2018 12:53:51 +0800</pubDate><guid>https://atmosai.github.io/about/</guid><description>&lt;p>Happy coding&amp;hellip;&lt;/p>
+&lt;h3 id="兴趣">兴趣&lt;/h3>
+&lt;ul>
+&lt;li>数值模式(Numerical Model)和数据同化(Data Assimilation)&lt;/li>
+&lt;li>数据可视化(Data Visualization)&lt;/li>
+&lt;li>机器学习(Machine Learning)&lt;/li>
+&lt;/ul>
+&lt;blockquote class="blockquote-center">
+&lt;center>
+You explore the meaning of life in death.&lt;br>
+You witness the breath of life into the air after death.&lt;br>
+The couple are not known, the old long gone.&lt;br>
+The soul has no time when the body is exhausted.&lt;br>
+Walk with time while you are happy.&lt;br>
+Go to eternal life.&lt;br>
+&lt;/center>
+&lt;div align=right>--福尔克·格莱维尔 《卡伊利卡》&lt;/div>
+&lt;/blockquote></description></item><item><title/><link>https://atmosai.github.io/atmos/</link><pubDate>Fri, 07 Dec 2018 12:53:51 +0800</pubDate><guid>https://atmosai.github.io/atmos/</guid><description>&lt;h3 id="博客">博客&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="http://www.met.rdg.ac.uk/~ross/" target="_blank">ross&lt;/a>: DA&lt;/li>
+&lt;li>&lt;a href="https://www.zhangqibot.com/" target="_blank">zhangqibot&lt;/a>: Meteo, ML, DL&lt;/li>
+&lt;/ul>
+&lt;h3 id="网站">网站&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://dtcenter.org/" target="_blank">DTC&lt;/a>: DTC is a distributed facility where the NWP community can test and evaluate new models and techniques for use in research and operations.&lt;/li>
+&lt;/ul>
+&lt;h3 id="模式">模式&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="http://www2.mmm.ucar.edu/wrf/users/" target="_blank">WRF&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://meteo.unican.es/trac/wiki/WRF4G" target="_blank">WRF4G&lt;/a>：分布式计算系统的WRF模式运行和监控框架&lt;/li>
+&lt;li>&lt;a href="https://gis4wrf.github.io/" target="_blank">GIS4WRF&lt;/a>：QGIS WRF GUI操作插件&lt;/li>
+&lt;li>&lt;a href="http://www2.mmm.ucar.edu/wrf/users/download/get_sources_pproc_util.html" target="_blank">Post-Processing&lt;/a>：后处理工具&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://www2.mmm.ucar.edu/wrf/users/wrfda/index.html" target="_blank">WRFDA&lt;/a>：WRF数据同化系统&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://dtcenter.org/com-GSI/users/" target="_blank">GSI&lt;/a>：格点统计插值系统&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://ruc.noaa.gov/wrf/WG11/" target="_blank">WRF-Chem&lt;/a>：大气化学模式&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://www.epa.gov/cmaq" target="_blank">CMAQ&lt;/a>：空气质量模型&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://www.camx.com/" target="_blank">CAMx&lt;/a>：多尺度光化学模型&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://mpas-dev.github.io/" target="_blank">MPAS&lt;/a>：跨尺度预测模型&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://www2.mmm.ucar.edu/people/bryan/cm1/" target="_blank">CM1&lt;/a>：云模式&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://www.cesm.ucar.edu" target="_blank">CESM&lt;/a>：地球系统模式&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://glossary.ametsoc.org/wiki/Main_Page" target="_blank">气象名词解释&lt;/a>：美国气象学会构建的气象名词解释wiki&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://wiki.harvard.edu/confluence/display/climatemodeling/Harvard&amp;#43;Climate&amp;#43;Modeling&amp;#43;Home" target="_blank">哈佛气候模型主页&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://www.mcgovern-fagg.org/idea/index.html" target="_blank">IDEAL&lt;/a>：人工智能/机器学习在大气科学中的应用研究机构&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://darribas.org/gds15/index.html" target="_blank">Geographic Data Science&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://automating-gis-processes.github.io/CSC18/index.html" target="_blank">Python GIS&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="数据">数据&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>卫星&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="http://www.tropomi.eu" target="_blank">TROPOMI&lt;/a>：大气组成卫星观测计划&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>其它&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="http://data.ess.tsinghua.edu.cn/" target="_blank">清华大学全球陆盖数据&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.weather.uwyo.edu/upperair/sounding.html" target="_blank">怀俄明大学探空数据&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://data.giss.nasa.gov/" target="_blank">NASA-GISS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.meicmodel.org/dataset-mix.html" target="_blank">MEIC&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.marcopolo-panda.eu/products/toolbox/emission-data/" target="_blank">Marcopolo-Panda&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://eccad.aeris-data.fr" target="_blank">ECCAD&lt;/a>: 大气化合物排放数据&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="气象环境可视化">气象/环境可视化&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>实时空气质量&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="http://aqicn.org" target="_blank">AQI&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.airvisual.com/earth" target="_blank">AirVisualEarth&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>实时气象流场&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://embed.windy.com/" target="_blank">Windy&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>卫星云图&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://himawari8.nict.go.jp" target="_blank">Himawari-8&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://fy4.nsmc.org.cn/portal/cn/theme/FY4A.html" target="_blank">FY4&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://worldview.earthdata.nasa.gov" target="_blank">NASA&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>预报网站&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.weatheronline.cn" target="_blank">WaetherOnline&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://sunsetwx.com" target="_blank">Sunset&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://rammb-slider.cira.colostate.edu" target="_blank">rammb&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item><item><title/><link>https://atmosai.github.io/tools/</link><pubDate>Fri, 07 Dec 2018 12:53:51 +0800</pubDate><guid>https://atmosai.github.io/tools/</guid><description>&lt;h3 id="编程语言">编程语言&lt;/h3>
+&lt;p>&lt;a href="nothing">Linux&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>教程
+&lt;ul>
+&lt;li>&lt;a href="https://linuxtools-rst.readthedocs.io/zh_CN/latest/index.html" target="_blank">Linux工具快速教程&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a href="https://www.python.org" target="_blank">Python&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>配色&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://colormap.readthedocs.io/en/latest/" target="_blank">colormap&lt;/a>: 用于颜色类型转换以及构建colormap&lt;/li>
+&lt;li>&lt;a href="https://matplotlib.org/cmocean" target="_blank">cmocean&lt;/a>: 海洋科学绘图colormap，除python版外，还有对应的其他版本&lt;/li>
+&lt;li>&lt;a href="http://colorcet.pyviz.org" target="_blank">colorcet&lt;/a>: 提供了很多可选的colormap&lt;/li>
+&lt;li>&lt;a href="https://jiffyclub.github.io/palettable" target="_blank">palettable&lt;/a>: 支持很多颜色模式&lt;/li>
+&lt;li>&lt;a href="https://github.com/colour-science/colour" target="_blank">colour&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>气象/环境&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>雷达&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/ARM-DOE/pyart" target="_blank">PyART&lt;/a>: $\rightarrow$ &lt;a href="https://arm-doe.github.io/pyart-docs-travis/" target="_blank">文档&lt;/a> 兼容国内S波段雷达版&lt;a href="https://github.com/zxdawn/pyart" target="_blank">见这里&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://wradlib.org/" target="_blank">wradlib&lt;/a>：天气雷达处理工具&lt;/li>
+&lt;li>&lt;a href="https://github.com/nasa/DualPol" target="_blank">DualPol&lt;/a>：双偏振多普勒雷达算法Python接口&lt;/li>
+&lt;li>&lt;a href="https://github.com/nasa/SingleDop" target="_blank">SingleDop&lt;/a>：单多普勒雷达反演工具&lt;/li>
+&lt;li>&lt;a href="https://github.com/nguy/artview" target="_blank">ARTVieW&lt;/a>：交互式雷达可视化&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>卫星&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://pyresample.readthedocs.io/en/latest/" target="_blank">Pyresample&lt;/a>：卫星图像重采样&lt;/li>
+&lt;li>&lt;a href="https://github.com/pytroll/satpy" target="_blank">satpy&lt;/a>：卫星数据处理&lt;/li>
+&lt;li>&lt;a href="https://dev.knmi.nl/projects/pycama" target="_blank">PyCAMA&lt;/a>: TROPOMI Sentinel-5P Level2 Product&lt;/li>
+&lt;li>&lt;a href="https://github.com/rmvanhees/pys5p" target="_blank">pys5p&lt;/a>: TROPOMI Sentinel-5P&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>模式&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://wrf-python.readthedocs.io/en/latest/" target="_blank">wrf-python&lt;/a>：WRF模式后处理库&lt;/li>
+&lt;li>&lt;a href="https://salem.readthedocs.io/en/latest/" target="_blank">salem&lt;/a>：地球科学数据处理和绘图库，其中提供了WRF模式相关函数，比如WPS绘图，垂直插值等。&lt;/li>
+&lt;li>&lt;a href="https://github.com/barronh/geos2cmaq" target="_blank">geos2cmaq&lt;/a>：映射GEOS-Chem结果作为CMAQ边界条件&lt;/li>
+&lt;li>&lt;a href="https://github.com/noaa-oar-arl/MONET" target="_blank">MONET&lt;/a>：模式和观测评估工具&lt;/li>
+&lt;li>&lt;a href="https://github.com/barronh/pseudonetcdf" target="_blank">PseudoNetCDF&lt;/a>：类NetCDF工具，用于处理大气科学数据格式，比如CAMx，CMAQ，GEOS-Chem等&lt;/li>
+&lt;li>&lt;a href="https://github.com/pyviz/EarthSim" target="_blank">EarthSim&lt;/a>：环境模拟可视化工具&lt;/li>
+&lt;li>&lt;a href="https://github.com/jaegunjung/CAMxtools" target="_blank">CAMxTools&lt;/a>：CAMx和CMAQ前处理后后处理工具&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>其它&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://unidata.github.io/MetPy/latest/index.html" target="_blank">Metpy&lt;/a>：气象数据读取，计算和可视化工具&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/sharppy/SHARPpy" target="_blank">Sharppy&lt;/a>：探空和风场分析工具&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://unidata.github.io/siphon/latest/index.html" target="_blank">Siphon&lt;/a>：远程数据下载工具&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/ajdawson/eofs" target="_blank">EOF&lt;/a>：Python EOF分析 $\rightarrow$ &lt;a href="https://ajdawson.github.io/eofs/" target="_blank">文档👇&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/noaa-oar-arl/MONET" target="_blank">MONET&lt;/a>：模式和观测评估工具(CMAQ等模式结果处理)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/SciTools-incubator/python-stratify" target="_blank">python-stratify&lt;/a>：大气和海洋数据垂直插值&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/fatiando/verde" target="_blank">verde&lt;/a>: 空间数据处理和插值&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/ylikx/forpy" target="_blank">Forpy&lt;/a>: Fortran调用Python&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="http://www.fatiando.org/" target="_blank">fatiando&lt;/a>：面向地球物理学的Python库&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>数据分析&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>数据处理&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/pandas-dev/pandas" target="_blank">Pandas&lt;/a>：强大的数据处理工具&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>可视化&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/ResidentMario/missingno" target="_blank">missingno&lt;/a>：Python缺失数据可视化&lt;/li>
+&lt;li>&lt;a href="https://pythonhosted.org/calmap/" target="_blank">calmap&lt;/a>：绘制日历热力图&lt;/li>
+&lt;li>&lt;a href="https://seaborn.pydata.org/" target="_blank">Seaborn&lt;/a>：绘制统计图形&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>地图&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://matplotlib.org/basemap/" target="_blank">Basemap&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://scitools.org.uk/cartopy/docs/latest/" target="_blank">Cartopy&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>教程&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://pythonhowto.readthedocs.io/zh_CN/latest/" target="_blank">Python 从入门到深入&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://mlhowto.readthedocs.io/en/latest/index.html" target="_blank">数据科学和机器学习&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://pda.readthedocs.io/en/latest/index.html" target="_blank">Python数据分析&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.jianshu.com/p/04d180d90a3f" target="_blank">利用Python进行数据分析&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>其它&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/ecmwf/cfgrib" target="_blank">cfgrib&lt;/a>：GRIB转换NetCDF库&lt;/li>
+&lt;li>&lt;a href="https://github.com/shoyer/h5netcdf" target="_blank">h5netcdf&lt;/a>：基于h5py的处理NetCDF文件库&lt;/li>
+&lt;li>&lt;a href="https://github.com/lvmgeo/GISPython" target="_blank">GISPython&lt;/a>: GISPython &lt;a href="https://gispython.readthedocs.io/en/latest/" target="_blank">文档&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a href="https://www.r-project.org" target="_blank">R&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>气象/环境
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/atmoschem/EmissV" target="_blank">EmissV&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/Schuch666/inventory" target="_blank">Inventory&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/atmoschem/vein" target="_blank">vein&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/atmoschem/eixport" target="_blank">exiport&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/rich-iannone/SplitR" target="_blank">SplitR&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br>
 [MATLAB](https://www.mathworks.com/products/matlab.html)
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.eoas.ubc.ca/~rich/map.html&#34; target=&#34;_blank&#34;&gt;m_map&lt;/a&gt;：地图工具箱&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://grupos.unican.es/ai/meteo/meteolab.html&#34; target=&#34;_blank&#34;&gt;MeteoLab&lt;/a&gt;：气象机器学习工具箱&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
+&lt;ul>
+&lt;li>&lt;a href="https://www.eoas.ubc.ca/~rich/map.html" target="_blank">m_map&lt;/a>：地图工具箱&lt;/li>
+&lt;li>&lt;a href="https://grupos.unican.es/ai/meteo/meteolab.html" target="_blank">MeteoLab&lt;/a>：气象机器学习工具箱&lt;/li>
+&lt;/ul>
+&lt;br>
 [NCL](https://www.ncl.ucar.edu/)
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://ncl.readthedocs.io/zh_CN/latest/&#34; target=&#34;_blank&#34;&gt;NCL中文教程&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
+&lt;ul>
+&lt;li>&lt;a href="https://ncl.readthedocs.io/zh_CN/latest/" target="_blank">NCL中文教程&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;br>
 [GMT](https://gmt-china.org/)
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://docs.gmt-china.org/5.4.5/&#34; target=&#34;_blank&#34;&gt;GMT中文手册&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://jimmytseng79.github.io/GMT5_tutorials/&#34; target=&#34;_blank&#34;&gt;GMT5指南&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
-[MySQL](https://www.mysql.com/cn/) 
-&lt;ul&gt;
-&lt;li&gt;教程
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/jaywcjlove/mysql-tutorial&#34; target=&#34;_blank&#34;&gt;mysql&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/JGCRI/GCAMLU&#34; target=&#34;_blank&#34;&gt;GCAMLU&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/pyviz-topics/EarthML&#34; target=&#34;_blank&#34;&gt;EarthML&lt;/a&gt;：地球科学机器学习工具&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
+&lt;ul>
+&lt;li>&lt;a href="https://docs.gmt-china.org/5.4.5/" target="_blank">GMT中文手册&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://jimmytseng79.github.io/GMT5_tutorials/" target="_blank">GMT5指南&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;br>
+[MySQL](https://www.mysql.com/cn/)
+&lt;ul>
+&lt;li>教程
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/jaywcjlove/mysql-tutorial" target="_blank">mysql&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a href="https://github.com" target="_blank">GitHub&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/JGCRI/GCAMLU" target="_blank">GCAMLU&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://github.com/pyviz-topics/EarthML" target="_blank">EarthML&lt;/a>：地球科学机器学习工具&lt;/li>
+&lt;/ul>
+&lt;br>
 ### 可视化
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;配色工具&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://colorbrewer2.org&#34; target=&#34;_blank&#34;&gt;Colorbrewer2&lt;/a&gt;: 提供便捷的在线配色方案&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.peise.net/tools/web&#34; target=&#34;_blank&#34;&gt;peise&lt;/a&gt;: 功能更加强大的在线配色器&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.earthmodels.org/data-and-tools/color-tables&#34; target=&#34;_blank&#34;&gt;Earth-Models color table&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;配色博客&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://peterkovesi.com/projects/colourmaps&#34; target=&#34;_blank&#34;&gt;peter&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://soliton.vm.bytemark.co.uk/pub/cpt-city/&#34; target=&#34;_blank&#34;&gt;cpt&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;可视化工具&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://qgis.org/en/site/&#34; target=&#34;_blank&#34;&gt;QGIS&lt;/a&gt;: 多平台开源的地理信息处理软件
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://automating-gis-processes.github.io/CSC18/&#34; target=&#34;_blank&#34;&gt;Python-GIS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://vis5d.sourceforge.net/&#34; target=&#34;_blank&#34;&gt;Vis5D&lt;/a&gt;：5D数据可视化工具，之前气象数值模式数据的可视化则是采用此工具，但目前已经被新的高维数据可视化工具代替。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.unidata.ucar.edu/software/idv/&#34; target=&#34;_blank&#34;&gt;IDV&lt;/a&gt;：新一代高维数据可视化工具。&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.giss.nasa.gov/tools/panoply/&#34; target=&#34;_blank&#34;&gt;Panoply&lt;/a&gt;：NetCDF, HDF等数据可视化&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
+&lt;ul>
+&lt;li>
+&lt;p>配色工具&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="http://colorbrewer2.org" target="_blank">Colorbrewer2&lt;/a>: 提供便捷的在线配色方案&lt;/li>
+&lt;li>&lt;a href="http://www.peise.net/tools/web" target="_blank">peise&lt;/a>: 功能更加强大的在线配色器&lt;/li>
+&lt;li>&lt;a href="http://www.earthmodels.org/data-and-tools/color-tables" target="_blank">Earth-Models color table&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>配色博客&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://peterkovesi.com/projects/colourmaps" target="_blank">peter&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://soliton.vm.bytemark.co.uk/pub/cpt-city/" target="_blank">cpt&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>可视化工具&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://qgis.org/en/site/" target="_blank">QGIS&lt;/a>: 多平台开源的地理信息处理软件
+&lt;ul>
+&lt;li>&lt;a href="https://automating-gis-processes.github.io/CSC18/" target="_blank">Python-GIS&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="http://vis5d.sourceforge.net/" target="_blank">Vis5D&lt;/a>：5D数据可视化工具，之前气象数值模式数据的可视化则是采用此工具，但目前已经被新的高维数据可视化工具代替。&lt;/li>
+&lt;li>&lt;a href="https://www.unidata.ucar.edu/software/idv/" target="_blank">IDV&lt;/a>：新一代高维数据可视化工具。&lt;/li>
+&lt;li>&lt;a href="http://www.giss.nasa.gov/tools/panoply/" target="_blank">Panoply&lt;/a>：NetCDF, HDF等数据可视化&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;br>
 ### 其它
 * 在线文档
-    * [devdocs](https://devdocs.io/)
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://epsg.io/&#34; target=&#34;_blank&#34;&gt;世界坐标系统&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href=&#34;https://api.sunrise-sunset.org&#34; target=&#34;_blank&#34;&gt;sunrise-sunset&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;博客&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;地球科学Python类
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://earthpy.org/&#34; target=&#34;_blank&#34;&gt;EarhPy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://oceanpython.org/&#34; target=&#34;_blank&#34;&gt;Ocean Python&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://ocefpaf.github.io/&#34; target=&#34;_blank&#34;&gt;ocefpaf&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://pyaos.johnny-lin.com/&#34; target=&#34;_blank&#34;&gt;PyAOS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://pyhogs.github.io/&#34; target=&#34;_blank&#34;&gt;PyHOGS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://kbkb-wx-python.blogspot.com/&#34; target=&#34;_blank&#34;&gt;Brain&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://automating-gis-processes.github.io/CSC18/index.html&#34; target=&#34;_blank&#34;&gt;GIS Python&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;电子书&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://b-ok.org/&#34; target=&#34;_blank&#34;&gt;b-ok&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://libgen.io/&#34; target=&#34;_blank&#34;&gt;libgen&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.jiumodiary.com/&#34; target=&#34;_blank&#34;&gt;鸠摩&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;数据处理&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.pa.op.dlr.de/~PatrickJoeckel/ncregrid/&#34; target=&#34;_blank&#34;&gt;ncregrid&lt;/a&gt;：2D/3D地球科学数据插值工具&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://nco.sourceforge.net/&#34; target=&#34;_blank&#34;&gt;nco&lt;/a&gt;：NetCDF格式数据操作工具&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://code.mpimet.mpg.de/projects/cdo/&#34; target=&#34;_blank&#34;&gt;cdo&lt;/a&gt;：气候数据操作工具&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.earthsystemcog.org/projects/esmf/&#34; target=&#34;_blank&#34;&gt;ESMF&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;机器学习&#34;&gt;机器学习&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;库
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/skorch-dev/skorch&#34; target=&#34;_blank&#34;&gt;skorch&lt;/a&gt;: A scikit-learn compatible neural network library that wraps PyTorch.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://botorch.org/&#34; target=&#34;_blank&#34;&gt;botorch&lt;/a&gt;:&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/andrewekhalel/edafa&#34; target=&#34;_blank&#34;&gt;edafa&lt;/a&gt;: Edafa is a simple wrapper that implements Test Time Augmentations (TTA) on images for computer vision problems like: segmentation, classification, super-resolution, Pansharpening, etc. TTAs guarantees better results in most of the tasks.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/osmr/imgclsmob&#34; target=&#34;_blank&#34;&gt;imgclsmob&lt;/a&gt;: used to research convolutional networks for task of computer vision. For this purpose, the repo contains (re)implementations of various classification and segmentation models and scripts for training/evaluating/converting.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/trent-b/iterative-stratification&#34; target=&#34;_blank&#34;&gt;iterative-stratification&lt;/a&gt;: iterative-stratification is a project that provides scikit-learn compatible cross validators with stratification for multilabel data.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-            </item></channel>
-</rss>
+* [devdocs](https://devdocs.io/)
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://epsg.io/" target="_blank">世界坐标系统&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://api.sunrise-sunset.org" target="_blank">sunrise-sunset&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>博客&lt;/p>
+&lt;ul>
+&lt;li>地球科学Python类
+&lt;ul>
+&lt;li>&lt;a href="http://earthpy.org/" target="_blank">EarhPy&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://oceanpython.org/" target="_blank">Ocean Python&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://ocefpaf.github.io/" target="_blank">ocefpaf&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://pyaos.johnny-lin.com/" target="_blank">PyAOS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://pyhogs.github.io/" target="_blank">PyHOGS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://kbkb-wx-python.blogspot.com/" target="_blank">Brain&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://automating-gis-processes.github.io/CSC18/index.html" target="_blank">GIS Python&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>电子书&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="http://b-ok.org/" target="_blank">b-ok&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://libgen.io/" target="_blank">libgen&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.jiumodiary.com/" target="_blank">鸠摩&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>数据处理&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="http://www.pa.op.dlr.de/~PatrickJoeckel/ncregrid/" target="_blank">ncregrid&lt;/a>：2D/3D地球科学数据插值工具&lt;/li>
+&lt;li>&lt;a href="http://nco.sourceforge.net/" target="_blank">nco&lt;/a>：NetCDF格式数据操作工具&lt;/li>
+&lt;li>&lt;a href="https://code.mpimet.mpg.de/projects/cdo/" target="_blank">cdo&lt;/a>：气候数据操作工具&lt;/li>
+&lt;li>&lt;a href="https://www.earthsystemcog.org/projects/esmf/" target="_blank">ESMF&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="机器学习">机器学习&lt;/h3>
+&lt;ul>
+&lt;li>库
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/skorch-dev/skorch" target="_blank">skorch&lt;/a>: A scikit-learn compatible neural network library that wraps PyTorch.&lt;/li>
+&lt;li>&lt;a href="https://botorch.org/" target="_blank">botorch&lt;/a>:&lt;/li>
+&lt;li>&lt;a href="https://github.com/andrewekhalel/edafa" target="_blank">edafa&lt;/a>: Edafa is a simple wrapper that implements Test Time Augmentations (TTA) on images for computer vision problems like: segmentation, classification, super-resolution, Pansharpening, etc. TTAs guarantees better results in most of the tasks.&lt;/li>
+&lt;li>&lt;a href="https://github.com/osmr/imgclsmob" target="_blank">imgclsmob&lt;/a>: used to research convolutional networks for task of computer vision. For this purpose, the repo contains (re)implementations of various classification and segmentation models and scripts for training/evaluating/converting.&lt;/li>
+&lt;li>&lt;a href="https://github.com/trent-b/iterative-stratification" target="_blank">iterative-stratification&lt;/a>: iterative-stratification is a project that provides scikit-learn compatible cross validators with stratification for multilabel data.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul></description></item></channel></rss>

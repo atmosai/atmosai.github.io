@@ -1,358 +1,160 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Python地图绘制并添加南海小地图 | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noodp" />
-<meta name="Description" content="About LoveIt Theme"><link rel="next" href="https://atmosai.github.io/2017/03/2017-03-08-%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95nuist%E6%A0%A1%E5%9B%AD%E7%BD%91/" /><link rel="canonical" href="https://atmosai.github.io/2017/02/2019-02-01-python%E5%9C%B0%E5%9B%BE%E7%BB%98%E5%88%B6%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%8D%97%E6%B5%B7%E5%B0%8F%E5%9C%B0%E5%9B%BE/" />
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff"><meta property="og:title" content="Python地图绘制并添加南海小地图" />
-<meta property="og:description" content="在添加南海小地图时使用了matplotlib中的小工具，即嵌入定位器。可以放大一个图的局部，并绘制在这个图上，从而展示某一块区域。 1 2 3 4 5" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://atmosai.github.io/2017/02/2019-02-01-python%E5%9C%B0%E5%9B%BE%E7%BB%98%E5%88%B6%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%8D%97%E6%B5%B7%E5%B0%8F%E5%9C%B0%E5%9B%BE/" />
-<meta property="article:published_time" content="2017-02-22T17:47:36+08:00" />
-<meta property="article:modified_time" content="2017-02-22T17:47:36+08:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Python地图绘制并添加南海小地图"/>
-<meta name="twitter:description" content="在添加南海小地图时使用了matplotlib中的小工具，即嵌入定位器。可以放大一个图的局部，并绘制在这个图上，从而展示某一块区域。 1 2 3 4 5"/>
-<script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Python地图绘制并添加南海小地图",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/atmosai.github.io\/2017\/02\/2019-02-01-python%E5%9C%B0%E5%9B%BE%E7%BB%98%E5%88%B6%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%8D%97%E6%B5%B7%E5%B0%8F%E5%9C%B0%E5%9B%BE\/"
-        },"image": {
-                "@type": "ImageObject",
-                "url": "https:\/\/atmosai.github.io\/cover.png",
-                "width":  800 ,
-                "height":  600 
-            },"genre": "posts","keywords": "python, matplotlib, basemap","wordcount":  593 ,
-        "url": "https:\/\/atmosai.github.io\/2017\/02\/2019-02-01-python%E5%9C%B0%E5%9B%BE%E7%BB%98%E5%88%B6%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%8D%97%E6%B5%B7%E5%B0%8F%E5%9C%B0%E5%9B%BE\/","datePublished": "2017-02-22T17:47:36\x2b08:00","dateModified": "2017-02-22T17:47:36\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
-                "@type": "Organization",
-                "name": "xxxx",
-                "logo": {
-                "@type": "ImageObject",
-                "url": "https:\/\/atmosai.github.io\/logo.png",
-                "width":  127 ,
-                "height":  40 
-                }
-            },"description": ""
-    }
-    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
-    <body><script>
-            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
-            window.isDark && document.body.classList.add('dark-theme');
-        </script><div class="wrapper"><nav class="navbar">
-    <div class="navbar-container">
-        <div class="navbar-header animated bounceIn">
-            <a href="https://atmosai.github.io">bugsuse</a>
-        </div>
-        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
-        </div>
-    </div>
-</nav><nav class="navbar-mobile">
-    <div class="navbar-container">
-        <div class="navbar-header">
-            <div class="navbar-header-title animated bounceIn">
-                <a href="https://atmosai.github.io">bugsuse</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
-        </div>
-    </div>
-</nav><main class="main">
-                <div class="container"><article class="page"><h1 class="post-title animated flipInX">Python地图绘制并添加南海小地图</h1><div class="post-meta">
-            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
-                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
-                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/tools/">Tools</a>&nbsp;</span></div>
-            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2017-02-22>2017-02-22</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>about 593 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>2 min&nbsp;</div>
-        </div><div class="post-toc" id="post-toc">
-                <h2 class="post-toc-title">Contents</h2>
-                <div class="post-toc-content"><nav id="TableOfContents"></nav></div>
-            </div>
-            <div class="post-toc-mobile" id="post-toc-mobile">
-                <details>
-                    <summary>
-                        <div class="post-toc-title">
-                            <span>Contents</span>
-                            <span><i class="details icon fas fa-angle-down"></i></span>
-                        </div>
-                    </summary>
-                    <div class="post-toc-content"><nav id="TableOfContentsMobile"></nav></div>
-                </details>
-            </div><div class="post-content"><p>在添加南海小地图时使用了matplotlib中的小工具，即嵌入定位器。可以放大一个图的局部，并绘制在这个图上，从而展示某一块区域。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span><span class="lnt">72
-</span><span class="lnt">73
-</span><span class="lnt">74
-</span><span class="lnt">75
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">mpl_toolkits.basemap</span> <span class="kn">import</span> <span class="n">Basemap</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1.inset_locator</span> <span class="kn">import</span> <span class="n">zoomed_inset_axes</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1.inset_locator</span> <span class="kn">import</span> <span class="n">mark_inset</span>
-<span class="kn">import</span> <span class="nn">netCDF4</span> <span class="kn">as</span> <span class="nn">nc</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Python地图绘制并添加南海小地图 | bugsuse</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="About LoveIt Theme"><link rel=next href=https://atmosai.github.io/2017/03/2017-03-08-%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95nuist%E6%A0%A1%E5%9B%AD%E7%BD%91/><link rel=canonical href=https://atmosai.github.io/2017/02/2019-02-01-python%E5%9C%B0%E5%9B%BE%E7%BB%98%E5%88%B6%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%8D%97%E6%B5%B7%E5%B0%8F%E5%9C%B0%E5%9B%BE/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta property="og:title" content="Python地图绘制并添加南海小地图"><meta property="og:description" content="在添加南海小地图时使用了matplotlib中的小工具，即嵌入定位器。可以放大一个图的局部，并绘制在这个图上，从而展示某一块区域。 1 2 3 4 5"><meta property="og:type" content="article"><meta property="og:url" content="https://atmosai.github.io/2017/02/2019-02-01-python%E5%9C%B0%E5%9B%BE%E7%BB%98%E5%88%B6%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%8D%97%E6%B5%B7%E5%B0%8F%E5%9C%B0%E5%9B%BE/"><meta property="article:published_time" content="2017-02-22T17:47:36+08:00"><meta property="article:modified_time" content="2017-02-22T17:47:36+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Python地图绘制并添加南海小地图"><meta name=twitter:description content="在添加南海小地图时使用了matplotlib中的小工具，即嵌入定位器。可以放大一个图的局部，并绘制在这个图上，从而展示某一块区域。 1 2 3 4 5"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Python地图绘制并添加南海小地图","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/atmosai.github.io\/2017\/02\/2019-02-01-python%E5%9C%B0%E5%9B%BE%E7%BB%98%E5%88%B6%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%8D%97%E6%B5%B7%E5%B0%8F%E5%9C%B0%E5%9B%BE\/"},"image":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"python, matplotlib, basemap","wordcount":593,"url":"https:\/\/atmosai.github.io\/2017\/02\/2019-02-01-python%E5%9C%B0%E5%9B%BE%E7%BB%98%E5%88%B6%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%8D%97%E6%B5%B7%E5%B0%8F%E5%9C%B0%E5%9B%BE\/","datePublished":"2017-02-22T17:47:36\x2b08:00","dateModified":"2017-02-22T17:47:36\x2b08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=navbar-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文><i class="fas fa-language fa-fw"></i></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">Python地图绘制并添加南海小地图</h1><div class=post-meta><div class=post-meta-main><a class=author href=http://i-lightning.cn rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>bugsuse
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://atmosai.github.io/categories/tools/>Tools</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2017-02-22>2017-02-22</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 593 words&nbsp;
+<i class="far fa-clock fa-fw"></i>2 min&nbsp;</div></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile></nav></div></details></div><div class=post-content><p>在添加南海小地图时使用了matplotlib中的小工具，即嵌入定位器。可以放大一个图的局部，并绘制在这个图上，从而展示某一块区域。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>mpl_toolkits.basemap</span> <span class=kn>import</span> <span class=n>Basemap</span>
+<span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=kn>as</span> <span class=nn>plt</span>
+<span class=kn>from</span> <span class=nn>mpl_toolkits.axes_grid1.inset_locator</span> <span class=kn>import</span> <span class=n>zoomed_inset_axes</span>
+<span class=kn>from</span> <span class=nn>mpl_toolkits.axes_grid1.inset_locator</span> <span class=kn>import</span> <span class=n>mark_inset</span>
+<span class=kn>import</span> <span class=nn>netCDF4</span> <span class=kn>as</span> <span class=nn>nc</span>
+<span class=kn>import</span> <span class=nn>numpy</span> <span class=kn>as</span> <span class=nn>np</span>
 
-<span class="kn">import</span> <span class="nn">shapefile</span>
-<span class="kn">from</span> <span class="nn">matplotlib.path</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">PathPatch</span>
+<span class=kn>import</span> <span class=nn>shapefile</span>
+<span class=kn>from</span> <span class=nn>matplotlib.path</span> <span class=kn>import</span> <span class=n>Path</span>
+<span class=kn>from</span> <span class=nn>matplotlib.patches</span> <span class=kn>import</span> <span class=n>PathPatch</span>
 
-<span class="k">def</span> <span class="nf">basemask</span><span class="p">(</span><span class="n">cs</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="nb">map</span><span class="p">,</span> <span class="n">shpfile</span><span class="p">)</span><span class="p">:</span>
+<span class=k>def</span> <span class=nf>basemask</span><span class=p>(</span><span class=n>cs</span><span class=p>,</span> <span class=n>ax</span><span class=p>,</span> <span class=nb>map</span><span class=p>,</span> <span class=n>shpfile</span><span class=p>)</span><span class=p>:</span>
 
-    <span class="n">sf</span> <span class="o">=</span> <span class="n">shapefile</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="n">shpfile</span><span class="p">)</span>
-    <span class="n">vertices</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
-    <span class="n">codes</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">shape_rec</span> <span class="ow">in</span> <span class="n">sf</span><span class="o">.</span><span class="n">shapeRecords</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">shape_rec</span><span class="o">.</span><span class="n">record</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&gt;</span><span class="o">=</span> <span class="mi">0</span><span class="p">:</span>  
-            <span class="n">pts</span> <span class="o">=</span> <span class="n">shape_rec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">points</span>
-            <span class="n">prt</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">shape_rec</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">parts</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prt</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">prt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">prt</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span><span class="p">:</span>
-                    <span class="n">vertices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="n">pts</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span><span class="p">)</span>
-                <span class="n">codes</span> <span class="o">+</span><span class="o">=</span> <span class="p">[</span><span class="n">Path</span><span class="o">.</span><span class="n">MOVETO</span><span class="p">]</span>
-                <span class="n">codes</span> <span class="o">+</span><span class="o">=</span> <span class="p">[</span><span class="n">Path</span><span class="o">.</span><span class="n">LINETO</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">prt</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">prt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-                <span class="n">codes</span> <span class="o">+</span><span class="o">=</span> <span class="p">[</span><span class="n">Path</span><span class="o">.</span><span class="n">CLOSEPOLY</span><span class="p">]</span>
-            <span class="n">clip</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">codes</span><span class="p">)</span>
-            <span class="n">clip</span> <span class="o">=</span> <span class="n">PathPatch</span><span class="p">(</span><span class="n">clip</span><span class="p">,</span> <span class="n">transform</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">transData</span><span class="p">)</span>    
-    <span class="k">for</span> <span class="n">contour</span> <span class="ow">in</span> <span class="n">cs</span><span class="o">.</span><span class="n">collections</span><span class="p">:</span>
-        <span class="n">contour</span><span class="o">.</span><span class="n">set_clip_path</span><span class="p">(</span><span class="n">clip</span><span class="p">)</span>          
+    <span class=n>sf</span> <span class=o>=</span> <span class=n>shapefile</span><span class=o>.</span><span class=n>Reader</span><span class=p>(</span><span class=n>shpfile</span><span class=p>)</span>
+    <span class=n>vertices</span> <span class=o>=</span> <span class=p>[</span><span class=p>]</span>
+    <span class=n>codes</span> <span class=o>=</span> <span class=p>[</span><span class=p>]</span>
+    <span class=k>for</span> <span class=n>shape_rec</span> <span class=ow>in</span> <span class=n>sf</span><span class=o>.</span><span class=n>shapeRecords</span><span class=p>(</span><span class=p>)</span><span class=p>:</span>
+        <span class=k>if</span> <span class=n>shape_rec</span><span class=o>.</span><span class=n>record</span><span class=p>[</span><span class=mi>3</span><span class=p>]</span> <span class=o>&gt;</span><span class=o>=</span> <span class=mi>0</span><span class=p>:</span>  
+            <span class=n>pts</span> <span class=o>=</span> <span class=n>shape_rec</span><span class=o>.</span><span class=n>shape</span><span class=o>.</span><span class=n>points</span>
+            <span class=n>prt</span> <span class=o>=</span> <span class=nb>list</span><span class=p>(</span><span class=n>shape_rec</span><span class=o>.</span><span class=n>shape</span><span class=o>.</span><span class=n>parts</span><span class=p>)</span> <span class=o>+</span> <span class=p>[</span><span class=nb>len</span><span class=p>(</span><span class=n>pts</span><span class=p>)</span><span class=p>]</span>
+            <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>prt</span><span class=p>)</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span><span class=p>:</span>
+                <span class=k>for</span> <span class=n>j</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>prt</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=p>,</span> <span class=n>prt</span><span class=p>[</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>]</span><span class=p>)</span><span class=p>:</span>
+                    <span class=n>vertices</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=nb>map</span><span class=p>(</span><span class=n>pts</span><span class=p>[</span><span class=n>j</span><span class=p>]</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>,</span> <span class=n>pts</span><span class=p>[</span><span class=n>j</span><span class=p>]</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=p>)</span><span class=p>)</span>
+                <span class=n>codes</span> <span class=o>+</span><span class=o>=</span> <span class=p>[</span><span class=n>Path</span><span class=o>.</span><span class=n>MOVETO</span><span class=p>]</span>
+                <span class=n>codes</span> <span class=o>+</span><span class=o>=</span> <span class=p>[</span><span class=n>Path</span><span class=o>.</span><span class=n>LINETO</span><span class=p>]</span> <span class=o>*</span> <span class=p>(</span><span class=n>prt</span><span class=p>[</span><span class=n>i</span><span class=o>+</span><span class=mi>1</span><span class=p>]</span> <span class=o>-</span> <span class=n>prt</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>-</span><span class=mi>2</span><span class=p>)</span>
+                <span class=n>codes</span> <span class=o>+</span><span class=o>=</span> <span class=p>[</span><span class=n>Path</span><span class=o>.</span><span class=n>CLOSEPOLY</span><span class=p>]</span>
+            <span class=n>clip</span> <span class=o>=</span> <span class=n>Path</span><span class=p>(</span><span class=n>vertices</span><span class=p>,</span> <span class=n>codes</span><span class=p>)</span>
+            <span class=n>clip</span> <span class=o>=</span> <span class=n>PathPatch</span><span class=p>(</span><span class=n>clip</span><span class=p>,</span> <span class=n>transform</span> <span class=o>=</span> <span class=n>ax</span><span class=o>.</span><span class=n>transData</span><span class=p>)</span>    
+    <span class=k>for</span> <span class=n>contour</span> <span class=ow>in</span> <span class=n>cs</span><span class=o>.</span><span class=n>collections</span><span class=p>:</span>
+        <span class=n>contour</span><span class=o>.</span><span class=n>set_clip_path</span><span class=p>(</span><span class=n>clip</span><span class=p>)</span>          
     
-<span class="n">shpfile</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;</span><span class="s1">E:</span><span class="s1">\</span><span class="s1">MATLAB</span><span class="s1">\</span><span class="s1">shp</span><span class="s1">\</span><span class="s1">中国行政区_包含南海九段线</span><span class="s1">&#39;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">E:</span><span class="s1">\</span><span class="s1">python</span><span class="s1">\</span><span class="s1">scripts</span><span class="s1">\</span><span class="s1">sss</span><span class="s1">\</span><span class="s1">pres.mon.ltm.nc</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class=n>shpfile</span> <span class=o>=</span> <span class=sa>u</span><span class=s1>&#39;</span><span class=s1>E:</span><span class=s1>\</span><span class=s1>MATLAB</span><span class=s1>\</span><span class=s1>shp</span><span class=s1>\</span><span class=s1>中国行政区_包含南海九段线</span><span class=s1>&#39;</span>
+<span class=n>data</span> <span class=o>=</span> <span class=n>nc</span><span class=o>.</span><span class=n>Dataset</span><span class=p>(</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>E:</span><span class=s1>\</span><span class=s1>python</span><span class=s1>\</span><span class=s1>scripts</span><span class=s1>\</span><span class=s1>sss</span><span class=s1>\</span><span class=s1>pres.mon.ltm.nc</span><span class=s1>&#39;</span><span class=p>)</span>
 
-<span class="n">pres</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">pres</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">14</span><span class="p">:</span><span class="mi">35</span><span class="p">,</span><span class="mi">28</span><span class="p">:</span><span class="mi">57</span><span class="p">]</span>
+<span class=n>pres</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=p>[</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>pres</span><span class=s1>&#39;</span><span class=p>]</span><span class=p>[</span><span class=mi>0</span><span class=p>,</span><span class=mi>14</span><span class=p>:</span><span class=mi>35</span><span class=p>,</span><span class=mi>28</span><span class=p>:</span><span class=mi>57</span><span class=p>]</span>
 
-<span class="n">lat</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">lat</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">[</span><span class="p">:</span><span class="p">]</span>
-<span class="n">lon</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">lon</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">[</span><span class="p">:</span><span class="p">]</span>
-<span class="n">lons</span><span class="p">,</span> <span class="n">lone</span> <span class="o">=</span> <span class="n">lon</span><span class="p">[</span><span class="mi">28</span><span class="p">]</span><span class="p">,</span> <span class="n">lon</span><span class="p">[</span><span class="mi">57</span><span class="p">]</span>
-<span class="n">lats</span><span class="p">,</span> <span class="n">late</span> <span class="o">=</span> <span class="n">lat</span><span class="p">[</span><span class="mi">35</span><span class="p">]</span><span class="p">,</span> <span class="n">lat</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span>
-<span class="n">nx</span> <span class="o">=</span> <span class="n">pres</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">ny</span> <span class="o">=</span> <span class="n">pres</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class=n>lat</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=p>[</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>lat</span><span class=s1>&#39;</span><span class=p>]</span><span class=p>[</span><span class=p>:</span><span class=p>]</span>
+<span class=n>lon</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=p>[</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>lon</span><span class=s1>&#39;</span><span class=p>]</span><span class=p>[</span><span class=p>:</span><span class=p>]</span>
+<span class=n>lons</span><span class=p>,</span> <span class=n>lone</span> <span class=o>=</span> <span class=n>lon</span><span class=p>[</span><span class=mi>28</span><span class=p>]</span><span class=p>,</span> <span class=n>lon</span><span class=p>[</span><span class=mi>57</span><span class=p>]</span>
+<span class=n>lats</span><span class=p>,</span> <span class=n>late</span> <span class=o>=</span> <span class=n>lat</span><span class=p>[</span><span class=mi>35</span><span class=p>]</span><span class=p>,</span> <span class=n>lat</span><span class=p>[</span><span class=mi>14</span><span class=p>]</span>
+<span class=n>nx</span> <span class=o>=</span> <span class=n>pres</span><span class=o>.</span><span class=n>shape</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span>
+<span class=n>ny</span> <span class=o>=</span> <span class=n>pres</span><span class=o>.</span><span class=n>shape</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class=n>fig</span> <span class=o>=</span> <span class=n>plt</span><span class=o>.</span><span class=n>figure</span><span class=p>(</span><span class=p>)</span>
+<span class=n>ax</span> <span class=o>=</span> <span class=n>fig</span><span class=o>.</span><span class=n>add_subplot</span><span class=p>(</span><span class=mi>111</span><span class=p>)</span>
 
-<span class="nb">map</span> <span class="o">=</span> <span class="n">Basemap</span><span class="p">(</span><span class="n">llcrnrlon</span> <span class="o">=</span> <span class="n">lon1</span><span class="p">,</span> <span class="n">llcrnrlat</span> <span class="o">=</span> <span class="n">lat1</span><span class="p">,</span> <span class="n">urcrnrlon</span> <span class="o">=</span> <span class="n">lon2</span><span class="p">,</span> <span class="n">urcrnrlat</span> <span class="o">=</span> <span class="n">lat2</span><span class="p">,</span>
-              <span class="n">projection</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">cyl</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
+<span class=nb>map</span> <span class=o>=</span> <span class=n>Basemap</span><span class=p>(</span><span class=n>llcrnrlon</span> <span class=o>=</span> <span class=n>lon1</span><span class=p>,</span> <span class=n>llcrnrlat</span> <span class=o>=</span> <span class=n>lat1</span><span class=p>,</span> <span class=n>urcrnrlon</span> <span class=o>=</span> <span class=n>lon2</span><span class=p>,</span> <span class=n>urcrnrlat</span> <span class=o>=</span> <span class=n>lat2</span><span class=p>,</span>
+              <span class=n>projection</span> <span class=o>=</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>cyl</span><span class=s1>&#39;</span><span class=p>,</span> <span class=n>ax</span> <span class=o>=</span> <span class=n>ax</span><span class=p>)</span>
 
-<span class="nb">map</span><span class="o">.</span><span class="n">drawparallels</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lats</span><span class="p">,</span> <span class="n">late</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="p">)</span>
-<span class="nb">map</span><span class="o">.</span><span class="n">drawmeridians</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span> <span class="n">lone</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="p">)</span>              
+<span class=nb>map</span><span class=o>.</span><span class=n>drawparallels</span><span class=p>(</span><span class=n>np</span><span class=o>.</span><span class=n>arange</span><span class=p>(</span><span class=n>lats</span><span class=p>,</span> <span class=n>late</span> <span class=o>+</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>5</span><span class=p>)</span><span class=p>,</span> <span class=n>labels</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>]</span><span class=p>)</span>
+<span class=nb>map</span><span class=o>.</span><span class=n>drawmeridians</span><span class=p>(</span><span class=n>np</span><span class=o>.</span><span class=n>arange</span><span class=p>(</span><span class=n>lons</span><span class=p>,</span> <span class=n>lone</span> <span class=o>+</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>10</span><span class=p>)</span><span class=p>,</span> <span class=n>labels</span> <span class=o>=</span> <span class=p>[</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>1</span><span class=p>]</span><span class=p>)</span>              
               
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">map</span><span class="o">.</span><span class="n">makegrid</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
-<span class="c1"># 转换坐标</span>
-<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="p">:</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span>
+<span class=n>x</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=nb>map</span><span class=o>.</span><span class=n>makegrid</span><span class=p>(</span><span class=n>nx</span><span class=p>,</span> <span class=n>ny</span><span class=p>)</span>
+<span class=c1># 转换坐标</span>
+<span class=n>x</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=nb>map</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>[</span><span class=p>:</span><span class=p>:</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=p>)</span>
 
-<span class="nb">map</span><span class="o">.</span><span class="n">readshapefile</span><span class="p">(</span><span class="n">shpfile</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">China</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class=nb>map</span><span class=o>.</span><span class=n>readshapefile</span><span class=p>(</span><span class=n>shpfile</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>China</span><span class=s1>&#39;</span><span class=p>)</span>
 
-<span class="n">cs</span> <span class="o">=</span> <span class="nb">map</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">vmin</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pres</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pres</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>  
-<span class="n">basemask</span><span class="p">(</span><span class="n">cs</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="nb">map</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;</span><span class="s1">E:</span><span class="s1">\</span><span class="s1">MATLAB</span><span class="s1">\</span><span class="s1">shp</span><span class="s1">\</span><span class="s1">bou2_4p</span><span class="s1">&#39;</span><span class="p">)</span>               
+<span class=n>cs</span> <span class=o>=</span> <span class=nb>map</span><span class=o>.</span><span class=n>contourf</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>,</span> <span class=n>pres</span><span class=p>,</span> <span class=n>vmin</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>pres</span><span class=o>.</span><span class=n>min</span><span class=p>(</span><span class=p>)</span><span class=p>)</span><span class=p>,</span> <span class=n>vmax</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>pres</span><span class=o>.</span><span class=n>max</span><span class=p>(</span><span class=p>)</span><span class=p>)</span><span class=p>)</span>  
+<span class=n>basemask</span><span class=p>(</span><span class=n>cs</span><span class=p>,</span> <span class=n>ax</span><span class=p>,</span> <span class=nb>map</span><span class=p>,</span> <span class=sa>r</span><span class=s1>&#39;</span><span class=s1>E:</span><span class=s1>\</span><span class=s1>MATLAB</span><span class=s1>\</span><span class=s1>shp</span><span class=s1>\</span><span class=s1>bou2_4p</span><span class=s1>&#39;</span><span class=p>)</span>               
         
-<span class="n">axins</span> <span class="o">=</span> <span class="n">zoomed_inset_axes</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">axins</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">lons</span> <span class="o">+</span> <span class="mi">38</span><span class="p">,</span> <span class="n">lons</span> <span class="o">+</span> <span class="mi">52</span><span class="p">)</span>
-<span class="n">axins</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span> <span class="n">lons</span> <span class="o">+</span> <span class="mi">20</span><span class="p">)</span>
+<span class=n>axins</span> <span class=o>=</span> <span class=n>zoomed_inset_axes</span><span class=p>(</span><span class=n>ax</span><span class=p>,</span> <span class=mf>0.8</span><span class=p>,</span> <span class=n>loc</span> <span class=o>=</span> <span class=mi>3</span><span class=p>)</span>
+<span class=n>axins</span><span class=o>.</span><span class=n>set_xlim</span><span class=p>(</span><span class=n>lons</span> <span class=o>+</span> <span class=mi>38</span><span class=p>,</span> <span class=n>lons</span> <span class=o>+</span> <span class=mi>52</span><span class=p>)</span>
+<span class=n>axins</span><span class=o>.</span><span class=n>set_ylim</span><span class=p>(</span><span class=n>lons</span><span class=p>,</span> <span class=n>lons</span> <span class=o>+</span> <span class=mi>20</span><span class=p>)</span>
 
-<span class="n">map2</span> <span class="o">=</span> <span class="n">Basemap</span><span class="p">(</span><span class="n">llcrnrlon</span> <span class="o">=</span> <span class="n">lons</span> <span class="o">+</span> <span class="mi">38</span><span class="p">,</span> <span class="n">llcrnrlat</span> <span class="o">=</span> <span class="n">lats</span><span class="p">,</span> <span class="n">urcrnrlon</span> <span class="o">=</span> <span class="n">lons</span> <span class="o">+</span> <span class="mi">52</span><span class="p">,</span> <span class="n">urcrnrlat</span> <span class="o">=</span> <span class="n">lats</span> <span class="o">+</span> <span class="mi">20</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axins</span><span class="p">)</span>                      
+<span class=n>map2</span> <span class=o>=</span> <span class=n>Basemap</span><span class=p>(</span><span class=n>llcrnrlon</span> <span class=o>=</span> <span class=n>lons</span> <span class=o>+</span> <span class=mi>38</span><span class=p>,</span> <span class=n>llcrnrlat</span> <span class=o>=</span> <span class=n>lats</span><span class=p>,</span> <span class=n>urcrnrlon</span> <span class=o>=</span> <span class=n>lons</span> <span class=o>+</span> <span class=mi>52</span><span class=p>,</span> <span class=n>urcrnrlat</span> <span class=o>=</span> <span class=n>lats</span> <span class=o>+</span> <span class=mi>20</span><span class=p>,</span> <span class=n>ax</span> <span class=o>=</span> <span class=n>axins</span><span class=p>)</span>                      
               
-<span class="n">map2</span><span class="o">.</span><span class="n">readshapefile</span><span class="p">(</span><span class="n">shpfile</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">China</span><span class="s1">&#39;</span><span class="p">)</span>              
-<span class="n">cs2</span> <span class="o">=</span> <span class="n">map2</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">pres</span><span class="p">,</span> <span class="n">vmin</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pres</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pres</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+<span class=n>map2</span><span class=o>.</span><span class=n>readshapefile</span><span class=p>(</span><span class=n>shpfile</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>China</span><span class=s1>&#39;</span><span class=p>)</span>              
+<span class=n>cs2</span> <span class=o>=</span> <span class=n>map2</span><span class=o>.</span><span class=n>contourf</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>,</span> <span class=n>pres</span><span class=p>,</span> <span class=n>vmin</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>pres</span><span class=o>.</span><span class=n>min</span><span class=p>(</span><span class=p>)</span><span class=p>)</span><span class=p>,</span> <span class=n>vmax</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>pres</span><span class=o>.</span><span class=n>max</span><span class=p>(</span><span class=p>)</span><span class=p>)</span><span class=p>)</span>
 
-<span class="n">basemask</span><span class="p">(</span><span class="n">cs2</span><span class="p">,</span> <span class="n">axins</span><span class="p">,</span> <span class="n">map2</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;</span><span class="s1">E:</span><span class="s1">\</span><span class="s1">MATLAB</span><span class="s1">\</span><span class="s1">shp</span><span class="s1">\</span><span class="s1">bou2_4p</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class=n>basemask</span><span class=p>(</span><span class=n>cs2</span><span class=p>,</span> <span class=n>axins</span><span class=p>,</span> <span class=n>map2</span><span class=p>,</span> <span class=sa>r</span><span class=s1>&#39;</span><span class=s1>E:</span><span class=s1>\</span><span class=s1>MATLAB</span><span class=s1>\</span><span class=s1>shp</span><span class=s1>\</span><span class=s1>bou2_4p</span><span class=s1>&#39;</span><span class=p>)</span>
 
-<span class="n">mark_inset</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">axins</span><span class="p">,</span> <span class="n">loc1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">loc2</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">fc</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">none</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">ec</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">none</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class=n>mark_inset</span><span class=p>(</span><span class=n>ax</span><span class=p>,</span> <span class=n>axins</span><span class=p>,</span> <span class=n>loc1</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span> <span class=n>loc2</span><span class=o>=</span><span class=mi>4</span><span class=p>,</span> <span class=n>fc</span> <span class=o>=</span> <span class=sa></span><span class=s2>&#34;</span><span class=s2>none</span><span class=s2>&#34;</span><span class=p>,</span> <span class=n>ec</span> <span class=o>=</span> <span class=sa></span><span class=s2>&#34;</span><span class=s2>none</span><span class=s2>&#34;</span><span class=p>)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>
-<p>添加南海小地图时先使用 <code>zoomed_inset_axes</code> 创建嵌入定位器</p>
-<p><code>zoomed_inset_axes</code> 接受了三个参数: <code>ax</code>需要添加子图的axes，<code>0.8</code>表示放大等级，<code>loc</code>表示子图放置位置</p>
-</li>
-<li>
-<p><code>mark_inset</code> 用于标记放大区域</p>
-</li>
-<li>
-<p><code>basemask</code> 函数用于进行地图的白化</p>
-</li>
-</ul>
-<div class="admonition note"><p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p><p>绘图时要设置 vmin 和 vmax 参数，而且两个图的值要设置为一致，否则画出的图可能导致相同区域配色不一致。</p>
-</div>
-<p><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://ws1.sinaimg.cn/large/006tNc79ly1fzr2j69a8qj30hs0dx3zc.jpg" alt="" class="lazyload"></figure></p>
-</div><div class="post-footer" id="post-footer">
-        <div style="padding: 10px 0; margin: 20px auto; width: 100%; font-size:16px; text-align: center;">
-        <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-            <span>打赏</span></button>
-        <div id="QR" style="display: none;">
-            <div id="wechat" style="display: inline-block">
-                <a class="fancybox" rel="group">
-                    <img id="wechat_qr" src="/img/Wechat.jpeg" alt="WeChat Pay"></a>
-                <p>微信打赏</p>
-            </div>
-            <div id="alipay" style="display: inline-block">
-                <a class="fancybox" rel="group">
-                    <img id="alipay_qr" src="/img/Alipay.jpeg" alt="Alipay"></a>
-                <p>支付宝打赏</p>
-            </div>
-        </div>
-    </div>
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>The article was updated on 2017-02-22</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2017%2f02%2f2019-02-01-python%25E5%259C%25B0%25E5%259B%25BE%25E7%25BB%2598%25E5%2588%25B6%25E5%25B9%25B6%25E6%25B7%25BB%25E5%258A%25A0%25E5%258D%2597%25E6%25B5%25B7%25E5%25B0%258F%25E5%259C%25B0%25E5%259B%25BE%2f&amp;text=Python%e5%9c%b0%e5%9b%be%e7%bb%98%e5%88%b6%e5%b9%b6%e6%b7%bb%e5%8a%a0%e5%8d%97%e6%b5%b7%e5%b0%8f%e5%9c%b0%e5%9b%be&amp;via=xxxx" target="_blank" title="Share on Twitter">
-            <i class="fab fa-twitter fa-fw"></i>
-        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2017%2f02%2f2019-02-01-python%25E5%259C%25B0%25E5%259B%25BE%25E7%25BB%2598%25E5%2588%25B6%25E5%25B9%25B6%25E6%25B7%25BB%25E5%258A%25A0%25E5%258D%2597%25E6%25B5%25B7%25E5%25B0%258F%25E5%259C%25B0%25E5%259B%25BE%2f" target="_blank" title="Share on Facebook">
-            <i class="fab fa-facebook-square fa-fw"></i>
-        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2017%2f02%2f2019-02-01-python%25E5%259C%25B0%25E5%259B%25BE%25E7%25BB%2598%25E5%2588%25B6%25E5%25B9%25B6%25E6%25B7%25BB%25E5%258A%25A0%25E5%258D%2597%25E6%25B5%25B7%25E5%25B0%258F%25E5%259C%25B0%25E5%259B%25BE%2f&amp;title=Python%e5%9c%b0%e5%9b%be%e7%bb%98%e5%88%b6%e5%b9%b6%e6%b7%bb%e5%8a%a0%e5%8d%97%e6%b5%b7%e5%b0%8f%e5%9c%b0%e5%9b%be" target="_blank" title="Share on Reddit">
-            <i class="fab fa-reddit fa-fw"></i>
-        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2017%2f02%2f2019-02-01-python%25E5%259C%25B0%25E5%259B%25BE%25E7%25BB%2598%25E5%2588%25B6%25E5%25B9%25B6%25E6%25B7%25BB%25E5%258A%25A0%25E5%258D%2597%25E6%25B5%25B7%25E5%25B0%258F%25E5%259C%25B0%25E5%259B%25BE%2f&amp;appkey=&amp;title=Python%e5%9c%b0%e5%9b%be%e7%bb%98%e5%88%b6%e5%b9%b6%e6%b7%bb%e5%8a%a0%e5%8d%97%e6%b5%b7%e5%b0%8f%e5%9c%b0%e5%9b%be" target="_blank" title="Share on Weibo">
-            <i class="fab fa-weibo fa-fw"></i>
-        </a></span></div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section><span class="tag">
-                        <a href="https://atmosai.github.io/tags/python/"><i class="fas fa-tag fa-fw"></i>&nbsp;python</a>&nbsp;
-                    </span><span class="tag">
-                        <a href="https://atmosai.github.io/tags/matplotlib/"><i class="fas fa-tag fa-fw"></i>&nbsp;matplotlib</a>&nbsp;
-                    </span><span class="tag">
-                        <a href="https://atmosai.github.io/tags/basemap/"><i class="fas fa-tag fa-fw"></i>&nbsp;basemap</a>&nbsp;
-                    </span></section>
-        <section>
-            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav">
-            <a href="https://atmosai.github.io/2017/03/2017-03-08-%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95nuist%E6%A0%A1%E5%9B%AD%E7%BD%91/" class="next" rel="next" title="自动登录NUIST校园网">自动登录NUIST校园网<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div class="post-comment"><div id="disqus_thread"></div>
-        <script type="text/javascript">
-            (function() {
-                
-                
-                if (window.location.hostname == "localhost")
-                    return;
-                var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
-                var disqus_shortname = "i-lightning-cn";
-                dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
-                (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
-    </article></div>
-            </main><footer class="footer">
-    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
-        </div>
-
-        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-    </div>
-</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
-            <span>&nbsp;</span>
-        </a>
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-112932643-1', 'auto');
-	ga('set', 'anonymizeIp', true);
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-<script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
-</html>
+<span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>(</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><ul><li><p>添加南海小地图时先使用 <code>zoomed_inset_axes</code> 创建嵌入定位器</p><p><code>zoomed_inset_axes</code> 接受了三个参数: <code>ax</code>需要添加子图的axes，<code>0.8</code>表示放大等级，<code>loc</code>表示子图放置位置</p></li><li><p><code>mark_inset</code> 用于标记放大区域</p></li><li><p><code>basemask</code> 函数用于进行地图的白化</p></li></ul><div class="admonition note"><p class=admonition-title><i class="icon fas fa-pencil-alt"></i>Note</p><p>绘图时要设置 vmin 和 vmax 参数，而且两个图的值要设置为一致，否则画出的图可能导致相同区域配色不一致。</p></div><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://ws1.sinaimg.cn/large/006tNc79ly1fzr2j69a8qj30hs0dx3zc.jpg alt class=lazyload></figure></p></div><div class=post-footer id=post-footer><div style="padding:10px 0;margin:20px auto;width:100%;font-size:16px;text-align:center"><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
+<span>打赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><a class=fancybox rel=group><img id=wechat_qr src=/img/Wechat.jpeg alt="WeChat Pay"></a><p>微信打赏</p></div><div id=alipay style=display:inline-block><a class=fancybox rel=group><img id=alipay_qr src=/img/Alipay.jpeg alt=Alipay></a><p>支付宝打赏</p></div></div></div><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2017-02-22</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2017%2f02%2f2019-02-01-python%25E5%259C%25B0%25E5%259B%25BE%25E7%25BB%2598%25E5%2588%25B6%25E5%25B9%25B6%25E6%25B7%25BB%25E5%258A%25A0%25E5%258D%2597%25E6%25B5%25B7%25E5%25B0%258F%25E5%259C%25B0%25E5%259B%25BE%2f&text=Python%e5%9c%b0%e5%9b%be%e7%bb%98%e5%88%b6%e5%b9%b6%e6%b7%bb%e5%8a%a0%e5%8d%97%e6%b5%b7%e5%b0%8f%e5%9c%b0%e5%9b%be&via=xxxx" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2017%2f02%2f2019-02-01-python%25E5%259C%25B0%25E5%259B%25BE%25E7%25BB%2598%25E5%2588%25B6%25E5%25B9%25B6%25E6%25B7%25BB%25E5%258A%25A0%25E5%258D%2597%25E6%25B5%25B7%25E5%25B0%258F%25E5%259C%25B0%25E5%259B%25BE%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2017%2f02%2f2019-02-01-python%25E5%259C%25B0%25E5%259B%25BE%25E7%25BB%2598%25E5%2588%25B6%25E5%25B9%25B6%25E6%25B7%25BB%25E5%258A%25A0%25E5%258D%2597%25E6%25B5%25B7%25E5%25B0%258F%25E5%259C%25B0%25E5%259B%25BE%2f&title=Python%e5%9c%b0%e5%9b%be%e7%bb%98%e5%88%b6%e5%b9%b6%e6%b7%bb%e5%8a%a0%e5%8d%97%e6%b5%b7%e5%b0%8f%e5%9c%b0%e5%9b%be" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2017%2f02%2f2019-02-01-python%25E5%259C%25B0%25E5%259B%25BE%25E7%25BB%2598%25E5%2588%25B6%25E5%25B9%25B6%25E6%25B7%25BB%25E5%258A%25A0%25E5%258D%2597%25E6%25B5%25B7%25E5%25B0%258F%25E5%259C%25B0%25E5%259B%25BE%2f&appkey=&title=Python%e5%9c%b0%e5%9b%be%e7%bb%98%e5%88%b6%e5%b9%b6%e6%b7%bb%e5%8a%a0%e5%8d%97%e6%b5%b7%e5%b0%8f%e5%9c%b0%e5%9b%be" target=_blank title="Share on Weibo"><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://atmosai.github.io/tags/python/><i class="fas fa-tag fa-fw"></i>&nbsp;python</a>&nbsp;
+</span><span class=tag><a href=https://atmosai.github.io/tags/matplotlib/><i class="fas fa-tag fa-fw"></i>&nbsp;matplotlib</a>&nbsp;
+</span><span class=tag><a href=https://atmosai.github.io/tags/basemap/><i class="fas fa-tag fa-fw"></i>&nbsp;basemap</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://atmosai.github.io>Home</a></span></section></div><div class=post-nav><a href=https://atmosai.github.io/2017/03/2017-03-08-%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95nuist%E6%A0%A1%E5%9B%AD%E7%BD%91/ class=next rel=next title=自动登录NUIST校园网>自动登录NUIST校园网<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;var dsq=document.createElement("script");dsq.type="text/javascript";dsq.async=true;var disqus_shortname="i-lightning-cn";dsq.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2016 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://atmosai.github.io target=_blank>bugsuse</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span></a>
+<script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-112932643-1','auto');ga('set','anonymizeIp',true);ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><script src=/js/blog.min.js></script></body></html>
