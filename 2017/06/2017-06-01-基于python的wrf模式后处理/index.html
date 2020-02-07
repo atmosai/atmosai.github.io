@@ -1,292 +1,147 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>基于python的WRF模式后处理 | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noodp" />
-<meta name="Description" content="About LoveIt Theme"><link rel="prev" href="https://atmosai.github.io/2017/05/2017-05-02-%E5%8F%8C%E5%81%8F%E6%8C%AF%E5%A4%9A%E6%99%AE%E5%8B%92%E6%B0%94%E8%B1%A1%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" /><link rel="next" href="https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/" /><link rel="canonical" href="https://atmosai.github.io/2017/06/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86/" />
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff"><meta property="og:title" content="基于python的WRF模式后处理" />
-<meta property="og:description" content="WRF模式是数值天气预报和大气模拟系统，其开发目的就是用语研究和实际应用。运行WRF模式时，可以利用多种初始场数据来驱动，然后配置好选项之后" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://atmosai.github.io/2017/06/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86/" />
-<meta property="article:published_time" content="2017-06-01T16:47:56+08:00" />
-<meta property="article:modified_time" content="2017-06-01T16:47:56+08:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="基于python的WRF模式后处理"/>
-<meta name="twitter:description" content="WRF模式是数值天气预报和大气模拟系统，其开发目的就是用语研究和实际应用。运行WRF模式时，可以利用多种初始场数据来驱动，然后配置好选项之后"/>
-<script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "基于python的WRF模式后处理",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/atmosai.github.io\/2017\/06\/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86\/"
-        },"image": {
-                "@type": "ImageObject",
-                "url": "https:\/\/atmosai.github.io\/cover.png",
-                "width":  800 ,
-                "height":  600 
-            },"genre": "posts","keywords": "python, WRF","wordcount":  1003 ,
-        "url": "https:\/\/atmosai.github.io\/2017\/06\/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86\/","datePublished": "2017-06-01T16:47:56\x2b08:00","dateModified": "2017-06-01T16:47:56\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
-                "@type": "Organization",
-                "name": "xxxx",
-                "logo": {
-                "@type": "ImageObject",
-                "url": "https:\/\/atmosai.github.io\/logo.png",
-                "width":  127 ,
-                "height":  40 
-                }
-            },"description": ""
-    }
-    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
-    <body><script>
-            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
-            window.isDark && document.body.classList.add('dark-theme');
-        </script><div class="wrapper"><nav class="navbar">
-    <div class="navbar-container">
-        <div class="navbar-header animated bounceIn">
-            <a href="https://atmosai.github.io">bugsuse</a>
-        </div>
-        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
-        </div>
-    </div>
-</nav><nav class="navbar-mobile">
-    <div class="navbar-container">
-        <div class="navbar-header">
-            <div class="navbar-header-title animated bounceIn">
-                <a href="https://atmosai.github.io">bugsuse</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
-        </div>
-    </div>
-</nav><main class="main">
-                <div class="container"><article class="page"><h1 class="post-title animated flipInX">基于python的WRF模式后处理</h1><div class="post-meta">
-            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
-                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
-                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/tools/">Tools</a>&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/model/">Model</a>&nbsp;</span></div>
-            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2017-06-01>2017-06-01</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>about 1003 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>3 min&nbsp;</div>
-        </div><div class="post-toc" id="post-toc">
-                <h2 class="post-toc-title">Contents</h2>
-                <div class="post-toc-content"><nav id="TableOfContents"></nav></div>
-            </div>
-            <div class="post-toc-mobile" id="post-toc-mobile">
-                <details>
-                    <summary>
-                        <div class="post-toc-title">
-                            <span>Contents</span>
-                            <span><i class="details icon fas fa-angle-down"></i></span>
-                        </div>
-                    </summary>
-                    <div class="post-toc-content"><nav id="TableOfContentsMobile"></nav></div>
-                </details>
-            </div><div class="post-content"><p>WRF模式是数值天气预报和大气模拟系统，其开发目的就是用语研究和实际应用。运行WRF模式时，可以利用多种初始场数据来驱动，然后配置好选项之后便可以模拟天气过程（说的好像很简单的样子==）。</p>
-<p>个例模拟结束之后怎么办呢，我们怎么知道模拟的效果究竟如何呢？既然模拟了，那么就会有数据输出，想要检验模拟效果如何，就要对模拟数据进行处理。这就是所谓的后处理过程，也就是对模拟结果的处理，提取想要的数据，并进行分析及可视化的过程。</p>
-<p>在地学系统中，尤其是大气科学领域，对WRF模式后处理主要使用的是GrADS和NCL，而GrADS同FORTRAN一样，属于历史悠久系列产品之一。而NCL是由NCAR开发的脚本语言，近些年来用户颇多，其主要应用与地学领域，其中包含了大量的气象相关脚本，很多气象要素的计算函数，以及气象常用图形的绘制函数，官网也给出了大量的示例，在气象领域中应用广泛。既然涉及气象领域，那么自然就少不了对WRF模式的支持，NCL中有一个脚本库，专门应用于WRF模式的后处理。</p>
-<p>Python进行WRF模式后处理，主要使用三个库：matplotlib(python中最火的可视化库)，netCDF4(处理nc文件)，Basemap(处理地图投影)。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span><span class="p">,</span><span class="n">colors</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">mpl_toolkits.basemap</span> <span class="kn">import</span> <span class="n">Basemap</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">netCDF4</span> <span class="kn">as</span> <span class="nn">nc</span>
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>基于python的WRF模式后处理 | bugsuse</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="About LoveIt Theme"><link rel=prev href=https://atmosai.github.io/2017/05/2017-05-02-%E5%8F%8C%E5%81%8F%E6%8C%AF%E5%A4%9A%E6%99%AE%E5%8B%92%E6%B0%94%E8%B1%A1%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/><link rel=next href=https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/><link rel=canonical href=https://atmosai.github.io/2017/06/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta property="og:title" content="基于python的WRF模式后处理"><meta property="og:description" content="WRF模式是数值天气预报和大气模拟系统，其开发目的就是用语研究和实际应用。运行WRF模式时，可以利用多种初始场数据来驱动，然后配置好选项之后"><meta property="og:type" content="article"><meta property="og:url" content="https://atmosai.github.io/2017/06/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86/"><meta property="article:published_time" content="2017-06-01T16:47:56+08:00"><meta property="article:modified_time" content="2017-06-01T16:47:56+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="基于python的WRF模式后处理"><meta name=twitter:description content="WRF模式是数值天气预报和大气模拟系统，其开发目的就是用语研究和实际应用。运行WRF模式时，可以利用多种初始场数据来驱动，然后配置好选项之后"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"基于python的WRF模式后处理","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/atmosai.github.io\/2017\/06\/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86\/"},"image":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"python, WRF","wordcount":1003,"url":"https:\/\/atmosai.github.io\/2017\/06\/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86\/","datePublished":"2017-06-01T16:47:56\x2b08:00","dateModified":"2017-06-01T16:47:56\x2b08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=navbar-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文><i class="fas fa-language fa-fw"></i></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">基于python的WRF模式后处理</h1><div class=post-meta><div class=post-meta-main><a class=author href=http://i-lightning.cn rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>bugsuse
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://atmosai.github.io/categories/tools/>Tools</a>&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://atmosai.github.io/categories/model/>Model</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2017-06-01>2017-06-01</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 1003 words&nbsp;
+<i class="far fa-clock fa-fw"></i>3 min&nbsp;</div></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile></nav></div></details></div><div class=post-content><p>WRF模式是数值天气预报和大气模拟系统，其开发目的就是用语研究和实际应用。运行WRF模式时，可以利用多种初始场数据来驱动，然后配置好选项之后便可以模拟天气过程（说的好像很简单的样子==）。</p><p>个例模拟结束之后怎么办呢，我们怎么知道模拟的效果究竟如何呢？既然模拟了，那么就会有数据输出，想要检验模拟效果如何，就要对模拟数据进行处理。这就是所谓的后处理过程，也就是对模拟结果的处理，提取想要的数据，并进行分析及可视化的过程。</p><p>在地学系统中，尤其是大气科学领域，对WRF模式后处理主要使用的是GrADS和NCL，而GrADS同FORTRAN一样，属于历史悠久系列产品之一。而NCL是由NCAR开发的脚本语言，近些年来用户颇多，其主要应用与地学领域，其中包含了大量的气象相关脚本，很多气象要素的计算函数，以及气象常用图形的绘制函数，官网也给出了大量的示例，在气象领域中应用广泛。既然涉及气象领域，那么自然就少不了对WRF模式的支持，NCL中有一个脚本库，专门应用于WRF模式的后处理。</p><p>Python进行WRF模式后处理，主要使用三个库：matplotlib(python中最火的可视化库)，netCDF4(处理nc文件)，Basemap(处理地图投影)。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>matplotlib</span> <span class=kn>import</span> <span class=n>cm</span><span class=p>,</span><span class=n>colors</span>
+<span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=kn>as</span> <span class=nn>plt</span>
+<span class=kn>from</span> <span class=nn>mpl_toolkits.basemap</span> <span class=kn>import</span> <span class=n>Basemap</span>
+<span class=kn>import</span> <span class=nn>numpy</span> <span class=kn>as</span> <span class=nn>np</span>
+<span class=kn>import</span> <span class=nn>netCDF4</span> <span class=kn>as</span> <span class=nn>nc</span>
 
-<span class="kn">from</span> <span class="nn">wrfpost</span> <span class="kn">import</span> <span class="n">sharexy</span>
+<span class=kn>from</span> <span class=nn>wrfpost</span> <span class=kn>import</span> <span class=n>sharexy</span>
 
-<span class="n">fip</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">/run/media/storm/Flash/WRF/623/</span><span class="s2">&#34;</span>
-<span class="n">fin1</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">wrfout_d02_2016-06-23_06_00_00</span><span class="s2">&#34;</span>
-<span class="n">shpfn</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">/home/storm/MATLAB/shp/bou2_4p</span><span class="s1">&#39;</span>
+<span class=n>fip</span> <span class=o>=</span> <span class=sa></span><span class=s2>&#34;</span><span class=s2>/run/media/storm/Flash/WRF/623/</span><span class=s2>&#34;</span>
+<span class=n>fin1</span> <span class=o>=</span> <span class=sa></span><span class=s2>&#34;</span><span class=s2>wrfout_d02_2016-06-23_06_00_00</span><span class=s2>&#34;</span>
+<span class=n>shpfn</span> <span class=o>=</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>/home/storm/MATLAB/shp/bou2_4p</span><span class=s1>&#39;</span>
 
-<span class="n">ti</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">18</span><span class="p">]</span>
-<span class="n">xs</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>   <span class="n">xe</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">ys</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>   <span class="n">ye</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<span class="n">zs</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>   <span class="n">ze</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class=n>ti</span> <span class=o>=</span> <span class=p>[</span><span class=mi>0</span><span class=p>,</span><span class=mi>6</span><span class=p>,</span><span class=mi>12</span><span class=p>,</span><span class=mi>18</span><span class=p>]</span>
+<span class=n>xs</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>   <span class=n>xe</span> <span class=o>=</span> <span class=o>-</span><span class=mi>1</span>
+<span class=n>ys</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>   <span class=n>ye</span> <span class=o>=</span> <span class=o>-</span><span class=mi>1</span>
+<span class=n>zs</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>   <span class=n>ze</span> <span class=o>=</span> <span class=o>-</span><span class=mi>1</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">fip</span> <span class="o">+</span> <span class="n">fin1</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">r</span><span class="s2">&#34;</span><span class="p">)</span>
-<span class="n">truelat</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">TRUELAT1</span>
-<span class="n">truelat</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">TRUELAT2</span>
-<span class="n">stalon</span>  <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">CEN_LON</span>
-<span class="n">stalat</span>  <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">CEN_LAT</span>
+<span class=n>data</span> <span class=o>=</span> <span class=n>nc</span><span class=o>.</span><span class=n>Dataset</span><span class=p>(</span><span class=n>fip</span> <span class=o>+</span> <span class=n>fin1</span><span class=p>,</span> <span class=sa></span><span class=s2>&#34;</span><span class=s2>r</span><span class=s2>&#34;</span><span class=p>)</span>
+<span class=n>truelat</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>TRUELAT1</span>
+<span class=n>truelat</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>TRUELAT2</span>
+<span class=n>stalon</span>  <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>CEN_LON</span>
+<span class=n>stalat</span>  <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>CEN_LAT</span>
 
-<span class="c1"># 国内雷达图配色 </span>
-<span class="n">collev</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">#FFFFFF</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">#98F5FF</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">#87CEEB</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">#00FF00</span><span class="s2">&#34;</span><span class="p">,</span>\
-           <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#008B00</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">#FFFF00</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">#FFA500</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">#FF8C00</span><span class="s2">&#34;</span><span class="p">,</span>\
-           <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#FF0000</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">#AF0000</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">#8B0000</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">#FF00FF</span><span class="s2">&#34;</span><span class="p">,</span>\
-           <span class="sa"></span><span class="s2">&#34;</span><span class="s2">#8A2BE2</span><span class="s2">&#34;</span><span class="p">,</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">#360CF9</span><span class="s2">&#34;</span><span class="p">]</span>
-<span class="c1">#  文献中雷达反射率配色</span>
-<span class="c1"># [&#34;#9808F0&#34;, &#34;#51A5CE&#34;, &#34;#3455A9&#34;, &#34;#7FC500&#34;, &#34;#54BE09&#34;, &#34;#39932C&#34;,\</span>
-<span class="c1">#  &#34;#F7E731&#34;,&#34;#E6BC25&#34;, &#34;#F78C29&#34;, &#34;#E12C2D&#34;, &#34;#A22429&#34;, &#34;#4A1910&#34;,\</span>
-<span class="c1">#  &#34;#B85BC1&#34;, &#34;#935CB6&#34;]</span>
-<span class="n">cmaps</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">(</span><span class="n">collev</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">indexed</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">cm</span><span class="o">.</span><span class="n">register_cmap</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">dbzcmap</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">data</span> <span class="o">=</span> <span class="n">collev</span><span class="p">,</span><span class="n">lut</span> <span class="o">=</span> <span class="mi">128</span><span class="p">)</span>
+<span class=c1># 国内雷达图配色 </span>
+<span class=n>collev</span> <span class=o>=</span> <span class=p>[</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>#FFFFFF</span><span class=s2>&#34;</span><span class=p>,</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>#98F5FF</span><span class=s2>&#34;</span><span class=p>,</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>#87CEEB</span><span class=s2>&#34;</span><span class=p>,</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>#00FF00</span><span class=s2>&#34;</span><span class=p>,</span>\
+           <span class=sa></span><span class=s2>&#34;</span><span class=s2>#008B00</span><span class=s2>&#34;</span><span class=p>,</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>#FFFF00</span><span class=s2>&#34;</span><span class=p>,</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>#FFA500</span><span class=s2>&#34;</span><span class=p>,</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>#FF8C00</span><span class=s2>&#34;</span><span class=p>,</span>\
+           <span class=sa></span><span class=s2>&#34;</span><span class=s2>#FF0000</span><span class=s2>&#34;</span><span class=p>,</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>#AF0000</span><span class=s2>&#34;</span><span class=p>,</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>#8B0000</span><span class=s2>&#34;</span><span class=p>,</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>#FF00FF</span><span class=s2>&#34;</span><span class=p>,</span>\
+           <span class=sa></span><span class=s2>&#34;</span><span class=s2>#8A2BE2</span><span class=s2>&#34;</span><span class=p>,</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>#360CF9</span><span class=s2>&#34;</span><span class=p>]</span>
+<span class=c1>#  文献中雷达反射率配色</span>
+<span class=c1># [&#34;#9808F0&#34;, &#34;#51A5CE&#34;, &#34;#3455A9&#34;, &#34;#7FC500&#34;, &#34;#54BE09&#34;, &#34;#39932C&#34;,\</span>
+<span class=c1>#  &#34;#F7E731&#34;,&#34;#E6BC25&#34;, &#34;#F78C29&#34;, &#34;#E12C2D&#34;, &#34;#A22429&#34;, &#34;#4A1910&#34;,\</span>
+<span class=c1>#  &#34;#B85BC1&#34;, &#34;#935CB6&#34;]</span>
+<span class=n>cmaps</span> <span class=o>=</span> <span class=n>colors</span><span class=o>.</span><span class=n>ListedColormap</span><span class=p>(</span><span class=n>collev</span><span class=p>,</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>indexed</span><span class=s1>&#39;</span><span class=p>)</span>
+<span class=n>cm</span><span class=o>.</span><span class=n>register_cmap</span><span class=p>(</span><span class=n>name</span> <span class=o>=</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>dbzcmap</span><span class=s1>&#39;</span><span class=p>,</span><span class=n>data</span> <span class=o>=</span> <span class=n>collev</span><span class=p>,</span><span class=n>lut</span> <span class=o>=</span> <span class=mi>128</span><span class=p>)</span>
 
-<span class="n">fn</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">Arial</span><span class="s2">&#34;</span>
-<span class="n">fs</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">ld</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="n">nrows</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">ncols</span> <span class="o">=</span> <span class="mi">2</span>
+<span class=n>fn</span> <span class=o>=</span> <span class=sa></span><span class=s2>&#34;</span><span class=s2>Arial</span><span class=s2>&#34;</span>
+<span class=n>fs</span> <span class=o>=</span> <span class=mi>10</span>
+<span class=n>ld</span> <span class=o>=</span> <span class=mf>0.</span>
+<span class=n>nrows</span> <span class=o>=</span> <span class=mi>2</span>
+<span class=n>ncols</span> <span class=o>=</span> <span class=mi>2</span>
 
-<span class="n">fig</span><span class="p">,</span><span class="n">axes</span>  <span class="o">=</span>  <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span> <span class="o">=</span> <span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="n">ncols</span><span class="p">,</span> 
-                          <span class="n">subplot_kw</span><span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">aspect</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">auto</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">)</span>
+<span class=n>fig</span><span class=p>,</span><span class=n>axes</span>  <span class=o>=</span>  <span class=n>plt</span><span class=o>.</span><span class=n>subplots</span><span class=p>(</span><span class=n>nrows</span> <span class=o>=</span> <span class=n>nrows</span><span class=p>,</span> <span class=n>ncols</span> <span class=o>=</span> <span class=n>ncols</span><span class=p>,</span> 
+                          <span class=n>subplot_kw</span><span class=o>=</span> <span class=nb>dict</span><span class=p>(</span><span class=n>aspect</span> <span class=o>=</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>auto</span><span class=s1>&#39;</span><span class=p>)</span><span class=p>)</span>
 
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">nrows</span><span class="o">*</span><span class="n">ncols</span><span class="p">)</span><span class="p">,</span> <span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">)</span><span class="p">:</span>
-    <span class="n">dbz</span>  <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">COMPOSITE_REFL_10CM</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">[</span><span class="n">ti</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span><span class="n">xs</span><span class="p">:</span><span class="n">xe</span><span class="p">,</span><span class="n">ys</span><span class="p">:</span><span class="n">ye</span><span class="p">]</span>
-    <span class="n">lat</span>  <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">XLAT</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">[</span><span class="n">ti</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">xs</span><span class="p">:</span><span class="n">xe</span><span class="p">,</span> <span class="n">ys</span><span class="p">:</span><span class="n">ye</span><span class="p">]</span>
-    <span class="n">lon</span>  <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">XLONG</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">[</span><span class="n">ti</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="p">,</span> <span class="n">xs</span><span class="p">:</span><span class="n">xe</span><span class="p">,</span> <span class="n">ys</span><span class="p">:</span><span class="n">ye</span><span class="p">]</span>
+<span class=k>for</span> <span class=n>i</span><span class=p>,</span> <span class=n>ax</span> <span class=ow>in</span> <span class=nb>zip</span><span class=p>(</span><span class=n>np</span><span class=o>.</span><span class=n>arange</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=n>nrows</span><span class=o>*</span><span class=n>ncols</span><span class=p>)</span><span class=p>,</span> <span class=n>axes</span><span class=o>.</span><span class=n>flat</span><span class=p>)</span><span class=p>:</span>
+    <span class=n>dbz</span>  <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=p>[</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>COMPOSITE_REFL_10CM</span><span class=s2>&#34;</span><span class=p>]</span><span class=p>[</span><span class=n>ti</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=p>,</span><span class=n>xs</span><span class=p>:</span><span class=n>xe</span><span class=p>,</span><span class=n>ys</span><span class=p>:</span><span class=n>ye</span><span class=p>]</span>
+    <span class=n>lat</span>  <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=p>[</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>XLAT</span><span class=s2>&#34;</span><span class=p>]</span><span class=p>[</span><span class=n>ti</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=p>,</span> <span class=n>xs</span><span class=p>:</span><span class=n>xe</span><span class=p>,</span> <span class=n>ys</span><span class=p>:</span><span class=n>ye</span><span class=p>]</span>
+    <span class=n>lon</span>  <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=p>[</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>XLONG</span><span class=s2>&#34;</span><span class=p>]</span><span class=p>[</span><span class=n>ti</span><span class=p>[</span><span class=n>i</span><span class=p>]</span><span class=p>,</span> <span class=n>xs</span><span class=p>:</span><span class=n>xe</span><span class=p>,</span> <span class=n>ys</span><span class=p>:</span><span class=n>ye</span><span class=p>]</span>
 
-    <span class="nb">map</span> <span class="o">=</span> <span class="n">Basemap</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span> <span class="n">ax</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">lcc</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">llcrnrlon</span> <span class="o">=</span> <span class="n">lon</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="n">llcrnrlat</span> <span class="o">=</span> <span class="n">lat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span>\
-              <span class="n">urcrnrlon</span> <span class="o">=</span> <span class="n">lon</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">urcrnrlat</span><span class="o">=</span><span class="n">lat</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">lat_0</span> <span class="o">=</span> <span class="n">stalat</span><span class="p">,</span>\
-              <span class="n">lon_0</span> <span class="o">=</span> <span class="n">stalon</span><span class="p">,</span> <span class="n">resolution</span> <span class="o">=</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">h</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
-<span class="c1"># 添加经度，纬度坐标，海岸线，国界线</span>
-    <span class="n">labelsx</span><span class="p">,</span> <span class="n">labelsy</span> <span class="o">=</span> <span class="n">sharexy</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-    <span class="nb">map</span><span class="o">.</span><span class="n">readshapefile</span><span class="p">(</span><span class="n">shpfn</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">bou2_4p</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">k</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
-    <span class="nb">map</span><span class="o">.</span><span class="n">drawmeridians</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">lon</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">lon</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span> <span class="n">labelsx</span><span class="p">,</span> \
-                    <span class="n">fontname</span> <span class="o">=</span> <span class="n">fn</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span> <span class="n">fs</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="n">ld</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
-    <span class="nb">map</span><span class="o">.</span><span class="n">drawparallels</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">lat</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">lat</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span> <span class="n">labelsy</span><span class="p">,</span> \
-                    <span class="n">fontname</span> <span class="o">=</span> <span class="n">fn</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span> <span class="n">fs</span><span class="p">,</span> <span class="n">linewidth</span> <span class="o">=</span> <span class="n">ld</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span><span class="p">)</span>
-    <span class="n">con</span>  <span class="o">=</span> <span class="nb">map</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dbz</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">71</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span> <span class="n">cmaps</span><span class="p">)</span>
+    <span class=nb>map</span> <span class=o>=</span> <span class=n>Basemap</span><span class=p>(</span><span class=n>ax</span><span class=o>=</span> <span class=n>ax</span><span class=p>,</span> <span class=n>projection</span><span class=o>=</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>lcc</span><span class=s2>&#34;</span><span class=p>,</span> <span class=n>llcrnrlon</span> <span class=o>=</span> <span class=n>lon</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=mi>0</span><span class=p>]</span><span class=p>,</span> <span class=n>llcrnrlat</span> <span class=o>=</span> <span class=n>lat</span><span class=p>[</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>]</span><span class=p>,</span>\
+              <span class=n>urcrnrlon</span> <span class=o>=</span> <span class=n>lon</span><span class=p>[</span><span class=mi>0</span><span class=p>,</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=p>,</span> <span class=n>urcrnrlat</span><span class=o>=</span><span class=n>lat</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=p>,</span> <span class=n>lat_0</span> <span class=o>=</span> <span class=n>stalat</span><span class=p>,</span>\
+              <span class=n>lon_0</span> <span class=o>=</span> <span class=n>stalon</span><span class=p>,</span> <span class=n>resolution</span> <span class=o>=</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>h</span><span class=s2>&#34;</span><span class=p>)</span>
+    <span class=n>x</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=nb>map</span><span class=p>(</span><span class=n>lon</span><span class=p>,</span> <span class=n>lat</span><span class=p>)</span>
+<span class=c1># 添加经度，纬度坐标，海岸线，国界线</span>
+    <span class=n>labelsx</span><span class=p>,</span> <span class=n>labelsy</span> <span class=o>=</span> <span class=n>sharexy</span><span class=p>(</span><span class=n>ax</span><span class=p>,</span> <span class=n>nrows</span><span class=p>,</span> <span class=n>ncols</span><span class=p>,</span> <span class=n>i</span><span class=p>)</span>
+    <span class=nb>map</span><span class=o>.</span><span class=n>readshapefile</span><span class=p>(</span><span class=n>shpfn</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>bou2_4p</span><span class=s1>&#39;</span><span class=p>,</span> <span class=n>linewidth</span> <span class=o>=</span> <span class=mi>1</span><span class=p>,</span> <span class=n>color</span> <span class=o>=</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>k</span><span class=s1>&#39;</span><span class=p>,</span> <span class=n>ax</span> <span class=o>=</span> <span class=n>ax</span><span class=p>)</span>
+    <span class=nb>map</span><span class=o>.</span><span class=n>drawmeridians</span><span class=p>(</span><span class=n>np</span><span class=o>.</span><span class=n>arange</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>lon</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=mi>0</span><span class=p>]</span><span class=p>)</span><span class=p>,</span> <span class=nb>int</span><span class=p>(</span><span class=n>lon</span><span class=p>[</span><span class=mi>0</span><span class=p>,</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=p>)</span><span class=o>+</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span><span class=p>,</span> <span class=n>labels</span><span class=o>=</span> <span class=n>labelsx</span><span class=p>,</span> \
+                    <span class=n>fontname</span> <span class=o>=</span> <span class=n>fn</span><span class=p>,</span> <span class=n>fontsize</span><span class=o>=</span> <span class=n>fs</span><span class=p>,</span> <span class=n>linewidth</span> <span class=o>=</span> <span class=n>ld</span><span class=p>,</span> <span class=n>ax</span> <span class=o>=</span> <span class=n>ax</span><span class=p>)</span>
+    <span class=nb>map</span><span class=o>.</span><span class=n>drawparallels</span><span class=p>(</span><span class=n>np</span><span class=o>.</span><span class=n>arange</span><span class=p>(</span><span class=nb>int</span><span class=p>(</span><span class=n>lat</span><span class=p>[</span><span class=mi>0</span><span class=p>,</span><span class=mi>0</span><span class=p>]</span><span class=p>)</span><span class=p>,</span> <span class=nb>int</span><span class=p>(</span><span class=n>lat</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=p>)</span><span class=o>+</span><span class=mi>1</span><span class=p>)</span><span class=p>,</span> <span class=n>labels</span><span class=o>=</span> <span class=n>labelsy</span><span class=p>,</span> \
+                    <span class=n>fontname</span> <span class=o>=</span> <span class=n>fn</span><span class=p>,</span> <span class=n>fontsize</span><span class=o>=</span> <span class=n>fs</span><span class=p>,</span> <span class=n>linewidth</span> <span class=o>=</span> <span class=n>ld</span><span class=p>,</span> <span class=n>ax</span> <span class=o>=</span> <span class=n>ax</span><span class=p>)</span>
+    <span class=n>con</span>  <span class=o>=</span> <span class=nb>map</span><span class=o>.</span><span class=n>contourf</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>,</span> <span class=n>dbz</span><span class=p>,</span> <span class=n>np</span><span class=o>.</span><span class=n>arange</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span><span class=mi>71</span><span class=p>,</span><span class=mi>5</span><span class=p>)</span><span class=p>,</span> <span class=n>cmap</span><span class=o>=</span> <span class=n>cmaps</span><span class=p>)</span>
     
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_adjustable</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">box-forced</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># 防止绘图和坐标区域不一致</span>
+    <span class=n>ax</span><span class=o>.</span><span class=n>set_adjustable</span><span class=p>(</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>box-forced</span><span class=s1>&#39;</span><span class=p>)</span>  <span class=c1># 防止绘图和坐标区域不一致</span>
 
-<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">top</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">bottom</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mf">0.77</span><span class="p">,</span> 
-                    <span class="n">hspace</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">wspace</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">)</span>    
-<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="o">.</span><span class="n">ravel</span><span class="p">(</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">pad</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">)</span>   
-<span class="c1">#plt.savefig(&#34;panel.eps&#34;)    </span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>除了上述三个库之外，python中有一个库和NCL 中的 WRF相关库具有几乎相同的功能，就是 wrf-python。wrf-python对上述过程进行了大量的封装，可以更加高效简便的进行WRF模式的后处理。</p>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>The article was updated on 2017-06-01</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-01-%25E5%259F%25BA%25E4%25BA%258Epython%25E7%259A%2584wrf%25E6%25A8%25A1%25E5%25BC%258F%25E5%2590%258E%25E5%25A4%2584%25E7%2590%2586%2f&amp;text=%e5%9f%ba%e4%ba%8epython%e7%9a%84WRF%e6%a8%a1%e5%bc%8f%e5%90%8e%e5%a4%84%e7%90%86&amp;via=xxxx" target="_blank" title="Share on Twitter">
-            <i class="fab fa-twitter fa-fw"></i>
-        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-01-%25E5%259F%25BA%25E4%25BA%258Epython%25E7%259A%2584wrf%25E6%25A8%25A1%25E5%25BC%258F%25E5%2590%258E%25E5%25A4%2584%25E7%2590%2586%2f" target="_blank" title="Share on Facebook">
-            <i class="fab fa-facebook-square fa-fw"></i>
-        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-01-%25E5%259F%25BA%25E4%25BA%258Epython%25E7%259A%2584wrf%25E6%25A8%25A1%25E5%25BC%258F%25E5%2590%258E%25E5%25A4%2584%25E7%2590%2586%2f&amp;title=%e5%9f%ba%e4%ba%8epython%e7%9a%84WRF%e6%a8%a1%e5%bc%8f%e5%90%8e%e5%a4%84%e7%90%86" target="_blank" title="Share on Reddit">
-            <i class="fab fa-reddit fa-fw"></i>
-        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-01-%25E5%259F%25BA%25E4%25BA%258Epython%25E7%259A%2584wrf%25E6%25A8%25A1%25E5%25BC%258F%25E5%2590%258E%25E5%25A4%2584%25E7%2590%2586%2f&amp;appkey=&amp;title=%e5%9f%ba%e4%ba%8epython%e7%9a%84WRF%e6%a8%a1%e5%bc%8f%e5%90%8e%e5%a4%84%e7%90%86" target="_blank" title="Share on Weibo">
-            <i class="fab fa-weibo fa-fw"></i>
-        </a></span></div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section><span class="tag">
-                        <a href="https://atmosai.github.io/tags/python/"><i class="fas fa-tag fa-fw"></i>&nbsp;python</a>&nbsp;
-                    </span><span class="tag">
-                        <a href="https://atmosai.github.io/tags/wrf/"><i class="fas fa-tag fa-fw"></i>&nbsp;WRF</a>&nbsp;
-                    </span></section>
-        <section>
-            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="https://atmosai.github.io/2017/05/2017-05-02-%E5%8F%8C%E5%81%8F%E6%8C%AF%E5%A4%9A%E6%99%AE%E5%8B%92%E6%B0%94%E8%B1%A1%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" class="prev" rel="prev" title="双偏振多普勒气象雷达数据处理"><i class="fas fa-angle-left fa-fw"></i>双偏振多普勒气象雷达数据处理</a>
-            <a href="https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/" class="next" rel="next" title="如何处理netCDF文件">如何处理netCDF文件<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div><div class="post-comment"></div>
-    </article></div>
-            </main><footer class="footer">
-    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
-        </div>
-
-        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-    </div>
-</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
-            <span>&nbsp;</span>
-        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
-</html>
+<span class=n>fig</span><span class=o>.</span><span class=n>subplots_adjust</span><span class=p>(</span><span class=n>top</span> <span class=o>=</span> <span class=mf>0.9</span><span class=p>,</span> <span class=n>bottom</span> <span class=o>=</span> <span class=mf>0.1</span><span class=p>,</span> <span class=n>left</span> <span class=o>=</span> <span class=mf>0.12</span><span class=p>,</span> <span class=n>right</span> <span class=o>=</span> <span class=mf>0.77</span><span class=p>,</span> 
+                    <span class=n>hspace</span> <span class=o>=</span> <span class=mf>0.05</span><span class=p>,</span> <span class=n>wspace</span> <span class=o>=</span> <span class=mf>0.05</span><span class=p>)</span>    
+<span class=n>fig</span><span class=o>.</span><span class=n>colorbar</span><span class=p>(</span><span class=n>con</span><span class=p>,</span> <span class=n>ax</span><span class=o>=</span><span class=n>axes</span><span class=o>.</span><span class=n>ravel</span><span class=p>(</span><span class=p>)</span><span class=o>.</span><span class=n>tolist</span><span class=p>(</span><span class=p>)</span><span class=p>,</span> <span class=n>pad</span> <span class=o>=</span> <span class=mf>0.01</span><span class=p>)</span>   
+<span class=c1>#plt.savefig(&#34;panel.eps&#34;)    </span>
+<span class=n>plt</span><span class=o>.</span><span class=n>show</span><span class=p>(</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>除了上述三个库之外，python中有一个库和NCL 中的 WRF相关库具有几乎相同的功能，就是 wrf-python。wrf-python对上述过程进行了大量的封装，可以更加高效简便的进行WRF模式的后处理。</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2017-06-01</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-01-%25E5%259F%25BA%25E4%25BA%258Epython%25E7%259A%2584wrf%25E6%25A8%25A1%25E5%25BC%258F%25E5%2590%258E%25E5%25A4%2584%25E7%2590%2586%2f&text=%e5%9f%ba%e4%ba%8epython%e7%9a%84WRF%e6%a8%a1%e5%bc%8f%e5%90%8e%e5%a4%84%e7%90%86&via=xxxx" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-01-%25E5%259F%25BA%25E4%25BA%258Epython%25E7%259A%2584wrf%25E6%25A8%25A1%25E5%25BC%258F%25E5%2590%258E%25E5%25A4%2584%25E7%2590%2586%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-01-%25E5%259F%25BA%25E4%25BA%258Epython%25E7%259A%2584wrf%25E6%25A8%25A1%25E5%25BC%258F%25E5%2590%258E%25E5%25A4%2584%25E7%2590%2586%2f&title=%e5%9f%ba%e4%ba%8epython%e7%9a%84WRF%e6%a8%a1%e5%bc%8f%e5%90%8e%e5%a4%84%e7%90%86" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-01-%25E5%259F%25BA%25E4%25BA%258Epython%25E7%259A%2584wrf%25E6%25A8%25A1%25E5%25BC%258F%25E5%2590%258E%25E5%25A4%2584%25E7%2590%2586%2f&appkey=&title=%e5%9f%ba%e4%ba%8epython%e7%9a%84WRF%e6%a8%a1%e5%bc%8f%e5%90%8e%e5%a4%84%e7%90%86" target=_blank title="Share on Weibo"><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://atmosai.github.io/tags/python/><i class="fas fa-tag fa-fw"></i>&nbsp;python</a>&nbsp;
+</span><span class=tag><a href=https://atmosai.github.io/tags/wrf/><i class="fas fa-tag fa-fw"></i>&nbsp;WRF</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://atmosai.github.io>Home</a></span></section></div><div class=post-nav><a href=https://atmosai.github.io/2017/05/2017-05-02-%E5%8F%8C%E5%81%8F%E6%8C%AF%E5%A4%9A%E6%99%AE%E5%8B%92%E6%B0%94%E8%B1%A1%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/ class=prev rel=prev title=双偏振多普勒气象雷达数据处理><i class="fas fa-angle-left fa-fw"></i>双偏振多普勒气象雷达数据处理</a>
+<a href=https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/ class=next rel=next title=如何处理netCDF文件>如何处理netCDF文件<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;var dsq=document.createElement("script");dsq.type="text/javascript";dsq.async=true;var disqus_shortname="i-lightning-cn";dsq.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2016 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://atmosai.github.io target=_blank>bugsuse</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span></a>
+<script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-112932643-1','auto');ga('set','anonymizeIp',true);ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><script src=/js/blog.min.js></script></body></html>
