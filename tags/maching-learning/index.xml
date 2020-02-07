@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Maching Learning on bugsuse</title>
+    <link>https://atmosai.github.io/tags/maching-learning/</link>
+    <description>Recent content in Maching Learning on bugsuse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sun, 18 Mar 2018 21:21:36 +0800</lastBuildDate>
+    
+	<atom:link href="https://atmosai.github.io/tags/maching-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>机器学习在气象领域中的应用</title>
+      <link>https://atmosai.github.io/2018/03/2018-03-18-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%B0%94%E8%B1%A1%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Sun, 18 Mar 2018 21:21:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2018/03/2018-03-18-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%B0%94%E8%B1%A1%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</guid>
+      <description>近几年关于人工智能，机器学习，数据挖掘的新闻数不胜数，其中包含多少媒体炒作，又存在多大的泡沫尚不可说。抛开这些，各个领域都在试图利用人工智能</description>
+    </item>
+    
+  </channel>
+</rss>

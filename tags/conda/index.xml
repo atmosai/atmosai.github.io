@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>conda on bugsuse</title>
+    <link>https://atmosai.github.io/tags/conda/</link>
+    <description>Recent content in conda on bugsuse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 30 Nov 2019 18:44:22 +0800</lastBuildDate>
+    
+	<atom:link href="https://atmosai.github.io/tags/conda/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Conda包管理器:如何构建个人conda包</title>
+      <link>https://atmosai.github.io/2019/11/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85/</link>
+      <pubDate>Sat, 30 Nov 2019 18:44:22 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/11/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85/</guid>
+      <description>熟悉Python的都知道管理各种库有时候是多么痛苦的一件事！而有了conda包管理器，让库的安装和管理变得方便了不少。开发过程中，为了解决包</description>
+    </item>
+    
+  </channel>
+</rss>

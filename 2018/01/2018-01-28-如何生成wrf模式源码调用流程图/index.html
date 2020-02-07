@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>基于f90tohtml创建模式源码调用图 | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="About LoveIt Theme"><link rel="prev" href="https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/" /><link rel="next" href="https://atmosai.github.io/2018/03/2018-03-18-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%B0%94%E8%B1%A1%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" /><link rel="canonical" href="https://atmosai.github.io/2018/01/2018-01-28-%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90wrf%E6%A8%A1%E5%BC%8F%E6%BA%90%E7%A0%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta property="og:title" content="基于f90tohtml创建模式源码调用图" />
+<meta property="og:description" content="气象数值模式中涉及到的源代码非常庞大，而且各种模块非常的多，虽然体系非常清晰，并对不同类别的模块进行了分类，但是仍然无法清晰的知道每一个模块" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://atmosai.github.io/2018/01/2018-01-28-%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90wrf%E6%A8%A1%E5%BC%8F%E6%BA%90%E7%A0%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/" />
+<meta property="article:published_time" content="2018-01-28T11:08:36+08:00" />
+<meta property="article:modified_time" content="2018-01-28T11:08:36+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="基于f90tohtml创建模式源码调用图"/>
+<meta name="twitter:description" content="气象数值模式中涉及到的源代码非常庞大，而且各种模块非常的多，虽然体系非常清晰，并对不同类别的模块进行了分类，但是仍然无法清晰的知道每一个模块"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "基于f90tohtml创建模式源码调用图",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/atmosai.github.io\/2018\/01\/2018-01-28-%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90wrf%E6%A8%A1%E5%BC%8F%E6%BA%90%E7%A0%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "WRF, f90tohtml","wordcount":  654 ,
+        "url": "https:\/\/atmosai.github.io\/2018\/01\/2018-01-28-%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90wrf%E6%A8%A1%E5%BC%8F%E6%BA%90%E7%A0%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE\/","datePublished": "2018-01-28T11:08:36\x2b08:00","dateModified": "2018-01-28T11:08:36\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "xxxx",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://atmosai.github.io">bugsuse</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://atmosai.github.io">bugsuse</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">基于f90tohtml创建模式源码调用图</h1><div class="post-meta">
+            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
+                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
+                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/model/">Model</a>&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/tools/">Tools</a>&nbsp;</span></div>
+            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2018-01-28>2018-01-28</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>about 654 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>2 min&nbsp;</div>
+        </div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装-f90tohtml">安装 f90tohtml</a></li>
+        <li><a href="#创建wrf调用流程图">创建WRF调用流程图</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装-f90tohtml">安装 f90tohtml</a></li>
+        <li><a href="#创建wrf调用流程图">创建WRF调用流程图</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><p>气象数值模式中涉及到的源代码非常庞大，而且各种模块非常的多，虽然体系非常清晰，并对不同类别的模块进行了分类，但是仍然无法清晰的知道每一个模块之间的调用流程。为了熟悉模式的调用流程，方便向模式中添加内容或者出现问题的时候更容易检查问题，可以创建模式的调用流程图，从而熟悉模式模块之间的调用。</p>
+<p>以WRF模式为例，用 f90tohtml 创建模式调用流程图。</p>
+<a class="post-dummy-target" id="安装-f90tohtml"></a><h3>安装 f90tohtml</h3>
+<p>先下载 <a href="https://code.google.com/archive/p/f90tohtml/downloads" target="_blank">f90tohtml</a> 然后解压到指定文件夹：</p>
+<pre><code>tar -zxvf f90tohtml.tar.gz
+</code></pre>
+<p>然后进入 f90tohtml 文件夹中，更改 f90tohtml 中的 perl 的路径，如果路径和系统中的perl所在路径一致则无需更改(用 which perl 查看系统中 perl 的路径)。</p>
+<pre><code>cd f90tohtml
+vi f90tohtml
+</code></pre>
+<p>然后更改 f90tohtmll 中的 $path_f90tohtml 为解压后的 f90tohtml 所在的路径。</p>
+<p>执行以下命令更改 f90tohtml 的权限</p>
+<pre><code>chmod u+x f90tohtml
+</code></pre>
+<p>添加 f90tohtml 路径到 .bashrc 中</p>
+<pre><code>vi ～/.bashrc
+export PATH=$PATH:/f90tohtmlpath/
+</code></pre>
+<p>进入 f90tohtml 目录下的 examples 目录，然后编辑 d2ps_prepare.pl 和 crm_prepare.pl ，改变其中的 $the_path 为f90tohtml/examples/d2ps 所在路径。修改 d2ps.f2h 中的 $dir_html，这是用来指定要创建的  d2psbrowser 路径。注意：不要自行创建此目录。</p>
+<p>执行以下命令，然后生成一些测试文件</p>
+<pre><code> perl d2ps_prepare.pl
+</code></pre>
+<p>然后执行以下命令</p>
+<pre><code> f90tohtml d2ps.f2h
+</code></pre>
+<p>以上都是安装以及测试操作，下面开始生成WRF模式的源码调用流程图。</p>
+<a class="post-dummy-target" id="创建wrf调用流程图"></a><h3>创建WRF调用流程图</h3>
+<p>执行以下命令进入 nwp_codes 目录，然后修改 wrf_prepare.pl 中 $the_path 为WRF源码路径  ： /path/of/wrf/../WRFV3/</p>
+<p>执行以下命令生成 .ls文件</p>
+<pre><code>perl wrf_prepare.pl
+</code></pre>
+<p>修改 wrf.f2h  中的 $dir_html 为转换后的输出目录</p>
+<p><strong>注意：修改 $dir_html 时，文件夹应该是不存在的，否则生成文件时会出错。</strong></p>
+<p>然后执行以下命令生成WRF模式调用流程图</p>
+<pre><code>f90tohtml wrf.f2h
+</code></pre>
+<p>文中以 WRFV3.9.1 为示例，创建了WRF模式的调用流程图，在主页 <a href="http://www.i-lightning.cn/model/" target="_blank">model</a> 标签下可查看生成后的效果。</p>
+<p>生成后的页面提供了正则表达式的搜索，可以更方便的进行检索操作。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2018-01-28</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2018%2f01%2f2018-01-28-%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%259F%25E6%2588%2590wrf%25E6%25A8%25A1%25E5%25BC%258F%25E6%25BA%2590%25E7%25A0%2581%25E8%25B0%2583%25E7%2594%25A8%25E6%25B5%2581%25E7%25A8%258B%25E5%259B%25BE%2f&amp;text=%e5%9f%ba%e4%ba%8ef90tohtml%e5%88%9b%e5%bb%ba%e6%a8%a1%e5%bc%8f%e6%ba%90%e7%a0%81%e8%b0%83%e7%94%a8%e5%9b%be&amp;via=xxxx" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2018%2f01%2f2018-01-28-%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%259F%25E6%2588%2590wrf%25E6%25A8%25A1%25E5%25BC%258F%25E6%25BA%2590%25E7%25A0%2581%25E8%25B0%2583%25E7%2594%25A8%25E6%25B5%2581%25E7%25A8%258B%25E5%259B%25BE%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2018%2f01%2f2018-01-28-%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%259F%25E6%2588%2590wrf%25E6%25A8%25A1%25E5%25BC%258F%25E6%25BA%2590%25E7%25A0%2581%25E8%25B0%2583%25E7%2594%25A8%25E6%25B5%2581%25E7%25A8%258B%25E5%259B%25BE%2f&amp;title=%e5%9f%ba%e4%ba%8ef90tohtml%e5%88%9b%e5%bb%ba%e6%a8%a1%e5%bc%8f%e6%ba%90%e7%a0%81%e8%b0%83%e7%94%a8%e5%9b%be" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2018%2f01%2f2018-01-28-%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%259F%25E6%2588%2590wrf%25E6%25A8%25A1%25E5%25BC%258F%25E6%25BA%2590%25E7%25A0%2581%25E8%25B0%2583%25E7%2594%25A8%25E6%25B5%2581%25E7%25A8%258B%25E5%259B%25BE%2f&amp;appkey=&amp;title=%e5%9f%ba%e4%ba%8ef90tohtml%e5%88%9b%e5%bb%ba%e6%a8%a1%e5%bc%8f%e6%ba%90%e7%a0%81%e8%b0%83%e7%94%a8%e5%9b%be" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a></span></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section><span class="tag">
+                        <a href="https://atmosai.github.io/tags/wrf/"><i class="fas fa-tag fa-fw"></i>&nbsp;WRF</a>&nbsp;
+                    </span><span class="tag">
+                        <a href="https://atmosai.github.io/tags/f90tohtml/"><i class="fas fa-tag fa-fw"></i>&nbsp;f90tohtml</a>&nbsp;
+                    </span></section>
+        <section>
+            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/" class="prev" rel="prev" title="如何处理netCDF文件"><i class="fas fa-angle-left fa-fw"></i>如何处理netCDF文件</a>
+            <a href="https://atmosai.github.io/2018/03/2018-03-18-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%B0%94%E8%B1%A1%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/" class="next" rel="next" title="机器学习在气象领域中的应用">机器学习在气象领域中的应用<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
+</html>

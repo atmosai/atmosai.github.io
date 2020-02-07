@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>使用CFFI从Python调用Fortran程序:Python调用WRF代码 | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="About LoveIt Theme"><link rel="prev" href="https://atmosai.github.io/2019/04/2019-04-13-ncrcatnetcdf%E8%AE%B0%E5%BD%95%E5%90%88%E5%B9%B6/" /><link rel="next" href="https://atmosai.github.io/2019/04/2019-04-14-%E5%A6%82%E4%BD%95%E5%9C%A8fortran%E4%B8%AD%E8%B0%83%E7%94%A8python/" /><link rel="canonical" href="https://atmosai.github.io/2019/04/2019-04-14-%E4%BD%BF%E7%94%A8cffi%E4%BB%8Epython%E8%B0%83%E7%94%A8fortran%E7%A8%8B%E5%BA%8Fpython%E8%B0%83%E7%94%A8wrf%E4%BB%A3%E7%A0%81/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta property="og:title" content="使用CFFI从Python调用Fortran程序:Python调用WRF代码" />
+<meta property="og:description" content="为什么要使用Fortran代码 Fortran语言是已经几乎被遗忘的语言，但其在科学领域却仍为活跃，尤其是大气科学领域。 如果效率优先是需要考虑" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://atmosai.github.io/2019/04/2019-04-14-%E4%BD%BF%E7%94%A8cffi%E4%BB%8Epython%E8%B0%83%E7%94%A8fortran%E7%A8%8B%E5%BA%8Fpython%E8%B0%83%E7%94%A8wrf%E4%BB%A3%E7%A0%81/" />
+<meta property="article:published_time" content="2019-04-14T10:21:43+08:00" />
+<meta property="article:modified_time" content="2019-04-14T10:21:43+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用CFFI从Python调用Fortran程序:Python调用WRF代码"/>
+<meta name="twitter:description" content="为什么要使用Fortran代码 Fortran语言是已经几乎被遗忘的语言，但其在科学领域却仍为活跃，尤其是大气科学领域。 如果效率优先是需要考虑"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "使用CFFI从Python调用Fortran程序:Python调用WRF代码",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/atmosai.github.io\/2019\/04\/2019-04-14-%E4%BD%BF%E7%94%A8cffi%E4%BB%8Epython%E8%B0%83%E7%94%A8fortran%E7%A8%8B%E5%BA%8Fpython%E8%B0%83%E7%94%A8wrf%E4%BB%A3%E7%A0%81\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "python, fortran, WRF","wordcount":  1915 ,
+        "url": "https:\/\/atmosai.github.io\/2019\/04\/2019-04-14-%E4%BD%BF%E7%94%A8cffi%E4%BB%8Epython%E8%B0%83%E7%94%A8fortran%E7%A8%8B%E5%BA%8Fpython%E8%B0%83%E7%94%A8wrf%E4%BB%A3%E7%A0%81\/","datePublished": "2019-04-14T10:21:43\x2b08:00","dateModified": "2019-04-14T10:21:43\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "xxxx",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://atmosai.github.io">bugsuse</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://atmosai.github.io">bugsuse</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">使用CFFI从Python调用Fortran程序:Python调用WRF代码</h1><div class="post-meta">
+            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
+                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
+                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/tools/">Tools</a>&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/model/">Model</a>&nbsp;</span></div>
+            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-04-14>2019-04-14</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>about 1915 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>4 min&nbsp;</div>
+        </div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#为什么要使用fortran代码">为什么要使用Fortran代码</a></li>
+        <li><a href="#为什么从python调用fortran">为什么从Python调用Fortran</a></li>
+        <li><a href="#cffi面向python的c语言外部函数接口">CFFI：面向Python的C语言外部函数接口</a></li>
+        <li><a href="#操作步骤">操作步骤</a>
+          <ul>
+            <li><a href="#创建共享库">创建共享库</a></li>
+            <li><a href="#函数封装器">函数封装器</a></li>
+            <li><a href="#从python调用fortran函数子程序">从Python调用Fortran函数/子程序</a></li>
+          </ul>
+        </li>
+        <li><a href="#调用wrf微物理方案">调用WRF微物理方案</a></li>
+        <li><a href="#延伸阅读">延伸阅读</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#为什么要使用fortran代码">为什么要使用Fortran代码</a></li>
+        <li><a href="#为什么从python调用fortran">为什么从Python调用Fortran</a></li>
+        <li><a href="#cffi面向python的c语言外部函数接口">CFFI：面向Python的C语言外部函数接口</a></li>
+        <li><a href="#操作步骤">操作步骤</a>
+          <ul>
+            <li><a href="#创建共享库">创建共享库</a></li>
+            <li><a href="#函数封装器">函数封装器</a></li>
+            <li><a href="#从python调用fortran函数子程序">从Python调用Fortran函数/子程序</a></li>
+          </ul>
+        </li>
+        <li><a href="#调用wrf微物理方案">调用WRF微物理方案</a></li>
+        <li><a href="#延伸阅读">延伸阅读</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><a class="post-dummy-target" id="为什么要使用fortran代码"></a><h3>为什么要使用Fortran代码</h3>
+<ul>
+<li>Fortran语言是已经几乎被遗忘的语言，但其在科学领域却仍为活跃，尤其是大气科学领域。</li>
+<li>如果效率优先是需要考虑的重要因素，那么可以尝试使用Fortran，虽然Fortran在这方面的作用相较于其他语言经常被高估(=_=)。</li>
+</ul>
+<a class="post-dummy-target" id="为什么从python调用fortran"></a><h3>为什么从Python调用Fortran</h3>
+<ul>
+<li>使用Python比使用Fortran写模块更简单</li>
+<li>测试方面，使用Python环境更友好</li>
+</ul>
+<a class="post-dummy-target" id="cffi面向python的c语言外部函数接口"></a><h3>CFFI：面向Python的C语言外部函数接口</h3>
+<ul>
+<li>从Python调用已编译的C和Fortran代码</li>
+<li>使用回调机制从C和Fortran中调用Python程序</li>
+<li>试图支持PyPy和CPython</li>
+</ul>
+<a class="post-dummy-target" id="操作步骤"></a><h3>操作步骤</h3>
+<a class="post-dummy-target" id="创建共享库"></a><h4>创建共享库</h4>
+<p>首先创建Fortran程序的共享库</p>
+<ul>
+<li>
+<p>可以使用<code>-shared</code>选项编译你的代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">gfortran -shared  fortran_code.f90 -o libfortran.so  -fPIC
+</code></pre></td></tr></table>
+</div>
+</div><p>不同的fortran编译器在库中可能会创建不同的函数签名，因此在使用之前应该使用<code>nm</code>命令检查名称。</p>
+</li>
+<li>
+<p>也可以使用<code>iso_c_binding</code>模块对Fortran函数和子程序进行封装，此方法需要额外的代码，但这会：</p>
+<ul>
+<li>强制Fortran编译器生成正确的C签名</li>
+<li>允许传递参数作为值</li>
+<li>允许嵌入代码处理Fortran特定参数类型的转换</li>
+<li>有助于确保正确的参数类型</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="函数封装器"></a><h4>函数封装器</h4>
+<p>在这个示例中，我们会创建一个封装器，虽然可能并不需要这样。</p>
+<p><code>fortran_rapper.f90</code>应该导入想要封装的Fortran模块，并且从<code>iso_c_binding</code>中调用需要使用的<code>c_types</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fortran" data-lang="fortran"><span class="k">use </span><span class="n">your_fortran_module</span>
+<span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="kt">c_int</span><span class="p">,</span> <span class="kt">c_double</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>你需要定义一个C函数/子程序—打包需要使用的Fortran函数/子程序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fortran" data-lang="fortran"><span class="k">subroutine </span><span class="n">c_wrapper_your_subr</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span><span class="p">)</span> <span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后需要声明所有需要使用的变量，<code>arg1</code>是值，<code>arg2</code>和<code>arg3</code>是指针：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fortran" data-lang="fortran"><span class="kt">integer</span><span class="p">(</span><span class="kt">c_int</span><span class="p">)</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="p">,</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">arg1</span>  
+<span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">)</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>现在就可以从Fortran模块<code>your_subr</code>中调用上述函数/子程序了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fortran" data-lang="fortran"><span class="k">call </span><span class="n">your_subr</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>最后一步，创建共享库封装Fortran模块，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">gfortran -c -fPIC fortran_code.f90 -o fortran_code.o
+gfortran -shared -fPIC  fortran_code.o fortran_wrapper.f90 -o libfortran.so
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="从python调用fortran函数子程序"></a><h4>从Python调用Fortran函数/子程序</h4>
+<p>有了共享库之后，就可以从Python中调用子程序了。</p>
+<p>首先，使用外部函数解释器FFI加载库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">cffi</span> <span class="kn">import</span> <span class="n">FFI</span>
+<span class="n">ffi</span> <span class="o">=</span> <span class="n">FFI</span><span class="p">(</span><span class="p">)</span>
+<span class="n">lib</span> <span class="o">=</span> <span class="n">ffi</span><span class="o">.</span><span class="n">dlopen</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">libfortran.so</span><span class="s2">&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>对于那些需要从Python调用的函数/子程序，需要提供C签名给CFFI：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">ffi</span><span class="o">.</span><span class="n">cdef</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">void c_wrapper_your_subr(int arg1, double arg2, double arg3[]);</span><span class="s2">&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>调用子程序之前需要定义参数，如果只是传递值，可以简单的赋值：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">arg1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">arg2</span> <span class="o">=</span> <span class="mf">3.14</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>因为<code>arg3</code>是一个数组，你应该创建一个CFFI对象存储Numpy数组指针</p>
+<div class="admonition note"><p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p><p>NumPy数组的存储方式应该和Fortran数组相同。</p>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">numpy_array</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">F</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">arg3</span>  <span class="o">=</span> <span class="n">ffi</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">double*</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">numpy_array</span><span class="o">.</span><span class="n">__array_interface__</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">data</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>现在就可以调用Fortran子程序了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">lib</span><span class="o">.</span><span class="n">c_wrapper_your_subr</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">,</span> <span class="n">arg3</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="调用wrf微物理方案"></a><h3>调用WRF微物理方案</h3>
+<p>为了测试C++版的微物理方案，需要使用WRF中广泛使用的微物理方案来进行对比。</p>
+<p>下面以WRF中Kessler方法为例，所有代码在<a href="https://github.com/djarecka/scientific-software-diary/tree/master/CFFI_calling_FfromPy" target="_blank">这里</a>，WRF的微物理方案<code>module_mp_kessler.f90</code>可以从<a href="http://www2.mmm.ucar.edu/wrf/users/download/get_sources.html" target="_blank">这里</a>下载。</p>
+<ul>
+<li>因为WRF的微物理方案需要传递大量的参数，封装起来会比较长。所有的数组将直接传递指针，以下是<code>kessler_wrap.f90</code>的内容：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fortran" data-lang="fortran"><span class="k">module </span><span class="n">kessler_wrap</span>
+  <span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="kt">c_int</span><span class="p">,</span> <span class="kt">c_double
+</span><span class="kt">  </span><span class="k">use </span><span class="n">module_mp_kessler</span>
+  <span class="k">implicit </span><span class="k">none
+</span><span class="k"></span><span class="k">contains
+</span><span class="k"> 
+</span><span class="k">  </span><span class="k">subroutine </span><span class="n">c_kessler</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">qv</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">pii</span> <span class="p">,</span><span class="n">dt_in</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">xlv</span><span class="p">,</span> <span class="n">cp</span><span class="p">,</span> <span class="p">&amp;</span>
+                       <span class="n">EP2</span><span class="p">,</span> <span class="n">SVP1</span><span class="p">,</span> <span class="n">SVP2</span><span class="p">,</span> <span class="n">SVP3</span><span class="p">,</span> <span class="n">SVPT0</span><span class="p">,</span> <span class="n">rhowater</span><span class="p">,</span>     <span class="p">&amp;</span>
+                       <span class="n">dz8w</span><span class="p">,</span> <span class="n">RAINNC</span><span class="p">,</span> <span class="n">RAINNCV</span><span class="p">,</span>                      <span class="p">&amp;</span>
+                       <span class="n">ids</span><span class="p">,</span><span class="n">ide</span><span class="p">,</span> <span class="n">jds</span><span class="p">,</span><span class="n">jde</span><span class="p">,</span> <span class="n">kds</span><span class="p">,</span><span class="n">kde</span><span class="p">,</span>                  <span class="p">&amp;</span>
+                       <span class="n">ims</span><span class="p">,</span><span class="n">ime</span><span class="p">,</span> <span class="n">jms</span><span class="p">,</span><span class="n">jme</span><span class="p">,</span> <span class="n">kms</span><span class="p">,</span><span class="n">kme</span><span class="p">,</span>                  <span class="p">&amp;</span>
+                       <span class="n">its</span><span class="p">,</span><span class="n">ite</span><span class="p">,</span> <span class="n">jts</span><span class="p">,</span><span class="n">jte</span><span class="p">,</span> <span class="n">kts</span><span class="p">,</span><span class="n">kte</span>                   <span class="p">&amp;</span>
+                      <span class="p">)</span> <span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+ 
+    <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">)</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="p">,</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">dt_in</span><span class="p">,</span>  <span class="n">xlv</span><span class="p">,</span> <span class="n">cp</span><span class="p">,</span> <span class="n">rhowater</span><span class="p">,</span>    <span class="p">&amp;</span>
+                                         <span class="n">EP2</span><span class="p">,</span><span class="n">SVP1</span><span class="p">,</span><span class="n">SVP2</span><span class="p">,</span><span class="n">SVP3</span><span class="p">,</span><span class="n">SVPT0</span>
+    <span class="kt">integer</span><span class="p">(</span><span class="kt">c_int</span><span class="p">)</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="p">,</span> <span class="k">value</span> <span class="kd">::</span> <span class="n">ids</span><span class="p">,</span><span class="n">ide</span><span class="p">,</span> <span class="n">jds</span><span class="p">,</span><span class="n">jde</span><span class="p">,</span> <span class="n">kds</span><span class="p">,</span><span class="n">kde</span><span class="p">,</span>    <span class="p">&amp;</span>
+                                         <span class="n">ims</span><span class="p">,</span><span class="n">ime</span><span class="p">,</span> <span class="n">jms</span><span class="p">,</span><span class="n">jme</span><span class="p">,</span> <span class="n">kms</span><span class="p">,</span><span class="n">kme</span><span class="p">,</span>    <span class="p">&amp;</span>
+                                         <span class="n">its</span><span class="p">,</span><span class="n">ite</span><span class="p">,</span> <span class="n">jts</span><span class="p">,</span><span class="n">jte</span><span class="p">,</span> <span class="n">kts</span><span class="p">,</span><span class="n">kte</span>
+    <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">)</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">rho</span><span class="p">(</span><span class="n">ims</span><span class="p">:</span><span class="n">ime</span><span class="p">,</span><span class="n">kms</span><span class="p">:</span><span class="n">kme</span><span class="p">,</span><span class="n">jms</span><span class="p">:</span><span class="n">jme</span><span class="p">)</span><span class="p">,</span> <span class="p">&amp;</span>
+                                         <span class="n">pii</span><span class="p">(</span><span class="n">ims</span><span class="p">:</span><span class="n">ime</span><span class="p">,</span><span class="n">kms</span><span class="p">:</span><span class="n">kme</span><span class="p">,</span><span class="n">jms</span><span class="p">:</span><span class="n">jme</span><span class="p">)</span><span class="p">,</span> <span class="p">&amp;</span>
+                                         <span class="n">dz8w</span><span class="p">(</span><span class="n">ims</span><span class="p">:</span><span class="n">ime</span><span class="p">,</span><span class="n">kms</span><span class="p">:</span><span class="n">kme</span><span class="p">,</span><span class="n">jms</span><span class="p">:</span><span class="n">jme</span><span class="p">)</span><span class="p">,</span><span class="p">&amp;</span>
+                                         <span class="n">z</span><span class="p">(</span><span class="n">ims</span><span class="p">:</span><span class="n">ime</span><span class="p">,</span><span class="n">kms</span><span class="p">:</span><span class="n">kme</span><span class="p">,</span><span class="n">jms</span><span class="p">:</span><span class="n">jme</span><span class="p">)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="kt">c_double</span><span class="p">)</span><span class="p">,</span>  <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">t</span><span class="p">(</span><span class="n">ims</span><span class="p">:</span><span class="n">ime</span><span class="p">,</span><span class="n">kms</span><span class="p">:</span><span class="n">kme</span><span class="p">,</span><span class="n">jms</span><span class="p">:</span><span class="n">jme</span><span class="p">)</span><span class="p">,</span>   <span class="p">&amp;</span>
+                                         <span class="n">qv</span><span class="p">(</span><span class="n">ims</span><span class="p">:</span><span class="n">ime</span><span class="p">,</span><span class="n">kms</span><span class="p">:</span><span class="n">kme</span><span class="p">,</span><span class="n">jms</span><span class="p">:</span><span class="n">jme</span><span class="p">)</span><span class="p">,</span>  <span class="p">&amp;</span>
+                                         <span class="n">qc</span><span class="p">(</span><span class="n">ims</span><span class="p">:</span><span class="n">ime</span><span class="p">,</span><span class="n">kms</span><span class="p">:</span><span class="n">kme</span><span class="p">,</span><span class="n">jms</span><span class="p">:</span><span class="n">jme</span><span class="p">)</span><span class="p">,</span>  <span class="p">&amp;</span>
+                                         <span class="n">qr</span><span class="p">(</span><span class="n">ims</span><span class="p">:</span><span class="n">ime</span><span class="p">,</span><span class="n">kms</span><span class="p">:</span><span class="n">kme</span><span class="p">,</span><span class="n">jms</span><span class="p">:</span><span class="n">jme</span><span class="p">)</span><span class="p">,</span>  <span class="p">&amp;</span>
+                                         <span class="n">RAINNC</span><span class="p">(</span><span class="n">ims</span><span class="p">:</span><span class="n">ime</span><span class="p">,</span><span class="n">jms</span><span class="p">:</span><span class="n">jme</span><span class="p">)</span><span class="p">,</span>      <span class="p">&amp;</span>
+                                         <span class="n">RAINNCV</span><span class="p">(</span><span class="n">ims</span><span class="p">:</span><span class="n">ime</span><span class="p">,</span><span class="n">jms</span><span class="p">:</span><span class="n">jme</span><span class="p">)</span>
+ 
+    <span class="k">call </span><span class="n">kessler</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">qv</span><span class="p">,</span> <span class="n">qc</span><span class="p">,</span> <span class="n">qr</span><span class="p">,</span> <span class="n">rho</span><span class="p">,</span> <span class="n">pii</span><span class="p">,</span> <span class="n">dt_in</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">xlv</span><span class="p">,</span> <span class="n">cp</span><span class="p">,</span>   <span class="p">&amp;</span>
+                 <span class="n">EP2</span><span class="p">,</span> <span class="n">SVP1</span><span class="p">,</span> <span class="n">SVP2</span><span class="p">,</span> <span class="n">SVP3</span><span class="p">,</span> <span class="n">SVPT0</span><span class="p">,</span> <span class="n">rhowater</span><span class="p">,</span>       <span class="p">&amp;</span>
+                 <span class="n">dz8w</span><span class="p">,</span> <span class="n">RAINNC</span><span class="p">,</span> <span class="n">RAINNCV</span><span class="p">,</span>                        <span class="p">&amp;</span>
+                 <span class="n">ids</span><span class="p">,</span><span class="n">ide</span><span class="p">,</span> <span class="n">jds</span><span class="p">,</span><span class="n">jde</span><span class="p">,</span> <span class="n">kds</span><span class="p">,</span><span class="n">kde</span><span class="p">,</span>                    <span class="p">&amp;</span>
+                 <span class="n">ims</span><span class="p">,</span><span class="n">ime</span><span class="p">,</span> <span class="n">jms</span><span class="p">,</span><span class="n">jme</span><span class="p">,</span> <span class="n">kms</span><span class="p">,</span><span class="n">kme</span><span class="p">,</span>                    <span class="p">&amp;</span>
+                 <span class="n">its</span><span class="p">,</span><span class="n">ite</span><span class="p">,</span> <span class="n">jts</span><span class="p">,</span><span class="n">jte</span><span class="p">,</span> <span class="n">kts</span><span class="p">,</span><span class="n">kte</span><span class="p">)</span>
+ 
+    <span class="k">end </span><span class="k">subroutine </span><span class="n">c_kessler</span>
+<span class="k">end </span><span class="k">module </span><span class="n">kessler_wrap</span>                                     
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>强制编译器使用双精度创建共享库</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">gfortran -fdefault-real-8 -c -fPIC module_mp_kessler.f90 -o module_mp_kessler.o
+gfortran -fdefault-real-8 -shared -fPIC module_mp_kessler.o kessler_wrap.f90 -o libkessler.so
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在<code>cffi_kessler.py</code>中，定义一个python函数处理所有需要的大气变量数组，以及数组维度。因为需要传递大量的数组给Fortran，因此必须要创建一个CFFI字典来存储合适的指针。变量<code>ims</code>，<code>ime</code>…用来在Fortran子程序中分配足够的内存给数组：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">constants_kessler</span> <span class="kn">import</span> <span class="n">xlv</span><span class="p">,</span> <span class="n">cp</span><span class="p">,</span> <span class="n">EP2</span><span class="p">,</span> <span class="n">SVP1</span><span class="p">,</span> <span class="n">SVP2</span><span class="p">,</span> <span class="n">SVP3</span><span class="p">,</span> <span class="n">SVPT0</span><span class="p">,</span> <span class="n">rhowater</span>
+<span class="kn">from</span> <span class="nn">cffi</span> <span class="kn">import</span> <span class="n">FFI</span>
+<span class="n">ffi</span> <span class="o">=</span> <span class="n">FFI</span><span class="p">(</span><span class="p">)</span>
+   
+<span class="c1"># function creates cdata variables of a type &#34;double *&#34; from a numpy array             </span>
+<span class="c1"># additionally checks if the array is contiguous                                       </span>
+<span class="k">def</span> <span class="nf">as_pointer</span><span class="p">(</span><span class="n">numpy_array</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="n">numpy_array</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">F_CONTIGUOUS</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">,</span> \
+        <span class="sa"></span><span class="s2">&#34;</span><span class="s2">array is not contiguous in memory (Fortran order)</span><span class="s2">&#34;</span>
+    <span class="k">return</span> <span class="n">ffi</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">double*</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">numpy_array</span><span class="o">.</span><span class="n">__array_interface__</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">data</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">kessler</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">nz</span><span class="p">,</span> <span class="n">dt_in</span><span class="p">,</span> <span class="n">variable_nparr</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">ffi</span><span class="o">.</span><span class="n">cdef</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">void c_kessler(double t[], double qv[], double qc[], double qr[], double rh</span><span class="se">\
+</span><span class="se"></span><span class="s2">o[], double pii[], double dt_in, double z[], double xlv, double cp, double EP2, double SV</span><span class="se">\
+</span><span class="se"></span><span class="s2">P1, double SVP2, double SVP3, double SVPT0, double rhowater, double dz8w[], double RAINNC</span><span class="se">\
+</span><span class="se"></span><span class="s2">[], double RAINNCV[], int ids, int ide, int jds, int jde, int kds, int kde, int ims, int </span><span class="se">\
+</span><span class="se"></span><span class="s2">ime, int jms, int jme, int kms, int kme, int its, int ite, int jts, int jte, int kts, int</span><span class="se">\
+</span><span class="se"></span><span class="s2"> kt);</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">override</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+   
+    <span class="c1"># load a library with the C function                                          </span>
+    <span class="n">lib</span> <span class="o">=</span> <span class="n">ffi</span><span class="o">.</span><span class="n">dlopen</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">libkessler.so</span><span class="s1">&#39;</span><span class="p">)</span>
+   
+    <span class="c1"># create cdata variables for each numpy array            </span>
+    <span class="n">variable_CFFI</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">t</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">qv</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">qc</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">qr</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">rho</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">pii</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">z</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">dz8w</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">RAINNC</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">RAI</span><span class="se">\
+</span><span class="se"></span><span class="s2">NNCV</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">:</span>
+        <span class="n">variable_CFFI</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="n">as_pointer</span><span class="p">(</span><span class="n">variable_nparr</span><span class="p">[</span><span class="n">item</span><span class="p">]</span><span class="p">)</span>
+   
+    <span class="p">[</span><span class="n">ims</span><span class="p">,</span> <span class="n">ime</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">ide</span><span class="p">,</span> <span class="n">its</span><span class="p">,</span> <span class="n">ite</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">nx</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+    <span class="p">[</span><span class="n">jms</span><span class="p">,</span> <span class="n">jme</span><span class="p">,</span> <span class="n">jds</span><span class="p">,</span> <span class="n">jde</span><span class="p">,</span> <span class="n">jts</span><span class="p">,</span> <span class="n">jte</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">ny</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+    <span class="p">[</span><span class="n">kms</span><span class="p">,</span> <span class="n">kme</span><span class="p">,</span> <span class="n">kds</span><span class="p">,</span> <span class="n">kde</span><span class="p">,</span> <span class="n">kts</span><span class="p">,</span> <span class="n">kte</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">nz</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+      
+    <span class="c1"># call the C function                                                                        </span>
+    <span class="n">lib</span><span class="o">.</span><span class="n">c_kessler</span><span class="p">(</span><span class="n">variable_CFFI</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">t</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">,</span> <span class="n">variable_CFFI</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">qv</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">,</span> <span class="n">variable_CFFI</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">qc</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">,</span>
+                  <span class="n">variable_CFFI</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">qr</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">,</span> <span class="n">variable_CFFI</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">rho</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">,</span> <span class="n">variable_CFFI</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">pii</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">,</span>
+                  <span class="n">dt_in</span><span class="p">,</span> <span class="n">variable_CFFI</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">z</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">,</span> <span class="n">xlv</span><span class="p">,</span> <span class="n">cp</span><span class="p">,</span> <span class="n">EP2</span><span class="p">,</span> <span class="n">SVP1</span><span class="p">,</span> <span class="n">SVP2</span><span class="p">,</span> <span class="n">SVP3</span><span class="p">,</span> <span class="n">SVPT0</span><span class="p">,</span>
+                  <span class="n">rhowater</span><span class="p">,</span> <span class="n">variable_CFFI</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">dz8w</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">,</span> <span class="n">variable_CFFI</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">RAINNC</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">,</span>
+                  <span class="n">variable_CFFI</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">RAINNCV</span><span class="s2">&#34;</span><span class="p">]</span><span class="p">,</span> <span class="n">ids</span><span class="p">,</span> <span class="n">ide</span><span class="p">,</span> <span class="n">jds</span><span class="p">,</span> <span class="n">jde</span><span class="p">,</span> <span class="n">kds</span><span class="p">,</span> <span class="n">kde</span><span class="p">,</span>
+                  <span class="n">ims</span><span class="p">,</span> <span class="n">ime</span><span class="p">,</span> <span class="n">jms</span><span class="p">,</span> <span class="n">jme</span><span class="p">,</span> <span class="n">kms</span><span class="p">,</span> <span class="n">kme</span><span class="p">,</span> <span class="n">its</span><span class="p">,</span> <span class="n">ite</span><span class="p">,</span> <span class="n">jts</span><span class="p">,</span> <span class="n">jte</span><span class="p">,</span> <span class="n">kts</span><span class="p">,</span> <span class="n">kte</span><span class="p">)</span>    
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>这是使用Python函数的一个最简单示例，在<a href="[https://github.com/djarecka/scientific-software-diary]%28https://github.com/djarecka/scientific-software-diary/tree/master/CFFI_calling_FfromPy%29">这里</a>你可以发现更多的代码。</p>
+</li>
+</ul>
+<p>​</p>
+<a class="post-dummy-target" id="延伸阅读"></a><h3>延伸阅读</h3>
+<ul>
+<li>
+<p><a href="https://cffi.readthedocs.org/en/release-0.8/" target="_blank">CFFI documentation</a></p>
+</li>
+<li>
+<p><a href="http://maurow.bitbucket.org/notes/calling_fortran_from_misc.html" target="_blank">CFFI example I used</a></p>
+</li>
+<li>
+<p><a href="http://www.wrf-model.org/index.php" target="_blank">WRF model</a></p>
+</li>
+<li>
+<p><a href="[libcloudphxx.igf.fuw.edu.pl]%28http://libcloudphxx.igf.fuw.edu.pl/%29">Libcloudph++ library</a></p>
+</li>
+<li>
+<p><a href="http://stackoverflow.com/questions/5811949/call-functions-from-a-shared-fortran-library-in-python" target="_blank">Fortran signatures</a></p>
+</li>
+<li>
+<p><a href="https://github.com/djarecka/scientific-software-diary" target="_blank">All examples are on github</a></p>
+</li>
+</ul>
+<p>​</p>
+<p><a href="http://scientific-software-diary.com/?p=29" target="_blank">原文链接</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2019-04-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-14-%25E4%25BD%25BF%25E7%2594%25A8cffi%25E4%25BB%258Epython%25E8%25B0%2583%25E7%2594%25A8fortran%25E7%25A8%258B%25E5%25BA%258Fpython%25E8%25B0%2583%25E7%2594%25A8wrf%25E4%25BB%25A3%25E7%25A0%2581%2f&amp;text=%e4%bd%bf%e7%94%a8CFFI%e4%bb%8ePython%e8%b0%83%e7%94%a8Fortran%e7%a8%8b%e5%ba%8f%3aPython%e8%b0%83%e7%94%a8WRF%e4%bb%a3%e7%a0%81&amp;via=xxxx" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-14-%25E4%25BD%25BF%25E7%2594%25A8cffi%25E4%25BB%258Epython%25E8%25B0%2583%25E7%2594%25A8fortran%25E7%25A8%258B%25E5%25BA%258Fpython%25E8%25B0%2583%25E7%2594%25A8wrf%25E4%25BB%25A3%25E7%25A0%2581%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-14-%25E4%25BD%25BF%25E7%2594%25A8cffi%25E4%25BB%258Epython%25E8%25B0%2583%25E7%2594%25A8fortran%25E7%25A8%258B%25E5%25BA%258Fpython%25E8%25B0%2583%25E7%2594%25A8wrf%25E4%25BB%25A3%25E7%25A0%2581%2f&amp;title=%e4%bd%bf%e7%94%a8CFFI%e4%bb%8ePython%e8%b0%83%e7%94%a8Fortran%e7%a8%8b%e5%ba%8f%3aPython%e8%b0%83%e7%94%a8WRF%e4%bb%a3%e7%a0%81" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-14-%25E4%25BD%25BF%25E7%2594%25A8cffi%25E4%25BB%258Epython%25E8%25B0%2583%25E7%2594%25A8fortran%25E7%25A8%258B%25E5%25BA%258Fpython%25E8%25B0%2583%25E7%2594%25A8wrf%25E4%25BB%25A3%25E7%25A0%2581%2f&amp;appkey=&amp;title=%e4%bd%bf%e7%94%a8CFFI%e4%bb%8ePython%e8%b0%83%e7%94%a8Fortran%e7%a8%8b%e5%ba%8f%3aPython%e8%b0%83%e7%94%a8WRF%e4%bb%a3%e7%a0%81" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a></span></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section><span class="tag">
+                        <a href="https://atmosai.github.io/tags/python/"><i class="fas fa-tag fa-fw"></i>&nbsp;python</a>&nbsp;
+                    </span><span class="tag">
+                        <a href="https://atmosai.github.io/tags/fortran/"><i class="fas fa-tag fa-fw"></i>&nbsp;fortran</a>&nbsp;
+                    </span><span class="tag">
+                        <a href="https://atmosai.github.io/tags/wrf/"><i class="fas fa-tag fa-fw"></i>&nbsp;WRF</a>&nbsp;
+                    </span></section>
+        <section>
+            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="https://atmosai.github.io/2019/04/2019-04-13-ncrcatnetcdf%E8%AE%B0%E5%BD%95%E5%90%88%E5%B9%B6/" class="prev" rel="prev" title="ncrcat:NetCDF记录合并"><i class="fas fa-angle-left fa-fw"></i>ncrcat:NetCDF记录合并</a>
+            <a href="https://atmosai.github.io/2019/04/2019-04-14-%E5%A6%82%E4%BD%95%E5%9C%A8fortran%E4%B8%AD%E8%B0%83%E7%94%A8python/" class="next" rel="next" title="如何在Fortran中调用Python">如何在Fortran中调用Python<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Chapter1:资料同化基本概念 | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="About LoveIt Theme"><link rel="prev" href="https://atmosai.github.io/2019/04/2019-04-14-%E5%A6%82%E4%BD%95%E5%9C%A8fortran%E4%B8%AD%E8%B0%83%E7%94%A8python/" /><link rel="next" href="https://atmosai.github.io/2019/04/2019-04-18-%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E5%90%8D%E8%AF%8D/" /><link rel="canonical" href="https://atmosai.github.io/2019/04/2019-04-16-chapter1%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta property="og:title" content="Chapter1:资料同化基本概念" />
+<meta property="og:description" content="分析 分析是为了产生给定时刻大气真实状态的正确描述。对于大气的全面且自一致性诊断而言，分析是非常有用的。分析结果可以作为其他操作的输入数据(比" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://atmosai.github.io/2019/04/2019-04-16-chapter1%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" />
+<meta property="article:published_time" content="2019-04-16T16:29:18+08:00" />
+<meta property="article:modified_time" content="2019-04-16T16:29:18+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Chapter1:资料同化基本概念"/>
+<meta name="twitter:description" content="分析 分析是为了产生给定时刻大气真实状态的正确描述。对于大气的全面且自一致性诊断而言，分析是非常有用的。分析结果可以作为其他操作的输入数据(比"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Chapter1:资料同化基本概念",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/atmosai.github.io\/2019\/04\/2019-04-16-chapter1%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "data assimilation","wordcount":  3040 ,
+        "url": "https:\/\/atmosai.github.io\/2019\/04\/2019-04-16-chapter1%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5\/","datePublished": "2019-04-16T16:29:18\x2b08:00","dateModified": "2019-04-16T16:29:18\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "xxxx",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://atmosai.github.io">bugsuse</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://atmosai.github.io">bugsuse</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">Chapter1:资料同化基本概念</h1><div class="post-meta">
+            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
+                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
+                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/model/">Model</a>&nbsp;</span></div>
+            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-04-16>2019-04-16</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>about 3040 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>7 min&nbsp;</div>
+        </div><div class="post-featured-image"><img src="/svg/loading.min.svg" data-sizes="auto" data-src="/img/default.png" alt="featured image" class="lazyload"></div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#分析">分析</a></li>
+        <li><a href="#同化">同化</a></li>
+        <li><a href="#11-模式选择">1.1 模式选择</a></li>
+        <li><a href="#12-克里斯曼分析和相关方法">1.2 克里斯曼分析和相关方法</a></li>
+        <li><a href="#13-统计方法的需要">1.3 统计方法的需要</a></li>
+        <li><a href="#更新记录">更新记录</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#分析">分析</a></li>
+        <li><a href="#同化">同化</a></li>
+        <li><a href="#11-模式选择">1.1 模式选择</a></li>
+        <li><a href="#12-克里斯曼分析和相关方法">1.2 克里斯曼分析和相关方法</a></li>
+        <li><a href="#13-统计方法的需要">1.3 统计方法的需要</a></li>
+        <li><a href="#更新记录">更新记录</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><a class="post-dummy-target" id="分析"></a><h3>分析</h3>
+<p>分析是为了产生给定时刻大气真实状态的正确描述。对于大气的全面且自一致性诊断而言，分析是非常有用的。分析结果可以作为其他操作的输入数据(比如作为数值天气预报的初始状态)，或者作为数据反演当作是虚假的观测。可以作为检查观测质量的参考。</p>
+<p>用于产生分析的基本的客观信息是真实状态的观测数据集合。如果观测数据导致模式状态被高估，分析过程会减少这种插值造成的问题。大多数情况下，由于观测是稀疏的而且通常是和模式变量间接相关的，所以分析过程通常是低估的。为了更好的处理此问题，<strong>必须依赖于模式状态的先验估计的背景信息</strong>。对于分析问题而言，物理限制也是非常有用的。<strong>背景信息</strong>可能是气候或者细微的状态，也可以是<strong>之前分析的输出</strong>(使用了模式状态随时间的一致性假设，比如稳定性(stationarity，持续性假设(hypothesis of persistence))，或者预报模式的预报演变)。</p>
+<p><strong>在一个良好的系统中，希望将这些信息随着时间传递到模式状态中，并且传递给所有模式变量</strong>。这就是数据同化的概念。</p>
+<p><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://github.com/bugsuse/blogpic/blob/master/2019/04/16/fig1.jpg?raw=true" alt="" class="lazyload"></figure></p>
+<center><font size=2 color=gray>图1 四种数据同化基本策略的时间函数。随时间分布的观测处理后会产生一个同化状态的时间序列(每个图中的红色曲线)，此时间序列应该是序列化/连续的。</font></center>
+<a class="post-dummy-target" id="同化"></a><h3>同化</h3>
+<p>数据同化是一种<strong>利用物理性质和时间演变定律的一致性约束将观测信息累积入模式状态中</strong>的<strong>分析技术</strong>。有两种基本的数据同化方法：</p>
+<ul>
+<li><code>序列化同化</code>：考虑从过去一段时间到分析时刻的观测数据，这主要应用于实时同化系统。</li>
+<li><code>非序列化同化</code>或<code>回顾性同化</code>：使用了来自未来的观测，比如再分析。</li>
+</ul>
+<p>这两种方法的另一个区别是：在时间上，一个是间歇性的，一个是连续性的。对于间歇性方法而言，观测数据是分小批进行处理的，通常是为了技术上更方便；对于连续性方法而言，分批的观测通常具有更长的周期，而且校正后的分析状态在时间上是平滑的，这在物理上更真实。图1展示了四种基本类型的同化。</p>
+<p>许多同化技术都可以用于气象学和海洋学(图2)。这些方法的数值计算成本，优化性以及实时数据同化的可用性方面有些差异。</p>
+<p><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://github.com/bugsuse/blogpic/blob/master/2019/04/16/fig2.jpg?raw=true" alt="" class="lazyload"></figure></p>
+<center><font size=2 color=gray>图2 应用于气象学和海洋学的主要数据同化算法概览。根据这些算法的应用复杂性和实时问题应用性进行了大致分类。当前，最常使用的是OI，3D-Var和4D-Var。</font></center>
+<a class="post-dummy-target" id="11-模式选择"></a><h3>1.1 模式选择</h3>
+<p>这里提到的概念在ECMWF全球气象模式中的示例进行了解释，而且也能够很好的应用在区域模式，中尺度模式，海洋环流模式，波模式(wave models)，海洋表面温度或陆面特性的2D模式，或者1D垂直柱模式。也可以作为时间连续的无限维度(即没有离散化，without discretization)的一般框架。这将涉及到复杂的数学工具。出于简化的目的，这里仅讨论离散的，有限维问题。</p>
+<p>在气象学中，有几种方法可以来表示模式状态。这些场可以表示为格点值，谱分量，EOF值，有限元分解，相同的状态可以表示为不同的基本向量。风可以表示为(u,v)分量，涡度和散度()，流函数(streamfunction)和速度位(velocity potential)()。湿度可以表示为绝对/相对湿度或露点温度(只要温度已知)。在静力平衡条件下，垂直厚度或位势高度可视为温度和表面气压。所有的这些变换，仅是一种表示方式，并不会改变分析问题的本质。这听起来可能是微不足道的，但重要的是要意识到只要转换是可逆的，分析所表示的结果和模式是不同的。而且如果选择的表示方法正确，那么分析问题(比如误差统计模型)可能得到极大的简化。</p>
+<p>因为模式的分辨率比真实情况要低，因此再好的分析也不完全是真实的。<strong>在描述分析算法时，我们有时会提到模式的<code>真状态(true state)</code>，这表示的是模式所能表示的可能最好的状态，这也是我们想要达到的状态。<strong>要明确的是：<strong>即使观测没有出现设备误差，分析结果也和真状态相同，观测值和分析结果中的值仍会不可避免的出现一些差异</strong>，这就是<font color=red>代表性/表示性误差(representativeness errors)</font>。尽管我们通常在数学表达式中将这些误差视为<font color=red>观测误差</font>，但是要记住，<font color=red>表示性误差</font>依赖于</strong>模式离散化</strong>，而不是设备问题。</p>
+<a class="post-dummy-target" id="12-克里斯曼分析和相关方法"></a><h3>1.2 克里斯曼分析和相关方法</h3>
+<p>将分析过程设计为算法，可以将模式状态设置为可用观测范围内的观测值，或者设置为任意状态(比如气候或之前的预报)。这就形成了之前的<strong>克里斯曼分析方案</strong>的基础(图3)，仍广泛应用于一些简单的同化系统。</p>
+<p>假设模式状态是单变量并且呈现为格点值。假设$X_b$表示之前预报提供的模式状态(背景场)评估，$y(i)$表示相同参数的一系列观测(i=0,1…n)，使用下列公式可以得到每个格点j上的简单克里斯曼分析得到的模式状态$X_a$：</p>
+<p><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://github.com/bugsuse/blogpic/blob/master/2019/04/16/fig3.jpg?raw=true" alt="" class="lazyload"></figure></p>
+<p>其中$d_{i,j}$表示点i和j之间的距离，$X_{b}(i)$表示插值到点i的背景状态，如果格点j和观测i相同，那么权重函数$w(i,j)$等于1。如果$d_{i,j}&gt;R$，距离的递减函数则为0，R表示搜索距离，超出搜索距离的观测没有权重(即，进行当前格点分析时，不考虑超过搜索距离的观测)。</p>
+<p><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://github.com/bugsuse/blogpic/blob/master/2019/04/16/fig4.jpg?raw=true" alt="" class="lazyload"></figure></p>
+<center><font size=2 color=gray>图3 1D场克里斯曼分析示例。背景场Xb为蓝色函数，观测为绿色。每个观测附近，背景场和观测之间插值得到分析结果(红色曲线)。距离观测越近，权重越大。</font></center>
+<p>克里斯曼方法有许多变体。有人重新定义了权重函数，比如$exp(-d_{i,j}^{2}/2R^{2})$。更普遍的算法是**连续订正法**。其特点之一是：对于i=j时，其权重可以小于1，这意味着在观测和背景场之间进行了加权平均。另一个特点是，为了让校正结果更平滑，在更新时可以执行几次，或者每次进行多次迭代。**连续订正法已经足够先进，而且表现结果和其他同化方法差不多，然而无法直接给定权重**。</p>
+<a class="post-dummy-target" id="13-统计方法的需要"></a><h3>1.3 统计方法的需要</h3>
+<p>对于以下情况，克里斯曼方法无法满足需求：</p>
+<ul>
+<li>如果已经有了质量比较好的初步分析结果，不想用质量较差的观测结果进行替换</li>
+<li>当距离观测较远时，不清楚如何放宽对一个任意状态的分析，即如何决定w函数</li>
+<li>分析方法应该考虑真系统的基本特性，比如场的平滑性，变量间的关系(静力平衡或饱和约束)。克里斯曼方法无法做的以上要求。在分析时，随机观测误差可能会导致非物理特征。</li>
+</ul>
+<p>因为克里斯曼方法比较简单，对于开始着手同化是非常有用的工具。但是没有好的方法的话，不可能避免上述问题而产生高质量的分析。事实上有经验的人手动分析知道好的分析结果的构成：</p>
+<ul>
+<li>具有高质量的初猜场，即之前的分析或预报给出的结果</li>
+<li>如果观测是密集的，那么真实值可能在这些观测平均值附近，必须要在初猜场和观测值之间做一个妥协。分析结果应该和我们最相信的观测最接近，因此，那些可以的数据应该具有很小的权重</li>
+<li>分析应该是平滑的，因为真实状态是平滑的。当远离观测时，分析应该放宽平滑初猜场，以保证在量级上和通常的物理现象相近</li>
+<li>分析应该要考虑系统的已知物理特征。当然，某些情况下，可能会出现不正常的量级(unusual scales)或者不平衡问题，好的分析应该能够识别这些问题，因为，异常情况也是非常重要的。</li>
+</ul>
+<p>参与分析的观测，初猜场和系统的已知物理特性等数据在分析系统中都是重要的信息源，但是我们并不能完全信任这些数据，必要时必须要进行选择。因为模式和观测中会存在误差，因此我们无法确定哪个可信。然而，我们可以找到一种策略：最小化分析和真值之间差的平均值。</p>
+<p>为了设计算法实现自动化，有必要从数学上表示数据的不确定性。这种不确定性可以通过校准误差统计来测量，并使用概率概念来建模。然后，可以根据需求来设计算法，只有当分析误差的均值最小时才是有意义的。</p>
+<a class="post-dummy-target" id="更新记录"></a><h3>更新记录</h3>
+<p>2019.04.16 首次更新</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2019-04-16</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-16-chapter1%25E6%2595%25B0%25E6%258D%25AE%25E5%2590%258C%25E5%258C%2596%25E5%259F%25BA%25E6%259C%25AC%25E6%25A6%2582%25E5%25BF%25B5%2f&amp;text=Chapter1%3a%e8%b5%84%e6%96%99%e5%90%8c%e5%8c%96%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5&amp;via=xxxx" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-16-chapter1%25E6%2595%25B0%25E6%258D%25AE%25E5%2590%258C%25E5%258C%2596%25E5%259F%25BA%25E6%259C%25AC%25E6%25A6%2582%25E5%25BF%25B5%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-16-chapter1%25E6%2595%25B0%25E6%258D%25AE%25E5%2590%258C%25E5%258C%2596%25E5%259F%25BA%25E6%259C%25AC%25E6%25A6%2582%25E5%25BF%25B5%2f&amp;title=Chapter1%3a%e8%b5%84%e6%96%99%e5%90%8c%e5%8c%96%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-16-chapter1%25E6%2595%25B0%25E6%258D%25AE%25E5%2590%258C%25E5%258C%2596%25E5%259F%25BA%25E6%259C%25AC%25E6%25A6%2582%25E5%25BF%25B5%2f&amp;appkey=&amp;title=Chapter1%3a%e8%b5%84%e6%96%99%e5%90%8c%e5%8c%96%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5&amp;pic=%2fimg%2fdefault.png" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a></span></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section><span class="tag">
+                        <a href="https://atmosai.github.io/tags/data-assimilation/"><i class="fas fa-tag fa-fw"></i>&nbsp;data assimilation</a>&nbsp;
+                    </span></section>
+        <section>
+            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="https://atmosai.github.io/2019/04/2019-04-14-%E5%A6%82%E4%BD%95%E5%9C%A8fortran%E4%B8%AD%E8%B0%83%E7%94%A8python/" class="prev" rel="prev" title="如何在Fortran中调用Python"><i class="fas fa-angle-left fa-fw"></i>如何在Fortran中调用Python</a>
+            <a href="https://atmosai.github.io/2019/04/2019-04-18-%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E5%90%8D%E8%AF%8D/" class="next" rel="next" title="资料同化基本术语">资料同化基本术语<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
+</html>

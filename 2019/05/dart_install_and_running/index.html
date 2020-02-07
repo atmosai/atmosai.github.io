@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>DART资料同化模块 | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="About LoveIt Theme"><link rel="prev" href="https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/" /><link rel="next" href="https://atmosai.github.io/2019/05/camx_chapter7_source_apportionment/" /><link rel="canonical" href="https://atmosai.github.io/2019/05/dart_install_and_running/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta property="og:title" content="DART资料同化模块" />
+<meta property="og:description" content="DART(Data Assimilation Research Testbed)是一个数据同化的集合工具，是由NCAR提供支持的集合数据同化社区版工具，其支持提供了大多数模式数据同化接口。 安装 DAR" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://atmosai.github.io/2019/05/dart_install_and_running/" />
+<meta property="article:published_time" content="2019-05-15T10:40:13+08:00" />
+<meta property="article:modified_time" content="2019-05-15T10:40:13+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DART资料同化模块"/>
+<meta name="twitter:description" content="DART(Data Assimilation Research Testbed)是一个数据同化的集合工具，是由NCAR提供支持的集合数据同化社区版工具，其支持提供了大多数模式数据同化接口。 安装 DAR"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "DART资料同化模块",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/atmosai.github.io\/2019\/05\/dart_install_and_running\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "data assimilation, DART, WRF","wordcount":  1908 ,
+        "url": "https:\/\/atmosai.github.io\/2019\/05\/dart_install_and_running\/","datePublished": "2019-05-15T10:40:13\x2b08:00","dateModified": "2019-05-15T10:40:13\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "xxxx",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://atmosai.github.io">bugsuse</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://atmosai.github.io">bugsuse</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">DART资料同化模块</h1><div class="post-meta">
+            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
+                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
+                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/model/">Model</a>&nbsp;</span></div>
+            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-05-15>2019-05-15</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>about 1908 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>4 min&nbsp;</div>
+        </div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装">安装</a>
+      <ul>
+        <li><a href="#构建和自定义mkmftemplate文件">构建和自定义mkmf.template文件</a></li>
+        <li><a href="#自定义path_names_文件">自定义path_names_*文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#构建lorenz_63-dart项目">构建Lorenz_63 DART项目</a>
+      <ul>
+        <li><a href="#简单运行测试">简单运行测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#构建dart-wrf">构建DART-WRF</a></li>
+    <li><a href="#更新记录">更新记录</a></li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#安装">安装</a>
+      <ul>
+        <li><a href="#构建和自定义mkmftemplate文件">构建和自定义mkmf.template文件</a></li>
+        <li><a href="#自定义path_names_文件">自定义path_names_*文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#构建lorenz_63-dart项目">构建Lorenz_63 DART项目</a>
+      <ul>
+        <li><a href="#简单运行测试">简单运行测试</a></li>
+      </ul>
+    </li>
+    <li><a href="#构建dart-wrf">构建DART-WRF</a></li>
+    <li><a href="#更新记录">更新记录</a></li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><p>DART(Data Assimilation Research Testbed)是一个数据同化的集合工具，是由NCAR提供支持的集合数据同化社区版工具，其支持提供了大多数模式数据同化接口。</p>
+<a class="post-dummy-target" id="安装"></a><h2>安装</h2>
+<p>DART的编译依赖于<code>make</code>和<code>mkmf</code>两个工具，make是一个非常常用的工具，其记录了各源码文件间的依赖关系，通常由用户自定义。<code>mkmf</code>是一个perl脚本，用来生成<code>make</code>输入文件和示例<code>namelist</code>文件<code>input.nml.program_default</code>。</p>
+<p><code>mkmf</code>需要两个输入文件，第一个模版文件定义了特定F90编译器所需要的命令，也包含了DART系统所需要的预编译工具指向的目录。此模版需要根据所使用的系统进行修改。第二个模版文件是DART所需要的<code>path_names</code>文件，无需更改。<code>mkmf</code>使用上述两个文件生成<code>Makefile</code>，成功之后即可使用make进行编译。</p>
+<a class="post-dummy-target" id="构建和自定义mkmftemplate文件"></a><h3>构建和自定义<code>mkmf.template</code>文件</h3>
+<p><code>DART/build_templates</code>目录下有很多模版文件，文件后缀为系统和编译器名称。</p>
+<a class="post-dummy-target" id="自定义path_names_文件"></a><h3>自定义<code>path_names_*</code>文件</h3>
+<p>每个模式的<code>work</code>目录下都提供了一些<code>path_names_*</code>文件，比如<code>DART/models/lorenz_63/work</code>，这些文件一般不需要自定义修改。</p>
+<p>​</p>
+<a class="post-dummy-target" id="构建lorenz_63-dart项目"></a><h2>构建Lorenz_63 DART项目</h2>
+<p>所有的DART程序都可以使用相同的方式编译。每个模式目录中都有一个<code>work</code>目录，其中包含了用于构建可执行程序的文件。下例展示了如何为lorenz_63创建两个可执行程序：<code>preprocess</code>和<code>obs_diag</code>。<code>preprocess</code>的构建和运行是用于创建源码支持特定的观测。按照如下方式编译：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> DART/models/lorenz_63/work
+./mkmf_preprocess
+make
+./preprocess         <span class="c1"># 用于生成../../../assimilation_code/modules/observations/obs_kind_mod.f90文件，否则会报错</span>
+./mkmf_obs_diag
+make
+</code></pre></td></tr></table>
+</div>
+</div><p>目前<code>work</code>目录下已经有一些DART可执行文件，Lorenz_63模式有7个<code>mkmf_xxxxxx</code>文件，具体描述如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">
+Program	                    Purpose
+preprocess	                 creates custom source code for just the observations of interest
+create_obs_sequence	         specify a (set) of observation characteristics taken by a particular (set of) instruments
+create_fixed_network_seq  	 specify the temporal attributes of the observation sets
+                             perfect_model_obs	spinup, generate &#34;true state&#34; for synthetic observation experiments, ...
+filter	                     perform experiments
+obs_diag	                   creates observation-space diagnostic files to be explored by the MATLAB® scripts.
+obs_sequence_tool	           manipulates observation sequence files. It is not generally needed (particularly for low-order models) but can be used to combine observation sequences or convert from ASCII to binary or vice-versa. Since this is a specialty routine - we will not cover its use in this document.
+</code></pre></td></tr></table>
+</div>
+</div><p><code>quickbuild.csh</code>脚本可用于创建所有的可执行文件，而且可以提供选项构建mpi版本。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> DART/models/lorenz_63/work
+./quickbuild.csh -nompi
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="简单运行测试"></a><h3>简单运行测试</h3>
+<p><code>DART/models/lorenz_63/work</code>目录下提供了一些输入文件，可用于进行简单的测试：使用20个集合成员同化50天逐6小时的观测。运行<code>perfect_model_obs</code>和<code>filter</code>可以得到已知结果的对比结果。</p>
+<p>初始条件和观测序列文件为ASCII格式，不存在移植的问题，但是从ASCII转换到机器二进制可能会存在一些问题。对于高度非线形模式，初始条件的微小差异会导致模式结果的不同。</p>
+<p><code>Manhattan</code>发行版使用netCDF文件作为输入文件格式，使用<code>ncgen</code>可进行转换。当转换完成后，执行<code>perfect_model_obs</code>和<code>filter</code>即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ncgen -o perfect_input.nc perfect_input.cdl
+ncgen -o filter_input.nc filter_input.cdl
+./perfect_model_obs
+./filter
+</code></pre></td></tr></table>
+</div>
+</div><p>以下是输出文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">																			from executable &#34;perfect_model_obs&#34;
+perfect_output.nc   			a netCDF file containing the model trajectory ... the &#39;truth&#39;
+obs_seq.out								The observations (harvested as the true model was advanced) that were assimilated.
+ 
+																				from executable &#34;filter&#34;
+preassim.nc								A netCDF file of the ensemble model states just before assimilation. This is the prior.
+filter_output.nc					A netCDF file of the ensemble model states after assimilation.
+obs_seq.final							The observations that were assimilated as well as the ensemble mean estimates of the &#39;observations&#39; - for comparison.
+ 
+																						from both
+dart_log.out							The run-time log of the experiment. This grows with each execution and may safely be deleted at any time.
+dart_log.nml							A record of the input settings of the experiment. This file may safely be deleted at any time.
+
+</code></pre></td></tr></table>
+</div>
+</div><p>如果修改了<code>input.nml</code>文件中的设置，输出文件可能会发生变化。</p>
+<p><a href="https://www.image.ucar.edu/DAReS/DART/Manhattan/documentation/tutorial/index.html" target="_blank">DART/documentation/tutorial</a> 文档是学习DART和集合数据同化的非常有用的资料。</p>
+<p>​</p>
+<a class="post-dummy-target" id="构建dart-wrf"></a><h2>构建DART-WRF</h2>
+<p>DART也提供了WRF模式的同化模块，进入<code>DART/models/wrf/work</code> 目录可以按照<code>lorenz_63</code> 的构建方式进行编译，编译之前需要更改<code>build_templates/mkmf.template</code> 文件，使用intel编译器，并行库使用impi，编译选项更改为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">MPIFC = mpiifort
+MPILD = mpiifort
+FC = ifort
+LD = ifort
+
+FFLAGS  = -O2 $(INCS) 
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>编译前执行 <code>echo $NETCDF</code> 查看是否设置了netcdf环境变量，如果未设置，需要在 <code>mkmf.template</code> 文件中显示给定netcdf的路径</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">INCS = -I$(NETCDF)/include
+LIBS = -L$(NETCDF)/lib -lnetcdff -lnetcdf
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>上述使用的是netcdfv4.3.0版本，如果使用的是比较老的netcdf版本，上述 <code>LIBS</code> 可能需要更改为</p>
+<p>LIBS = -L$(NETCDF)/lib -lnetcdf</p>
+</blockquote>
+<p>然后进入<code>DART/models/wrf/work</code>目录，执行<code>quickbuild.csh</code>脚本，然后编译所有可执行程序，默认编译为并行版。</p>
+<p>如果没有出现错误，则表示所有可执行程序都编译成功，最后会出现所有可执行程序均编译成功的提示。</p>
+<a class="post-dummy-target" id="更新记录"></a><h2>更新记录</h2>
+<p>2019.05.15 更新DART安装及WRF部分编译</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2019-05-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2019%2f05%2fdart_install_and_running%2f&amp;text=DART%e8%b5%84%e6%96%99%e5%90%8c%e5%8c%96%e6%a8%a1%e5%9d%97&amp;via=xxxx" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2019%2f05%2fdart_install_and_running%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2019%2f05%2fdart_install_and_running%2f&amp;title=DART%e8%b5%84%e6%96%99%e5%90%8c%e5%8c%96%e6%a8%a1%e5%9d%97" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2019%2f05%2fdart_install_and_running%2f&amp;appkey=&amp;title=DART%e8%b5%84%e6%96%99%e5%90%8c%e5%8c%96%e6%a8%a1%e5%9d%97" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a></span></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section><span class="tag">
+                        <a href="https://atmosai.github.io/tags/data-assimilation/"><i class="fas fa-tag fa-fw"></i>&nbsp;data assimilation</a>&nbsp;
+                    </span><span class="tag">
+                        <a href="https://atmosai.github.io/tags/dart/"><i class="fas fa-tag fa-fw"></i>&nbsp;DART</a>&nbsp;
+                    </span><span class="tag">
+                        <a href="https://atmosai.github.io/tags/wrf/"><i class="fas fa-tag fa-fw"></i>&nbsp;WRF</a>&nbsp;
+                    </span></section>
+        <section>
+            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/" class="prev" rel="prev" title="基于netcdf库的nc文件读写"><i class="fas fa-angle-left fa-fw"></i>基于netcdf库的nc文件读写</a>
+            <a href="https://atmosai.github.io/2019/05/camx_chapter7_source_apportionment/" class="next" rel="next" title="CAMx来源解析模块(SA)">CAMx来源解析模块(SA)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div><div class="post-comment"></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a><script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
+</html>

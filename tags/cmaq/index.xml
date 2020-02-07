@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CMAQ on bugsuse</title>
+    <link>https://atmosai.github.io/tags/cmaq/</link>
+    <description>Recent content in CMAQ on bugsuse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 13 Jan 2020 16:21:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://atmosai.github.io/tags/cmaq/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>记一次非常奇怪的WRF-CMAQ错误</title>
+      <link>https://atmosai.github.io/2020/01/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%9D%9E%E5%B8%B8%E5%A5%87%E6%80%AA%E7%9A%84wrf-cmaq%E9%94%99%E8%AF%AF/</link>
+      <pubDate>Mon, 13 Jan 2020 16:21:27 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2020/01/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%9D%9E%E5%B8%B8%E5%A5%87%E6%80%AA%E7%9A%84wrf-cmaq%E9%94%99%E8%AF%AF/</guid>
+      <description>近期在准备搭建一套WRF-CMAQ空气质量预报系统，从准备WRF模式运行开始就出现了Segmentation Fault 的问题， 当时 namelist.input 中设置如下： 1 sf_surface_physics</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>grib on bugsuse</title>
+    <link>https://atmosai.github.io/tags/grib/</link>
+    <description>Recent content in grib on bugsuse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 10 Jul 2019 21:22:40 +0800</lastBuildDate>
+    
+	<atom:link href="https://atmosai.github.io/tags/grib/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>基于Xarray的Grid格式文件处理</title>
+      <link>https://atmosai.github.io/2019/07/%E5%9F%BA%E4%BA%8Exarray%E7%9A%84grib%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</link>
+      <pubDate>Wed, 10 Jul 2019 21:22:40 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/07/%E5%9F%BA%E4%BA%8Exarray%E7%9A%84grib%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</guid>
+      <description>Xarray是专门为科学计算开发的用于处理多维数组的开源Python程序包，通过对多维数组进行标记，提供更加方便的操作方式，这一点和地球科学</description>
+    </item>
+    
+  </channel>
+</rss>
