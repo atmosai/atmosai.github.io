@@ -1,263 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>如何添加背景图 | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noodp" />
-<meta name="Description" content="About LoveIt Theme"><link rel="prev" href="https://atmosai.github.io/2018/11/2018-11-20-esmf%E6%A8%A1%E5%BC%8F%E9%97%B4%E8%80%A6%E5%90%88%E5%8F%8A%E6%8F%92%E5%80%BC%E5%B7%A5%E5%85%B7/" /><link rel="next" href="https://atmosai.github.io/2019/01/2019-01-26-mac%E5%88%A9%E7%94%A8iterm2-lrzsz%E5%AE%9E%E7%8E%B0xftp%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/" /><link rel="canonical" href="https://atmosai.github.io/2018/12/2018-12-04-%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%9B%BE/" />
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff"><meta property="og:title" content="如何添加背景图" />
-<meta property="og:description" content="以下代码展示如何在图中添加背景图， 首先生成图片 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 from datetime import datetime import numpy as np import pandas as pd" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://atmosai.github.io/2018/12/2018-12-04-%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%9B%BE/" />
-<meta property="article:published_time" content="2018-12-04T19:54:18+08:00" />
-<meta property="article:modified_time" content="2018-12-04T19:54:18+08:00" />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="如何添加背景图"/>
-<meta name="twitter:description" content="以下代码展示如何在图中添加背景图， 首先生成图片 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 from datetime import datetime import numpy as np import pandas as pd"/>
-<script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "如何添加背景图",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/atmosai.github.io\/2018\/12\/2018-12-04-%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%9B%BE\/"
-        },"image": {
-                "@type": "ImageObject",
-                "url": "https:\/\/atmosai.github.io\/cover.png",
-                "width":  800 ,
-                "height":  600 
-            },"genre": "posts","keywords": "Python, matplotlib","wordcount":  676 ,
-        "url": "https:\/\/atmosai.github.io\/2018\/12\/2018-12-04-%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%9B%BE\/","datePublished": "2018-12-04T19:54:18\x2b08:00","dateModified": "2018-12-04T19:54:18\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
-                "@type": "Organization",
-                "name": "xxxx",
-                "logo": {
-                "@type": "ImageObject",
-                "url": "https:\/\/atmosai.github.io\/logo.png",
-                "width":  127 ,
-                "height":  40 
-                }
-            },"description": ""
-    }
-    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
-    <body><script>
-            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
-            window.isDark && document.body.classList.add('dark-theme');
-        </script><div class="wrapper"><nav class="navbar">
-    <div class="navbar-container">
-        <div class="navbar-header animated bounceIn">
-            <a href="https://atmosai.github.io">bugsuse</a>
-        </div>
-        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
-        </div>
-    </div>
-</nav><nav class="navbar-mobile">
-    <div class="navbar-container">
-        <div class="navbar-header">
-            <div class="navbar-header-title animated bounceIn">
-                <a href="https://atmosai.github.io">bugsuse</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
-        </div>
-    </div>
-</nav><main class="main">
-                <div class="container"><article class="page"><h1 class="post-title animated flipInX">如何添加背景图</h1><div class="post-meta">
-            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
-                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
-                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/tools/">Tools</a>&nbsp;</span></div>
-            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2018-12-04>2018-12-04</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>about 676 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>2 min&nbsp;</div>
-        </div><div class="post-toc" id="post-toc">
-                <h2 class="post-toc-title">Contents</h2>
-                <div class="post-toc-content"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#x轴时间需要另外设置">x轴时间需要另外设置</a></li>
-  </ul>
-</nav></div>
-            </div>
-            <div class="post-toc-mobile" id="post-toc-mobile">
-                <details>
-                    <summary>
-                        <div class="post-toc-title">
-                            <span>Contents</span>
-                            <span><i class="details icon fas fa-angle-down"></i></span>
-                        </div>
-                    </summary>
-                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
-  <ul>
-    <li><a href="#x轴时间需要另外设置">x轴时间需要另外设置</a></li>
-  </ul>
-</nav></div>
-                </details>
-            </div><div class="post-content"><p>以下代码展示如何在图中添加背景图，</p>
-<p>首先生成图片</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>如何添加背景图 | bugsuse</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="About LoveIt Theme"><link rel=prev href=https://atmosai.github.io/2018/11/2018-11-20-esmf%E6%A8%A1%E5%BC%8F%E9%97%B4%E8%80%A6%E5%90%88%E5%8F%8A%E6%8F%92%E5%80%BC%E5%B7%A5%E5%85%B7/><link rel=next href=https://atmosai.github.io/2019/01/2019-01-26-mac%E5%88%A9%E7%94%A8iterm2-lrzsz%E5%AE%9E%E7%8E%B0xftp%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/><link rel=canonical href=https://atmosai.github.io/2018/12/2018-12-04-%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%9B%BE/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta property="og:title" content="如何添加背景图"><meta property="og:description" content="以下代码展示如何在图中添加背景图， 首先生成图片 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 from datetime import datetime import numpy as np import pandas as pd"><meta property="og:type" content="article"><meta property="og:url" content="https://atmosai.github.io/2018/12/2018-12-04-%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%9B%BE/"><meta property="article:published_time" content="2018-12-04T19:54:18+08:00"><meta property="article:modified_time" content="2018-12-04T19:54:18+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="如何添加背景图"><meta name=twitter:description content="以下代码展示如何在图中添加背景图， 首先生成图片 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 from datetime import datetime import numpy as np import pandas as pd"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"如何添加背景图","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/atmosai.github.io\/2018\/12\/2018-12-04-%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%9B%BE\/"},"image":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Python, matplotlib","wordcount":676,"url":"https:\/\/atmosai.github.io\/2018\/12\/2018-12-04-%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%9B%BE\/","datePublished":"2018-12-04T19:54:18\x2b08:00","dateModified":"2018-12-04T19:54:18\x2b08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=navbar-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文><i class="fas fa-language fa-fw"></i></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">如何添加背景图</h1><div class=post-meta><div class=post-meta-main><a class=author href=http://i-lightning.cn rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>bugsuse
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://atmosai.github.io/categories/tools/>Tools</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2018-12-04>2018-12-04</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 676 words&nbsp;
+<i class="far fa-clock fa-fw"></i>2 min&nbsp;</div></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#x轴时间需要另外设置>x轴时间需要另外设置</a></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#x轴时间需要另外设置>x轴时间需要另外设置</a></li></ul></nav></div></details></div><div class=post-content><p>以下代码展示如何在图中添加背景图，</p><p>首先生成图片</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>datetime</span> <span class=kn>import</span> <span class=n>datetime</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class=kn>import</span> <span class=nn>numpy</span> <span class=kn>as</span> <span class=nn>np</span>
+<span class=kn>import</span> <span class=nn>pandas</span> <span class=kn>as</span> <span class=nn>pd</span>
 
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span><span class="p">,</span> <span class="n">colors</span>
-<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="kn">as</span> <span class="nn">mpimg</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<span class=kn>from</span> <span class=nn>matplotlib</span> <span class=kn>import</span> <span class=n>cm</span><span class=p>,</span> <span class=n>colors</span>
+<span class=kn>import</span> <span class=nn>matplotlib.image</span> <span class=kn>as</span> <span class=nn>mpimg</span>
+<span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=kn>as</span> <span class=nn>plt</span>
+<span class=kn>import</span> <span class=nn>seaborn</span> <span class=kn>as</span> <span class=nn>sns</span>
 
-<span class="n">sns</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">talk</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mf">1.3</span><span class="p">)</span>
+<span class=n>sns</span><span class=o>.</span><span class=n>set_context</span><span class=p>(</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>talk</span><span class=s1>&#39;</span><span class=p>,</span> <span class=n>font_scale</span><span class=o>=</span><span class=mf>1.3</span><span class=p>)</span>
 
-<span class="c1">## 自定义colormap</span>
-<span class="n">colors_pm</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">#009966</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">#FFDE33</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">#FF9A32</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">#CC0033</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">#660099</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">#7D0023</span><span class="s1">&#39;</span><span class="p">]</span>
-<span class="n">levels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">115</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">350</span><span class="p">]</span>
+<span class=c1>## 自定义colormap</span>
+<span class=n>colors_pm</span> <span class=o>=</span> <span class=p>[</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>#009966</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>#FFDE33</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>#FF9A32</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>#CC0033</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>#660099</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>#7D0023</span><span class=s1>&#39;</span><span class=p>]</span>
+<span class=n>levels</span> <span class=o>=</span> <span class=p>[</span><span class=mi>0</span><span class=p>,</span> <span class=mi>35</span><span class=p>,</span> <span class=mi>75</span><span class=p>,</span> <span class=mi>115</span><span class=p>,</span> <span class=mi>150</span><span class=p>,</span> <span class=mi>250</span><span class=p>,</span> <span class=mi>350</span><span class=p>]</span>
 
-<span class="n">cmap_pm</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">(</span><span class="n">colors_pm</span><span class="p">)</span>  
-<span class="n">norm</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">BoundaryNorm</span><span class="p">(</span><span class="n">levels</span><span class="p">,</span> <span class="n">cmap_pm</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+<span class=n>cmap_pm</span> <span class=o>=</span> <span class=n>colors</span><span class=o>.</span><span class=n>ListedColormap</span><span class=p>(</span><span class=n>colors_pm</span><span class=p>)</span>  
+<span class=n>norm</span> <span class=o>=</span> <span class=n>colors</span><span class=o>.</span><span class=n>BoundaryNorm</span><span class=p>(</span><span class=n>levels</span><span class=p>,</span> <span class=n>cmap_pm</span><span class=o>.</span><span class=n>N</span><span class=p>)</span>
 
-<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">350</span><span class="p">)</span><span class="p">,</span> <span class="mi">365</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="p">(</span><span class="mi">350</span><span class="p">,</span> <span class="mi">365</span><span class="p">)</span><span class="p">)</span>
+<span class=n>s</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>repeat</span><span class=p>(</span><span class=n>np</span><span class=o>.</span><span class=n>arange</span><span class=p>(</span><span class=mi>350</span><span class=p>)</span><span class=p>,</span> <span class=mi>365</span><span class=p>)</span><span class=o>.</span><span class=n>reshape</span><span class=p>(</span><span class=p>(</span><span class=mi>350</span><span class=p>,</span> <span class=mi>365</span><span class=p>)</span><span class=p>)</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span><span class="p">)</span>
+<span class=n>fig</span><span class=p>,</span> <span class=n>ax</span> <span class=o>=</span> <span class=n>plt</span><span class=o>.</span><span class=n>subplots</span><span class=p>(</span><span class=n>figsize</span><span class=o>=</span><span class=p>(</span><span class=mi>18</span><span class=p>,</span> <span class=mi>12</span><span class=p>)</span><span class=p>)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_pm</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">auto</span><span class="s1">&#39;</span><span class="p">,</span>
-          <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">xlims</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="n">xlims</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">levels</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">]</span><span class="p">)</span>
+<span class=n>ax</span><span class=o>.</span><span class=n>imshow</span><span class=p>(</span><span class=n>s</span><span class=p>,</span> <span class=n>cmap</span><span class=o>=</span><span class=n>cmap_pm</span><span class=p>,</span> <span class=n>alpha</span><span class=o>=</span><span class=mf>0.5</span><span class=p>,</span> <span class=n>norm</span><span class=o>=</span><span class=n>norm</span><span class=p>,</span> <span class=n>aspect</span><span class=o>=</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>auto</span><span class=s1>&#39;</span><span class=p>,</span>
+          <span class=n>extent</span><span class=o>=</span><span class=p>[</span><span class=n>xlims</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>,</span> <span class=n>xlims</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=p>,</span> <span class=n>levels</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=p>,</span> <span class=n>levels</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>]</span><span class=p>)</span>
 
-<span class="c1"># imshow显示的y轴可能是相反的，因此需要反转y轴</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">(</span><span class="p">)</span>
+<span class=c1># imshow显示的y轴可能是相反的，因此需要反转y轴</span>
+<span class=n>ax</span><span class=o>.</span><span class=n>invert_yaxis</span><span class=p>(</span><span class=p>)</span>
 
-<span class="c1">## 去除 x和y轴的ticklabels以及tick </span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="p">[</span><span class="p">]</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="p">[</span><span class="p">]</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="p">)</span>
+<span class=c1>## 去除 x和y轴的ticklabels以及tick </span>
+<span class=n>ax</span><span class=o>.</span><span class=n>set_xticks</span><span class=p>(</span><span class=p>[</span><span class=p>]</span><span class=p>)</span>
+<span class=n>ax</span><span class=o>.</span><span class=n>set_yticks</span><span class=p>(</span><span class=p>[</span><span class=p>]</span><span class=p>)</span>
+<span class=n>ax</span><span class=o>.</span><span class=n>tick_params</span><span class=p>(</span><span class=nb>dict</span><span class=p>(</span><span class=n>length</span><span class=o>=</span><span class=mi>0</span><span class=p>)</span><span class=p>)</span>
 
-<span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">img.png</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">tight</span><span class="s1">&#39;</span><span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><br>
-<div align=center><img src="https://github.com/bugsuse/blogpic/blob/master/2018/12/04/fig1.jpg?raw=true"></div>
-<br>
-```python
+<span class=n>fig</span><span class=o>.</span><span class=n>savefig</span><span class=p>(</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>img.png</span><span class=s1>&#39;</span><span class=p>,</span> <span class=n>dpi</span><span class=o>=</span><span class=mi>300</span><span class=p>,</span> <span class=n>bbox_inches</span><span class=o>=</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>tight</span><span class=s1>&#39;</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><br><div align=center><img src="https://github.com/bugsuse/blogpic/blob/master/2018/12/04/fig1.jpg?raw=true"></div><br>```python
 ## 读取图片
-img = mpimg.imread('img.png')
-<p>date_range = pd.date_range(datetime(2015, 1, 1), datetime(2015, 12 ,31), freq='1d&rsquo;)
-data = pd.DataFrame(np.random.random(365) * 300, index=date_range, columns=[&lsquo;pm2.5&rsquo;])</p>
-<p>s = np.repeat(np.arange(350), 365).reshape((350, 365))</p>
-<p>fig, ax = plt.subplots(figsize=(18, 12))</p>
-<h1 id="alpha-设置透明度图片在图中的位置主要由-extent-参数控制transform-参数将坐标轴的范围归一化">alpha 设置透明度，图片在图中的位置，主要由 extent 参数控制，transform 参数将坐标轴的范围归一化</h1>
-<p>ax.imshow(img, alpha=0.5, extent=[-.02, 1.02, -0.02, 1.02], transform=ax.transAxes)</p>
-<a class="post-dummy-target" id="x轴时间需要另外设置"></a><h2>x轴时间需要另外设置</h2>
-<p>ax.plot(data[&lsquo;pm2.5&rsquo;].values, color='k&rsquo;, linewidth=2)</p>
-<p>ax.set_yticks(levels)
-_ = ax.set_ylabel(&lsquo;PM$_2.5$($\mu$g/m$^3$)', fontdict=dict(fontfamily='Times New Roman&rsquo;))</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;br&gt;
+img = mpimg.imread('img.png')<p>date_range = pd.date_range(datetime(2015, 1, 1), datetime(2015, 12 ,31), freq='1d&rsquo;)
+data = pd.DataFrame(np.random.random(365) * 300, index=date_range, columns=[&lsquo;pm2.5&rsquo;])</p><p>s = np.repeat(np.arange(350), 365).reshape((350, 365))</p><p>fig, ax = plt.subplots(figsize=(18, 12))</p><h1 id=alpha-设置透明度图片在图中的位置主要由-extent-参数控制transform-参数将坐标轴的范围归一化>alpha 设置透明度，图片在图中的位置，主要由 extent 参数控制，transform 参数将坐标轴的范围归一化</h1><p>ax.imshow(img, alpha=0.5, extent=[-.02, 1.02, -0.02, 1.02], transform=ax.transAxes)</p><a class=post-dummy-target id=x轴时间需要另外设置></a><h2>x轴时间需要另外设置</h2><p>ax.plot(data[&lsquo;pm2.5&rsquo;].values, color='k&rsquo;, linewidth=2)</p><p>ax.set_yticks(levels)
+_ = ax.set_ylabel(&lsquo;PM$_2.5$($\mu$g/m$^3$)', fontdict=dict(fontfamily='Times New Roman&rsquo;))</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>&lt;br&gt;
 &lt;div align=center&gt;&lt;img src=&#34;https://github.com/bugsuse/blogpic/blob/master/2018/12/04/fig2.jpg?raw=true&#34;&gt;&lt;/div&gt;
 
 &lt;br&gt;
@@ -314,100 +190,9 @@ ax.xaxis.set_major_formatter(date_format)
 ax.set_yticks(levels)
 _ = ax.set_ylabel(&#39;PM$_2.5$($\mu$g/m$^3$)&#39;, fontdict=dict(fontfamily=&#39;Times New Roman&#39;))
 
-</code></pre></td></tr></table>
-</div>
-</div><div align=center><img src="https://github.com/bugsuse/blogpic/blob/master/2018/12/04/fig3.jpg?raw=true"></div>
-<p>果然还是不喜欢多写字。
-<br></p>
-<p>参考链接:<br></p>
-<ol>
-<li><a href="https://stackoverflow.com/questions/23139595/dates-in-the-xaxis-for-a-matplotlib-plot-with-imshow">https://stackoverflow.com/questions/23139595/dates-in-the-xaxis-for-a-matplotlib-plot-with-imshow</a></li>
-</ol>
-</div><div class="post-footer" id="post-footer">
-        <div style="padding: 10px 0; margin: 20px auto; width: 100%; font-size:16px; text-align: center;">
-        <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-            <span>打赏</span></button>
-        <div id="QR" style="display: none;">
-            <div id="wechat" style="display: inline-block">
-                <a class="fancybox" rel="group">
-                    <img id="wechat_qr" src="/img/Wechat.jpeg" alt="WeChat Pay"></a>
-                <p>微信打赏</p>
-            </div>
-            <div id="alipay" style="display: inline-block">
-                <a class="fancybox" rel="group">
-                    <img id="alipay_qr" src="/img/Alipay.jpeg" alt="Alipay"></a>
-                <p>支付宝打赏</p>
-            </div>
-        </div>
-    </div>
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>The article was updated on 2018-12-04</span>
-            </div>
-            <div class="post-info-license"></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2018%2f12%2f2018-12-04-%25E5%25A6%2582%25E4%25BD%2595%25E6%25B7%25BB%25E5%258A%25A0%25E8%2583%258C%25E6%2599%25AF%25E5%259B%25BE%2f&amp;text=%e5%a6%82%e4%bd%95%e6%b7%bb%e5%8a%a0%e8%83%8c%e6%99%af%e5%9b%be&amp;via=xxxx" target="_blank" title="Share on Twitter">
-            <i class="fab fa-twitter fa-fw"></i>
-        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2018%2f12%2f2018-12-04-%25E5%25A6%2582%25E4%25BD%2595%25E6%25B7%25BB%25E5%258A%25A0%25E8%2583%258C%25E6%2599%25AF%25E5%259B%25BE%2f" target="_blank" title="Share on Facebook">
-            <i class="fab fa-facebook-square fa-fw"></i>
-        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2018%2f12%2f2018-12-04-%25E5%25A6%2582%25E4%25BD%2595%25E6%25B7%25BB%25E5%258A%25A0%25E8%2583%258C%25E6%2599%25AF%25E5%259B%25BE%2f&amp;title=%e5%a6%82%e4%bd%95%e6%b7%bb%e5%8a%a0%e8%83%8c%e6%99%af%e5%9b%be" target="_blank" title="Share on Reddit">
-            <i class="fab fa-reddit fa-fw"></i>
-        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2018%2f12%2f2018-12-04-%25E5%25A6%2582%25E4%25BD%2595%25E6%25B7%25BB%25E5%258A%25A0%25E8%2583%258C%25E6%2599%25AF%25E5%259B%25BE%2f&amp;appkey=&amp;title=%e5%a6%82%e4%bd%95%e6%b7%bb%e5%8a%a0%e8%83%8c%e6%99%af%e5%9b%be" target="_blank" title="Share on Weibo">
-            <i class="fab fa-weibo fa-fw"></i>
-        </a></span></div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section><span class="tag">
-                        <a href="https://atmosai.github.io/tags/python/"><i class="fas fa-tag fa-fw"></i>&nbsp;Python</a>&nbsp;
-                    </span><span class="tag">
-                        <a href="https://atmosai.github.io/tags/matplotlib/"><i class="fas fa-tag fa-fw"></i>&nbsp;matplotlib</a>&nbsp;
-                    </span></section>
-        <section>
-            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="https://atmosai.github.io/2018/11/2018-11-20-esmf%E6%A8%A1%E5%BC%8F%E9%97%B4%E8%80%A6%E5%90%88%E5%8F%8A%E6%8F%92%E5%80%BC%E5%B7%A5%E5%85%B7/" class="prev" rel="prev" title="ESMF:模式间耦合及插值工具"><i class="fas fa-angle-left fa-fw"></i>ESMF:模式间耦合及插值工具</a>
-            <a href="https://atmosai.github.io/2019/01/2019-01-26-mac%E5%88%A9%E7%94%A8iterm2-lrzsz%E5%AE%9E%E7%8E%B0xftp%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/" class="next" rel="next" title="Mac利用iTerm2&#43;lrzsz实现文件快速传输">Mac利用iTerm2&#43;lrzsz实现文件快速传输<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div class="post-comment"><div id="disqus_thread"></div>
-        <script type="text/javascript">
-            (function() {
-                
-                
-                if (window.location.hostname == "localhost")
-                    return;
-                var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
-                var disqus_shortname = "i-lightning-cn";
-                dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
-                (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
-    </article></div>
-            </main><footer class="footer">
-    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
-        </div>
-
-        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-    </div>
-</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
-            <span>&nbsp;</span>
-        </a>
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-112932643-1', 'auto');
-	ga('set', 'anonymizeIp', true);
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-<script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
-</html>
+</code></pre></td></tr></table></div></div><div align=center><img src="https://github.com/bugsuse/blogpic/blob/master/2018/12/04/fig3.jpg?raw=true"></div><p>果然还是不喜欢多写字。<br></p><p>参考链接:<br></p><ol><li><a href=https://stackoverflow.com/questions/23139595/dates-in-the-xaxis-for-a-matplotlib-plot-with-imshow>https://stackoverflow.com/questions/23139595/dates-in-the-xaxis-for-a-matplotlib-plot-with-imshow</a></li></ol></div><div class=post-footer id=post-footer><div style="padding:10px 0;margin:20px auto;width:100%;font-size:16px;text-align:center"><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
+<span>打赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><a class=fancybox rel=group><img id=wechat_qr src=/img/Wechat.jpeg alt="WeChat Pay"></a><p>微信打赏</p></div><div id=alipay style=display:inline-block><a class=fancybox rel=group><img id=alipay_qr src=/img/Alipay.jpeg alt=Alipay></a><p>支付宝打赏</p></div></div></div><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2018-12-04</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2018%2f12%2f2018-12-04-%25E5%25A6%2582%25E4%25BD%2595%25E6%25B7%25BB%25E5%258A%25A0%25E8%2583%258C%25E6%2599%25AF%25E5%259B%25BE%2f&text=%e5%a6%82%e4%bd%95%e6%b7%bb%e5%8a%a0%e8%83%8c%e6%99%af%e5%9b%be&via=xxxx" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2018%2f12%2f2018-12-04-%25E5%25A6%2582%25E4%25BD%2595%25E6%25B7%25BB%25E5%258A%25A0%25E8%2583%258C%25E6%2599%25AF%25E5%259B%25BE%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2018%2f12%2f2018-12-04-%25E5%25A6%2582%25E4%25BD%2595%25E6%25B7%25BB%25E5%258A%25A0%25E8%2583%258C%25E6%2599%25AF%25E5%259B%25BE%2f&title=%e5%a6%82%e4%bd%95%e6%b7%bb%e5%8a%a0%e8%83%8c%e6%99%af%e5%9b%be" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2018%2f12%2f2018-12-04-%25E5%25A6%2582%25E4%25BD%2595%25E6%25B7%25BB%25E5%258A%25A0%25E8%2583%258C%25E6%2599%25AF%25E5%259B%25BE%2f&appkey=&title=%e5%a6%82%e4%bd%95%e6%b7%bb%e5%8a%a0%e8%83%8c%e6%99%af%e5%9b%be" target=_blank title="Share on Weibo"><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://atmosai.github.io/tags/python/><i class="fas fa-tag fa-fw"></i>&nbsp;Python</a>&nbsp;
+</span><span class=tag><a href=https://atmosai.github.io/tags/matplotlib/><i class="fas fa-tag fa-fw"></i>&nbsp;matplotlib</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://atmosai.github.io>Home</a></span></section></div><div class=post-nav><a href=https://atmosai.github.io/2018/11/2018-11-20-esmf%E6%A8%A1%E5%BC%8F%E9%97%B4%E8%80%A6%E5%90%88%E5%8F%8A%E6%8F%92%E5%80%BC%E5%B7%A5%E5%85%B7/ class=prev rel=prev title=ESMF:模式间耦合及插值工具><i class="fas fa-angle-left fa-fw"></i>ESMF:模式间耦合及插值工具</a>
+<a href=https://atmosai.github.io/2019/01/2019-01-26-mac%E5%88%A9%E7%94%A8iterm2-lrzsz%E5%AE%9E%E7%8E%B0xftp%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/ class=next rel=next title=Mac利用iTerm2+lrzsz实现文件快速传输>Mac利用iTerm2+lrzsz实现文件快速传输<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;var dsq=document.createElement("script");dsq.type="text/javascript";dsq.async=true;var disqus_shortname="i-lightning-cn";dsq.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2016 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://atmosai.github.io target=_blank>bugsuse</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span></a>
+<script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-112932643-1','auto');ga('set','anonymizeIp',true);ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><script src=/js/blog.min.js></script></body></html>
