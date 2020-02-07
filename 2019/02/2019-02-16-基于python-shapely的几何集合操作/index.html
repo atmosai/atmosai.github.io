@@ -1,113 +1,434 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>基于python shapely的几何集合操作 | bugsuse</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="About LoveIt Theme"><link rel=prev href=https://atmosai.github.io/2019/02/2019-02-11-gfs%E6%95%B0%E6%8D%AE%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD/><link rel=next href=https://atmosai.github.io/2019/03/2019-03-05-wrf%E6%A8%A1%E5%BC%8F%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/><link rel=canonical href=https://atmosai.github.io/2019/02/2019-02-16-%E5%9F%BA%E4%BA%8Epython-shapely%E7%9A%84%E5%87%A0%E4%BD%95%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta property="og:title" content="基于python shapely的几何集合操作"><meta property="og:description" content="shapely是基于笛卡尔坐标的几何对象操作和分析Python库。底层基于GEOS和JTS库。shapely无法读取和写数据文件，但可以基于"><meta property="og:type" content="article"><meta property="og:url" content="https://atmosai.github.io/2019/02/2019-02-16-%E5%9F%BA%E4%BA%8Epython-shapely%E7%9A%84%E5%87%A0%E4%BD%95%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C/"><meta property="article:published_time" content="2019-02-16T09:29:36+08:00"><meta property="article:modified_time" content="2019-02-16T09:29:36+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="基于python shapely的几何集合操作"><meta name=twitter:description content="shapely是基于笛卡尔坐标的几何对象操作和分析Python库。底层基于GEOS和JTS库。shapely无法读取和写数据文件，但可以基于"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"基于python shapely的几何集合操作","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/atmosai.github.io\/2019\/02\/2019-02-16-%E5%9F%BA%E4%BA%8Epython-shapely%E7%9A%84%E5%87%A0%E4%BD%95%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C\/"},"image":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"python, shapely","wordcount":993,"url":"https:\/\/atmosai.github.io\/2019\/02\/2019-02-16-%E5%9F%BA%E4%BA%8Epython-shapely%E7%9A%84%E5%87%A0%E4%BD%95%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C\/","datePublished":"2019-02-16T09:29:36\x2b08:00","dateModified":"2019-02-16T09:29:36\x2b08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=navbar-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文><i class="fas fa-language fa-fw"></i></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">基于python shapely的几何集合操作</h1><div class=post-meta><div class=post-meta-main><a class=author href=http://i-lightning.cn rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>bugsuse
-</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://atmosai.github.io/categories/tools/>Tools</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-02-16>2019-02-16</time>&nbsp;
-<i class="fas fa-pencil-alt fa-fw"></i>about 993 words&nbsp;
-<i class="far fa-clock fa-fw"></i>2 min&nbsp;</div></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#安装>安装</a><ul><li><a href=#基于构建的发行版>基于构建的发行版</a></li><li><a href=#windows>windows</a></li><li><a href=#mac-os和linux>Mac OS和Linux</a></li><li><a href=#基于源码>基于源码</a></li></ul></li><li><a href=#基本操作>基本操作</a></li><li><a href=#集合操作>集合操作</a><ul><li><a href=#判断点是否在多边形>判断点是否在多边形</a></li><li><a href=#判断多边形的集合操作>判断多边形的集合操作</a></li></ul></li><li><a href=#参考链接>参考链接：</a></li></ul></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
-<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><ul><li><a href=#安装>安装</a><ul><li><a href=#基于构建的发行版>基于构建的发行版</a></li><li><a href=#windows>windows</a></li><li><a href=#mac-os和linux>Mac OS和Linux</a></li><li><a href=#基于源码>基于源码</a></li></ul></li><li><a href=#基本操作>基本操作</a></li><li><a href=#集合操作>集合操作</a><ul><li><a href=#判断点是否在多边形>判断点是否在多边形</a></li><li><a href=#判断多边形的集合操作>判断多边形的集合操作</a></li></ul></li><li><a href=#参考链接>参考链接：</a></li></ul></li></ul></nav></div></details></div><div class=post-content><p><a href=https://github.com/Toblerity/Shapely target=_blank>shapely</a>是基于笛卡尔坐标的几何对象操作和分析Python库。底层基于GEOS和JTS库。shapely无法读取和写数据文件，但可以基于应用广泛的一些格式和协议进行序列化(serialize)和去序列化(deserialize)操作。而且shapely不关注数据格式和坐标系统，但shapely的整合性很强，可以和GIS之类的工具协同工作。这种黏性类似python。</p><a class=post-dummy-target id=安装></a><h3>安装</h3><a class=post-dummy-target id=基于构建的发行版></a><h4>基于构建的发行版</h4><a class=post-dummy-target id=windows></a><h4>windows</h4><ul><li><code>conda install shapely</code></li><li>基于 wheels 安装 (<a href=http://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely>http://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely</a>)</li></ul><a class=post-dummy-target id=mac-os和linux></a><h4>Mac OS和Linux</h4><ul><li><code>pip install shapely</code>，如果需要针对向量化加速版本可通过<code>pip install shapely[vectorized]</code>安装</li><li>通过系统包管理器，比如 <code>apt</code>，<code>yum</code> 和 <code>Homebrew</code>等。</li><li>也可以通过Canopy和Anaconda等Python发行版工具安装，比如Anaconda，<code>conda install shapely</code></li></ul><a class=post-dummy-target id=基于源码></a><h4>基于源码</h4><p>当需要兼容基于GEOS的更多模块，或者想要使用不同的GEOS版本，可以基于源码进行安装：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>pip install shapely --no-binary shapely
-</code></pre></td></tr></table></div></div><p>如果使用自定义GEOS版本进行安装时，可能需要指定<code>geos-config</code>程序的路径，</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=nv>GEOS_CONFIG</span><span class=o>=</span>/path/to/geos-config pip install shapely
-</code></pre></td></tr></table></div></div><a class=post-dummy-target id=基本操作></a><h3>基本操作</h3><ul><li><p><strong>创建点</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>shapely.geometry</span> <span class=kn>import</span> <span class=n>Point</span>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>基于python shapely的几何集合操作 | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="About LoveIt Theme"><link rel="prev" href="https://atmosai.github.io/2019/02/2019-02-11-gfs%E6%95%B0%E6%8D%AE%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD/" /><link rel="next" href="https://atmosai.github.io/2019/03/2019-03-05-wrf%E6%A8%A1%E5%BC%8F%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" /><link rel="canonical" href="https://atmosai.github.io/2019/02/2019-02-16-%E5%9F%BA%E4%BA%8Epython-shapely%E7%9A%84%E5%87%A0%E4%BD%95%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta property="og:title" content="基于python shapely的几何集合操作" />
+<meta property="og:description" content="shapely是基于笛卡尔坐标的几何对象操作和分析Python库。底层基于GEOS和JTS库。shapely无法读取和写数据文件，但可以基于" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://atmosai.github.io/2019/02/2019-02-16-%E5%9F%BA%E4%BA%8Epython-shapely%E7%9A%84%E5%87%A0%E4%BD%95%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C/" />
+<meta property="article:published_time" content="2019-02-16T09:29:36+08:00" />
+<meta property="article:modified_time" content="2019-02-16T09:29:36+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="基于python shapely的几何集合操作"/>
+<meta name="twitter:description" content="shapely是基于笛卡尔坐标的几何对象操作和分析Python库。底层基于GEOS和JTS库。shapely无法读取和写数据文件，但可以基于"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "基于python shapely的几何集合操作",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/atmosai.github.io\/2019\/02\/2019-02-16-%E5%9F%BA%E4%BA%8Epython-shapely%E7%9A%84%E5%87%A0%E4%BD%95%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "python, shapely","wordcount":  993 ,
+        "url": "https:\/\/atmosai.github.io\/2019\/02\/2019-02-16-%E5%9F%BA%E4%BA%8Epython-shapely%E7%9A%84%E5%87%A0%E4%BD%95%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C\/","datePublished": "2019-02-16T09:29:36\x2b08:00","dateModified": "2019-02-16T09:29:36\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "xxxx",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://atmosai.github.io">bugsuse</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://atmosai.github.io">bugsuse</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">基于python shapely的几何集合操作</h1><div class="post-meta">
+            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
+                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
+                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/tools/">Tools</a>&nbsp;</span></div>
+            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-02-16>2019-02-16</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>about 993 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>2 min&nbsp;</div>
+        </div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装">安装</a>
+          <ul>
+            <li><a href="#基于构建的发行版">基于构建的发行版</a></li>
+            <li><a href="#windows">windows</a></li>
+            <li><a href="#mac-os和linux">Mac OS和Linux</a></li>
+            <li><a href="#基于源码">基于源码</a></li>
+          </ul>
+        </li>
+        <li><a href="#基本操作">基本操作</a></li>
+        <li><a href="#集合操作">集合操作</a>
+          <ul>
+            <li><a href="#判断点是否在多边形">判断点是否在多边形</a></li>
+            <li><a href="#判断多边形的集合操作">判断多边形的集合操作</a></li>
+          </ul>
+        </li>
+        <li><a href="#参考链接">参考链接：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装">安装</a>
+          <ul>
+            <li><a href="#基于构建的发行版">基于构建的发行版</a></li>
+            <li><a href="#windows">windows</a></li>
+            <li><a href="#mac-os和linux">Mac OS和Linux</a></li>
+            <li><a href="#基于源码">基于源码</a></li>
+          </ul>
+        </li>
+        <li><a href="#基本操作">基本操作</a></li>
+        <li><a href="#集合操作">集合操作</a>
+          <ul>
+            <li><a href="#判断点是否在多边形">判断点是否在多边形</a></li>
+            <li><a href="#判断多边形的集合操作">判断多边形的集合操作</a></li>
+          </ul>
+        </li>
+        <li><a href="#参考链接">参考链接：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><p><a href="https://github.com/Toblerity/Shapely" target="_blank">shapely</a>是基于笛卡尔坐标的几何对象操作和分析Python库。底层基于GEOS和JTS库。shapely无法读取和写数据文件，但可以基于应用广泛的一些格式和协议进行序列化(serialize)和去序列化(deserialize)操作。而且shapely不关注数据格式和坐标系统，但shapely的整合性很强，可以和GIS之类的工具协同工作。这种黏性类似python。</p>
+<a class="post-dummy-target" id="安装"></a><h3>安装</h3>
+<a class="post-dummy-target" id="基于构建的发行版"></a><h4>基于构建的发行版</h4>
+<a class="post-dummy-target" id="windows"></a><h4>windows</h4>
+<ul>
+<li><code>conda install shapely</code></li>
+<li>基于 wheels 安装 (<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely">http://www.lfd.uci.edu/~gohlke/pythonlibs/#shapely</a>)</li>
+</ul>
+<a class="post-dummy-target" id="mac-os和linux"></a><h4>Mac OS和Linux</h4>
+<ul>
+<li><code>pip install shapely</code>，如果需要针对向量化加速版本可通过<code>pip install shapely[vectorized]</code>安装</li>
+<li>通过系统包管理器，比如 <code>apt</code>，<code>yum</code> 和 <code>Homebrew</code>等。</li>
+<li>也可以通过Canopy和Anaconda等Python发行版工具安装，比如Anaconda，<code>conda install shapely</code></li>
+</ul>
+<a class="post-dummy-target" id="基于源码"></a><h4>基于源码</h4>
+<p>当需要兼容基于GEOS的更多模块，或者想要使用不同的GEOS版本，可以基于源码进行安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">pip install shapely --no-binary shapely
+</code></pre></td></tr></table>
+</div>
+</div><p>如果使用自定义GEOS版本进行安装时，可能需要指定<code>geos-config</code>程序的路径，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">GEOS_CONFIG</span><span class="o">=</span>/path/to/geos-config pip install shapely
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="基本操作"></a><h3>基本操作</h3>
+<ul>
+<li>
+<p><strong>创建点</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
   
-<span class=n>point</span> <span class=o>=</span> <span class=n>Point</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span> <span class=c1># Point((0, 0))</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># Point((0, 0))</span>
   
-<span class=n>point</span><span class=o>.</span><span class=n>area</span>    <span class=c1># 获取点的面积</span>
-<span class=n>point</span><span class=o>.</span><span class=n>length</span>  <span class=c1># 获取点的长度</span>
-<span class=n>point</span><span class=o>.</span><span class=n>bounds</span>  <span class=c1># 获取点的边界</span>
-</code></pre></td></tr></table></div></div></li><li><p><strong>创建圆</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=n>In</span> <span class=p>[</span><span class=mi>20</span><span class=p>]</span><span class=p>:</span> <span class=n>circle</span> <span class=o>=</span> <span class=n>Point</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span><span class=o>.</span><span class=n>buffer</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span> <span class=c1># 创建以(0, 0)为圆心，10为半径的圆</span>
+<span class="n">point</span><span class="o">.</span><span class="n">area</span>    <span class="c1"># 获取点的面积</span>
+<span class="n">point</span><span class="o">.</span><span class="n">length</span>  <span class="c1"># 获取点的长度</span>
+<span class="n">point</span><span class="o">.</span><span class="n">bounds</span>  <span class="c1"># 获取点的边界</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>创建圆</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="p">:</span> <span class="n">circle</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 创建以(0, 0)为圆心，10为半径的圆</span>
   
-<span class=n>In</span> <span class=p>[</span><span class=mi>25</span><span class=p>]</span><span class=p>:</span> <span class=n>circle</span><span class=o>.</span><span class=n>area</span>  <span class=c1># 获取创建的圆的面积</span>
-<span class=n>Out</span><span class=p>[</span><span class=mi>25</span><span class=p>]</span><span class=p>:</span> <span class=mf>313.6548490545939</span>
-</code></pre></td></tr></table></div></div><p>从上述结果可以看出，所创建的圆的面积小于 $\pi$ $r^2$，这是因为<code>buffer</code>方法默认参数<code>resolution</code>为16，<code>resolution</code> 的值越大圆越完整。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span><span class=lnt>8
-</span><span class=lnt>9
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=n>In</span> <span class=p>[</span><span class=mi>30</span><span class=p>]</span><span class=p>:</span> <span class=n>circle</span> <span class=o>=</span> <span class=n>Point</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span><span class=o>.</span><span class=n>buffer</span><span class=p>(</span><span class=mi>10</span><span class=p>,</span> <span class=n>resolution</span><span class=o>=</span><span class=mi>1000</span><span class=p>)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">25</span><span class="p">]</span><span class="p">:</span> <span class="n">circle</span><span class="o">.</span><span class="n">area</span>  <span class="c1"># 获取创建的圆的面积</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">25</span><span class="p">]</span><span class="p">:</span> <span class="mf">313.6548490545939</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>从上述结果可以看出，所创建的圆的面积小于 $\pi$ $r^2$，这是因为<code>buffer</code>方法默认参数<code>resolution</code>为16，<code>resolution</code> 的值越大圆越完整。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">30</span><span class="p">]</span><span class="p">:</span> <span class="n">circle</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
   
-<span class=n>In</span> <span class=p>[</span><span class=mi>31</span><span class=p>]</span><span class=p>:</span> <span class=n>circle</span><span class=o>.</span><span class=n>area</span>
-<span class=n>Out</span><span class=p>[</span><span class=mi>31</span><span class=p>]</span><span class=p>:</span> <span class=mf>314.15913616617644</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">31</span><span class="p">]</span><span class="p">:</span> <span class="n">circle</span><span class="o">.</span><span class="n">area</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">31</span><span class="p">]</span><span class="p">:</span> <span class="mf">314.15913616617644</span>
       
-<span class=n>In</span> <span class=p>[</span><span class=mi>32</span><span class=p>]</span><span class=p>:</span> <span class=n>circle</span> <span class=o>=</span> <span class=n>Point</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span><span class=o>.</span><span class=n>buffer</span><span class=p>(</span><span class=mi>10</span><span class=p>,</span> <span class=n>resolution</span><span class=o>=</span><span class=mi>1000000</span><span class=p>)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">32</span><span class="p">]</span><span class="p">:</span> <span class="n">circle</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">1000000</span><span class="p">)</span>
   
-<span class=n>In</span> <span class=p>[</span><span class=mi>33</span><span class=p>]</span><span class=p>:</span> <span class=n>circle</span><span class=o>.</span><span class=n>area</span>
-<span class=n>Out</span><span class=p>[</span><span class=mi>33</span><span class=p>]</span><span class=p>:</span> <span class=mf>314.1592653588436</span>
-</code></pre></td></tr></table></div></div></li><li><p><strong>创建多边形</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>shapely.geometry</span> <span class=kn>import</span> <span class=n>Polygon</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">33</span><span class="p">]</span><span class="p">:</span> <span class="n">circle</span><span class="o">.</span><span class="n">area</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">33</span><span class="p">]</span><span class="p">:</span> <span class="mf">314.1592653588436</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>创建多边形</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Polygon</span>
   
-<span class=n>polygon</span> <span class=o>=</span> <span class=n>Polygon</span><span class=p>(</span><span class=p>[</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>3</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>3</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>3</span><span class=p>)</span><span class=p>]</span><span class=p>)</span>
-</code></pre></td></tr></table></div></div><div class="admonition note"><p class=admonition-title><i class="icon fas fa-pencil-alt"></i>Note</p><p><code>Polygon</code> 函数仅能基于有序的点创建多边形，且点的集合必须要是闭合的。使用<code>MultiPoint</code> 函数创建，并使用 <code>convex_hull</code> 方法创建多边形。</p></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>shapely.geometry</span> <span class=kn>import</span> <span class=n>MultiPoint</span>
+<span class="n">polygon</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="p">[</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="admonition note"><p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p><p><code>Polygon</code> 函数仅能基于有序的点创建多边形，且点的集合必须要是闭合的。使用<code>MultiPoint</code> 函数创建，并使用 <code>convex_hull</code> 方法创建多边形。</p>
+</div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">MultiPoint</span>
   
-<span class=n>coords</span> <span class=o>=</span> <span class=p>[</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>4</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span><span class=p>]</span>  <span class=c1># coords不一定要是闭合点集合</span>
-<span class=n>poly</span> <span class=o>=</span> <span class=n>MultiPoint</span><span class=p>(</span><span class=n>coords</span><span class=p>)</span><span class=o>.</span><span class=n>convex_hull</span>
-</code></pre></td></tr></table></div></div></li></ul><a class=post-dummy-target id=集合操作></a><h3>集合操作</h3><a class=post-dummy-target id=判断点是否在多边形></a><h4>判断点是否在多边形</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=n>In</span> <span class=p>[</span><span class=mi>50</span><span class=p>]</span><span class=p>:</span> <span class=n>p1</span> <span class=o>=</span> <span class=n>Point</span><span class=p>(</span><span class=mf>24.952242</span><span class=p>,</span> <span class=mf>60.1696017</span><span class=p>)</span>
-<span class=n>In</span> <span class=p>[</span><span class=mi>51</span><span class=p>]</span><span class=p>:</span> <span class=n>p2</span> <span class=o>=</span> <span class=n>Point</span><span class=p>(</span><span class=mf>24.976567</span><span class=p>,</span> <span class=mf>60.1612500</span><span class=p>)</span>
-<span class=n>In</span> <span class=p>[</span><span class=mi>52</span><span class=p>]</span><span class=p>:</span> <span class=n>coords</span> <span class=o>=</span> <span class=p>[</span><span class=p>(</span><span class=mf>24.950899</span><span class=p>,</span> <span class=mf>60.169158</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mf>24.953492</span><span class=p>,</span> <span class=mf>60.169158</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mf>24.953510</span><span class=p>,</span> <span class=mf>60.170104</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mf>24.950958</span><span class=p>,</span> <span class=mf>60.169990</span><span class=p>)</span><span class=p>]</span>
-<span class=n>In</span> <span class=p>[</span><span class=mi>53</span><span class=p>]</span><span class=p>:</span> <span class=n>poly</span> <span class=o>=</span> <span class=n>Polygon</span><span class=p>(</span><span class=n>coords</span><span class=p>)</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="p">]</span>  <span class="c1"># coords不一定要是闭合点集合</span>
+<span class="n">poly</span> <span class="o">=</span> <span class="n">MultiPoint</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span><span class="o">.</span><span class="n">convex_hull</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<a class="post-dummy-target" id="集合操作"></a><h3>集合操作</h3>
+<a class="post-dummy-target" id="判断点是否在多边形"></a><h4>判断点是否在多边形</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">50</span><span class="p">]</span><span class="p">:</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">24.952242</span><span class="p">,</span> <span class="mf">60.1696017</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">51</span><span class="p">]</span><span class="p">:</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">24.976567</span><span class="p">,</span> <span class="mf">60.1612500</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">52</span><span class="p">]</span><span class="p">:</span> <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="p">(</span><span class="mf">24.950899</span><span class="p">,</span> <span class="mf">60.169158</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mf">24.953492</span><span class="p">,</span> <span class="mf">60.169158</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mf">24.953510</span><span class="p">,</span> <span class="mf">60.170104</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mf">24.950958</span><span class="p">,</span> <span class="mf">60.169990</span><span class="p">)</span><span class="p">]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">53</span><span class="p">]</span><span class="p">:</span> <span class="n">poly</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
 
-<span class=n>In</span> <span class=p>[</span><span class=mi>54</span><span class=p>]</span><span class=p>:</span> <span class=n>poly</span><span class=o>.</span><span class=n>contains</span><span class=p>(</span><span class=n>p1</span><span class=p>)</span>
-<span class=n>Out</span><span class=p>[</span><span class=mi>54</span><span class=p>]</span><span class=p>:</span> <span class=bp>True</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">54</span><span class="p">]</span><span class="p">:</span> <span class="n">poly</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">54</span><span class="p">]</span><span class="p">:</span> <span class="bp">True</span>
 
-<span class=n>In</span> <span class=p>[</span><span class=mi>55</span><span class=p>]</span><span class=p>:</span> <span class=n>p1</span><span class=o>.</span><span class=n>within</span><span class=p>(</span><span class=n>poly</span><span class=p>)</span>
-<span class=n>Out</span><span class=p>[</span><span class=mi>55</span><span class=p>]</span><span class=p>:</span> <span class=bp>True</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">55</span><span class="p">]</span><span class="p">:</span> <span class="n">p1</span><span class="o">.</span><span class="n">within</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">55</span><span class="p">]</span><span class="p">:</span> <span class="bp">True</span>
 
-<span class=n>In</span> <span class=p>[</span><span class=mi>56</span><span class=p>]</span><span class=p>:</span> <span class=n>poly</span><span class=o>.</span><span class=n>contains</span><span class=p>(</span><span class=n>p2</span><span class=p>)</span>
-<span class=n>Out</span><span class=p>[</span><span class=mi>56</span><span class=p>]</span><span class=p>:</span> <span class=bp>False</span>
-</code></pre></td></tr></table></div></div><a class=post-dummy-target id=判断多边形的集合操作></a><h4>判断多边形的集合操作</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=n>In</span> <span class=p>[</span><span class=mi>57</span><span class=p>]</span><span class=p>:</span> <span class=n>poly2</span> <span class=o>=</span> <span class=n>Polygon</span><span class=p>(</span><span class=p>[</span><span class=p>(</span><span class=mf>23.2154</span><span class=p>,</span> <span class=mf>59.1156</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mf>24.83151</span><span class=p>,</span> <span class=mf>59.41516</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mf>25.11667</span><span class=p>,</span> <span class=mf>60.311561</span><span class=p>)</span><span class=p>,</span> <span class=p>(</span><span class=mf>24.16178</span><span class=p>,</span> <span class=mf>60.13315</span><span class=p>)</span><span class=p>]</span> <span class=p>)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">56</span><span class="p">]</span><span class="p">:</span> <span class="n">poly</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">56</span><span class="p">]</span><span class="p">:</span> <span class="bp">False</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="判断多边形的集合操作"></a><h4>判断多边形的集合操作</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">In</span> <span class="p">[</span><span class="mi">57</span><span class="p">]</span><span class="p">:</span> <span class="n">poly2</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="p">[</span><span class="p">(</span><span class="mf">23.2154</span><span class="p">,</span> <span class="mf">59.1156</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mf">24.83151</span><span class="p">,</span> <span class="mf">59.41516</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mf">25.11667</span><span class="p">,</span> <span class="mf">60.311561</span><span class="p">)</span><span class="p">,</span> <span class="p">(</span><span class="mf">24.16178</span><span class="p">,</span> <span class="mf">60.13315</span><span class="p">)</span><span class="p">]</span> <span class="p">)</span>
     
-<span class=n>In</span> <span class=p>[</span><span class=mi>58</span><span class=p>]</span><span class=p>:</span> <span class=n>poly2</span><span class=o>.</span><span class=n>intersects</span><span class=p>(</span><span class=n>poly</span><span class=p>)</span>
-<span class=n>Out</span><span class=p>[</span><span class=mi>58</span><span class=p>]</span><span class=p>:</span> <span class=bp>True</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">58</span><span class="p">]</span><span class="p">:</span> <span class="n">poly2</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">58</span><span class="p">]</span><span class="p">:</span> <span class="bp">True</span>
     
-<span class=n>In</span> <span class=p>[</span><span class=mi>59</span><span class=p>]</span><span class=p>:</span> <span class=n>poly2</span><span class=o>.</span><span class=n>contains</span><span class=p>(</span><span class=n>poly</span><span class=p>)</span>
-<span class=n>Out</span><span class=p>[</span><span class=mi>59</span><span class=p>]</span><span class=p>:</span> <span class=bp>True</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">59</span><span class="p">]</span><span class="p">:</span> <span class="n">poly2</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">poly</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">59</span><span class="p">]</span><span class="p">:</span> <span class="bp">True</span>
     
-<span class=n>In</span> <span class=p>[</span><span class=mi>60</span><span class=p>]</span><span class=p>:</span> <span class=n>poly</span><span class=o>.</span><span class=n>contains</span><span class=p>(</span><span class=n>poly2</span><span class=p>)</span>
-<span class=n>Out</span><span class=p>[</span><span class=mi>60</span><span class=p>]</span><span class=p>:</span> <span class=bp>False</span>
-</code></pre></td></tr></table></div></div><ul><li><code>.contains</code>：判断polygon1是否包含polygon2</li><li><code>.intersects</code>：判断polygon1和polygon2是否重叠</li><li><code>.intersections</code> ：返回两个polygon重叠的部分</li></ul><a class=post-dummy-target id=参考链接></a><h3>参考链接：</h3><ol><li><a href=https://stackoverflow.com/questions/36399381/whats-the-fastest-way-of-checking-if-a-point-is-inside-a-polygon-in-python>https://stackoverflow.com/questions/36399381/whats-the-fastest-way-of-checking-if-a-point-is-inside-a-polygon-in-python</a></li><li><a href=https://gis.stackexchange.com/questions/90055/finding-if-two-polygons-intersect-in-python>https://gis.stackexchange.com/questions/90055/finding-if-two-polygons-intersect-in-python</a></li><li><a href=https://automating-gis-processes.github.io/CSC18/lessons/L4/point-in-polygon.html>https://automating-gis-processes.github.io/CSC18/lessons/L4/point-in-polygon.html</a></li></ol></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2019-02-16</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2019%2f02%2f2019-02-16-%25E5%259F%25BA%25E4%25BA%258Epython-shapely%25E7%259A%2584%25E5%2587%25A0%25E4%25BD%2595%25E9%259B%2586%25E5%2590%2588%25E6%2593%258D%25E4%25BD%259C%2f&text=%e5%9f%ba%e4%ba%8epython%20shapely%e7%9a%84%e5%87%a0%e4%bd%95%e9%9b%86%e5%90%88%e6%93%8d%e4%bd%9c&via=xxxx" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2019%2f02%2f2019-02-16-%25E5%259F%25BA%25E4%25BA%258Epython-shapely%25E7%259A%2584%25E5%2587%25A0%25E4%25BD%2595%25E9%259B%2586%25E5%2590%2588%25E6%2593%258D%25E4%25BD%259C%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2019%2f02%2f2019-02-16-%25E5%259F%25BA%25E4%25BA%258Epython-shapely%25E7%259A%2584%25E5%2587%25A0%25E4%25BD%2595%25E9%259B%2586%25E5%2590%2588%25E6%2593%258D%25E4%25BD%259C%2f&title=%e5%9f%ba%e4%ba%8epython%20shapely%e7%9a%84%e5%87%a0%e4%bd%95%e9%9b%86%e5%90%88%e6%93%8d%e4%bd%9c" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2019%2f02%2f2019-02-16-%25E5%259F%25BA%25E4%25BA%258Epython-shapely%25E7%259A%2584%25E5%2587%25A0%25E4%25BD%2595%25E9%259B%2586%25E5%2590%2588%25E6%2593%258D%25E4%25BD%259C%2f&appkey=&title=%e5%9f%ba%e4%ba%8epython%20shapely%e7%9a%84%e5%87%a0%e4%bd%95%e9%9b%86%e5%90%88%e6%93%8d%e4%bd%9c" target=_blank title="Share on Weibo"><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://atmosai.github.io/tags/python/><i class="fas fa-tag fa-fw"></i>&nbsp;python</a>&nbsp;
-</span><span class=tag><a href=https://atmosai.github.io/tags/shapely/><i class="fas fa-tag fa-fw"></i>&nbsp;shapely</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://atmosai.github.io>Home</a></span></section></div><div class=post-nav><a href=https://atmosai.github.io/2019/02/2019-02-11-gfs%E6%95%B0%E6%8D%AE%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD/ class=prev rel=prev title=GFS数据多线程下载><i class="fas fa-angle-left fa-fw"></i>GFS数据多线程下载</a>
-<a href=https://atmosai.github.io/2019/03/2019-03-05-wrf%E6%A8%A1%E5%BC%8F%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/ class=next rel=next title=WRF模式高维数据可视化>WRF模式高维数据可视化<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
-return;var dsq=document.createElement("script");dsq.type="text/javascript";dsq.async=true;var disqus_shortname="i-lightning-cn";dsq.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2016 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://atmosai.github.io target=_blank>bugsuse</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span></a>
-<script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-112932643-1','auto');ga('set','anonymizeIp',true);ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><script src=/js/blog.min.js></script></body></html>
+<span class="n">In</span> <span class="p">[</span><span class="mi">60</span><span class="p">]</span><span class="p">:</span> <span class="n">poly</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">poly2</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">60</span><span class="p">]</span><span class="p">:</span> <span class="bp">False</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>.contains</code>：判断polygon1是否包含polygon2</li>
+<li><code>.intersects</code>：判断polygon1和polygon2是否重叠</li>
+<li><code>.intersections</code> ：返回两个polygon重叠的部分</li>
+</ul>
+<a class="post-dummy-target" id="参考链接"></a><h3>参考链接：</h3>
+<ol>
+<li><a href="https://stackoverflow.com/questions/36399381/whats-the-fastest-way-of-checking-if-a-point-is-inside-a-polygon-in-python">https://stackoverflow.com/questions/36399381/whats-the-fastest-way-of-checking-if-a-point-is-inside-a-polygon-in-python</a></li>
+<li><a href="https://gis.stackexchange.com/questions/90055/finding-if-two-polygons-intersect-in-python">https://gis.stackexchange.com/questions/90055/finding-if-two-polygons-intersect-in-python</a></li>
+<li><a href="https://automating-gis-processes.github.io/CSC18/lessons/L4/point-in-polygon.html">https://automating-gis-processes.github.io/CSC18/lessons/L4/point-in-polygon.html</a></li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+        <div style="padding: 10px 0; margin: 20px auto; width: 100%; font-size:16px; text-align: center;">
+        <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+            <span>打赏</span></button>
+        <div id="QR" style="display: none;">
+            <div id="wechat" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="wechat_qr" src="/img/Wechat.jpeg" alt="WeChat Pay"></a>
+                <p>微信打赏</p>
+            </div>
+            <div id="alipay" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="alipay_qr" src="/img/Alipay.jpeg" alt="Alipay"></a>
+                <p>支付宝打赏</p>
+            </div>
+        </div>
+    </div>
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2019-02-16</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2019%2f02%2f2019-02-16-%25E5%259F%25BA%25E4%25BA%258Epython-shapely%25E7%259A%2584%25E5%2587%25A0%25E4%25BD%2595%25E9%259B%2586%25E5%2590%2588%25E6%2593%258D%25E4%25BD%259C%2f&amp;text=%e5%9f%ba%e4%ba%8epython%20shapely%e7%9a%84%e5%87%a0%e4%bd%95%e9%9b%86%e5%90%88%e6%93%8d%e4%bd%9c&amp;via=xxxx" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2019%2f02%2f2019-02-16-%25E5%259F%25BA%25E4%25BA%258Epython-shapely%25E7%259A%2584%25E5%2587%25A0%25E4%25BD%2595%25E9%259B%2586%25E5%2590%2588%25E6%2593%258D%25E4%25BD%259C%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2019%2f02%2f2019-02-16-%25E5%259F%25BA%25E4%25BA%258Epython-shapely%25E7%259A%2584%25E5%2587%25A0%25E4%25BD%2595%25E9%259B%2586%25E5%2590%2588%25E6%2593%258D%25E4%25BD%259C%2f&amp;title=%e5%9f%ba%e4%ba%8epython%20shapely%e7%9a%84%e5%87%a0%e4%bd%95%e9%9b%86%e5%90%88%e6%93%8d%e4%bd%9c" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2019%2f02%2f2019-02-16-%25E5%259F%25BA%25E4%25BA%258Epython-shapely%25E7%259A%2584%25E5%2587%25A0%25E4%25BD%2595%25E9%259B%2586%25E5%2590%2588%25E6%2593%258D%25E4%25BD%259C%2f&amp;appkey=&amp;title=%e5%9f%ba%e4%ba%8epython%20shapely%e7%9a%84%e5%87%a0%e4%bd%95%e9%9b%86%e5%90%88%e6%93%8d%e4%bd%9c" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a></span></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section><span class="tag">
+                        <a href="https://atmosai.github.io/tags/python/"><i class="fas fa-tag fa-fw"></i>&nbsp;python</a>&nbsp;
+                    </span><span class="tag">
+                        <a href="https://atmosai.github.io/tags/shapely/"><i class="fas fa-tag fa-fw"></i>&nbsp;shapely</a>&nbsp;
+                    </span></section>
+        <section>
+            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="https://atmosai.github.io/2019/02/2019-02-11-gfs%E6%95%B0%E6%8D%AE%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD/" class="prev" rel="prev" title="GFS数据多线程下载"><i class="fas fa-angle-left fa-fw"></i>GFS数据多线程下载</a>
+            <a href="https://atmosai.github.io/2019/03/2019-03-05-wrf%E6%A8%A1%E5%BC%8F%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" class="next" rel="next" title="WRF模式高维数据可视化">WRF模式高维数据可视化<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div class="post-comment"><div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                
+                
+                if (window.location.hostname == "localhost")
+                    return;
+                var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+                var disqus_shortname = "i-lightning-cn";
+                dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-112932643-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
+</html>

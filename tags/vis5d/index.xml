@@ -1,1 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>vis5d on bugsuse</title><link>https://atmosai.github.io/tags/vis5d/</link><description>Recent content in vis5d on bugsuse</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 05 Mar 2019 20:23:27 +0800</lastBuildDate><atom:link href="https://atmosai.github.io/tags/vis5d/index.xml" rel="self" type="application/rss+xml"/><item><title>WRF模式高维数据可视化</title><link>https://atmosai.github.io/2019/03/2019-03-05-wrf%E6%A8%A1%E5%BC%8F%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</link><pubDate>Tue, 05 Mar 2019 20:23:27 +0800</pubDate><guid>https://atmosai.github.io/2019/03/2019-03-05-wrf%E6%A8%A1%E5%BC%8F%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</guid><description>vis5d是专门开发用来进行5维数据可视化的工具，接触WRF模式看到的第一个高维可视化图就是由vis5d完成的。vis5d无法直接处理net</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vis5d on bugsuse</title>
+    <link>https://atmosai.github.io/tags/vis5d/</link>
+    <description>Recent content in vis5d on bugsuse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 05 Mar 2019 20:23:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://atmosai.github.io/tags/vis5d/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WRF模式高维数据可视化</title>
+      <link>https://atmosai.github.io/2019/03/2019-03-05-wrf%E6%A8%A1%E5%BC%8F%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+      <pubDate>Tue, 05 Mar 2019 20:23:27 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/03/2019-03-05-wrf%E6%A8%A1%E5%BC%8F%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
+      <description>vis5d是专门开发用来进行5维数据可视化的工具，接触WRF模式看到的第一个高维可视化图就是由vis5d完成的。vis5d无法直接处理net</description>
+    </item>
+    
+  </channel>
+</rss>

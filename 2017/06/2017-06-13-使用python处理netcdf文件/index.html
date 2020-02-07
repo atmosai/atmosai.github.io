@@ -1,88 +1,259 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>如何处理netCDF文件 | bugsuse</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="About LoveIt Theme"><link rel=prev href=https://atmosai.github.io/2017/06/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86/><link rel=next href=https://atmosai.github.io/2018/01/2018-01-28-%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90wrf%E6%A8%A1%E5%BC%8F%E6%BA%90%E7%A0%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/><link rel=canonical href=https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta property="og:title" content="如何处理netCDF文件"><meta property="og:description" content="NetCDF文件是自描述的二进制数据格式。所谓自描述就是自带属性信息，这和一般的雷达基数据格式不同，一般的雷达数据也是二进制的，但不是自描述"><meta property="og:type" content="article"><meta property="og:url" content="https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/"><meta property="article:published_time" content="2017-06-13T16:55:27+08:00"><meta property="article:modified_time" content="2017-06-13T16:55:27+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="如何处理netCDF文件"><meta name=twitter:description content="NetCDF文件是自描述的二进制数据格式。所谓自描述就是自带属性信息，这和一般的雷达基数据格式不同，一般的雷达数据也是二进制的，但不是自描述"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"如何处理netCDF文件","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/atmosai.github.io\/2017\/06\/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6\/"},"image":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"netcdf","wordcount":995,"url":"https:\/\/atmosai.github.io\/2017\/06\/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6\/","datePublished":"2017-06-13T16:55:27\x2b08:00","dateModified":"2017-06-13T16:55:27\x2b08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=navbar-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文><i class="fas fa-language fa-fw"></i></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">如何处理netCDF文件</h1><div class=post-meta><div class=post-meta-main><a class=author href=http://i-lightning.cn rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>bugsuse
-</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://atmosai.github.io/categories/tools/>Tools</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2017-06-13>2017-06-13</time>&nbsp;
-<i class="fas fa-pencil-alt fa-fw"></i>about 995 words&nbsp;
-<i class="far fa-clock fa-fw"></i>2 min&nbsp;</div></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#python>Python</a><ul><li><a href=#netcdf4-python>netcdf4-python</a></li><li><a href=#scipy>scipy</a></li></ul></li><li><a href=#matlab>MATLAB</a></li><li><a href=#ncl>NCL</a></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
-<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#python>Python</a><ul><li><a href=#netcdf4-python>netcdf4-python</a></li><li><a href=#scipy>scipy</a></li></ul></li><li><a href=#matlab>MATLAB</a></li><li><a href=#ncl>NCL</a></li></ul></nav></div></details></div><div class=post-content><p>NetCDF文件是自描述的<strong>二进制</strong>数据格式。所谓自描述就是自带属性信息，这和一般的雷达基数据格式不同，一般的雷达数据也是二进制的，但不是自描述的，而是需要额外的数据格式文档来说明数据格式，而NetCDF文件中包含了描述变量和维度的元数据信息。通常包含以下三个部分：</p><ul><li><p><strong>维度</strong></p></li><li><p><strong>变量</strong></p></li><li><p><strong>属性</strong></p></li></ul><p>维度部分记录的是每个变量的维度名及长度，而变量包含了维度，属性（如数据单位）信息及变量的值。属性部分包含了一些额外信息，比如文件创建者等。</p><p>很多工具都可以处理NetCDF文件，比如MATLAB，Python，NCL，GrADS，CDO，NCO，Panoply等等。这里主要讲一下如何利用MATLAB，Python，NCL处理NetCDF文件。</p><a class=post-dummy-target id=python></a><h2>Python</h2><p>python中有多个库提供了处理NetCDF文件的功能，比如专门处理nc数据的netCDF4-python，scipy，osgeo，PyNIO(Linux)等。</p><a class=post-dummy-target id=netcdf4-python></a><h3>netcdf4-python</h3><p>使用 netCDF4-python处理nc数据是非常方便的，而且其提供了非常多的功能，可以进行nc文件的读写操作。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=c1># 加载库</span>
-<span class=kn>import</span> <span class=nn>netCDF4</span> <span class=kn>as</span> <span class=nn>nc</span>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>如何处理netCDF文件 | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="About LoveIt Theme"><link rel="prev" href="https://atmosai.github.io/2017/06/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86/" /><link rel="next" href="https://atmosai.github.io/2018/01/2018-01-28-%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90wrf%E6%A8%A1%E5%BC%8F%E6%BA%90%E7%A0%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/" /><link rel="canonical" href="https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta property="og:title" content="如何处理netCDF文件" />
+<meta property="og:description" content="NetCDF文件是自描述的二进制数据格式。所谓自描述就是自带属性信息，这和一般的雷达基数据格式不同，一般的雷达数据也是二进制的，但不是自描述" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/" />
+<meta property="article:published_time" content="2017-06-13T16:55:27+08:00" />
+<meta property="article:modified_time" content="2017-06-13T16:55:27+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何处理netCDF文件"/>
+<meta name="twitter:description" content="NetCDF文件是自描述的二进制数据格式。所谓自描述就是自带属性信息，这和一般的雷达基数据格式不同，一般的雷达数据也是二进制的，但不是自描述"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "如何处理netCDF文件",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/atmosai.github.io\/2017\/06\/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "netcdf","wordcount":  995 ,
+        "url": "https:\/\/atmosai.github.io\/2017\/06\/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6\/","datePublished": "2017-06-13T16:55:27\x2b08:00","dateModified": "2017-06-13T16:55:27\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "xxxx",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://atmosai.github.io">bugsuse</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://atmosai.github.io">bugsuse</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">如何处理netCDF文件</h1><div class="post-meta">
+            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
+                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
+                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/tools/">Tools</a>&nbsp;</span></div>
+            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2017-06-13>2017-06-13</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>about 995 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>2 min&nbsp;</div>
+        </div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#python">Python</a>
+      <ul>
+        <li><a href="#netcdf4-python">netcdf4-python</a></li>
+        <li><a href="#scipy">scipy</a></li>
+      </ul>
+    </li>
+    <li><a href="#matlab">MATLAB</a></li>
+    <li><a href="#ncl">NCL</a></li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#python">Python</a>
+      <ul>
+        <li><a href="#netcdf4-python">netcdf4-python</a></li>
+        <li><a href="#scipy">scipy</a></li>
+      </ul>
+    </li>
+    <li><a href="#matlab">MATLAB</a></li>
+    <li><a href="#ncl">NCL</a></li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><p>NetCDF文件是自描述的<strong>二进制</strong>数据格式。所谓自描述就是自带属性信息，这和一般的雷达基数据格式不同，一般的雷达数据也是二进制的，但不是自描述的，而是需要额外的数据格式文档来说明数据格式，而NetCDF文件中包含了描述变量和维度的元数据信息。通常包含以下三个部分：</p>
+<ul>
+<li>
+<p><strong>维度</strong></p>
+</li>
+<li>
+<p><strong>变量</strong></p>
+</li>
+<li>
+<p><strong>属性</strong></p>
+</li>
+</ul>
+<p>维度部分记录的是每个变量的维度名及长度，而变量包含了维度，属性（如数据单位）信息及变量的值。属性部分包含了一些额外信息，比如文件创建者等。</p>
+<p>很多工具都可以处理NetCDF文件，比如MATLAB，Python，NCL，GrADS，CDO，NCO，Panoply等等。这里主要讲一下如何利用MATLAB，Python，NCL处理NetCDF文件。</p>
+<a class="post-dummy-target" id="python"></a><h2>Python</h2>
+<p>python中有多个库提供了处理NetCDF文件的功能，比如专门处理nc数据的netCDF4-python，scipy，osgeo，PyNIO(Linux)等。</p>
+<a class="post-dummy-target" id="netcdf4-python"></a><h3>netcdf4-python</h3>
+<p>使用 netCDF4-python处理nc数据是非常方便的，而且其提供了非常多的功能，可以进行nc文件的读写操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 加载库</span>
+<span class="kn">import</span> <span class="nn">netCDF4</span> <span class="kn">as</span> <span class="nn">nc</span>
 
-<span class=n>data</span> <span class=o>=</span> <span class=n>nc</span><span class=o>.</span><span class=n>Dataset</span><span class=p>(</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>wrfout_v2_Lambert.nc</span><span class=s2>&#34;</span><span class=p>,</span> <span class=sa></span><span class=s2>&#34;</span><span class=s2>r</span><span class=s2>&#34;</span><span class=p>)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">wrfout_v2_Lambert.nc</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">r</span><span class="s2">&#34;</span><span class="p">)</span>
 
-<span class=c1># 输出文件中变量</span>
-<span class=k>print</span><span class=p>(</span><span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=o>.</span><span class=n>keys</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+<span class="c1"># 输出文件中变量</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
 
-<span class=c1># 读取变量</span>
-<span class=n>lon</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=p>[</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>XLONG</span><span class=s2>&#34;</span><span class=p>]</span>
-<span class=n>lat</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=p>[</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>XLAT</span><span class=s2>&#34;</span><span class=p>]</span>
-<span class=n>sst</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=p>[</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>SST</span><span class=s2>&#34;</span><span class=p>]</span>
+<span class="c1"># 读取变量</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">XLONG</span><span class="s2">&#34;</span><span class="p">]</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">XLAT</span><span class="s2">&#34;</span><span class="p">]</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">SST</span><span class="s2">&#34;</span><span class="p">]</span>
 
-<span class=c1>## 通过指定索引获取变量部分数据</span>
-<span class=c1># lon = data.variables[&#34;XLONG&#34;][1, :, :]</span>
-<span class=c1># lat = data.variables[&#34;XLAT&#34;][1, :, :]</span>
-<span class=c1># sst = data.variables[&#34;SST&#34;][1, :, :]</span>
-</code></pre></td></tr></table></div></div><a class=post-dummy-target id=scipy></a><h3>scipy</h3><p>scipy 库中的io模块同样提供了 netcdf 文件处理方法，其所使用的外部模块和 netCDF4-python 使用的相同，都不需要使用 Unidata 提供的 netcdf C库。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>scipy.io</span> <span class=kn>as</span> <span class=nn>spio</span>
+<span class="c1">## 通过指定索引获取变量部分数据</span>
+<span class="c1"># lon = data.variables[&#34;XLONG&#34;][1, :, :]</span>
+<span class="c1"># lat = data.variables[&#34;XLAT&#34;][1, :, :]</span>
+<span class="c1"># sst = data.variables[&#34;SST&#34;][1, :, :]</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="scipy"></a><h3>scipy</h3>
+<p>scipy 库中的io模块同样提供了 netcdf 文件处理方法，其所使用的外部模块和 netCDF4-python 使用的相同，都不需要使用 Unidata 提供的 netcdf C库。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">scipy.io</span> <span class="kn">as</span> <span class="nn">spio</span>
 
-<span class=n>data</span> <span class=o>=</span> <span class=n>spio</span><span class=o>.</span><span class=n>netcdf_file</span><span class=p>(</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>wrfout_v2_Lambert.nc</span><span class=s2>&#34;</span><span class=p>,</span> <span class=sa></span><span class=s2>&#34;</span><span class=s2>r</span><span class=s2>&#34;</span><span class=p>)</span>
-<span class=c1># data = spio.netcdf.netcdf_file(&#34;wrfout_v2_Lambert.nc&#34;, &#34;r&#34;)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">spio</span><span class="o">.</span><span class="n">netcdf_file</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">wrfout_v2_Lambert.nc</span><span class="s2">&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">r</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="c1"># data = spio.netcdf.netcdf_file(&#34;wrfout_v2_Lambert.nc&#34;, &#34;r&#34;)</span>
 
-<span class=c1># 输出文件中变量信息</span>
-<span class=k>print</span><span class=p>(</span><span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=o>.</span><span class=n>keys</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+<span class="c1"># 输出文件中变量信息</span>
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">(</span><span class="p">)</span><span class="p">)</span>
 
-<span class=n>dict_keys</span><span class=p>(</span><span class=p>[</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>SFROFF</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>DN</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>SH2O</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>TMN</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>UDROFF</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>RDY</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>ITIMESTEP</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>HGT</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>RDX</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>PSFC</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>W</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>V</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>MU</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>QVAPOR</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>SMOIS</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>CF1</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>MAPFAC_U</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>HFX</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>DNW</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>SINALPHA</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>QFX</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>SNOWC</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>PB</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>CFN1</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>VEGFRA</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>MAPFAC_V</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>EPSTS</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>XLONG</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>F</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>XICE</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>COSALPHA</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>E</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>P_TOP</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>ZNW</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>QRAIN</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>SST</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>TSLB</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>RDNW</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>XLAND</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>RAINC</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>SNOW</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>U</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>FNM</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>LANDMASK</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>MAPFAC_M</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>ZNU</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>ZETATOP</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>PHB</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>SNOWH</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>TH2</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>Q2</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>RDN</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>QCLOUD</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>DZS</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>V10</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>RESM</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>TSK</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>CF3</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>RAINNC</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>XLAT</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>GLW</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>ISLTYP</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>P</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>PH</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>T</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>CANWAT</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>IVGTYP</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>CFN</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>CF2</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>MUB</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>LU_INDEX</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>Times</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>FNP</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>SWDOWN</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>PBLH</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>GRDFLX</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>T2</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>U10</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>LH</span><span class=s1>&#39;</span><span class=p>,</span> <span class=sa></span><span class=s1>&#39;</span><span class=s1>ZS</span><span class=s1>&#39;</span><span class=p>]</span><span class=p>)</span>
+<span class="n">dict_keys</span><span class="p">(</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">SFROFF</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">DN</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">SH2O</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">TMN</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">UDROFF</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">RDY</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">ITIMESTEP</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">HGT</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">RDX</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">PSFC</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">W</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">V</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">MU</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">QVAPOR</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">SMOIS</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">CF1</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">MAPFAC_U</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">HFX</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">DNW</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">SINALPHA</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">QFX</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">SNOWC</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">PB</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">CFN1</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">VEGFRA</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">MAPFAC_V</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">EPSTS</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">XLONG</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">F</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">XICE</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">COSALPHA</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">E</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">P_TOP</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">ZNW</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">QRAIN</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">SST</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">TSLB</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">RDNW</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">XLAND</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">RAINC</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">SNOW</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">U</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">FNM</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">LANDMASK</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">MAPFAC_M</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">ZNU</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">ZETATOP</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">PHB</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">SNOWH</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">TH2</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Q2</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">RDN</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">QCLOUD</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">DZS</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">V10</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">RESM</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">TSK</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">CF3</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">RAINNC</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">XLAT</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">GLW</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">ISLTYP</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">P</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">PH</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">T</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">CANWAT</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">IVGTYP</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">CFN</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">CF2</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">MUB</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">LU_INDEX</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Times</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">FNP</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">SWDOWN</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">PBLH</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">GRDFLX</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">T2</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">U10</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">LH</span><span class="s1">&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">ZS</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">)</span>
 
-<span class=c1># 读取变量数据，获取变量数据的方式和 netCDF4-python 相同</span>
-<span class=n>lon</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=p>[</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>XLONG</span><span class=s2>&#34;</span><span class=p>]</span>
-<span class=n>lat</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=p>[</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>XLAT</span><span class=s2>&#34;</span><span class=p>]</span>
-<span class=n>sst</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>variables</span><span class=p>[</span><span class=sa></span><span class=s2>&#34;</span><span class=s2>SST</span><span class=s2>&#34;</span><span class=p>]</span>
-</code></pre></td></tr></table></div></div><a class=post-dummy-target id=matlab></a><h2>MATLAB</h2><p>matlab中提供了处理netcdf文件的包，但是只有2011年之后的版本内置了改包。</p><p>读取数据之前，可以先查看以下文件中包含了哪些信息：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-matlab data-lang=matlab><span class=n>ncinfo</span><span class=p>(</span><span class=s>&#39;</span><span class=s>wrfout_v2_Lambert.nc&#39;</span><span class=p>)</span><span class=p>;</span>
-</code></pre></td></tr></table></div></div><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://ws1.sinaimg.cn/large/006tNc79ly1fzr153iigmj30az069wei.jpg alt class=lazyload></figure></p><p>数据信息为结构体，其中包含了各维度信息，包含的变量及属性等信息。Format 表示文件格式为 classic netcdf文件。</p><p>知道变量信息之后就可以读取变量了：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-matlab data-lang=matlab><span class=n>lon</span> <span class=p>=</span> <span class=n>ncread</span><span class=p>(</span><span class=s>&#39;</span><span class=s>wrfout_v2_Lambert.nc&#39;</span><span class=p>,</span> <span class=s>&#39;</span><span class=s>XLONG&#39;</span><span class=p>)</span><span class=p>;</span>
-<span class=n>lat</span> <span class=p>=</span> <span class=n>ncread</span><span class=p>(</span><span class=s>&#39;</span><span class=s>wrfout_v2_Lambert.nc&#39;</span><span class=p>,</span> <span class=s>&#39;</span><span class=s>XLAT&#39;</span><span class=p>)</span><span class=p>;</span>
-<span class=n>sst</span> <span class=p>=</span> <span class=n>ncread</span><span class=p>(</span><span class=s>&#39;</span><span class=s>wrfout_v2_Lambert.nc&#39;</span><span class=p>,</span> <span class=s>&#39;</span><span class=s>SST&#39;</span><span class=p>)</span><span class=p>;</span>
-</code></pre></td></tr></table></div></div><p>读取数据之后就可以进行分析和画图了。</p><a class=post-dummy-target id=ncl></a><h2>NCL</h2><p>ncl处理netcdf文件的方法同样非常简单，这里仅简单介绍一下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>data = addfile(&#34;wrfout_v2_Lambert.nc&#34;, &#34;r&#34;)
+<span class="c1"># 读取变量数据，获取变量数据的方式和 netCDF4-python 相同</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">XLONG</span><span class="s2">&#34;</span><span class="p">]</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">XLAT</span><span class="s2">&#34;</span><span class="p">]</span>
+<span class="n">sst</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">SST</span><span class="s2">&#34;</span><span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="matlab"></a><h2>MATLAB</h2>
+<p>matlab中提供了处理netcdf文件的包，但是只有2011年之后的版本内置了改包。</p>
+<p>读取数据之前，可以先查看以下文件中包含了哪些信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">ncinfo</span><span class="p">(</span><span class="s">&#39;</span><span class="s">wrfout_v2_Lambert.nc&#39;</span><span class="p">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://ws1.sinaimg.cn/large/006tNc79ly1fzr153iigmj30az069wei.jpg" alt="" class="lazyload"></figure></p>
+<p>数据信息为结构体，其中包含了各维度信息，包含的变量及属性等信息。Format 表示文件格式为 classic netcdf文件。</p>
+<p>知道变量信息之后就可以读取变量了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">lon</span> <span class="p">=</span> <span class="n">ncread</span><span class="p">(</span><span class="s">&#39;</span><span class="s">wrfout_v2_Lambert.nc&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="s">XLONG&#39;</span><span class="p">)</span><span class="p">;</span>
+<span class="n">lat</span> <span class="p">=</span> <span class="n">ncread</span><span class="p">(</span><span class="s">&#39;</span><span class="s">wrfout_v2_Lambert.nc&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="s">XLAT&#39;</span><span class="p">)</span><span class="p">;</span>
+<span class="n">sst</span> <span class="p">=</span> <span class="n">ncread</span><span class="p">(</span><span class="s">&#39;</span><span class="s">wrfout_v2_Lambert.nc&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="s">SST&#39;</span><span class="p">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>读取数据之后就可以进行分析和画图了。</p>
+<a class="post-dummy-target" id="ncl"></a><h2>NCL</h2>
+<p>ncl处理netcdf文件的方法同样非常简单，这里仅简单介绍一下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">data = addfile(&#34;wrfout_v2_Lambert.nc&#34;, &#34;r&#34;)
 
 lon = data-&gt;XLONG
 lat = data-&gt;XLAT
@@ -92,7 +263,91 @@ sst = data-&gt;SST
 lon = data-&gt;XLONG(1, :, :)
 lat = data-&gt;XLAT(1, :, :)
 sst = data-&gt;SST(1, :, :)
-</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2017-06-13</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-13-%25E4%25BD%25BF%25E7%2594%25A8python%25E5%25A4%2584%25E7%2590%2586netcdf%25E6%2596%2587%25E4%25BB%25B6%2f&text=%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86netCDF%e6%96%87%e4%bb%b6&via=xxxx" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-13-%25E4%25BD%25BF%25E7%2594%25A8python%25E5%25A4%2584%25E7%2590%2586netcdf%25E6%2596%2587%25E4%25BB%25B6%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-13-%25E4%25BD%25BF%25E7%2594%25A8python%25E5%25A4%2584%25E7%2590%2586netcdf%25E6%2596%2587%25E4%25BB%25B6%2f&title=%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86netCDF%e6%96%87%e4%bb%b6" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-13-%25E4%25BD%25BF%25E7%2594%25A8python%25E5%25A4%2584%25E7%2590%2586netcdf%25E6%2596%2587%25E4%25BB%25B6%2f&appkey=&title=%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86netCDF%e6%96%87%e4%bb%b6" target=_blank title="Share on Weibo"><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://atmosai.github.io/tags/netcdf/><i class="fas fa-tag fa-fw"></i>&nbsp;netcdf</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://atmosai.github.io>Home</a></span></section></div><div class=post-nav><a href=https://atmosai.github.io/2017/06/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86/ class=prev rel=prev title=基于python的WRF模式后处理><i class="fas fa-angle-left fa-fw"></i>基于python的WRF模式后处理</a>
-<a href=https://atmosai.github.io/2018/01/2018-01-28-%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90wrf%E6%A8%A1%E5%BC%8F%E6%BA%90%E7%A0%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/ class=next rel=next title=基于f90tohtml创建模式源码调用图>基于f90tohtml创建模式源码调用图<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
-return;var dsq=document.createElement("script");dsq.type="text/javascript";dsq.async=true;var disqus_shortname="i-lightning-cn";dsq.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2016 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://atmosai.github.io target=_blank>bugsuse</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span></a>
-<script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-112932643-1','auto');ga('set','anonymizeIp',true);ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><script src=/js/blog.min.js></script></body></html>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+        <div style="padding: 10px 0; margin: 20px auto; width: 100%; font-size:16px; text-align: center;">
+        <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+            <span>打赏</span></button>
+        <div id="QR" style="display: none;">
+            <div id="wechat" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="wechat_qr" src="/img/Wechat.jpeg" alt="WeChat Pay"></a>
+                <p>微信打赏</p>
+            </div>
+            <div id="alipay" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="alipay_qr" src="/img/Alipay.jpeg" alt="Alipay"></a>
+                <p>支付宝打赏</p>
+            </div>
+        </div>
+    </div>
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2017-06-13</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-13-%25E4%25BD%25BF%25E7%2594%25A8python%25E5%25A4%2584%25E7%2590%2586netcdf%25E6%2596%2587%25E4%25BB%25B6%2f&amp;text=%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86netCDF%e6%96%87%e4%bb%b6&amp;via=xxxx" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-13-%25E4%25BD%25BF%25E7%2594%25A8python%25E5%25A4%2584%25E7%2590%2586netcdf%25E6%2596%2587%25E4%25BB%25B6%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-13-%25E4%25BD%25BF%25E7%2594%25A8python%25E5%25A4%2584%25E7%2590%2586netcdf%25E6%2596%2587%25E4%25BB%25B6%2f&amp;title=%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86netCDF%e6%96%87%e4%bb%b6" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2017%2f06%2f2017-06-13-%25E4%25BD%25BF%25E7%2594%25A8python%25E5%25A4%2584%25E7%2590%2586netcdf%25E6%2596%2587%25E4%25BB%25B6%2f&amp;appkey=&amp;title=%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86netCDF%e6%96%87%e4%bb%b6" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a></span></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section><span class="tag">
+                        <a href="https://atmosai.github.io/tags/netcdf/"><i class="fas fa-tag fa-fw"></i>&nbsp;netcdf</a>&nbsp;
+                    </span></section>
+        <section>
+            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="https://atmosai.github.io/2017/06/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86/" class="prev" rel="prev" title="基于python的WRF模式后处理"><i class="fas fa-angle-left fa-fw"></i>基于python的WRF模式后处理</a>
+            <a href="https://atmosai.github.io/2018/01/2018-01-28-%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90wrf%E6%A8%A1%E5%BC%8F%E6%BA%90%E7%A0%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/" class="next" rel="next" title="基于f90tohtml创建模式源码调用图">基于f90tohtml创建模式源码调用图<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div class="post-comment"><div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                
+                
+                if (window.location.hostname == "localhost")
+                    return;
+                var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+                var disqus_shortname = "i-lightning-cn";
+                dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-112932643-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
+</html>

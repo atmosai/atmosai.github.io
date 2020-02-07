@@ -1,104 +1,315 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Conda包管理器:如何构建个人conda包 | bugsuse</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="About LoveIt Theme"><link rel=prev href=https://atmosai.github.io/2019/07/%E5%9F%BA%E4%BA%8Exarray%E7%9A%84grib%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/><link rel=next href=https://atmosai.github.io/2019/12/cpython%E5%8A%A0%E5%AF%86python%E4%BB%A3%E7%A0%81/><link rel=canonical href=https://atmosai.github.io/2019/11/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta property="og:title" content="Conda包管理器:如何构建个人conda包"><meta property="og:description" content="熟悉Python的都知道管理各种库有时候是多么痛苦的一件事！而有了conda包管理器，让库的安装和管理变得方便了不少。开发过程中，为了解决包"><meta property="og:type" content="article"><meta property="og:url" content="https://atmosai.github.io/2019/11/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85/"><meta property="article:published_time" content="2019-11-30T18:44:22+08:00"><meta property="article:modified_time" content="2019-11-30T18:44:22+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Conda包管理器:如何构建个人conda包"><meta name=twitter:description content="熟悉Python的都知道管理各种库有时候是多么痛苦的一件事！而有了conda包管理器，让库的安装和管理变得方便了不少。开发过程中，为了解决包"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Conda包管理器:如何构建个人conda包","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/atmosai.github.io\/2019\/11\/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85\/"},"image":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"python, conda","wordcount":1894,"url":"https:\/\/atmosai.github.io\/2019\/11\/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85\/","datePublished":"2019-11-30T18:44:22\x2b08:00","dateModified":"2019-11-30T18:44:22\x2b08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=navbar-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文><i class="fas fa-language fa-fw"></i></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">Conda包管理器:如何构建个人conda包</h1><div class=post-meta><div class=post-meta-main><a class=author href=http://i-lightning.cn rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>bugsuse
-</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://atmosai.github.io/categories/tools/>Tools</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-11-30>2019-11-30</time>&nbsp;
-<i class="fas fa-pencil-alt fa-fw"></i>about 1894 words&nbsp;
-<i class="far fa-clock fa-fw"></i>4 min&nbsp;</div></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#所需文件>所需文件</a></li><li><a href=#操作流程>操作流程</a></li><li><a href=#后续>后续</a><ul><li><a href=#全平台构建>全平台构建</a></li><li><a href=#删除已上传包>删除已上传包</a></li><li><a href=#复制别人的包>复制别人的包</a></li></ul></li><li><a href=#参考链接>参考链接</a></li><li><a href=#更新记录>更新记录</a></li></ul></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
-<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><ul><li><a href=#所需文件>所需文件</a></li><li><a href=#操作流程>操作流程</a></li><li><a href=#后续>后续</a><ul><li><a href=#全平台构建>全平台构建</a></li><li><a href=#删除已上传包>删除已上传包</a></li><li><a href=#复制别人的包>复制别人的包</a></li></ul></li><li><a href=#参考链接>参考链接</a></li><li><a href=#更新记录>更新记录</a></li></ul></li></ul></nav></div></details></div><div class=post-content><p>熟悉Python的都知道管理各种库有时候是多么痛苦的一件事！而有了conda包管理器，让库的安装和管理变得方便了不少。开发过程中，为了解决包的安装和管理问题，也方便用户安装，可以构建自己的conda包，并上传到Anaconda Cloud。</p><a class=post-dummy-target id=所需文件></a><h3>所需文件</h3><ul><li><code>meta.yaml</code> ：包含与需要创建的库相关的信息，比如：库的名称、版本、依赖、Github或者源码链接等。</li><li><code>build.sh</code>：OSX和Linux系统上用于安装库的脚本</li><li><code>bld.bat</code>：Windows上用于安装库的脚本</li></ul><a class=post-dummy-target id=操作流程></a><h3>操作流程</h3><p>此处以<code>pycwr</code>为例，<code>pycwr</code>的Github链接为：https://github.com/YvZheng/pycwr.git</p><div class="admonition note"><p class=admonition-title><i class="icon fas fa-pencil-alt"></i>Note</p><p>注意：在开始之前，可先执行以下命令，关闭conda包的自动上传功能</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>conda config --set anaconda_upload yes
-</code></pre></td></tr></table></div></div></div><p>​</p><ol><li>执行以下命令，将<code>pycwr</code>的源码下载到本地</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>git clone https://github.com/YvZheng/pycwr.git
-</code></pre></td></tr></table></div></div><ol start=2><li>进入需要创建的库的目录中，创建<code>meta.yaml</code>、<code>build.sh</code>和<code>bld.bat</code>文件</li></ol><p>首先创建<code>meta.yaml</code>文件，示例内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=k>package</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>    </span><span class=k>name</span><span class=p>:</span><span class=w> </span>pycwr<span class=w>
-</span><span class=w>    </span><span class=k>version</span><span class=p>:</span><span class=w> </span><span class=m>0.2</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=k>build</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>    </span><span class=k>skip</span><span class=p>:</span><span class=w> </span>True<span class=w> </span><span class=c># [py&lt;35]</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=k>source</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>    </span><span class=k>git_url</span><span class=p>:</span><span class=w> </span>https<span class=p>:</span>//github.com/YvZheng/pycwr.git<span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=k>requirements</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>    </span><span class=k>build</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>        </span>- python<span class=w>
-</span><span class=w>    </span><span class=k>run</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>        </span>- python<span class=w>
-</span><span class=w>        </span>- <span class=s1>&#39;numpy &lt;=1.15.0&#39;</span><span class=w>
-</span><span class=w>        </span>- <span class=s1>&#39;scipy &gt;=1.1.0&#39;</span><span class=w>
-</span><span class=w>        </span>- <span class=s1>&#39;matplotlib &gt;=2.2.3&#39;</span><span class=w>
-</span><span class=w>        </span>- <span class=s1>&#39;netcdf4 &gt;=1.5.3&#39;</span><span class=w>
-</span><span class=w>        </span>- <span class=s1>&#39;cartopy &gt;=0.17*&#39;</span><span class=w>
-</span><span class=w>        </span>- <span class=s1>&#39;pandas &gt;=0.23.4&#39;</span><span class=w>
-</span><span class=w>        </span>- <span class=s1>&#39;easydict &gt;=1.9&#39;</span><span class=w>
-</span><span class=w>        </span>- <span class=s1>&#39;pyproj &gt;=1.9.6&#39;</span><span class=w>
-</span><span class=w>        </span>- <span class=s1>&#39;xarray &gt;=0.13*&#39;</span><span class=w>
-</span><span class=w>        </span>- <span class=s1>&#39;pyqt &gt;=5.10*&#39;</span><span class=w>
-</span><span class=w>        
-</span><span class=w></span><span class=k>about</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>    </span><span class=k>home</span><span class=p>:</span><span class=w> </span>https<span class=p>:</span>//github.com/YvZheng/pycwr<span class=w>
-</span><span class=w>    </span><span class=k>license</span><span class=p>:</span><span class=w> </span>MIT<span class=w>
-</span></code></pre></td></tr></table></div></div><ul><li><code>package</code>：给出了此包的名称和版本号</li><li><code>build</code>：<code>skip</code> 参数表示是否跳过一些指定条件，<code>#</code>号后的<code>[py&lt;35]</code>表示跳过python版本低于3.5的版本，也可以跳过指定平台，比如win、linux、osx等。</li><li><code>source</code>：给出了包源码的链接，此处是github地址</li><li><code>requirements</code>：要构建的包的依赖，此部分依赖可通过github源中的<code>requirements.txt</code> 文件或 <code>setup.py</code> 获取</li><li><code>about</code>：给出了包遵循的协议以及说明文档等信息</li></ul><p>然后创建<code>build.sh</code> 和 <code>bld.bat</code> 文件，<code>build.sh</code> 内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=cp>#!/bin/bash
-</span><span class=cp></span>
-<span class=nv>$PYTHON</span> <span class=nv>$SRC_DIR</span>/setup.py install --single-version-externally-managed --record<span class=o>=</span>record.txt
-</code></pre></td></tr></table></div></div><div class="admonition note"><p class=admonition-title><i class="icon fas fa-pencil-alt"></i>Note</p><p>注意：可使用<code>bash -x -e</code> 运行 <code>build.sh</code> 脚本，<code>-x</code> 表示每执行一个命令就 <code>echo</code> 输出，<code>-e</code> 表示出现错误就退出。</p></div><div class="admonition note"><p class=admonition-title><i class="icon fas fa-pencil-alt"></i>Note</p><p>注意：<code>build.sh</code> 脚本里的 <code>$SRC_DIR</code> 环境变量表示 <code>conda build</code> 构建时存储<code>pycwr</code>源码的目录，如果不给定此变量的话，可能会出现 <code>setup.py not found</code> 的错误，从而导致无法顺利构建conda包。</p></div><p>​</p><p><code>bld.bat</code>的内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bat data-lang=bat><span class=s2>&#34;</span><span class=nv>%PYTHON%</span><span class=s2>&#34;</span> setup.py install --single-version-externally-managed --record=record.txt
-<span class=k>if</span> <span class=k></span><span class=k></span><span class=k>errorlevel</span> <span class=mi>1</span> <span class=k>exit</span> 1
-</code></pre></td></tr></table></div></div><p>​</p><div class="admonition note"><p class=admonition-title><i class="icon fas fa-pencil-alt"></i>Note</p><p>注意：在<code>bld.bat</code> 脚本中，最好在每一行命令之后都加上<code>if errorlevel 1 exit 1</code>，更有利于监控构建过程。</p></div><p>​</p><div class="admonition note"><p class=admonition-title><i class="icon fas fa-pencil-alt"></i>Note</p><p>注意：<code>bld.bat</code> 脚本中没有需要特别注意的，出问题的是 git，如果给定的源码链接是 Github的源码链接，可能会出现 <code>Error: git is not installed in root environment.</code> 的错误。需要在Windows上安装git，或者取消<code>source</code>字段信息。</p></div><ol start=3><li>上述文件创建完成后，在<code>pycwr</code> 目录下执行以下命令构建包</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>conda build .
-</code></pre></td></tr></table></div></div><p>如果没有出现错误则表示构建成功，最后会给出如下信息：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback># Automatic uploading is disabled
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Conda包管理器:如何构建个人conda包 | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="About LoveIt Theme"><link rel="prev" href="https://atmosai.github.io/2019/07/%E5%9F%BA%E4%BA%8Exarray%E7%9A%84grib%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/" /><link rel="next" href="https://atmosai.github.io/2019/12/cpython%E5%8A%A0%E5%AF%86python%E4%BB%A3%E7%A0%81/" /><link rel="canonical" href="https://atmosai.github.io/2019/11/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta property="og:title" content="Conda包管理器:如何构建个人conda包" />
+<meta property="og:description" content="熟悉Python的都知道管理各种库有时候是多么痛苦的一件事！而有了conda包管理器，让库的安装和管理变得方便了不少。开发过程中，为了解决包" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://atmosai.github.io/2019/11/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85/" />
+<meta property="article:published_time" content="2019-11-30T18:44:22+08:00" />
+<meta property="article:modified_time" content="2019-11-30T18:44:22+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Conda包管理器:如何构建个人conda包"/>
+<meta name="twitter:description" content="熟悉Python的都知道管理各种库有时候是多么痛苦的一件事！而有了conda包管理器，让库的安装和管理变得方便了不少。开发过程中，为了解决包"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Conda包管理器:如何构建个人conda包",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/atmosai.github.io\/2019\/11\/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "python, conda","wordcount":  1894 ,
+        "url": "https:\/\/atmosai.github.io\/2019\/11\/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85\/","datePublished": "2019-11-30T18:44:22\x2b08:00","dateModified": "2019-11-30T18:44:22\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "xxxx",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://atmosai.github.io">bugsuse</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://atmosai.github.io">bugsuse</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">Conda包管理器:如何构建个人conda包</h1><div class="post-meta">
+            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
+                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
+                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/tools/">Tools</a>&nbsp;</span></div>
+            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-11-30>2019-11-30</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>about 1894 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>4 min&nbsp;</div>
+        </div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#所需文件">所需文件</a></li>
+        <li><a href="#操作流程">操作流程</a></li>
+        <li><a href="#后续">后续</a>
+          <ul>
+            <li><a href="#全平台构建">全平台构建</a></li>
+            <li><a href="#删除已上传包">删除已上传包</a></li>
+            <li><a href="#复制别人的包">复制别人的包</a></li>
+          </ul>
+        </li>
+        <li><a href="#参考链接">参考链接</a></li>
+        <li><a href="#更新记录">更新记录</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#所需文件">所需文件</a></li>
+        <li><a href="#操作流程">操作流程</a></li>
+        <li><a href="#后续">后续</a>
+          <ul>
+            <li><a href="#全平台构建">全平台构建</a></li>
+            <li><a href="#删除已上传包">删除已上传包</a></li>
+            <li><a href="#复制别人的包">复制别人的包</a></li>
+          </ul>
+        </li>
+        <li><a href="#参考链接">参考链接</a></li>
+        <li><a href="#更新记录">更新记录</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><p>熟悉Python的都知道管理各种库有时候是多么痛苦的一件事！而有了conda包管理器，让库的安装和管理变得方便了不少。开发过程中，为了解决包的安装和管理问题，也方便用户安装，可以构建自己的conda包，并上传到Anaconda Cloud。</p>
+<a class="post-dummy-target" id="所需文件"></a><h3>所需文件</h3>
+<ul>
+<li><code>meta.yaml</code> ：包含与需要创建的库相关的信息，比如：库的名称、版本、依赖、Github或者源码链接等。</li>
+<li><code>build.sh</code>：OSX和Linux系统上用于安装库的脚本</li>
+<li><code>bld.bat</code>：Windows上用于安装库的脚本</li>
+</ul>
+<a class="post-dummy-target" id="操作流程"></a><h3>操作流程</h3>
+<p>此处以<code>pycwr</code>为例，<code>pycwr</code>的Github链接为：https://github.com/YvZheng/pycwr.git</p>
+<div class="admonition note"><p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p><p>注意：在开始之前，可先执行以下命令，关闭conda包的自动上传功能</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda config --set anaconda_upload yes
+</code></pre></td></tr></table>
+</div>
+</div></div>
+<p>​</p>
+<ol>
+<li>执行以下命令，将<code>pycwr</code>的源码下载到本地</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">git clone https://github.com/YvZheng/pycwr.git
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>进入需要创建的库的目录中，创建<code>meta.yaml</code>、<code>build.sh</code>和<code>bld.bat</code>文件</li>
+</ol>
+<p>首先创建<code>meta.yaml</code>文件，示例内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">package</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>pycwr<span class="w">
+</span><span class="w">    </span><span class="k">version</span><span class="p">:</span><span class="w"> </span><span class="m">0.2</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">build</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">skip</span><span class="p">:</span><span class="w"> </span>True<span class="w"> </span><span class="c"># [py&lt;35]</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">source</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">git_url</span><span class="p">:</span><span class="w"> </span>https<span class="p">:</span>//github.com/YvZheng/pycwr.git<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">requirements</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">build</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">        </span>- python<span class="w">
+</span><span class="w">    </span><span class="k">run</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">        </span>- python<span class="w">
+</span><span class="w">        </span>- <span class="s1">&#39;numpy &lt;=1.15.0&#39;</span><span class="w">
+</span><span class="w">        </span>- <span class="s1">&#39;scipy &gt;=1.1.0&#39;</span><span class="w">
+</span><span class="w">        </span>- <span class="s1">&#39;matplotlib &gt;=2.2.3&#39;</span><span class="w">
+</span><span class="w">        </span>- <span class="s1">&#39;netcdf4 &gt;=1.5.3&#39;</span><span class="w">
+</span><span class="w">        </span>- <span class="s1">&#39;cartopy &gt;=0.17*&#39;</span><span class="w">
+</span><span class="w">        </span>- <span class="s1">&#39;pandas &gt;=0.23.4&#39;</span><span class="w">
+</span><span class="w">        </span>- <span class="s1">&#39;easydict &gt;=1.9&#39;</span><span class="w">
+</span><span class="w">        </span>- <span class="s1">&#39;pyproj &gt;=1.9.6&#39;</span><span class="w">
+</span><span class="w">        </span>- <span class="s1">&#39;xarray &gt;=0.13*&#39;</span><span class="w">
+</span><span class="w">        </span>- <span class="s1">&#39;pyqt &gt;=5.10*&#39;</span><span class="w">
+</span><span class="w">        
+</span><span class="w"></span><span class="k">about</span><span class="p">:</span><span class="w">
+</span><span class="w"></span><span class="w">    </span><span class="k">home</span><span class="p">:</span><span class="w"> </span>https<span class="p">:</span>//github.com/YvZheng/pycwr<span class="w">
+</span><span class="w">    </span><span class="k">license</span><span class="p">:</span><span class="w"> </span>MIT<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>package</code>：给出了此包的名称和版本号</li>
+<li><code>build</code>：<code>skip</code> 参数表示是否跳过一些指定条件，<code>#</code>号后的<code>[py&lt;35]</code>表示跳过python版本低于3.5的版本，也可以跳过指定平台，比如win、linux、osx等。</li>
+<li><code>source</code>：给出了包源码的链接，此处是github地址</li>
+<li><code>requirements</code>：要构建的包的依赖，此部分依赖可通过github源中的<code>requirements.txt</code> 文件或 <code>setup.py</code> 获取</li>
+<li><code>about</code>：给出了包遵循的协议以及说明文档等信息</li>
+</ul>
+<p>然后创建<code>build.sh</code> 和 <code>bld.bat</code> 文件，<code>build.sh</code> 内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="nv">$PYTHON</span> <span class="nv">$SRC_DIR</span>/setup.py install --single-version-externally-managed --record<span class="o">=</span>record.txt
+</code></pre></td></tr></table>
+</div>
+</div><div class="admonition note"><p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p><p>注意：可使用<code>bash -x -e</code>  运行 <code>build.sh</code> 脚本，<code>-x</code> 表示每执行一个命令就 <code>echo</code> 输出，<code>-e</code> 表示出现错误就退出。</p>
+</div>
+<div class="admonition note"><p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p><p>注意：<code>build.sh</code> 脚本里的 <code>$SRC_DIR</code> 环境变量表示 <code>conda build</code> 构建时存储<code>pycwr</code>源码的目录，如果不给定此变量的话，可能会出现 <code>setup.py not found</code> 的错误，从而导致无法顺利构建conda包。</p>
+</div>
+<p>​</p>
+<p><code>bld.bat</code>的内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bat" data-lang="bat"><span class="s2">&#34;</span><span class="nv">%PYTHON%</span><span class="s2">&#34;</span> setup.py install --single-version-externally-managed --record=record.txt
+<span class="k">if</span> <span class="k"></span><span class="k"></span><span class="k">errorlevel</span> <span class="mi">1</span> <span class="k">exit</span> 1
+</code></pre></td></tr></table>
+</div>
+</div><p>​</p>
+<div class="admonition note"><p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p><p>注意：在<code>bld.bat</code> 脚本中，最好在每一行命令之后都加上<code>if errorlevel 1 exit 1</code>，更有利于监控构建过程。</p>
+</div>
+<p>​</p>
+<div class="admonition note"><p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p><p>注意：<code>bld.bat</code> 脚本中没有需要特别注意的，出问题的是 git，如果给定的源码链接是 Github的源码链接，可能会出现 <code>Error: git is not installed in root environment.</code> 的错误。需要在Windows上安装git，或者取消<code>source</code>字段信息。</p>
+</div>
+<ol start="3">
+<li>上述文件创建完成后，在<code>pycwr</code> 目录下执行以下命令构建包</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda build .
+</code></pre></td></tr></table>
+</div>
+</div><p>如果没有出现错误则表示构建成功，最后会给出如下信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"># Automatic uploading is disabled
 # If you want to upload package(s) to anaconda.org later, type:
 
 anaconda upload /usr/local/tools/miniconda3/conda-bld/osx-64/pycwr-0.2-py37_0.tar.bz2
@@ -120,30 +331,208 @@ Total disk usage observed (not including envs): 254.1K
 Source and build intermediates have been left in /usr/local/tools/miniconda3/conda-bld.
 There are currently 2 accumulated.
 To remove them, you can run the ```conda build purge``` command
-</code></pre></td></tr></table></div></div><ol start=4><li>构建成功后即可上传到自己的Anaconda Cloud账号中</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>anaconda login  <span class=c1># 执行此命令，然后按照提示输出用户名和密码</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>构建成功后即可上传到自己的Anaconda Cloud账号中</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">anaconda login  <span class="c1"># 执行此命令，然后按照提示输出用户名和密码</span>
 anaconda upload /usr/local/tools/miniconda3/conda-bld/osx-64/pycwr-0.2-py37_0.tar.bz2
-</code></pre></td></tr></table></div></div><p>等待上传完成即可。至此，所有的步骤就都已经完成了。</p><p>除了构建包之外，也可以直接安装到本地，使用如下命令可以直接在本地安装：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>conda install --use-local pycwr <span class=c1># 在 pycwr 源码上层目录执行此命令</span>
-</code></pre></td></tr></table></div></div><a class=post-dummy-target id=后续></a><h3>后续</h3><a class=post-dummy-target id=全平台构建></a><h4>全平台构建</h4><p>上面呢就完成了，单个平台的conda包创建，如果想要创建多个平台，那么就需要重复上述操作，而且还要找不同的系统。想想都头大！不过conda提供了直接转换的操作，可以省去很多时间。使用如下命令即可转换到所有平台：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>conda convert --platform all /usr/local/tools/anaconda3/conda-bld/osx-64/pycwr-0.2-py37_0.tar.bz2 -o allplatform/
-</code></pre></td></tr></table></div></div><p><code>allplatform</code> 目录下不仅包含了<code>linux-32/64</code>、<code>win-32/64</code>、<code>osx-64</code>，还有其他<code>linux</code>平台构建好的源码包。</p><p>如果使用Github源码包存在问题，那么可以使用<code>PyPi</code> 源码链接。从而可以避免因为git导致的构建问题。</p><p>使用如下信息</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=k>url</span><span class=p>:</span><span class=w> </span>https<span class=p>:</span>//files.pythonhosted.org/packages/f8/5c/f60e9d8a1e77005f664b76ff8aeaee5bc05d0a91798afd7f53fc998dbc47/pycwr<span class=m>-0.2</span>-py37.tar.gz<span class=w>
-</span><span class=w></span><span class=k>sha256</span><span class=p>:</span><span class=w> </span>5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7<span class=w>
-</span></code></pre></td></tr></table></div></div><p>代替<code>meta.yaml</code>中的git相关信息即可：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=k>git_url</span><span class=p>:</span><span class=w> </span>https<span class=p>:</span>//github.com/Yvzheng/pycwr.git<span class=w>
-</span></code></pre></td></tr></table></div></div><p>​</p><div class="admonition note"><p class=admonition-title><i class="icon fas fa-pencil-alt"></i>Note</p><p>注意：<code>url</code> 和 <code>sha256</code> 可从<code>pycwr</code> 的 <code>PyPi</code> 页面获取。</p></div><p>​</p><div class="admonition note"><p class=admonition-title><i class="icon fas fa-pencil-alt"></i>Tips</p><p>如果想要节省一些时间，可以设置自动上传</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>conda config --set anaconda_upload yes
-</code></pre></td></tr></table></div></div></div><a class=post-dummy-target id=删除已上传包></a><h4>删除已上传包</h4><p>如果想要删除之前已经上传的指定版本包，可使用如下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>anaconda remove USERNAME/PACKAGENAME/0.2
-</code></pre></td></tr></table></div></div><div class="admonition note"><p class=admonition-title><i class="icon fas fa-pencil-alt"></i>Note</p><p><code>USERNAME</code> 表示你Anaconda cloud的用户名</p><p><code>PACKAGENAME</code> 表示要删除的包名称</p><p><code>0.2</code>：表示版本号</p></div><p>去除版本号可以删除指定包的所有版本：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>anaconda remove USERNAME/PACKAGENAME
-</code></pre></td></tr></table></div></div><p>​</p><a class=post-dummy-target id=复制别人的包></a><h4>复制别人的包</h4><p>从某个通道拷贝已经创建的包到自己的Anaconda Cloud账户下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>anaconda copy conda-forge/glueviz/0.10.4 --to-owner bugsuse
-</code></pre></td></tr></table></div></div><p>表示从 <code>conda-forge</code> 通道拷贝 <code>0.10.4</code> 版本的 <code>glueviz</code> 到 <code>bugsuse</code> 的Anaconda cloud通道。</p><p>​</p><a class=post-dummy-target id=参考链接></a><h3>参考链接</h3><ol><li><a href=https://docs.anaconda.com/anaconda-cloud/user-guide/tasks/work-with-packages/#uploading-packages>https://docs.anaconda.com/anaconda-cloud/user-guide/tasks/work-with-packages/#uploading-packages</a></li></ol><p>​</p><a class=post-dummy-target id=更新记录></a><h3>更新记录</h3><p>2019-11-30：更新通过 <code>scratch</code> 构建 <code>conda</code> 包</p><p>2019-12-01：添加删除和复制操作</p><p>​</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2019-11-30</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2019%2f11%2f%25E6%259E%2584%25E5%25BB%25BA%25E8%2587%25AA%25E5%25B7%25B1%25E7%259A%2584conda%25E5%258C%2585%2f&text=Conda%e5%8c%85%e7%ae%a1%e7%90%86%e5%99%a8%3a%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e4%b8%aa%e4%ba%baconda%e5%8c%85&via=xxxx" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2019%2f11%2f%25E6%259E%2584%25E5%25BB%25BA%25E8%2587%25AA%25E5%25B7%25B1%25E7%259A%2584conda%25E5%258C%2585%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2019%2f11%2f%25E6%259E%2584%25E5%25BB%25BA%25E8%2587%25AA%25E5%25B7%25B1%25E7%259A%2584conda%25E5%258C%2585%2f&title=Conda%e5%8c%85%e7%ae%a1%e7%90%86%e5%99%a8%3a%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e4%b8%aa%e4%ba%baconda%e5%8c%85" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2019%2f11%2f%25E6%259E%2584%25E5%25BB%25BA%25E8%2587%25AA%25E5%25B7%25B1%25E7%259A%2584conda%25E5%258C%2585%2f&appkey=&title=Conda%e5%8c%85%e7%ae%a1%e7%90%86%e5%99%a8%3a%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e4%b8%aa%e4%ba%baconda%e5%8c%85" target=_blank title="Share on Weibo"><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://atmosai.github.io/tags/python/><i class="fas fa-tag fa-fw"></i>&nbsp;python</a>&nbsp;
-</span><span class=tag><a href=https://atmosai.github.io/tags/conda/><i class="fas fa-tag fa-fw"></i>&nbsp;conda</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://atmosai.github.io>Home</a></span></section></div><div class=post-nav><a href=https://atmosai.github.io/2019/07/%E5%9F%BA%E4%BA%8Exarray%E7%9A%84grib%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/ class=prev rel=prev title=基于Xarray的Grid格式文件处理><i class="fas fa-angle-left fa-fw"></i>基于Xarray的Grid格式文件处理</a>
-<a href=https://atmosai.github.io/2019/12/cpython%E5%8A%A0%E5%AF%86python%E4%BB%A3%E7%A0%81/ class=next rel=next title=Cpython加密python代码>Cpython加密python代码<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
-return;var dsq=document.createElement("script");dsq.type="text/javascript";dsq.async=true;var disqus_shortname="i-lightning-cn";dsq.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2016 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://atmosai.github.io target=_blank>bugsuse</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span></a>
-<script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-112932643-1','auto');ga('set','anonymizeIp',true);ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><script src=/js/blog.min.js></script></body></html>
+</code></pre></td></tr></table>
+</div>
+</div><p>等待上传完成即可。至此，所有的步骤就都已经完成了。</p>
+<p>除了构建包之外，也可以直接安装到本地，使用如下命令可以直接在本地安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda install --use-local pycwr <span class="c1"># 在 pycwr 源码上层目录执行此命令</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="后续"></a><h3>后续</h3>
+<a class="post-dummy-target" id="全平台构建"></a><h4>全平台构建</h4>
+<p>上面呢就完成了，单个平台的conda包创建，如果想要创建多个平台，那么就需要重复上述操作，而且还要找不同的系统。想想都头大！不过conda提供了直接转换的操作，可以省去很多时间。使用如下命令即可转换到所有平台：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda convert --platform all /usr/local/tools/anaconda3/conda-bld/osx-64/pycwr-0.2-py37_0.tar.bz2 -o allplatform/
+</code></pre></td></tr></table>
+</div>
+</div><p><code>allplatform</code> 目录下不仅包含了<code>linux-32/64</code>、<code>win-32/64</code>、<code>osx-64</code>，还有其他<code>linux</code>平台构建好的源码包。</p>
+<p>如果使用Github源码包存在问题，那么可以使用<code>PyPi</code> 源码链接。从而可以避免因为git导致的构建问题。</p>
+<p>使用如下信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">url</span><span class="p">:</span><span class="w"> </span>https<span class="p">:</span>//files.pythonhosted.org/packages/f8/5c/f60e9d8a1e77005f664b76ff8aeaee5bc05d0a91798afd7f53fc998dbc47/pycwr<span class="m">-0.2</span>-py37.tar.gz<span class="w">
+</span><span class="w"></span><span class="k">sha256</span><span class="p">:</span><span class="w"> </span>5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>代替<code>meta.yaml</code>中的git相关信息即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">git_url</span><span class="p">:</span><span class="w"> </span>https<span class="p">:</span>//github.com/Yvzheng/pycwr.git<span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>​</p>
+<div class="admonition note"><p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p><p>注意：<code>url</code> 和 <code>sha256</code> 可从<code>pycwr</code> 的 <code>PyPi</code> 页面获取。</p>
+</div>
+<p>​</p>
+<div class="admonition note"><p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Tips</p><p>如果想要节省一些时间，可以设置自动上传</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">conda config --set anaconda_upload yes
+</code></pre></td></tr></table>
+</div>
+</div></div>
+<a class="post-dummy-target" id="删除已上传包"></a><h4>删除已上传包</h4>
+<p>如果想要删除之前已经上传的指定版本包，可使用如下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">anaconda remove USERNAME/PACKAGENAME/0.2
+</code></pre></td></tr></table>
+</div>
+</div><div class="admonition note"><p class="admonition-title"><i class="icon fas fa-pencil-alt"></i>Note</p><p><code>USERNAME</code> 表示你Anaconda cloud的用户名</p>
+<p><code>PACKAGENAME</code> 表示要删除的包名称</p>
+<p><code>0.2</code>：表示版本号</p>
+</div>
+<p>去除版本号可以删除指定包的所有版本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">anaconda remove USERNAME/PACKAGENAME
+</code></pre></td></tr></table>
+</div>
+</div><p>​</p>
+<a class="post-dummy-target" id="复制别人的包"></a><h4>复制别人的包</h4>
+<p>从某个通道拷贝已经创建的包到自己的Anaconda Cloud账户下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">anaconda copy conda-forge/glueviz/0.10.4 --to-owner bugsuse
+</code></pre></td></tr></table>
+</div>
+</div><p>表示从 <code>conda-forge</code> 通道拷贝 <code>0.10.4</code> 版本的 <code>glueviz</code> 到 <code>bugsuse</code> 的Anaconda cloud通道。</p>
+<p>​</p>
+<a class="post-dummy-target" id="参考链接"></a><h3>参考链接</h3>
+<ol>
+<li><a href="https://docs.anaconda.com/anaconda-cloud/user-guide/tasks/work-with-packages/#uploading-packages">https://docs.anaconda.com/anaconda-cloud/user-guide/tasks/work-with-packages/#uploading-packages</a></li>
+</ol>
+<p>​</p>
+<a class="post-dummy-target" id="更新记录"></a><h3>更新记录</h3>
+<p>2019-11-30：更新通过 <code>scratch</code> 构建 <code>conda</code> 包</p>
+<p>2019-12-01：添加删除和复制操作</p>
+<p>​</p>
+</div><div class="post-footer" id="post-footer">
+        <div style="padding: 10px 0; margin: 20px auto; width: 100%; font-size:16px; text-align: center;">
+        <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+            <span>打赏</span></button>
+        <div id="QR" style="display: none;">
+            <div id="wechat" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="wechat_qr" src="/img/Wechat.jpeg" alt="WeChat Pay"></a>
+                <p>微信打赏</p>
+            </div>
+            <div id="alipay" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="alipay_qr" src="/img/Alipay.jpeg" alt="Alipay"></a>
+                <p>支付宝打赏</p>
+            </div>
+        </div>
+    </div>
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2019-11-30</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2019%2f11%2f%25E6%259E%2584%25E5%25BB%25BA%25E8%2587%25AA%25E5%25B7%25B1%25E7%259A%2584conda%25E5%258C%2585%2f&amp;text=Conda%e5%8c%85%e7%ae%a1%e7%90%86%e5%99%a8%3a%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e4%b8%aa%e4%ba%baconda%e5%8c%85&amp;via=xxxx" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2019%2f11%2f%25E6%259E%2584%25E5%25BB%25BA%25E8%2587%25AA%25E5%25B7%25B1%25E7%259A%2584conda%25E5%258C%2585%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2019%2f11%2f%25E6%259E%2584%25E5%25BB%25BA%25E8%2587%25AA%25E5%25B7%25B1%25E7%259A%2584conda%25E5%258C%2585%2f&amp;title=Conda%e5%8c%85%e7%ae%a1%e7%90%86%e5%99%a8%3a%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e4%b8%aa%e4%ba%baconda%e5%8c%85" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2019%2f11%2f%25E6%259E%2584%25E5%25BB%25BA%25E8%2587%25AA%25E5%25B7%25B1%25E7%259A%2584conda%25E5%258C%2585%2f&amp;appkey=&amp;title=Conda%e5%8c%85%e7%ae%a1%e7%90%86%e5%99%a8%3a%e5%a6%82%e4%bd%95%e6%9e%84%e5%bb%ba%e4%b8%aa%e4%ba%baconda%e5%8c%85" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a></span></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section><span class="tag">
+                        <a href="https://atmosai.github.io/tags/python/"><i class="fas fa-tag fa-fw"></i>&nbsp;python</a>&nbsp;
+                    </span><span class="tag">
+                        <a href="https://atmosai.github.io/tags/conda/"><i class="fas fa-tag fa-fw"></i>&nbsp;conda</a>&nbsp;
+                    </span></section>
+        <section>
+            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="https://atmosai.github.io/2019/07/%E5%9F%BA%E4%BA%8Exarray%E7%9A%84grib%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/" class="prev" rel="prev" title="基于Xarray的Grid格式文件处理"><i class="fas fa-angle-left fa-fw"></i>基于Xarray的Grid格式文件处理</a>
+            <a href="https://atmosai.github.io/2019/12/cpython%E5%8A%A0%E5%AF%86python%E4%BB%A3%E7%A0%81/" class="next" rel="next" title="Cpython加密python代码">Cpython加密python代码<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div class="post-comment"><div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                
+                
+                if (window.location.hostname == "localhost")
+                    return;
+                var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+                var disqus_shortname = "i-lightning-cn";
+                dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-112932643-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
+</html>

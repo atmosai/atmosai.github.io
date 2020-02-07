@@ -1,20 +1,258 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>ncks:容纳一切的洗碗槽 | bugsuse</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="About LoveIt Theme"><link rel=prev href=https://atmosai.github.io/2019/04/2019-04-12-ncesnetcdf%E9%9B%86%E5%90%88%E7%BB%9F%E8%AE%A1/><link rel=next href=https://atmosai.github.io/2019/04/2019-04-12-ncrenamenetcdf%E9%87%8D%E5%91%BD%E5%90%8D/><link rel=canonical href=https://atmosai.github.io/2019/04/2019-04-12-ncks%E5%AE%B9%E7%BA%B3%E4%B8%80%E8%B5%B7%E7%9A%84%E6%B4%97%E7%A2%97%E6%A7%BD/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta property="og:title" content="ncks:容纳一切的洗碗槽"><meta property="og:description" content="ncks实现了ncdump和nccopy的大部分功能，此外还可以extract, hyperslab, multi-slab, sub-set, and translate 。 ncks可以从输入文件中提取数据，如果指定了地理"><meta property="og:type" content="article"><meta property="og:url" content="https://atmosai.github.io/2019/04/2019-04-12-ncks%E5%AE%B9%E7%BA%B3%E4%B8%80%E8%B5%B7%E7%9A%84%E6%B4%97%E7%A2%97%E6%A7%BD/"><meta property="article:published_time" content="2019-04-12T16:20:06+08:00"><meta property="article:modified_time" content="2019-04-12T16:20:06+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="ncks:容纳一切的洗碗槽"><meta name=twitter:description content="ncks实现了ncdump和nccopy的大部分功能，此外还可以extract, hyperslab, multi-slab, sub-set, and translate 。 ncks可以从输入文件中提取数据，如果指定了地理"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"ncks:容纳一切的洗碗槽","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/atmosai.github.io\/2019\/04\/2019-04-12-ncks%E5%AE%B9%E7%BA%B3%E4%B8%80%E8%B5%B7%E7%9A%84%E6%B4%97%E7%A2%97%E6%A7%BD\/"},"image":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"nco","wordcount":996,"url":"https:\/\/atmosai.github.io\/2019\/04\/2019-04-12-ncks%E5%AE%B9%E7%BA%B3%E4%B8%80%E8%B5%B7%E7%9A%84%E6%B4%97%E7%A2%97%E6%A7%BD\/","datePublished":"2019-04-12T16:20:06\x2b08:00","dateModified":"2019-04-12T16:20:06\x2b08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=navbar-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文><i class="fas fa-language fa-fw"></i></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">ncks:容纳一切的洗碗槽</h1><div class=post-meta><div class=post-meta-main><a class=author href=http://i-lightning.cn rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>bugsuse
-</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://atmosai.github.io/categories/tools/>Tools</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-04-12>2019-04-12</time>&nbsp;
-<i class="fas fa-pencil-alt fa-fw"></i>about 996 words&nbsp;
-<i class="far fa-clock fa-fw"></i>2 min&nbsp;</div></div><div class=post-content><p><code>ncks</code>实现了<code>ncdump</code>和<code>nccopy</code>的大部分功能，此外还可以<code>extract, hyperslab, multi-slab, sub-set, and translate </code>。</p><p><code>ncks</code>可以从输入文件中提取数据，如果指定了地理信息文件(map-file)，还可以执行插值操作(regrid)，然后将结果输出到netCDF文件，二进制文件，或者屏幕。</p><p><code>ncks</code>可以将netCDF数据以ASCII，CDL，JSON或NcML/XML的形式输出到标准输出，这一点类似<code>ncdump</code>。选项<code>-s</code>(长选项<code>--sng_fmt</code>/<code>--string</code>)允许用户使用C语言字符串的形式格式化输出。</p><ul><li><code>--cdl</code>：格式化为CDL格式</li><li><code>--jsn</code>：格式化为JSON格式</li><li><code>--trd</code>：格式化为传统格式</li><li><code>--xml</code>：格式化为NcML</li></ul><p>传统的输出格式更便于寻找想要的结果。</p><p><code>ncks</code>的<code>-a</code>, <code>—cdl</code>, <code>-F</code>, <code>—fmt_val</code>, <code>-H</code>, <code>—hdn</code>, <code>—jsn</code>, <code>-M</code>, <code>-m</code>, <code>-P</code>, <code>—prn_fl</code>, <code>-Q</code>, <code>-q</code>, <code>-s</code>, <code>—trd</code>, <code>-u</code>, <code>-V</code>, <code>—xml</code> 选项可以控制输出格式。</p><p><code>ncks</code>可以从输入文件中提取所选择的变量，并存储到新的文件中。只有变量和坐标可以通过参数指定，全局属性和与变量相关的属性都直接复制到新的文件或输出到屏幕。<code>-c</code>，<code>-C</code>，<code>-v</code>和<code>-x</code>控
-制的是要提取的变量。</p><p>如果输出文件已经存在，且其维度大小与输入文件一致，<code>ncks</code>将会添加输入文件的变量和属性到输出文件。</p><p><code>ncks</code>的添加功能通常是将输入文件中的原始数据添加到输出文件，如果两个文件的变量名冲突，那么输出文件中的值将被输入文件中的值覆盖。因此，在执行添加操作时，应该备份输出文件。</p><p>如果输出文件已经存在，执行<code>ncks</code>命令时会询问用户执行重写/添加/退出操作。</p><ul><li><p>重写操作将创建一个新的文件，原来的文件将被覆盖</p></li><li><p>添加操作依赖于<code>ncks</code>数据的变量和属性与已有文件的差别</p><p>如果属性不冲突，将直接添加到输出文件；如果属性冲突，将使用输入文件的属性重写已有输出文件的属性；如果两个文件的维度不一致，输出文件中可能会创建新的维度。</p></li></ul><blockquote><p>注意：</p><p><code>ncks</code>的交互式操作在批处理时可能会造成意外，因此可以使用<code>-O</code>和<code>-A</code>选项强制重写/添加。</p></blockquote><a class=post-dummy-target id=示例></a><h3>示例</h3><ul><li><p>列出文件变量</p><p>这是一个比较复杂的示例，<code>--trd</code>使用传统格式打印</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>ncks --trd -m in.nc <span class=p>|</span> grep -E <span class=s1>&#39;: type&#39;</span> <span class=p>|</span> cut -f <span class=m>1</span> -d <span class=s1>&#39; &#39;</span> <span class=p>|</span> sed <span class=s1>&#39;s/://&#39;</span> <span class=p>|</span> sort
-</code></pre></td></tr></table></div></div></li><li><p>提取变量</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>ncks -v U,V,W wrfout.nc uvw.nc  <span class=c1># 可能还会包含一些相关的坐标变量</span>
-ncks -C -v U,V,W wrfout.nc uvw.nc <span class=c1># 使用 -C 强制去除坐标变量</span>
-</code></pre></td></tr></table></div></div></li><li><p>提取指定时空范围数据</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>ncks -d Time,3,10 -d south_north,10,50 -d west_east,50,100 wrfout.nc wrfsub.nc
-</code></pre></td></tr></table></div></div></li><li><p>拷贝全局属性</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>ncks -A -x in.nc out.nc
-</code></pre></td></tr></table></div></div></li><li><p>打印字符串多维数组</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>ncks -s <span class=s1>&#39;%c&#39;</span> -v fl_nm_arr in.nc  <span class=c1># 以固定长度打印字符串多维数组</span>
-</code></pre></td></tr></table></div></div></li></ul></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2019-04-12</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-12-ncks%25E5%25AE%25B9%25E7%25BA%25B3%25E4%25B8%2580%25E8%25B5%25B7%25E7%259A%2584%25E6%25B4%2597%25E7%25A2%2597%25E6%25A7%25BD%2f&text=ncks%3a%e5%ae%b9%e7%ba%b3%e4%b8%80%e5%88%87%e7%9a%84%e6%b4%97%e7%a2%97%e6%a7%bd&via=xxxx" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-12-ncks%25E5%25AE%25B9%25E7%25BA%25B3%25E4%25B8%2580%25E8%25B5%25B7%25E7%259A%2584%25E6%25B4%2597%25E7%25A2%2597%25E6%25A7%25BD%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-12-ncks%25E5%25AE%25B9%25E7%25BA%25B3%25E4%25B8%2580%25E8%25B5%25B7%25E7%259A%2584%25E6%25B4%2597%25E7%25A2%2597%25E6%25A7%25BD%2f&title=ncks%3a%e5%ae%b9%e7%ba%b3%e4%b8%80%e5%88%87%e7%9a%84%e6%b4%97%e7%a2%97%e6%a7%bd" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-12-ncks%25E5%25AE%25B9%25E7%25BA%25B3%25E4%25B8%2580%25E8%25B5%25B7%25E7%259A%2584%25E6%25B4%2597%25E7%25A2%2597%25E6%25A7%25BD%2f&appkey=&title=ncks%3a%e5%ae%b9%e7%ba%b3%e4%b8%80%e5%88%87%e7%9a%84%e6%b4%97%e7%a2%97%e6%a7%bd" target=_blank title="Share on Weibo"><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://atmosai.github.io/tags/nco/><i class="fas fa-tag fa-fw"></i>&nbsp;nco</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://atmosai.github.io>Home</a></span></section></div><div class=post-nav><a href=https://atmosai.github.io/2019/04/2019-04-12-ncesnetcdf%E9%9B%86%E5%90%88%E7%BB%9F%E8%AE%A1/ class=prev rel=prev title=nces:NetCDF集合统计><i class="fas fa-angle-left fa-fw"></i>nces:NetCDF集合统计</a>
-<a href=https://atmosai.github.io/2019/04/2019-04-12-ncrenamenetcdf%E9%87%8D%E5%91%BD%E5%90%8D/ class=next rel=next title=ncrename:NetCDF重命名>ncrename:NetCDF重命名<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
-return;var dsq=document.createElement("script");dsq.type="text/javascript";dsq.async=true;var disqus_shortname="i-lightning-cn";dsq.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2016 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://atmosai.github.io target=_blank>bugsuse</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span></a>
-<script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-112932643-1','auto');ga('set','anonymizeIp',true);ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><script src=/js/blog.min.js></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>ncks:容纳一切的洗碗槽 | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="About LoveIt Theme"><link rel="prev" href="https://atmosai.github.io/2019/04/2019-04-12-ncesnetcdf%E9%9B%86%E5%90%88%E7%BB%9F%E8%AE%A1/" /><link rel="next" href="https://atmosai.github.io/2019/04/2019-04-12-ncrenamenetcdf%E9%87%8D%E5%91%BD%E5%90%8D/" /><link rel="canonical" href="https://atmosai.github.io/2019/04/2019-04-12-ncks%E5%AE%B9%E7%BA%B3%E4%B8%80%E8%B5%B7%E7%9A%84%E6%B4%97%E7%A2%97%E6%A7%BD/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta property="og:title" content="ncks:容纳一切的洗碗槽" />
+<meta property="og:description" content="ncks实现了ncdump和nccopy的大部分功能，此外还可以extract, hyperslab, multi-slab, sub-set, and translate 。 ncks可以从输入文件中提取数据，如果指定了地理" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://atmosai.github.io/2019/04/2019-04-12-ncks%E5%AE%B9%E7%BA%B3%E4%B8%80%E8%B5%B7%E7%9A%84%E6%B4%97%E7%A2%97%E6%A7%BD/" />
+<meta property="article:published_time" content="2019-04-12T16:20:06+08:00" />
+<meta property="article:modified_time" content="2019-04-12T16:20:06+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ncks:容纳一切的洗碗槽"/>
+<meta name="twitter:description" content="ncks实现了ncdump和nccopy的大部分功能，此外还可以extract, hyperslab, multi-slab, sub-set, and translate 。 ncks可以从输入文件中提取数据，如果指定了地理"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ncks:容纳一切的洗碗槽",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/atmosai.github.io\/2019\/04\/2019-04-12-ncks%E5%AE%B9%E7%BA%B3%E4%B8%80%E8%B5%B7%E7%9A%84%E6%B4%97%E7%A2%97%E6%A7%BD\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "nco","wordcount":  996 ,
+        "url": "https:\/\/atmosai.github.io\/2019\/04\/2019-04-12-ncks%E5%AE%B9%E7%BA%B3%E4%B8%80%E8%B5%B7%E7%9A%84%E6%B4%97%E7%A2%97%E6%A7%BD\/","datePublished": "2019-04-12T16:20:06\x2b08:00","dateModified": "2019-04-12T16:20:06\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "xxxx",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://atmosai.github.io">bugsuse</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://atmosai.github.io">bugsuse</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">ncks:容纳一切的洗碗槽</h1><div class="post-meta">
+            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
+                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
+                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/tools/">Tools</a>&nbsp;</span></div>
+            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-04-12>2019-04-12</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>about 996 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>2 min&nbsp;</div>
+        </div><div class="post-content"><p><code>ncks</code>实现了<code>ncdump</code>和<code>nccopy</code>的大部分功能，此外还可以<code>extract, hyperslab, multi-slab, sub-set, and translate </code>。</p>
+<p><code>ncks</code>可以从输入文件中提取数据，如果指定了地理信息文件(map-file)，还可以执行插值操作(regrid)，然后将结果输出到netCDF文件，二进制文件，或者屏幕。</p>
+<p><code>ncks</code>可以将netCDF数据以ASCII，CDL，JSON或NcML/XML的形式输出到标准输出，这一点类似<code>ncdump</code>。选项<code>-s</code>(长选项<code>--sng_fmt</code>/<code>--string</code>)允许用户使用C语言字符串的形式格式化输出。</p>
+<ul>
+<li><code>--cdl</code>：格式化为CDL格式</li>
+<li><code>--jsn</code>：格式化为JSON格式</li>
+<li><code>--trd</code>：格式化为传统格式</li>
+<li><code>--xml</code>：格式化为NcML</li>
+</ul>
+<p>传统的输出格式更便于寻找想要的结果。</p>
+<p><code>ncks</code>的<code>-a</code>, <code>—cdl</code>, <code>-F</code>, <code>—fmt_val</code>, <code>-H</code>, <code>—hdn</code>, <code>—jsn</code>, <code>-M</code>, <code>-m</code>, <code>-P</code>, <code>—prn_fl</code>, <code>-Q</code>, <code>-q</code>, <code>-s</code>, <code>—trd</code>, <code>-u</code>, <code>-V</code>, <code>—xml</code> 选项可以控制输出格式。</p>
+<p><code>ncks</code>可以从输入文件中提取所选择的变量，并存储到新的文件中。只有变量和坐标可以通过参数指定，全局属性和与变量相关的属性都直接复制到新的文件或输出到屏幕。<code>-c</code>，<code>-C</code>，<code>-v</code>和<code>-x</code>控
+制的是要提取的变量。</p>
+<p>如果输出文件已经存在，且其维度大小与输入文件一致，<code>ncks</code>将会添加输入文件的变量和属性到输出文件。</p>
+<p><code>ncks</code>的添加功能通常是将输入文件中的原始数据添加到输出文件，如果两个文件的变量名冲突，那么输出文件中的值将被输入文件中的值覆盖。因此，在执行添加操作时，应该备份输出文件。</p>
+<p>如果输出文件已经存在，执行<code>ncks</code>命令时会询问用户执行重写/添加/退出操作。</p>
+<ul>
+<li>
+<p>重写操作将创建一个新的文件，原来的文件将被覆盖</p>
+</li>
+<li>
+<p>添加操作依赖于<code>ncks</code>数据的变量和属性与已有文件的差别</p>
+<p>如果属性不冲突，将直接添加到输出文件；如果属性冲突，将使用输入文件的属性重写已有输出文件的属性；如果两个文件的维度不一致，输出文件中可能会创建新的维度。</p>
+</li>
+</ul>
+<blockquote>
+<p>注意：</p>
+<p><code>ncks</code>的交互式操作在批处理时可能会造成意外，因此可以使用<code>-O</code>和<code>-A</code>选项强制重写/添加。</p>
+</blockquote>
+<a class="post-dummy-target" id="示例"></a><h3>示例</h3>
+<ul>
+<li>
+<p>列出文件变量</p>
+<p>这是一个比较复杂的示例，<code>--trd</code>使用传统格式打印</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ncks --trd -m in.nc <span class="p">|</span> grep -E <span class="s1">&#39;: type&#39;</span> <span class="p">|</span> cut -f <span class="m">1</span> -d <span class="s1">&#39; &#39;</span> <span class="p">|</span> sed <span class="s1">&#39;s/://&#39;</span> <span class="p">|</span> sort
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>提取变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ncks -v U,V,W wrfout.nc uvw.nc  <span class="c1"># 可能还会包含一些相关的坐标变量</span>
+ncks -C -v U,V,W wrfout.nc uvw.nc <span class="c1"># 使用 -C 强制去除坐标变量</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>提取指定时空范围数据</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ncks -d Time,3,10 -d south_north,10,50 -d west_east,50,100 wrfout.nc wrfsub.nc
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>拷贝全局属性</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ncks -A -x in.nc out.nc
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>打印字符串多维数组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ncks -s <span class="s1">&#39;%c&#39;</span> -v fl_nm_arr in.nc  <span class="c1"># 以固定长度打印字符串多维数组</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+        <div style="padding: 10px 0; margin: 20px auto; width: 100%; font-size:16px; text-align: center;">
+        <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+            <span>打赏</span></button>
+        <div id="QR" style="display: none;">
+            <div id="wechat" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="wechat_qr" src="/img/Wechat.jpeg" alt="WeChat Pay"></a>
+                <p>微信打赏</p>
+            </div>
+            <div id="alipay" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="alipay_qr" src="/img/Alipay.jpeg" alt="Alipay"></a>
+                <p>支付宝打赏</p>
+            </div>
+        </div>
+    </div>
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2019-04-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-12-ncks%25E5%25AE%25B9%25E7%25BA%25B3%25E4%25B8%2580%25E8%25B5%25B7%25E7%259A%2584%25E6%25B4%2597%25E7%25A2%2597%25E6%25A7%25BD%2f&amp;text=ncks%3a%e5%ae%b9%e7%ba%b3%e4%b8%80%e5%88%87%e7%9a%84%e6%b4%97%e7%a2%97%e6%a7%bd&amp;via=xxxx" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-12-ncks%25E5%25AE%25B9%25E7%25BA%25B3%25E4%25B8%2580%25E8%25B5%25B7%25E7%259A%2584%25E6%25B4%2597%25E7%25A2%2597%25E6%25A7%25BD%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-12-ncks%25E5%25AE%25B9%25E7%25BA%25B3%25E4%25B8%2580%25E8%25B5%25B7%25E7%259A%2584%25E6%25B4%2597%25E7%25A2%2597%25E6%25A7%25BD%2f&amp;title=ncks%3a%e5%ae%b9%e7%ba%b3%e4%b8%80%e5%88%87%e7%9a%84%e6%b4%97%e7%a2%97%e6%a7%bd" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2019%2f04%2f2019-04-12-ncks%25E5%25AE%25B9%25E7%25BA%25B3%25E4%25B8%2580%25E8%25B5%25B7%25E7%259A%2584%25E6%25B4%2597%25E7%25A2%2597%25E6%25A7%25BD%2f&amp;appkey=&amp;title=ncks%3a%e5%ae%b9%e7%ba%b3%e4%b8%80%e5%88%87%e7%9a%84%e6%b4%97%e7%a2%97%e6%a7%bd" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a></span></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section><span class="tag">
+                        <a href="https://atmosai.github.io/tags/nco/"><i class="fas fa-tag fa-fw"></i>&nbsp;nco</a>&nbsp;
+                    </span></section>
+        <section>
+            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="https://atmosai.github.io/2019/04/2019-04-12-ncesnetcdf%E9%9B%86%E5%90%88%E7%BB%9F%E8%AE%A1/" class="prev" rel="prev" title="nces:NetCDF集合统计"><i class="fas fa-angle-left fa-fw"></i>nces:NetCDF集合统计</a>
+            <a href="https://atmosai.github.io/2019/04/2019-04-12-ncrenamenetcdf%E9%87%8D%E5%91%BD%E5%90%8D/" class="next" rel="next" title="ncrename:NetCDF重命名">ncrename:NetCDF重命名<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div class="post-comment"><div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                
+                
+                if (window.location.hostname == "localhost")
+                    return;
+                var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+                var disqus_shortname = "i-lightning-cn";
+                dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-112932643-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
+</html>

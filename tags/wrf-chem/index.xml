@@ -1,1 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>WRF-Chem on bugsuse</title><link>https://atmosai.github.io/tags/wrf-chem/</link><description>Recent content in WRF-Chem on bugsuse</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 12 May 2019 12:53:51 +0800</lastBuildDate><atom:link href="https://atmosai.github.io/tags/wrf-chem/index.xml" rel="self" type="application/rss+xml"/><item><title>WRF-Chem编译安装及运行指南</title><link>https://atmosai.github.io/2019/05/wrf-chem%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/</link><pubDate>Sun, 12 May 2019 12:53:51 +0800</pubDate><guid>https://atmosai.github.io/2019/05/wrf-chem%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/</guid><description>从WRF模式官网下载WRF，WRF-Chem和WPS等安装包，在编译模式之前确保所有的依赖已经安装完成。 编译问题 版本V3.5 下载WRF-Ch</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WRF-Chem on bugsuse</title>
+    <link>https://atmosai.github.io/tags/wrf-chem/</link>
+    <description>Recent content in WRF-Chem on bugsuse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sun, 12 May 2019 12:53:51 +0800</lastBuildDate>
+    
+	<atom:link href="https://atmosai.github.io/tags/wrf-chem/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WRF-Chem编译安装及运行指南</title>
+      <link>https://atmosai.github.io/2019/05/wrf-chem%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Sun, 12 May 2019 12:53:51 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/05/wrf-chem%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/</guid>
+      <description>从WRF模式官网下载WRF，WRF-Chem和WPS等安装包，在编译模式之前确保所有的依赖已经安装完成。 编译问题 版本V3.5 下载WRF-Ch</description>
+    </item>
+    
+  </channel>
+</rss>

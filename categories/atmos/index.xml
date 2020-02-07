@@ -1,1 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Atmos on bugsuse</title><link>https://atmosai.github.io/categories/atmos/</link><description>Recent content in Atmos on bugsuse</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 14 Nov 2018 19:16:36 +0800</lastBuildDate><atom:link href="https://atmosai.github.io/categories/atmos/index.xml" rel="self" type="application/rss+xml"/><item><title>NetCDF文件网格数据重采样</title><link>https://atmosai.github.io/2018/11/2018-11-14-netcdf%E6%96%87%E4%BB%B6%E7%BD%91%E6%A0%BC%E9%87%8D%E9%87%87%E6%A0%B7/</link><pubDate>Wed, 14 Nov 2018 19:16:36 +0800</pubDate><guid>https://atmosai.github.io/2018/11/2018-11-14-netcdf%E6%96%87%E4%BB%B6%E7%BD%91%E6%A0%BC%E9%87%8D%E9%87%87%E6%A0%B7/</guid><description>无论是应用再分析数据作为模式输入还是后处理过程需要，对不同分辨率的NetCDF文件数据进行重新采样是非常必要的。 最近由于项目原因，需要对模式</description></item><item><title>基于多普勒雷达数据的风场反演</title><link>https://atmosai.github.io/2018/04/2018-04-29-%E5%9F%BA%E4%BA%8E%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E9%A3%8E%E5%9C%BA%E5%8F%8D%E6%BC%94/</link><pubDate>Sun, 29 Apr 2018 15:17:23 +0800</pubDate><guid>https://atmosai.github.io/2018/04/2018-04-29-%E5%9F%BA%E4%BA%8E%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E9%A3%8E%E5%9C%BA%E5%8F%8D%E6%BC%94/</guid><description>本文记录利用python根据国内S波段雷达径向速度数据反演风场。 编程语言：python 库：pyart，matplotlib，SingleDo</description></item><item><title>机器学习在气象领域中的应用</title><link>https://atmosai.github.io/2018/03/2018-03-18-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%B0%94%E8%B1%A1%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</link><pubDate>Sun, 18 Mar 2018 21:21:36 +0800</pubDate><guid>https://atmosai.github.io/2018/03/2018-03-18-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%B0%94%E8%B1%A1%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</guid><description>近几年关于人工智能，机器学习，数据挖掘的新闻数不胜数，其中包含多少媒体炒作，又存在多大的泡沫尚不可说。抛开这些，各个领域都在试图利用人工智能</description></item><item><title>双偏振多普勒气象雷达数据处理</title><link>https://atmosai.github.io/2017/05/2017-05-02-%E5%8F%8C%E5%81%8F%E6%8C%AF%E5%A4%9A%E6%99%AE%E5%8B%92%E6%B0%94%E8%B1%A1%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</link><pubDate>Tue, 02 May 2017 17:35:55 +0800</pubDate><guid>https://atmosai.github.io/2017/05/2017-05-02-%E5%8F%8C%E5%81%8F%E6%8C%AF%E5%A4%9A%E6%99%AE%E5%8B%92%E6%B0%94%E8%B1%A1%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</guid><description>C波段双线偏振多普勒天气雷达是目前国内最先进的雷达系统，采用高相位稳定的全相参脉冲多普勒和同时发射同时接收的双线偏振体制，具有高增益低副瓣天</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Atmos on bugsuse</title>
+    <link>https://atmosai.github.io/categories/atmos/</link>
+    <description>Recent content in Atmos on bugsuse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 14 Nov 2018 19:16:36 +0800</lastBuildDate>
+    
+	<atom:link href="https://atmosai.github.io/categories/atmos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>NetCDF文件网格数据重采样</title>
+      <link>https://atmosai.github.io/2018/11/2018-11-14-netcdf%E6%96%87%E4%BB%B6%E7%BD%91%E6%A0%BC%E9%87%8D%E9%87%87%E6%A0%B7/</link>
+      <pubDate>Wed, 14 Nov 2018 19:16:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2018/11/2018-11-14-netcdf%E6%96%87%E4%BB%B6%E7%BD%91%E6%A0%BC%E9%87%8D%E9%87%87%E6%A0%B7/</guid>
+      <description>无论是应用再分析数据作为模式输入还是后处理过程需要，对不同分辨率的NetCDF文件数据进行重新采样是非常必要的。 最近由于项目原因，需要对模式</description>
+    </item>
+    
+    <item>
+      <title>基于多普勒雷达数据的风场反演</title>
+      <link>https://atmosai.github.io/2018/04/2018-04-29-%E5%9F%BA%E4%BA%8E%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E9%A3%8E%E5%9C%BA%E5%8F%8D%E6%BC%94/</link>
+      <pubDate>Sun, 29 Apr 2018 15:17:23 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2018/04/2018-04-29-%E5%9F%BA%E4%BA%8E%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E9%A3%8E%E5%9C%BA%E5%8F%8D%E6%BC%94/</guid>
+      <description>本文记录利用python根据国内S波段雷达径向速度数据反演风场。 编程语言：python 库：pyart，matplotlib，SingleDo</description>
+    </item>
+    
+    <item>
+      <title>机器学习在气象领域中的应用</title>
+      <link>https://atmosai.github.io/2018/03/2018-03-18-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%B0%94%E8%B1%A1%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Sun, 18 Mar 2018 21:21:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2018/03/2018-03-18-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%B0%94%E8%B1%A1%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</guid>
+      <description>近几年关于人工智能，机器学习，数据挖掘的新闻数不胜数，其中包含多少媒体炒作，又存在多大的泡沫尚不可说。抛开这些，各个领域都在试图利用人工智能</description>
+    </item>
+    
+    <item>
+      <title>双偏振多普勒气象雷达数据处理</title>
+      <link>https://atmosai.github.io/2017/05/2017-05-02-%E5%8F%8C%E5%81%8F%E6%8C%AF%E5%A4%9A%E6%99%AE%E5%8B%92%E6%B0%94%E8%B1%A1%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</link>
+      <pubDate>Tue, 02 May 2017 17:35:55 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2017/05/2017-05-02-%E5%8F%8C%E5%81%8F%E6%8C%AF%E5%A4%9A%E6%99%AE%E5%8B%92%E6%B0%94%E8%B1%A1%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</guid>
+      <description>C波段双线偏振多普勒天气雷达是目前国内最先进的雷达系统，采用高相位稳定的全相参脉冲多普勒和同时发射同时接收的双线偏振体制，具有高增益低副瓣天</description>
+    </item>
+    
+  </channel>
+</rss>

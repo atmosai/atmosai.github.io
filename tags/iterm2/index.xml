@@ -1,1 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>iterm2 on bugsuse</title><link>https://atmosai.github.io/tags/iterm2/</link><description>Recent content in iterm2 on bugsuse</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 26 Jan 2019 17:21:12 +0800</lastBuildDate><atom:link href="https://atmosai.github.io/tags/iterm2/index.xml" rel="self" type="application/rss+xml"/><item><title>Mac利用iTerm2+lrzsz实现文件快速传输</title><link>https://atmosai.github.io/2019/01/2019-01-26-mac%E5%88%A9%E7%94%A8iterm2-lrzsz%E5%AE%9E%E7%8E%B0xftp%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/</link><pubDate>Sat, 26 Jan 2019 17:21:12 +0800</pubDate><guid>https://atmosai.github.io/2019/01/2019-01-26-mac%E5%88%A9%E7%94%A8iterm2-lrzsz%E5%AE%9E%E7%8E%B0xftp%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/</guid><description>无论是在windows还是unix系统，在远程服务器和本地之间传输文件时，总是还需要手动去打开xftp或者其他ftp工具来进行文件传输，每次</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>iterm2 on bugsuse</title>
+    <link>https://atmosai.github.io/tags/iterm2/</link>
+    <description>Recent content in iterm2 on bugsuse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 26 Jan 2019 17:21:12 +0800</lastBuildDate>
+    
+	<atom:link href="https://atmosai.github.io/tags/iterm2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mac利用iTerm2&#43;lrzsz实现文件快速传输</title>
+      <link>https://atmosai.github.io/2019/01/2019-01-26-mac%E5%88%A9%E7%94%A8iterm2-lrzsz%E5%AE%9E%E7%8E%B0xftp%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/</link>
+      <pubDate>Sat, 26 Jan 2019 17:21:12 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/01/2019-01-26-mac%E5%88%A9%E7%94%A8iterm2-lrzsz%E5%AE%9E%E7%8E%B0xftp%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/</guid>
+      <description>无论是在windows还是unix系统，在远程服务器和本地之间传输文件时，总是还需要手动去打开xftp或者其他ftp工具来进行文件传输，每次</description>
+    </item>
+    
+  </channel>
+</rss>

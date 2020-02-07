@@ -1,3 +1,378 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on bugsuse</title><link>https://atmosai.github.io/posts/</link><description>Recent content in Posts on bugsuse</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 28 Jan 2020 18:58:51 +0800</lastBuildDate><atom:link href="https://atmosai.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>数据处理速度提升1000+倍</title><link>https://atmosai.github.io/2020/01/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E9%80%9F%E5%BA%A6%E6%8F%90%E5%8D%871000-%E5%80%8D/</link><pubDate>Tue, 28 Jan 2020 18:58:51 +0800</pubDate><guid>https://atmosai.github.io/2020/01/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E9%80%9F%E5%BA%A6%E6%8F%90%E5%8D%871000-%E5%80%8D/</guid><description>1 2 3 4 5 6 7 8 9 10 import pandas as pd import numpy as np import re import time from IPython.core.interactiveshell import InteractiveShell InteractiveShell.ast_node_interactivity = &amp;#34;all&amp;#34; pd.set_option(&amp;#39;max_columns&amp;#39;, 15) pd.set_option(&amp;#39;chained_assignment&amp;#39;, None) 读取数据 此CSV示例数据是用于练习如何向量化.apply函数时使用。数据已</description></item><item><title>提高matplotlib的出图效率</title><link>https://atmosai.github.io/2020/01/matplotlib%E9%AB%98%E6%95%88%E6%89%B9%E9%87%8F%E5%87%BA%E5%9B%BE/</link><pubDate>Mon, 27 Jan 2020 16:59:09 +0800</pubDate><guid>https://atmosai.github.io/2020/01/matplotlib%E9%AB%98%E6%95%88%E6%89%B9%E9%87%8F%E5%87%BA%E5%9B%BE/</guid><description>在数值预报后处理中经常需要批量出图，而基于matplotlib的图形渲染速度较慢，而提高出图的速度通常可通过两个方面来解决： 多进程进行绘图 图</description></item><item><title>记一次非常奇怪的WRF-CMAQ错误</title><link>https://atmosai.github.io/2020/01/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%9D%9E%E5%B8%B8%E5%A5%87%E6%80%AA%E7%9A%84wrf-cmaq%E9%94%99%E8%AF%AF/</link><pubDate>Mon, 13 Jan 2020 16:21:27 +0800</pubDate><guid>https://atmosai.github.io/2020/01/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%9D%9E%E5%B8%B8%E5%A5%87%E6%80%AA%E7%9A%84wrf-cmaq%E9%94%99%E8%AF%AF/</guid><description>近期在准备搭建一套WRF-CMAQ空气质量预报系统，从准备WRF模式运行开始就出现了Segmentation Fault 的问题， 当时 namelist.input 中设置如下： 1 sf_surface_physics</description></item><item><title>Cpython加密python代码</title><link>https://atmosai.github.io/2019/12/cpython%E5%8A%A0%E5%AF%86python%E4%BB%A3%E7%A0%81/</link><pubDate>Thu, 26 Dec 2019 15:15:27 +0800</pubDate><guid>https://atmosai.github.io/2019/12/cpython%E5%8A%A0%E5%AF%86python%E4%BB%A3%E7%A0%81/</guid><description>人生苦短，我用Python。虽然python上手快，开发快，但是python的代码天生就能被人很容易看懂，如果碰到想要保密的部分就显得很尴尬</description></item><item><title>Conda包管理器:如何构建个人conda包</title><link>https://atmosai.github.io/2019/11/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85/</link><pubDate>Sat, 30 Nov 2019 18:44:22 +0800</pubDate><guid>https://atmosai.github.io/2019/11/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85/</guid><description>熟悉Python的都知道管理各种库有时候是多么痛苦的一件事！而有了conda包管理器，让库的安装和管理变得方便了不少。开发过程中，为了解决包</description></item><item><title>基于Xarray的Grid格式文件处理</title><link>https://atmosai.github.io/2019/07/%E5%9F%BA%E4%BA%8Exarray%E7%9A%84grib%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</link><pubDate>Wed, 10 Jul 2019 21:22:40 +0800</pubDate><guid>https://atmosai.github.io/2019/07/%E5%9F%BA%E4%BA%8Exarray%E7%9A%84grib%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</guid><description>Xarray是专门为科学计算开发的用于处理多维数组的开源Python程序包，通过对多维数组进行标记，提供更加方便的操作方式，这一点和地球科学</description></item><item><title>CAMx来源解析模块(SA)</title><link>https://atmosai.github.io/2019/05/camx_chapter7_source_apportionment/</link><pubDate>Wed, 15 May 2019 10:45:13 +0800</pubDate><guid>https://atmosai.github.io/2019/05/camx_chapter7_source_apportionment/</guid><description>光化学模式通常用来制定减排策略来达到空气质量的目标。传统的方法涉及到运行大量的减排策略或**零排放(Zero-Out)**模拟，从而确定特定</description></item><item><title>DART资料同化模块</title><link>https://atmosai.github.io/2019/05/dart_install_and_running/</link><pubDate>Wed, 15 May 2019 10:40:13 +0800</pubDate><guid>https://atmosai.github.io/2019/05/dart_install_and_running/</guid><description>DART(Data Assimilation Research Testbed)是一个数据同化的集合工具，是由NCAR提供支持的集合数据同化社区版工具，其支持提供了大多数模式数据同化接口。 安装 DAR</description></item><item><title>基于netcdf库的nc文件读写</title><link>https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</link><pubDate>Mon, 13 May 2019 12:20:13 +0800</pubDate><guid>https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</guid><description>NetCDF库提供了两种语言的函数API，一种是C，另一种是Fortran，其中又分为F77和F90两种方式的接口。通过函数开头的字符可以区</description></item><item><title>WRF-Chem编译安装及运行指南</title><link>https://atmosai.github.io/2019/05/wrf-chem%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/</link><pubDate>Sun, 12 May 2019 12:53:51 +0800</pubDate><guid>https://atmosai.github.io/2019/05/wrf-chem%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/</guid><description>从WRF模式官网下载WRF，WRF-Chem和WPS等安装包，在编译模式之前确保所有的依赖已经安装完成。 编译问题 版本V3.5 下载WRF-Ch</description></item><item><title>资料同化基本术语</title><link>https://atmosai.github.io/2019/04/2019-04-18-%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E5%90%8D%E8%AF%8D/</link><pubDate>Thu, 18 Apr 2019 08:25:43 +0800</pubDate><guid>https://atmosai.github.io/2019/04/2019-04-18-%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E5%90%8D%E8%AF%8D/</guid><description>数据同化(Data Assimilation)：在地球物理学领域，数据同化就是利用物理特性以及时间演变定律的一致性约束将观测信息加入到模式状态</description></item><item><title>Chapter1:资料同化基本概念</title><link>https://atmosai.github.io/2019/04/2019-04-16-chapter1%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link><pubDate>Tue, 16 Apr 2019 16:29:18 +0800</pubDate><guid>https://atmosai.github.io/2019/04/2019-04-16-chapter1%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid><description>分析 分析是为了产生给定时刻大气真实状态的正确描述。对于大气的全面且自一致性诊断而言，分析是非常有用的。分析结果可以作为其他操作的输入数据(比</description></item><item><title>如何在Fortran中调用Python</title><link>https://atmosai.github.io/2019/04/2019-04-14-%E5%A6%82%E4%BD%95%E5%9C%A8fortran%E4%B8%AD%E8%B0%83%E7%94%A8python/</link><pubDate>Sun, 14 Apr 2019 16:53:33 +0800</pubDate><guid>https://atmosai.github.io/2019/04/2019-04-14-%E5%A6%82%E4%BD%95%E5%9C%A8fortran%E4%B8%AD%E8%B0%83%E7%94%A8python/</guid><description>Python是机器学习领域不断增长的通用语言。拥有一些非常棒的工具包，比如scikit-learn，tensorflow和pytorch。气</description></item><item><title>使用CFFI从Python调用Fortran程序:Python调用WRF代码</title><link>https://atmosai.github.io/2019/04/2019-04-14-%E4%BD%BF%E7%94%A8cffi%E4%BB%8Epython%E8%B0%83%E7%94%A8fortran%E7%A8%8B%E5%BA%8Fpython%E8%B0%83%E7%94%A8wrf%E4%BB%A3%E7%A0%81/</link><pubDate>Sun, 14 Apr 2019 10:21:43 +0800</pubDate><guid>https://atmosai.github.io/2019/04/2019-04-14-%E4%BD%BF%E7%94%A8cffi%E4%BB%8Epython%E8%B0%83%E7%94%A8fortran%E7%A8%8B%E5%BA%8Fpython%E8%B0%83%E7%94%A8wrf%E4%BB%A3%E7%A0%81/</guid><description>为什么要使用Fortran代码 Fortran语言是已经几乎被遗忘的语言，但其在科学领域却仍为活跃，尤其是大气科学领域。 如果效率优先是需要考虑</description></item><item><title>ncrcat:NetCDF记录合并</title><link>https://atmosai.github.io/2019/04/2019-04-13-ncrcatnetcdf%E8%AE%B0%E5%BD%95%E5%90%88%E5%B9%B6/</link><pubDate>Sat, 13 Apr 2019 15:02:33 +0800</pubDate><guid>https://atmosai.github.io/2019/04/2019-04-13-ncrcatnetcdf%E8%AE%B0%E5%BD%95%E5%90%88%E5%B9%B6/</guid><description>合并一些列输入文件的记录变量。默认情况下，最终的记录维度长度是输入文件所有记录维度长度之和。ncrcat可以从标准输入接受大量文件。 输入文件</description></item><item><title>ncrename:NetCDF重命名</title><link>https://atmosai.github.io/2019/04/2019-04-12-ncrenamenetcdf%E9%87%8D%E5%91%BD%E5%90%8D/</link><pubDate>Fri, 12 Apr 2019 16:23:43 +0800</pubDate><guid>https://atmosai.github.io/2019/04/2019-04-12-ncrenamenetcdf%E9%87%8D%E5%91%BD%E5%90%8D/</guid><description>ncrename可以重命名netCDF维度，变量，属性和组。每个对象都有一个旧名称和新名称。所有的新名称必须是独一无二的。每一个旧名称必须存</description></item><item><title>ncks:容纳一切的洗碗槽</title><link>https://atmosai.github.io/2019/04/2019-04-12-ncks%E5%AE%B9%E7%BA%B3%E4%B8%80%E8%B5%B7%E7%9A%84%E6%B4%97%E7%A2%97%E6%A7%BD/</link><pubDate>Fri, 12 Apr 2019 16:20:06 +0800</pubDate><guid>https://atmosai.github.io/2019/04/2019-04-12-ncks%E5%AE%B9%E7%BA%B3%E4%B8%80%E8%B5%B7%E7%9A%84%E6%B4%97%E7%A2%97%E6%A7%BD/</guid><description>ncks实现了ncdump和nccopy的大部分功能，此外还可以extract, hyperslab, multi-slab, sub-set, and translate 。 ncks可以从输入文件中提取数据，如果指定了地理</description></item><item><title>nces:NetCDF集合统计</title><link>https://atmosai.github.io/2019/04/2019-04-12-ncesnetcdf%E9%9B%86%E5%90%88%E7%BB%9F%E8%AE%A1/</link><pubDate>Fri, 12 Apr 2019 16:12:43 +0800</pubDate><guid>https://atmosai.github.io/2019/04/2019-04-12-ncesnetcdf%E9%9B%86%E5%90%88%E7%BB%9F%E8%AE%A1/</guid><description>nces是针对输入文件/文件的组变量的格点统计，每个文件/组的权重是相同的。V4.3.9之前nces称为ncea。nces执行的是一系列文件</description></item><item><title>ncflint:NetCDF文件插值</title><link>https://atmosai.github.io/2019/04/2019-04-12-ncflintnetcdf%E6%96%87%E4%BB%B6%E6%8F%92%E5%80%BC/</link><pubDate>Fri, 12 Apr 2019 16:01:13 +0800</pubDate><guid>https://atmosai.github.io/2019/04/2019-04-12-ncflintnetcdf%E6%96%87%E4%BB%B6%E6%8F%92%E5%80%BC/</guid><description>ncflint可以将输入文件进行线性组合创建输出文件。支持的线性组合方式为：加权平均，归一化加权平均，插值。坐标变量的处理方式和之前的命令不</description></item><item><title>ncatted:NetCDF属性编辑</title><link>https://atmosai.github.io/2019/04/2019-04-12-ncattednetcdf%E5%B1%9E%E6%80%A7%E7%BC%96%E8%BE%91/</link><pubDate>Fri, 12 Apr 2019 16:01:12 +0800</pubDate><guid>https://atmosai.github.io/2019/04/2019-04-12-ncattednetcdf%E5%B1%9E%E6%80%A7%E7%BC%96%E8%BE%91/</guid><description>ncatted可以编辑netCDF文件的属性。ncatted可以添加，创建，删除，更改和重写属性。ncatted可以将每个操作应用到文件中的</description></item><item><title>WRF模式高维数据可视化</title><link>https://atmosai.github.io/2019/03/2019-03-05-wrf%E6%A8%A1%E5%BC%8F%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</link><pubDate>Tue, 05 Mar 2019 20:23:27 +0800</pubDate><guid>https://atmosai.github.io/2019/03/2019-03-05-wrf%E6%A8%A1%E5%BC%8F%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</guid><description>vis5d是专门开发用来进行5维数据可视化的工具，接触WRF模式看到的第一个高维可视化图就是由vis5d完成的。vis5d无法直接处理net</description></item><item><title>基于python shapely的几何集合操作</title><link>https://atmosai.github.io/2019/02/2019-02-16-%E5%9F%BA%E4%BA%8Epython-shapely%E7%9A%84%E5%87%A0%E4%BD%95%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C/</link><pubDate>Sat, 16 Feb 2019 09:29:36 +0800</pubDate><guid>https://atmosai.github.io/2019/02/2019-02-16-%E5%9F%BA%E4%BA%8Epython-shapely%E7%9A%84%E5%87%A0%E4%BD%95%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C/</guid><description>shapely是基于笛卡尔坐标的几何对象操作和分析Python库。底层基于GEOS和JTS库。shapely无法读取和写数据文件，但可以基于</description></item><item><title>GFS数据多线程下载</title><link>https://atmosai.github.io/2019/02/2019-02-11-gfs%E6%95%B0%E6%8D%AE%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD/</link><pubDate>Mon, 11 Feb 2019 15:52:36 +0800</pubDate><guid>https://atmosai.github.io/2019/02/2019-02-11-gfs%E6%95%B0%E6%8D%AE%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD/</guid><description>近期由于NCEP GFS数据源网络通信协议由HTTP更新为HTTPS，基于axel的多线程下载工具均出现了 Too many redirects的问题。这是由</description></item><item><title>如何使用Python处理shp文件</title><link>https://atmosai.github.io/2019/02/2019-01-28-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86shp%E6%96%87%E4%BB%B6/</link><pubDate>Fri, 01 Feb 2019 13:46:36 +0800</pubDate><guid>https://atmosai.github.io/2019/02/2019-01-28-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86shp%E6%96%87%E4%BB%B6/</guid><description>涉及到空间数据处理的时候，为了比较清晰方便的看出空间数据所处的区域，通常都需要将省市边界线加到地图中。 Python中也提供了大量的shp文件</description></item><item><title>Mac利用iTerm2+lrzsz实现文件快速传输</title><link>https://atmosai.github.io/2019/01/2019-01-26-mac%E5%88%A9%E7%94%A8iterm2-lrzsz%E5%AE%9E%E7%8E%B0xftp%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/</link><pubDate>Sat, 26 Jan 2019 17:21:12 +0800</pubDate><guid>https://atmosai.github.io/2019/01/2019-01-26-mac%E5%88%A9%E7%94%A8iterm2-lrzsz%E5%AE%9E%E7%8E%B0xftp%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/</guid><description>无论是在windows还是unix系统，在远程服务器和本地之间传输文件时，总是还需要手动去打开xftp或者其他ftp工具来进行文件传输，每次</description></item><item><title>如何添加背景图</title><link>https://atmosai.github.io/2018/12/2018-12-04-%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%9B%BE/</link><pubDate>Tue, 04 Dec 2018 19:54:18 +0800</pubDate><guid>https://atmosai.github.io/2018/12/2018-12-04-%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%9B%BE/</guid><description>以下代码展示如何在图中添加背景图， 首先生成图片 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 from datetime import datetime import numpy as np import pandas as pd</description></item><item><title>ESMF:模式间耦合及插值工具</title><link>https://atmosai.github.io/2018/11/2018-11-20-esmf%E6%A8%A1%E5%BC%8F%E9%97%B4%E8%80%A6%E5%90%88%E5%8F%8A%E6%8F%92%E5%80%BC%E5%B7%A5%E5%85%B7/</link><pubDate>Tue, 20 Nov 2018 19:33:36 +0800</pubDate><guid>https://atmosai.github.io/2018/11/2018-11-20-esmf%E6%A8%A1%E5%BC%8F%E9%97%B4%E8%80%A6%E5%90%88%E5%8F%8A%E6%8F%92%E5%80%BC%E5%B7%A5%E5%85%B7/</guid><description>ESMF是用于耦合天气，气候和相关模式的工具，具有稳定，并行化和可扩展的插值(remapping)包，通常用于生成插值权重。ESMF可以处理</description></item><item><title>WRF模式嵌套模拟</title><link>https://atmosai.github.io/2018/11/2018-11-19-wrf%E6%A8%A1%E5%BC%8F%E5%B5%8C%E5%A5%97%E6%A8%A1%E6%8B%9F/</link><pubDate>Mon, 19 Nov 2018 18:51:36 +0800</pubDate><guid>https://atmosai.github.io/2018/11/2018-11-19-wrf%E6%A8%A1%E5%BC%8F%E5%B5%8C%E5%A5%97%E6%A8%A1%E6%8B%9F/</guid><description>模式嵌套运行是为了得到更高分辨率的模拟。嵌套层完全包含在父层(Parent Domain, 即粗糙层, Corase Domain)中。嵌套层的边界条件来自父层(上一层)</description></item><item><title>Use statsmodels to Perform Linear Regression in Python</title><link>https://atmosai.github.io/2018/11/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python/</link><pubDate>Sun, 18 Nov 2018 21:06:36 +0800</pubDate><guid>https://atmosai.github.io/2018/11/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python/</guid><description>Often times, linear regression is associated with machine learning – a hot topic that receives a lot of attention in recent years. And so, in this tutorial, I’ll show you how to perform a linear regression in Python using statsmodels. I’ll use a simple example about the stock market to demonstrate this concept.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on bugsuse</title>
+    <link>https://atmosai.github.io/posts/</link>
+    <description>Recent content in Posts on bugsuse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 28 Jan 2020 18:58:51 +0800</lastBuildDate>
+    
+	<atom:link href="https://atmosai.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>数据处理速度提升1000&#43;倍</title>
+      <link>https://atmosai.github.io/2020/01/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E9%80%9F%E5%BA%A6%E6%8F%90%E5%8D%871000-%E5%80%8D/</link>
+      <pubDate>Tue, 28 Jan 2020 18:58:51 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2020/01/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E9%80%9F%E5%BA%A6%E6%8F%90%E5%8D%871000-%E5%80%8D/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 import pandas as pd import numpy as np import re import time from IPython.core.interactiveshell import InteractiveShell InteractiveShell.ast_node_interactivity = &amp;#34;all&amp;#34; pd.set_option(&amp;#39;max_columns&amp;#39;, 15) pd.set_option(&amp;#39;chained_assignment&amp;#39;, None) 读取数据 此CSV示例数据是用于练习如何向量化.apply函数时使用。数据已</description>
+    </item>
+    
+    <item>
+      <title>提高matplotlib的出图效率</title>
+      <link>https://atmosai.github.io/2020/01/matplotlib%E9%AB%98%E6%95%88%E6%89%B9%E9%87%8F%E5%87%BA%E5%9B%BE/</link>
+      <pubDate>Mon, 27 Jan 2020 16:59:09 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2020/01/matplotlib%E9%AB%98%E6%95%88%E6%89%B9%E9%87%8F%E5%87%BA%E5%9B%BE/</guid>
+      <description>在数值预报后处理中经常需要批量出图，而基于matplotlib的图形渲染速度较慢，而提高出图的速度通常可通过两个方面来解决： 多进程进行绘图 图</description>
+    </item>
+    
+    <item>
+      <title>记一次非常奇怪的WRF-CMAQ错误</title>
+      <link>https://atmosai.github.io/2020/01/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%9D%9E%E5%B8%B8%E5%A5%87%E6%80%AA%E7%9A%84wrf-cmaq%E9%94%99%E8%AF%AF/</link>
+      <pubDate>Mon, 13 Jan 2020 16:21:27 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2020/01/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%9D%9E%E5%B8%B8%E5%A5%87%E6%80%AA%E7%9A%84wrf-cmaq%E9%94%99%E8%AF%AF/</guid>
+      <description>近期在准备搭建一套WRF-CMAQ空气质量预报系统，从准备WRF模式运行开始就出现了Segmentation Fault 的问题， 当时 namelist.input 中设置如下： 1 sf_surface_physics</description>
+    </item>
+    
+    <item>
+      <title>Cpython加密python代码</title>
+      <link>https://atmosai.github.io/2019/12/cpython%E5%8A%A0%E5%AF%86python%E4%BB%A3%E7%A0%81/</link>
+      <pubDate>Thu, 26 Dec 2019 15:15:27 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/12/cpython%E5%8A%A0%E5%AF%86python%E4%BB%A3%E7%A0%81/</guid>
+      <description>人生苦短，我用Python。虽然python上手快，开发快，但是python的代码天生就能被人很容易看懂，如果碰到想要保密的部分就显得很尴尬</description>
+    </item>
+    
+    <item>
+      <title>Conda包管理器:如何构建个人conda包</title>
+      <link>https://atmosai.github.io/2019/11/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85/</link>
+      <pubDate>Sat, 30 Nov 2019 18:44:22 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/11/%E6%9E%84%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84conda%E5%8C%85/</guid>
+      <description>熟悉Python的都知道管理各种库有时候是多么痛苦的一件事！而有了conda包管理器，让库的安装和管理变得方便了不少。开发过程中，为了解决包</description>
+    </item>
+    
+    <item>
+      <title>基于Xarray的Grid格式文件处理</title>
+      <link>https://atmosai.github.io/2019/07/%E5%9F%BA%E4%BA%8Exarray%E7%9A%84grib%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</link>
+      <pubDate>Wed, 10 Jul 2019 21:22:40 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/07/%E5%9F%BA%E4%BA%8Exarray%E7%9A%84grib%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/</guid>
+      <description>Xarray是专门为科学计算开发的用于处理多维数组的开源Python程序包，通过对多维数组进行标记，提供更加方便的操作方式，这一点和地球科学</description>
+    </item>
+    
+    <item>
+      <title>CAMx来源解析模块(SA)</title>
+      <link>https://atmosai.github.io/2019/05/camx_chapter7_source_apportionment/</link>
+      <pubDate>Wed, 15 May 2019 10:45:13 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/05/camx_chapter7_source_apportionment/</guid>
+      <description>光化学模式通常用来制定减排策略来达到空气质量的目标。传统的方法涉及到运行大量的减排策略或**零排放(Zero-Out)**模拟，从而确定特定</description>
+    </item>
+    
+    <item>
+      <title>DART资料同化模块</title>
+      <link>https://atmosai.github.io/2019/05/dart_install_and_running/</link>
+      <pubDate>Wed, 15 May 2019 10:40:13 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/05/dart_install_and_running/</guid>
+      <description>DART(Data Assimilation Research Testbed)是一个数据同化的集合工具，是由NCAR提供支持的集合数据同化社区版工具，其支持提供了大多数模式数据同化接口。 安装 DAR</description>
+    </item>
+    
+    <item>
+      <title>基于netcdf库的nc文件读写</title>
+      <link>https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</link>
+      <pubDate>Mon, 13 May 2019 12:20:13 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</guid>
+      <description>NetCDF库提供了两种语言的函数API，一种是C，另一种是Fortran，其中又分为F77和F90两种方式的接口。通过函数开头的字符可以区</description>
+    </item>
+    
+    <item>
+      <title>WRF-Chem编译安装及运行指南</title>
+      <link>https://atmosai.github.io/2019/05/wrf-chem%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Sun, 12 May 2019 12:53:51 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/05/wrf-chem%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/</guid>
+      <description>从WRF模式官网下载WRF，WRF-Chem和WPS等安装包，在编译模式之前确保所有的依赖已经安装完成。 编译问题 版本V3.5 下载WRF-Ch</description>
+    </item>
+    
+    <item>
+      <title>资料同化基本术语</title>
+      <link>https://atmosai.github.io/2019/04/2019-04-18-%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E5%90%8D%E8%AF%8D/</link>
+      <pubDate>Thu, 18 Apr 2019 08:25:43 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/04/2019-04-18-%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E5%90%8D%E8%AF%8D/</guid>
+      <description>数据同化(Data Assimilation)：在地球物理学领域，数据同化就是利用物理特性以及时间演变定律的一致性约束将观测信息加入到模式状态</description>
+    </item>
+    
+    <item>
+      <title>Chapter1:资料同化基本概念</title>
+      <link>https://atmosai.github.io/2019/04/2019-04-16-chapter1%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Tue, 16 Apr 2019 16:29:18 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/04/2019-04-16-chapter1%E6%95%B0%E6%8D%AE%E5%90%8C%E5%8C%96%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid>
+      <description>分析 分析是为了产生给定时刻大气真实状态的正确描述。对于大气的全面且自一致性诊断而言，分析是非常有用的。分析结果可以作为其他操作的输入数据(比</description>
+    </item>
+    
+    <item>
+      <title>如何在Fortran中调用Python</title>
+      <link>https://atmosai.github.io/2019/04/2019-04-14-%E5%A6%82%E4%BD%95%E5%9C%A8fortran%E4%B8%AD%E8%B0%83%E7%94%A8python/</link>
+      <pubDate>Sun, 14 Apr 2019 16:53:33 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/04/2019-04-14-%E5%A6%82%E4%BD%95%E5%9C%A8fortran%E4%B8%AD%E8%B0%83%E7%94%A8python/</guid>
+      <description>Python是机器学习领域不断增长的通用语言。拥有一些非常棒的工具包，比如scikit-learn，tensorflow和pytorch。气</description>
+    </item>
+    
+    <item>
+      <title>使用CFFI从Python调用Fortran程序:Python调用WRF代码</title>
+      <link>https://atmosai.github.io/2019/04/2019-04-14-%E4%BD%BF%E7%94%A8cffi%E4%BB%8Epython%E8%B0%83%E7%94%A8fortran%E7%A8%8B%E5%BA%8Fpython%E8%B0%83%E7%94%A8wrf%E4%BB%A3%E7%A0%81/</link>
+      <pubDate>Sun, 14 Apr 2019 10:21:43 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/04/2019-04-14-%E4%BD%BF%E7%94%A8cffi%E4%BB%8Epython%E8%B0%83%E7%94%A8fortran%E7%A8%8B%E5%BA%8Fpython%E8%B0%83%E7%94%A8wrf%E4%BB%A3%E7%A0%81/</guid>
+      <description>为什么要使用Fortran代码 Fortran语言是已经几乎被遗忘的语言，但其在科学领域却仍为活跃，尤其是大气科学领域。 如果效率优先是需要考虑</description>
+    </item>
+    
+    <item>
+      <title>ncrcat:NetCDF记录合并</title>
+      <link>https://atmosai.github.io/2019/04/2019-04-13-ncrcatnetcdf%E8%AE%B0%E5%BD%95%E5%90%88%E5%B9%B6/</link>
+      <pubDate>Sat, 13 Apr 2019 15:02:33 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/04/2019-04-13-ncrcatnetcdf%E8%AE%B0%E5%BD%95%E5%90%88%E5%B9%B6/</guid>
+      <description>合并一些列输入文件的记录变量。默认情况下，最终的记录维度长度是输入文件所有记录维度长度之和。ncrcat可以从标准输入接受大量文件。 输入文件</description>
+    </item>
+    
+    <item>
+      <title>ncrename:NetCDF重命名</title>
+      <link>https://atmosai.github.io/2019/04/2019-04-12-ncrenamenetcdf%E9%87%8D%E5%91%BD%E5%90%8D/</link>
+      <pubDate>Fri, 12 Apr 2019 16:23:43 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/04/2019-04-12-ncrenamenetcdf%E9%87%8D%E5%91%BD%E5%90%8D/</guid>
+      <description>ncrename可以重命名netCDF维度，变量，属性和组。每个对象都有一个旧名称和新名称。所有的新名称必须是独一无二的。每一个旧名称必须存</description>
+    </item>
+    
+    <item>
+      <title>ncks:容纳一切的洗碗槽</title>
+      <link>https://atmosai.github.io/2019/04/2019-04-12-ncks%E5%AE%B9%E7%BA%B3%E4%B8%80%E8%B5%B7%E7%9A%84%E6%B4%97%E7%A2%97%E6%A7%BD/</link>
+      <pubDate>Fri, 12 Apr 2019 16:20:06 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/04/2019-04-12-ncks%E5%AE%B9%E7%BA%B3%E4%B8%80%E8%B5%B7%E7%9A%84%E6%B4%97%E7%A2%97%E6%A7%BD/</guid>
+      <description>ncks实现了ncdump和nccopy的大部分功能，此外还可以extract, hyperslab, multi-slab, sub-set, and translate 。 ncks可以从输入文件中提取数据，如果指定了地理</description>
+    </item>
+    
+    <item>
+      <title>nces:NetCDF集合统计</title>
+      <link>https://atmosai.github.io/2019/04/2019-04-12-ncesnetcdf%E9%9B%86%E5%90%88%E7%BB%9F%E8%AE%A1/</link>
+      <pubDate>Fri, 12 Apr 2019 16:12:43 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/04/2019-04-12-ncesnetcdf%E9%9B%86%E5%90%88%E7%BB%9F%E8%AE%A1/</guid>
+      <description>nces是针对输入文件/文件的组变量的格点统计，每个文件/组的权重是相同的。V4.3.9之前nces称为ncea。nces执行的是一系列文件</description>
+    </item>
+    
+    <item>
+      <title>ncflint:NetCDF文件插值</title>
+      <link>https://atmosai.github.io/2019/04/2019-04-12-ncflintnetcdf%E6%96%87%E4%BB%B6%E6%8F%92%E5%80%BC/</link>
+      <pubDate>Fri, 12 Apr 2019 16:01:13 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/04/2019-04-12-ncflintnetcdf%E6%96%87%E4%BB%B6%E6%8F%92%E5%80%BC/</guid>
+      <description>ncflint可以将输入文件进行线性组合创建输出文件。支持的线性组合方式为：加权平均，归一化加权平均，插值。坐标变量的处理方式和之前的命令不</description>
+    </item>
+    
+    <item>
+      <title>ncatted:NetCDF属性编辑</title>
+      <link>https://atmosai.github.io/2019/04/2019-04-12-ncattednetcdf%E5%B1%9E%E6%80%A7%E7%BC%96%E8%BE%91/</link>
+      <pubDate>Fri, 12 Apr 2019 16:01:12 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/04/2019-04-12-ncattednetcdf%E5%B1%9E%E6%80%A7%E7%BC%96%E8%BE%91/</guid>
+      <description>ncatted可以编辑netCDF文件的属性。ncatted可以添加，创建，删除，更改和重写属性。ncatted可以将每个操作应用到文件中的</description>
+    </item>
+    
+    <item>
+      <title>WRF模式高维数据可视化</title>
+      <link>https://atmosai.github.io/2019/03/2019-03-05-wrf%E6%A8%A1%E5%BC%8F%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+      <pubDate>Tue, 05 Mar 2019 20:23:27 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/03/2019-03-05-wrf%E6%A8%A1%E5%BC%8F%E9%AB%98%E7%BB%B4%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
+      <description>vis5d是专门开发用来进行5维数据可视化的工具，接触WRF模式看到的第一个高维可视化图就是由vis5d完成的。vis5d无法直接处理net</description>
+    </item>
+    
+    <item>
+      <title>基于python shapely的几何集合操作</title>
+      <link>https://atmosai.github.io/2019/02/2019-02-16-%E5%9F%BA%E4%BA%8Epython-shapely%E7%9A%84%E5%87%A0%E4%BD%95%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Sat, 16 Feb 2019 09:29:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/02/2019-02-16-%E5%9F%BA%E4%BA%8Epython-shapely%E7%9A%84%E5%87%A0%E4%BD%95%E9%9B%86%E5%90%88%E6%93%8D%E4%BD%9C/</guid>
+      <description>shapely是基于笛卡尔坐标的几何对象操作和分析Python库。底层基于GEOS和JTS库。shapely无法读取和写数据文件，但可以基于</description>
+    </item>
+    
+    <item>
+      <title>GFS数据多线程下载</title>
+      <link>https://atmosai.github.io/2019/02/2019-02-11-gfs%E6%95%B0%E6%8D%AE%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD/</link>
+      <pubDate>Mon, 11 Feb 2019 15:52:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/02/2019-02-11-gfs%E6%95%B0%E6%8D%AE%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD/</guid>
+      <description>近期由于NCEP GFS数据源网络通信协议由HTTP更新为HTTPS，基于axel的多线程下载工具均出现了 Too many redirects的问题。这是由</description>
+    </item>
+    
+    <item>
+      <title>如何使用Python处理shp文件</title>
+      <link>https://atmosai.github.io/2019/02/2019-01-28-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86shp%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Fri, 01 Feb 2019 13:46:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/02/2019-01-28-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86shp%E6%96%87%E4%BB%B6/</guid>
+      <description>涉及到空间数据处理的时候，为了比较清晰方便的看出空间数据所处的区域，通常都需要将省市边界线加到地图中。 Python中也提供了大量的shp文件</description>
+    </item>
+    
+    <item>
+      <title>Mac利用iTerm2&#43;lrzsz实现文件快速传输</title>
+      <link>https://atmosai.github.io/2019/01/2019-01-26-mac%E5%88%A9%E7%94%A8iterm2-lrzsz%E5%AE%9E%E7%8E%B0xftp%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/</link>
+      <pubDate>Sat, 26 Jan 2019 17:21:12 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/01/2019-01-26-mac%E5%88%A9%E7%94%A8iterm2-lrzsz%E5%AE%9E%E7%8E%B0xftp%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/</guid>
+      <description>无论是在windows还是unix系统，在远程服务器和本地之间传输文件时，总是还需要手动去打开xftp或者其他ftp工具来进行文件传输，每次</description>
+    </item>
+    
+    <item>
+      <title>如何添加背景图</title>
+      <link>https://atmosai.github.io/2018/12/2018-12-04-%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%9B%BE/</link>
+      <pubDate>Tue, 04 Dec 2018 19:54:18 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2018/12/2018-12-04-%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E5%9B%BE/</guid>
+      <description>以下代码展示如何在图中添加背景图， 首先生成图片 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 from datetime import datetime import numpy as np import pandas as pd</description>
+    </item>
+    
+    <item>
+      <title>ESMF:模式间耦合及插值工具</title>
+      <link>https://atmosai.github.io/2018/11/2018-11-20-esmf%E6%A8%A1%E5%BC%8F%E9%97%B4%E8%80%A6%E5%90%88%E5%8F%8A%E6%8F%92%E5%80%BC%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Tue, 20 Nov 2018 19:33:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2018/11/2018-11-20-esmf%E6%A8%A1%E5%BC%8F%E9%97%B4%E8%80%A6%E5%90%88%E5%8F%8A%E6%8F%92%E5%80%BC%E5%B7%A5%E5%85%B7/</guid>
+      <description>ESMF是用于耦合天气，气候和相关模式的工具，具有稳定，并行化和可扩展的插值(remapping)包，通常用于生成插值权重。ESMF可以处理</description>
+    </item>
+    
+    <item>
+      <title>WRF模式嵌套模拟</title>
+      <link>https://atmosai.github.io/2018/11/2018-11-19-wrf%E6%A8%A1%E5%BC%8F%E5%B5%8C%E5%A5%97%E6%A8%A1%E6%8B%9F/</link>
+      <pubDate>Mon, 19 Nov 2018 18:51:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2018/11/2018-11-19-wrf%E6%A8%A1%E5%BC%8F%E5%B5%8C%E5%A5%97%E6%A8%A1%E6%8B%9F/</guid>
+      <description>模式嵌套运行是为了得到更高分辨率的模拟。嵌套层完全包含在父层(Parent Domain, 即粗糙层, Corase Domain)中。嵌套层的边界条件来自父层(上一层)</description>
+    </item>
+    
+    <item>
+      <title>Use statsmodels to Perform Linear Regression in Python</title>
+      <link>https://atmosai.github.io/2018/11/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python/</link>
+      <pubDate>Sun, 18 Nov 2018 21:06:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2018/11/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python/</guid>
+      <description>Often times, linear regression is associated with machine learning – a hot topic that receives a lot of attention in recent years. And so, in this tutorial, I’ll show you how to perform a linear regression in Python using statsmodels. I’ll use a simple example about the stock market to demonstrate this concept.
 Here are the topics to be covered:
-Background about Linear Regression Review of an Example with the Full Dataset The Python Code Interpreting the Regression Results Making Predictions based on the Regression Results To start, I’ll share some background about linear regression.</description></item><item><title>Mac安装QGIS</title><link>https://atmosai.github.io/2018/11/2018-11-17-mac%E5%AE%89%E8%A3%85qgis/</link><pubDate>Sat, 17 Nov 2018 21:40:36 +0800</pubDate><guid>https://atmosai.github.io/2018/11/2018-11-17-mac%E5%AE%89%E8%A3%85qgis/</guid><description>想要使用ArcGIS做一些东西，但是无奈ArcGIS没有对应的Mac版本，又不想安装虚拟机在Windows上运行，最后找到了开源的QGIS，</description></item><item><title>NetCDF文件网格数据重采样</title><link>https://atmosai.github.io/2018/11/2018-11-14-netcdf%E6%96%87%E4%BB%B6%E7%BD%91%E6%A0%BC%E9%87%8D%E9%87%87%E6%A0%B7/</link><pubDate>Wed, 14 Nov 2018 19:16:36 +0800</pubDate><guid>https://atmosai.github.io/2018/11/2018-11-14-netcdf%E6%96%87%E4%BB%B6%E7%BD%91%E6%A0%BC%E9%87%8D%E9%87%87%E6%A0%B7/</guid><description>无论是应用再分析数据作为模式输入还是后处理过程需要，对不同分辨率的NetCDF文件数据进行重新采样是非常必要的。 最近由于项目原因，需要对模式</description></item><item><title>基于多普勒雷达数据的风场反演</title><link>https://atmosai.github.io/2018/04/2018-04-29-%E5%9F%BA%E4%BA%8E%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E9%A3%8E%E5%9C%BA%E5%8F%8D%E6%BC%94/</link><pubDate>Sun, 29 Apr 2018 15:17:23 +0800</pubDate><guid>https://atmosai.github.io/2018/04/2018-04-29-%E5%9F%BA%E4%BA%8E%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E9%A3%8E%E5%9C%BA%E5%8F%8D%E6%BC%94/</guid><description>本文记录利用python根据国内S波段雷达径向速度数据反演风场。 编程语言：python 库：pyart，matplotlib，SingleDo</description></item><item><title>机器学习在气象领域中的应用</title><link>https://atmosai.github.io/2018/03/2018-03-18-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%B0%94%E8%B1%A1%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</link><pubDate>Sun, 18 Mar 2018 21:21:36 +0800</pubDate><guid>https://atmosai.github.io/2018/03/2018-03-18-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%B0%94%E8%B1%A1%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</guid><description>近几年关于人工智能，机器学习，数据挖掘的新闻数不胜数，其中包含多少媒体炒作，又存在多大的泡沫尚不可说。抛开这些，各个领域都在试图利用人工智能</description></item><item><title>基于f90tohtml创建模式源码调用图</title><link>https://atmosai.github.io/2018/01/2018-01-28-%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90wrf%E6%A8%A1%E5%BC%8F%E6%BA%90%E7%A0%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/</link><pubDate>Sun, 28 Jan 2018 11:08:36 +0800</pubDate><guid>https://atmosai.github.io/2018/01/2018-01-28-%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90wrf%E6%A8%A1%E5%BC%8F%E6%BA%90%E7%A0%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/</guid><description>气象数值模式中涉及到的源代码非常庞大，而且各种模块非常的多，虽然体系非常清晰，并对不同类别的模块进行了分类，但是仍然无法清晰的知道每一个模块</description></item><item><title>如何处理netCDF文件</title><link>https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/</link><pubDate>Tue, 13 Jun 2017 16:55:27 +0800</pubDate><guid>https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/</guid><description>NetCDF文件是自描述的二进制数据格式。所谓自描述就是自带属性信息，这和一般的雷达基数据格式不同，一般的雷达数据也是二进制的，但不是自描述</description></item><item><title>基于python的WRF模式后处理</title><link>https://atmosai.github.io/2017/06/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86/</link><pubDate>Thu, 01 Jun 2017 16:47:56 +0800</pubDate><guid>https://atmosai.github.io/2017/06/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86/</guid><description>WRF模式是数值天气预报和大气模拟系统，其开发目的就是用语研究和实际应用。运行WRF模式时，可以利用多种初始场数据来驱动，然后配置好选项之后</description></item><item><title>双偏振多普勒气象雷达数据处理</title><link>https://atmosai.github.io/2017/05/2017-05-02-%E5%8F%8C%E5%81%8F%E6%8C%AF%E5%A4%9A%E6%99%AE%E5%8B%92%E6%B0%94%E8%B1%A1%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</link><pubDate>Tue, 02 May 2017 17:35:55 +0800</pubDate><guid>https://atmosai.github.io/2017/05/2017-05-02-%E5%8F%8C%E5%81%8F%E6%8C%AF%E5%A4%9A%E6%99%AE%E5%8B%92%E6%B0%94%E8%B1%A1%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</guid><description>C波段双线偏振多普勒天气雷达是目前国内最先进的雷达系统，采用高相位稳定的全相参脉冲多普勒和同时发射同时接收的双线偏振体制，具有高增益低副瓣天</description></item><item><title>f2py:连接fortran和python的桥梁</title><link>https://atmosai.github.io/2017/04/2017-04-10-f2py-%E8%BF%9E%E6%8E%A5fortran%E5%92%8Cpython%E7%9A%84%E6%A1%A5%E6%A2%81/</link><pubDate>Mon, 10 Apr 2017 17:06:13 +0800</pubDate><guid>https://atmosai.github.io/2017/04/2017-04-10-f2py-%E8%BF%9E%E6%8E%A5fortran%E5%92%8Cpython%E7%9A%84%E6%A1%A5%E6%A2%81/</guid><description>如果说 Python 能够让你就此起飞的话，那么使用 f2py 能让你在一定程度上飞的更高更远。 f2py 是用来连接 fortran 和 python 的 python 包，可以将 fortran 源程序转换为 python 可用的程序（wind</description></item><item><title>自动登录NUIST校园网</title><link>https://atmosai.github.io/2017/03/2017-03-08-%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95nuist%E6%A0%A1%E5%9B%AD%E7%BD%91/</link><pubDate>Wed, 08 Mar 2017 17:30:03 +0800</pubDate><guid>https://atmosai.github.io/2017/03/2017-03-08-%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95nuist%E6%A0%A1%E5%9B%AD%E7%BD%91/</guid><description>本文最初是为了开机自动登录某论坛进行签到所写，但为了防止扰乱论坛正常使用，仅介绍自动登录校园网脚本。 考虑到仅需要开机登录校园网，因此此处并未</description></item><item><title>Python地图绘制并添加南海小地图</title><link>https://atmosai.github.io/2017/02/2019-02-01-python%E5%9C%B0%E5%9B%BE%E7%BB%98%E5%88%B6%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%8D%97%E6%B5%B7%E5%B0%8F%E5%9C%B0%E5%9B%BE/</link><pubDate>Wed, 22 Feb 2017 17:47:36 +0800</pubDate><guid>https://atmosai.github.io/2017/02/2019-02-01-python%E5%9C%B0%E5%9B%BE%E7%BB%98%E5%88%B6%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%8D%97%E6%B5%B7%E5%B0%8F%E5%9C%B0%E5%9B%BE/</guid><description>在添加南海小地图时使用了matplotlib中的小工具，即嵌入定位器。可以放大一个图的局部，并绘制在这个图上，从而展示某一块区域。 1 2 3 4 5</description></item></channel></rss>
+ Background about Linear Regression Review of an Example with the Full Dataset The Python Code Interpreting the Regression Results Making Predictions based on the Regression Results  To start, I’ll share some background about linear regression.</description>
+    </item>
+    
+    <item>
+      <title>Mac安装QGIS</title>
+      <link>https://atmosai.github.io/2018/11/2018-11-17-mac%E5%AE%89%E8%A3%85qgis/</link>
+      <pubDate>Sat, 17 Nov 2018 21:40:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2018/11/2018-11-17-mac%E5%AE%89%E8%A3%85qgis/</guid>
+      <description>想要使用ArcGIS做一些东西，但是无奈ArcGIS没有对应的Mac版本，又不想安装虚拟机在Windows上运行，最后找到了开源的QGIS，</description>
+    </item>
+    
+    <item>
+      <title>NetCDF文件网格数据重采样</title>
+      <link>https://atmosai.github.io/2018/11/2018-11-14-netcdf%E6%96%87%E4%BB%B6%E7%BD%91%E6%A0%BC%E9%87%8D%E9%87%87%E6%A0%B7/</link>
+      <pubDate>Wed, 14 Nov 2018 19:16:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2018/11/2018-11-14-netcdf%E6%96%87%E4%BB%B6%E7%BD%91%E6%A0%BC%E9%87%8D%E9%87%87%E6%A0%B7/</guid>
+      <description>无论是应用再分析数据作为模式输入还是后处理过程需要，对不同分辨率的NetCDF文件数据进行重新采样是非常必要的。 最近由于项目原因，需要对模式</description>
+    </item>
+    
+    <item>
+      <title>基于多普勒雷达数据的风场反演</title>
+      <link>https://atmosai.github.io/2018/04/2018-04-29-%E5%9F%BA%E4%BA%8E%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E9%A3%8E%E5%9C%BA%E5%8F%8D%E6%BC%94/</link>
+      <pubDate>Sun, 29 Apr 2018 15:17:23 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2018/04/2018-04-29-%E5%9F%BA%E4%BA%8E%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E7%9A%84%E9%A3%8E%E5%9C%BA%E5%8F%8D%E6%BC%94/</guid>
+      <description>本文记录利用python根据国内S波段雷达径向速度数据反演风场。 编程语言：python 库：pyart，matplotlib，SingleDo</description>
+    </item>
+    
+    <item>
+      <title>机器学习在气象领域中的应用</title>
+      <link>https://atmosai.github.io/2018/03/2018-03-18-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%B0%94%E8%B1%A1%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Sun, 18 Mar 2018 21:21:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2018/03/2018-03-18-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9C%A8%E6%B0%94%E8%B1%A1%E9%A2%86%E5%9F%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8/</guid>
+      <description>近几年关于人工智能，机器学习，数据挖掘的新闻数不胜数，其中包含多少媒体炒作，又存在多大的泡沫尚不可说。抛开这些，各个领域都在试图利用人工智能</description>
+    </item>
+    
+    <item>
+      <title>基于f90tohtml创建模式源码调用图</title>
+      <link>https://atmosai.github.io/2018/01/2018-01-28-%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90wrf%E6%A8%A1%E5%BC%8F%E6%BA%90%E7%A0%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/</link>
+      <pubDate>Sun, 28 Jan 2018 11:08:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2018/01/2018-01-28-%E5%A6%82%E4%BD%95%E7%94%9F%E6%88%90wrf%E6%A8%A1%E5%BC%8F%E6%BA%90%E7%A0%81%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B%E5%9B%BE/</guid>
+      <description>气象数值模式中涉及到的源代码非常庞大，而且各种模块非常的多，虽然体系非常清晰，并对不同类别的模块进行了分类，但是仍然无法清晰的知道每一个模块</description>
+    </item>
+    
+    <item>
+      <title>如何处理netCDF文件</title>
+      <link>https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Tue, 13 Jun 2017 16:55:27 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/</guid>
+      <description>NetCDF文件是自描述的二进制数据格式。所谓自描述就是自带属性信息，这和一般的雷达基数据格式不同，一般的雷达数据也是二进制的，但不是自描述</description>
+    </item>
+    
+    <item>
+      <title>基于python的WRF模式后处理</title>
+      <link>https://atmosai.github.io/2017/06/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86/</link>
+      <pubDate>Thu, 01 Jun 2017 16:47:56 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2017/06/2017-06-01-%E5%9F%BA%E4%BA%8Epython%E7%9A%84wrf%E6%A8%A1%E5%BC%8F%E5%90%8E%E5%A4%84%E7%90%86/</guid>
+      <description>WRF模式是数值天气预报和大气模拟系统，其开发目的就是用语研究和实际应用。运行WRF模式时，可以利用多种初始场数据来驱动，然后配置好选项之后</description>
+    </item>
+    
+    <item>
+      <title>双偏振多普勒气象雷达数据处理</title>
+      <link>https://atmosai.github.io/2017/05/2017-05-02-%E5%8F%8C%E5%81%8F%E6%8C%AF%E5%A4%9A%E6%99%AE%E5%8B%92%E6%B0%94%E8%B1%A1%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</link>
+      <pubDate>Tue, 02 May 2017 17:35:55 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2017/05/2017-05-02-%E5%8F%8C%E5%81%8F%E6%8C%AF%E5%A4%9A%E6%99%AE%E5%8B%92%E6%B0%94%E8%B1%A1%E9%9B%B7%E8%BE%BE%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</guid>
+      <description>C波段双线偏振多普勒天气雷达是目前国内最先进的雷达系统，采用高相位稳定的全相参脉冲多普勒和同时发射同时接收的双线偏振体制，具有高增益低副瓣天</description>
+    </item>
+    
+    <item>
+      <title>f2py:连接fortran和python的桥梁</title>
+      <link>https://atmosai.github.io/2017/04/2017-04-10-f2py-%E8%BF%9E%E6%8E%A5fortran%E5%92%8Cpython%E7%9A%84%E6%A1%A5%E6%A2%81/</link>
+      <pubDate>Mon, 10 Apr 2017 17:06:13 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2017/04/2017-04-10-f2py-%E8%BF%9E%E6%8E%A5fortran%E5%92%8Cpython%E7%9A%84%E6%A1%A5%E6%A2%81/</guid>
+      <description>如果说 Python 能够让你就此起飞的话，那么使用 f2py 能让你在一定程度上飞的更高更远。 f2py 是用来连接 fortran 和 python 的 python 包，可以将 fortran 源程序转换为 python 可用的程序（wind</description>
+    </item>
+    
+    <item>
+      <title>自动登录NUIST校园网</title>
+      <link>https://atmosai.github.io/2017/03/2017-03-08-%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95nuist%E6%A0%A1%E5%9B%AD%E7%BD%91/</link>
+      <pubDate>Wed, 08 Mar 2017 17:30:03 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2017/03/2017-03-08-%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95nuist%E6%A0%A1%E5%9B%AD%E7%BD%91/</guid>
+      <description>本文最初是为了开机自动登录某论坛进行签到所写，但为了防止扰乱论坛正常使用，仅介绍自动登录校园网脚本。 考虑到仅需要开机登录校园网，因此此处并未</description>
+    </item>
+    
+    <item>
+      <title>Python地图绘制并添加南海小地图</title>
+      <link>https://atmosai.github.io/2017/02/2019-02-01-python%E5%9C%B0%E5%9B%BE%E7%BB%98%E5%88%B6%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%8D%97%E6%B5%B7%E5%B0%8F%E5%9C%B0%E5%9B%BE/</link>
+      <pubDate>Wed, 22 Feb 2017 17:47:36 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2017/02/2019-02-01-python%E5%9C%B0%E5%9B%BE%E7%BB%98%E5%88%B6%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%8D%97%E6%B5%B7%E5%B0%8F%E5%9C%B0%E5%9B%BE/</guid>
+      <description>在添加南海小地图时使用了matplotlib中的小工具，即嵌入定位器。可以放大一个图的局部，并绘制在这个图上，从而展示某一块区域。 1 2 3 4 5</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,37 +1,290 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Mac安装QGIS | bugsuse</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="About LoveIt Theme"><link rel=prev href=https://atmosai.github.io/2018/11/2018-11-14-netcdf%E6%96%87%E4%BB%B6%E7%BD%91%E6%A0%BC%E9%87%8D%E9%87%87%E6%A0%B7/><link rel=next href=https://atmosai.github.io/2018/11/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python/><link rel=canonical href=https://atmosai.github.io/2018/11/2018-11-17-mac%E5%AE%89%E8%A3%85qgis/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta property="og:title" content="Mac安装QGIS"><meta property="og:description" content="想要使用ArcGIS做一些东西，但是无奈ArcGIS没有对应的Mac版本，又不想安装虚拟机在Windows上运行，最后找到了开源的QGIS，"><meta property="og:type" content="article"><meta property="og:url" content="https://atmosai.github.io/2018/11/2018-11-17-mac%E5%AE%89%E8%A3%85qgis/"><meta property="article:published_time" content="2018-11-17T21:40:36+08:00"><meta property="article:modified_time" content="2018-11-17T21:40:36+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Mac安装QGIS"><meta name=twitter:description content="想要使用ArcGIS做一些东西，但是无奈ArcGIS没有对应的Mac版本，又不想安装虚拟机在Windows上运行，最后找到了开源的QGIS，"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Mac安装QGIS","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/atmosai.github.io\/2018\/11\/2018-11-17-mac%E5%AE%89%E8%A3%85qgis\/"},"image":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"MAC, QGIS","wordcount":957,"url":"https:\/\/atmosai.github.io\/2018\/11\/2018-11-17-mac%E5%AE%89%E8%A3%85qgis\/","datePublished":"2018-11-17T21:40:36\x2b08:00","dateModified":"2018-11-17T21:40:36\x2b08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=navbar-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文><i class="fas fa-language fa-fw"></i></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">Mac安装QGIS</h1><div class=post-meta><div class=post-meta-main><a class=author href=http://i-lightning.cn rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>bugsuse
-</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://atmosai.github.io/categories/tools/>Tools</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2018-11-17>2018-11-17</time>&nbsp;
-<i class="fas fa-pencil-alt fa-fw"></i>about 957 words&nbsp;
-<i class="far fa-clock fa-fw"></i>2 min&nbsp;</div></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
-<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile></nav></div></details></div><div class=post-content><p>想要使用ArcGIS做一些东西，但是无奈ArcGIS没有对应的Mac版本，又不想安装虚拟机在Windows上运行，最后找到了开源的QGIS，使用了QGIS 3.4.1，没想到安装过程就碰到了许多坑。</p><p>此文纯粹记录Mac安装QGIS 3.4.1的过程。</p><p>从QGIS官网下载Mac安装包，然后安装时，第一个问题：</p><ul><li><p><strong>提示 QGIS required python3.6</strong></p><p>这个问题比较棘手，因为QGIS 3.4.1只支持Python3.6，而且还不认Anaconda版本的Python，似乎是只认clang编译的Python3.6，只能重新安装一个版本了，使用下列命令先去除系统中python的链接，然后安装Python3.6</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>brew unlink python
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mac安装QGIS | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="About LoveIt Theme"><link rel="prev" href="https://atmosai.github.io/2018/11/2018-11-14-netcdf%E6%96%87%E4%BB%B6%E7%BD%91%E6%A0%BC%E9%87%8D%E9%87%87%E6%A0%B7/" /><link rel="next" href="https://atmosai.github.io/2018/11/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python/" /><link rel="canonical" href="https://atmosai.github.io/2018/11/2018-11-17-mac%E5%AE%89%E8%A3%85qgis/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta property="og:title" content="Mac安装QGIS" />
+<meta property="og:description" content="想要使用ArcGIS做一些东西，但是无奈ArcGIS没有对应的Mac版本，又不想安装虚拟机在Windows上运行，最后找到了开源的QGIS，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://atmosai.github.io/2018/11/2018-11-17-mac%E5%AE%89%E8%A3%85qgis/" />
+<meta property="article:published_time" content="2018-11-17T21:40:36+08:00" />
+<meta property="article:modified_time" content="2018-11-17T21:40:36+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mac安装QGIS"/>
+<meta name="twitter:description" content="想要使用ArcGIS做一些东西，但是无奈ArcGIS没有对应的Mac版本，又不想安装虚拟机在Windows上运行，最后找到了开源的QGIS，"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mac安装QGIS",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/atmosai.github.io\/2018\/11\/2018-11-17-mac%E5%AE%89%E8%A3%85qgis\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "MAC, QGIS","wordcount":  957 ,
+        "url": "https:\/\/atmosai.github.io\/2018\/11\/2018-11-17-mac%E5%AE%89%E8%A3%85qgis\/","datePublished": "2018-11-17T21:40:36\x2b08:00","dateModified": "2018-11-17T21:40:36\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "xxxx",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://atmosai.github.io">bugsuse</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://atmosai.github.io">bugsuse</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">Mac安装QGIS</h1><div class="post-meta">
+            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
+                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
+                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/tools/">Tools</a>&nbsp;</span></div>
+            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2018-11-17>2018-11-17</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>about 957 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>2 min&nbsp;</div>
+        </div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents"></nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile"></nav></div>
+                </details>
+            </div><div class="post-content"><p>想要使用ArcGIS做一些东西，但是无奈ArcGIS没有对应的Mac版本，又不想安装虚拟机在Windows上运行，最后找到了开源的QGIS，使用了QGIS 3.4.1，没想到安装过程就碰到了许多坑。</p>
+<p>此文纯粹记录Mac安装QGIS 3.4.1的过程。</p>
+<p>从QGIS官网下载Mac安装包，然后安装时，第一个问题：</p>
+<ul>
+<li>
+<p><strong>提示 QGIS required python3.6</strong></p>
+<p>这个问题比较棘手，因为QGIS 3.4.1只支持Python3.6，而且还不认Anaconda版本的Python，似乎是只认clang编译的Python3.6，只能重新安装一个版本了，使用下列命令先去除系统中python的链接，然后安装Python3.6</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">brew unlink python
 brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/f2a764ef944b1080be64bd88dca9a1d80130c558/Formula/python.rb
-</code></pre></td></tr></table></div></div><p>安装完成之后，记下安装的Python具体版本号，然后要将安装的Python链接到指定目录。这里我安装的具体版本号是 3.6.5_1，然后执行一下命令(具体安装路径取决于你的系统实际安装路径)：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>ln -s /usr/local/Cellar/python/3.6.5_1/Frameworks/Python.framework/Versions/3.6 /Library/Frameworks/Python.framework/Versions/
-</code></pre></td></tr></table></div></div></li></ul><p>解决了上述问题之后，就可以顺利安装QGIS了。安装完成之后打开QGIS，如果中间没有出现任何问题，那么恭喜你，后面的内容你就不用看了。</p><p>我在安装完成之后打开QGIS时，弹窗出现以下问题，找不到对应的库：</p><ul><li><p><strong>Couldn&rsquo;t load plugin &lsquo;processing&rsquo; ModuleNotFoundError: No module named &lsquo;osgeo&rsquo;</strong></p><p>这个问题也是比较棘手的，这里不做过多解释，osgeo是地学的一个常用库，但是这里并不是说直接用pip安装osgeo就行了，而是要<strong>安装gdal</strong>，安装gdal的时候出现了找不到 cpl* 头文件的问题，这里需要先安装mac上的gdal，而不是直接安装python的 gdal，应为python的 gdal需要一些头文件。</p><p>我出现的问题是，即使安装了mac的gdal，也把头文件所在的路径添加到环境变量中，但是依然提示找不到头文件，最后发现Mac安装好的GDAL路径中有预编译的 python gdal，直接使用以下命令安装即可：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>/usr/local/Cellar/python/3.6.5_1/bin/pip3 install /Library/Frameworks/GDAL.framework/Versions/Current/Resources/GDAL-2.3.2-cp36-none-macosx_10_9_x86_64.whl
-</code></pre></td></tr></table></div></div></li></ul><p>本以为这就结束了，没想到后面又出现了很多库找不到(心塞==)。所幸后面缺失的库安装都比较顺利，只需要根据提示，缺少什么库使用pip安装即可。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>Couldn&#39;t load plugin &#39;processing&#39; 
+</code></pre></td></tr></table>
+</div>
+</div><p>安装完成之后，记下安装的Python具体版本号，然后要将安装的Python链接到指定目录。这里我安装的具体版本号是 3.6.5_1，然后执行一下命令(具体安装路径取决于你的系统实际安装路径)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ln -s /usr/local/Cellar/python/3.6.5_1/Frameworks/Python.framework/Versions/3.6 /Library/Frameworks/Python.framework/Versions/
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>解决了上述问题之后，就可以顺利安装QGIS了。安装完成之后打开QGIS，如果中间没有出现任何问题，那么恭喜你，后面的内容你就不用看了。</p>
+<p>我在安装完成之后打开QGIS时，弹窗出现以下问题，找不到对应的库：</p>
+<ul>
+<li>
+<p><strong>Couldn&rsquo;t load plugin &lsquo;processing&rsquo;          ModuleNotFoundError: No module named &lsquo;osgeo&rsquo;</strong></p>
+<p>这个问题也是比较棘手的，这里不做过多解释，osgeo是地学的一个常用库，但是这里并不是说直接用pip安装osgeo就行了，而是要<strong>安装gdal</strong>，安装gdal的时候出现了找不到 cpl* 头文件的问题，这里需要先安装mac上的gdal，而不是直接安装python的 gdal，应为python的 gdal需要一些头文件。</p>
+<p>我出现的问题是，即使安装了mac的gdal，也把头文件所在的路径添加到环境变量中，但是依然提示找不到头文件，最后发现Mac安装好的GDAL路径中有预编译的 python gdal，直接使用以下命令安装即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">/usr/local/Cellar/python/3.6.5_1/bin/pip3 install /Library/Frameworks/GDAL.framework/Versions/Current/Resources/GDAL-2.3.2-cp36-none-macosx_10_9_x86_64.whl
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>本以为这就结束了，没想到后面又出现了很多库找不到(心塞==)。所幸后面缺失的库安装都比较顺利，只需要根据提示，缺少什么库使用pip安装即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Couldn&#39;t load plugin &#39;processing&#39; 
 ModuleNotFoundError: No module named &#39;yaml&#39; 
-</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>Couldn&#39;t load plugin &#39;processing&#39; 
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Couldn&#39;t load plugin &#39;processing&#39; 
 ModuleNotFoundError: No module named &#39;owslib&#39; 
-</code></pre></td></tr></table></div></div><p>执行以下命令安装即可：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>/usr/local/Cellar/python/3.6.5_1/bin/pip3 install pyyaml
+</code></pre></td></tr></table>
+</div>
+</div><p>执行以下命令安装即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">/usr/local/Cellar/python/3.6.5_1/bin/pip3 install pyyaml
 /usr/local/Cellar/python/3.6.5_1/bin/pip3 install owslib
-</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>ModuleNotFoundError: No module named &#39;pygments&#39; 
-</code></pre></td></tr></table></div></div><p>如果安装库时出现类似以下库的问题，只需要指定 &ndash;user 选项即可：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>Could not install packages due to an EnvironmentError: <span class=o>[</span>Errno 13<span class=o>]</span> Permission denied: <span class=s1>&#39;/usr/local/bin/pygmentize&#39;</span>
-Consider using the <span class=sb>`</span>--user<span class=sb>`</span> option or check the permissions.
-</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>/usr/local/Cellar/python/3.6.5_1/bin/pip3 install --user pygments
-</code></pre></td></tr></table></div></div><p>完成上述所有库缺失的问题之后，再打开基本就没问题了。</p><p>至此，安装完成。</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2018-11-17</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-17-mac%25E5%25AE%2589%25E8%25A3%2585qgis%2f&text=Mac%e5%ae%89%e8%a3%85QGIS&via=xxxx" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-17-mac%25E5%25AE%2589%25E8%25A3%2585qgis%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-17-mac%25E5%25AE%2589%25E8%25A3%2585qgis%2f&title=Mac%e5%ae%89%e8%a3%85QGIS" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-17-mac%25E5%25AE%2589%25E8%25A3%2585qgis%2f&appkey=&title=Mac%e5%ae%89%e8%a3%85QGIS" target=_blank title="Share on Weibo"><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://atmosai.github.io/tags/mac/><i class="fas fa-tag fa-fw"></i>&nbsp;MAC</a>&nbsp;
-</span><span class=tag><a href=https://atmosai.github.io/tags/qgis/><i class="fas fa-tag fa-fw"></i>&nbsp;QGIS</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://atmosai.github.io>Home</a></span></section></div><div class=post-nav><a href=https://atmosai.github.io/2018/11/2018-11-14-netcdf%E6%96%87%E4%BB%B6%E7%BD%91%E6%A0%BC%E9%87%8D%E9%87%87%E6%A0%B7/ class=prev rel=prev title=NetCDF文件网格数据重采样><i class="fas fa-angle-left fa-fw"></i>NetCDF文件网格数据重采样</a>
-<a href=https://atmosai.github.io/2018/11/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python/ class=next rel=next title="Use statsmodels to Perform Linear Regression in Python">Use statsmodels to Perform Linear Regression in Python<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
-return;var dsq=document.createElement("script");dsq.type="text/javascript";dsq.async=true;var disqus_shortname="i-lightning-cn";dsq.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2016 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://atmosai.github.io target=_blank>bugsuse</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span></a>
-<script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-112932643-1','auto');ga('set','anonymizeIp',true);ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><script src=/js/blog.min.js></script></body></html>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ModuleNotFoundError: No module named &#39;pygments&#39; 
+</code></pre></td></tr></table>
+</div>
+</div><p>如果安装库时出现类似以下库的问题，只需要指定 &ndash;user 选项即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">Could not install packages due to an EnvironmentError: <span class="o">[</span>Errno 13<span class="o">]</span> Permission denied: <span class="s1">&#39;/usr/local/bin/pygmentize&#39;</span>
+Consider using the <span class="sb">`</span>--user<span class="sb">`</span> option or check the permissions.
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">/usr/local/Cellar/python/3.6.5_1/bin/pip3 install --user pygments
+</code></pre></td></tr></table>
+</div>
+</div><p>完成上述所有库缺失的问题之后，再打开基本就没问题了。</p>
+<p>至此，安装完成。</p>
+</div><div class="post-footer" id="post-footer">
+        <div style="padding: 10px 0; margin: 20px auto; width: 100%; font-size:16px; text-align: center;">
+        <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+            <span>打赏</span></button>
+        <div id="QR" style="display: none;">
+            <div id="wechat" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="wechat_qr" src="/img/Wechat.jpeg" alt="WeChat Pay"></a>
+                <p>微信打赏</p>
+            </div>
+            <div id="alipay" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="alipay_qr" src="/img/Alipay.jpeg" alt="Alipay"></a>
+                <p>支付宝打赏</p>
+            </div>
+        </div>
+    </div>
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2018-11-17</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-17-mac%25E5%25AE%2589%25E8%25A3%2585qgis%2f&amp;text=Mac%e5%ae%89%e8%a3%85QGIS&amp;via=xxxx" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-17-mac%25E5%25AE%2589%25E8%25A3%2585qgis%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-17-mac%25E5%25AE%2589%25E8%25A3%2585qgis%2f&amp;title=Mac%e5%ae%89%e8%a3%85QGIS" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-17-mac%25E5%25AE%2589%25E8%25A3%2585qgis%2f&amp;appkey=&amp;title=Mac%e5%ae%89%e8%a3%85QGIS" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a></span></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section><span class="tag">
+                        <a href="https://atmosai.github.io/tags/mac/"><i class="fas fa-tag fa-fw"></i>&nbsp;MAC</a>&nbsp;
+                    </span><span class="tag">
+                        <a href="https://atmosai.github.io/tags/qgis/"><i class="fas fa-tag fa-fw"></i>&nbsp;QGIS</a>&nbsp;
+                    </span></section>
+        <section>
+            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="https://atmosai.github.io/2018/11/2018-11-14-netcdf%E6%96%87%E4%BB%B6%E7%BD%91%E6%A0%BC%E9%87%8D%E9%87%87%E6%A0%B7/" class="prev" rel="prev" title="NetCDF文件网格数据重采样"><i class="fas fa-angle-left fa-fw"></i>NetCDF文件网格数据重采样</a>
+            <a href="https://atmosai.github.io/2018/11/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python/" class="next" rel="next" title="Use statsmodels to Perform Linear Regression in Python">Use statsmodels to Perform Linear Regression in Python<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div class="post-comment"><div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                
+                
+                if (window.location.hostname == "localhost")
+                    return;
+                var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+                var disqus_shortname = "i-lightning-cn";
+                dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-112932643-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
+</html>
