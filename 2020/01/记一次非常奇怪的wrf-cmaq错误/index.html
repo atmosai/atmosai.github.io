@@ -35,7 +35,7 @@
                 "url": "https:\/\/atmosai.github.io\/cover.png",
                 "width":  800 ,
                 "height":  600 
-            },"genre": "posts","keywords": "WRF, CMAQ","wordcount":  851 ,
+            },"genre": "posts","keywords": "WRF, CMAQ","wordcount":  846 ,
         "url": "https:\/\/atmosai.github.io\/2020\/01\/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%9D%9E%E5%B8%B8%E5%A5%87%E6%80%AA%E7%9A%84wrf-cmaq%E9%94%99%E8%AF%AF\/","datePublished": "2020-01-13T16:21:27\x2b08:00","dateModified": "2020-01-13T16:21:27\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
                 "@type": "Organization",
                 "name": "xxxx",
@@ -78,9 +78,9 @@
                     <i class="fas fa-user-circle fa-fw"></i>bugsuse
                 </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/model/">Model</a>&nbsp;</span></div>
             <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-01-13>2020-01-13</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>about 851 words&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>about 846 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>2 min&nbsp;</div>
-        </div><div class="post-featured-image"><img src="/svg/loading.min.svg" data-sizes="auto" data-src="img/wrf-cmaq.png" alt="featured image" class="lazyload"></div><div class="post-toc" id="post-toc">
+        </div><div class="post-featured-image"><img src="/svg/loading.min.svg" data-sizes="auto" data-src="/img/wrf-cmaq.png" alt="featured image" class="lazyload"></div><div class="post-toc" id="post-toc">
                 <h2 class="post-toc-title">Contents</h2>
                 <div class="post-toc-content"><nav id="TableOfContents">
   <ul>
@@ -154,23 +154,12 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>在运行MCIP时还可以通过更改干沉降速率的选项关闭干沉降速率计算解决此问题，但在运行CCTM时似乎没有提供此选项。只能排查出现此错误的原因了。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Numerical problems can occur in these algorithms because the WRF model input has LAI=0 for grids located over the ocean or in ice-bound regions. The m3dry.F algorithm includes divide-by-LAI without protection for LAI being zero. This can cause the program to generate Inf or NaN values.
-
+<blockquote>
+<p>Numerical problems can occur in these algorithms because the WRF model input has LAI=0 for grids located over the ocean or in ice-bound regions. The m3dry.F algorithm includes divide-by-LAI without protection for LAI being zero. This can cause the program to generate Inf or NaN values.
 The most recent version of MCIP (3.6) includes a correction for this problem: the MCIP file m3dry.F includes separate calculations for land and water, and the solution for water is used whenever vegetation (xveg) is zero. This appears to cover all occurrences of zero LAI. However the CMAQ algorithm still uses solutions that cannot handle zero LAI and are not bypassed.
-
-The inline m3dry.F for bidirectional Hg also includes a call to a numerical solver (ATX) for soil concentrations with control statements that call for the solution for land grids only. (A separate solution is provided for grids representing water.) The solution for soil concentrations can fail to converge or generate negative values if leaf area index and other soil parameters are zero or near-zero. Normally, LAI is 0.1 or higher for land grids. However the WRF output includes a small number of grids that are flagged as &#39;land&#39; grids even though LAI = 0 and the soil type category is &#39;water&#39;. (These have been found for grids at the southern end of Hudsons Bay in Canada.)
-</code></pre></td></tr></table>
-</div>
-</div><p>回到MCIP，检查上述错误出现在<code>m3dry.ff90</code> 中，定位到计算干沉降速率的地方，发现是部分区域的<code>canopy wetness</code> 值为0导致计算过程中出现了<code>NaN</code>，下面一行是排查时输出结果，最后一个是 <code>xlai(90, 57)</code>的值：</p>
+The inline m3dry.F for bidirectional Hg also includes a call to a numerical solver (ATX) for soil concentrations with control statements that call for the solution for land grids only. (A separate solution is provided for grids representing water.) The solution for soil concentrations can fail to converge or generate negative values if leaf area index and other soil parameters are zero or near-zero. Normally, LAI is 0.1 or higher for land grids. However the WRF output includes a small number of grids that are flagged as &lsquo;land&rsquo; grids even though LAI = 0 and the soil type category is &lsquo;water&rsquo;. (These have been found for grids at the southern end of Hudsons Bay in Canada.)</p>
+</blockquote>
+<p>回到MCIP，检查上述错误出现在<code>m3dry.ff90</code> 中，定位到计算干沉降速率的地方，发现是部分区域的<code>canopy wetness</code> 值为0导致计算过程中出现了<code>NaN</code>，下面一行是排查时输出结果，最后一个是 <code>xlai(90, 57)</code>的值：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -240,7 +229,7 @@ The inline m3dry.F for bidirectional Hg also includes a call to a numerical solv
             <i class="fab fa-facebook-square fa-fw"></i>
         </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2020%2f01%2f%25E8%25AE%25B0%25E4%25B8%2580%25E6%25AC%25A1%25E9%259D%259E%25E5%25B8%25B8%25E5%25A5%2587%25E6%2580%25AA%25E7%259A%2584wrf-cmaq%25E9%2594%2599%25E8%25AF%25AF%2f&amp;title=%e8%ae%b0%e4%b8%80%e6%ac%a1%e9%9d%9e%e5%b8%b8%e5%a5%87%e6%80%aa%e7%9a%84WRF-CMAQ%e9%94%99%e8%af%af" target="_blank" title="Share on Reddit">
             <i class="fab fa-reddit fa-fw"></i>
-        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2020%2f01%2f%25E8%25AE%25B0%25E4%25B8%2580%25E6%25AC%25A1%25E9%259D%259E%25E5%25B8%25B8%25E5%25A5%2587%25E6%2580%25AA%25E7%259A%2584wrf-cmaq%25E9%2594%2599%25E8%25AF%25AF%2f&amp;appkey=&amp;title=%e8%ae%b0%e4%b8%80%e6%ac%a1%e9%9d%9e%e5%b8%b8%e5%a5%87%e6%80%aa%e7%9a%84WRF-CMAQ%e9%94%99%e8%af%af&amp;pic=img%2fwrf-cmaq.png" target="_blank" title="Share on Weibo">
+        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2020%2f01%2f%25E8%25AE%25B0%25E4%25B8%2580%25E6%25AC%25A1%25E9%259D%259E%25E5%25B8%25B8%25E5%25A5%2587%25E6%2580%25AA%25E7%259A%2584wrf-cmaq%25E9%2594%2599%25E8%25AF%25AF%2f&amp;appkey=&amp;title=%e8%ae%b0%e4%b8%80%e6%ac%a1%e9%9d%9e%e5%b8%b8%e5%a5%87%e6%80%aa%e7%9a%84WRF-CMAQ%e9%94%99%e8%af%af&amp;pic=%2fimg%2fwrf-cmaq.png" target="_blank" title="Share on Weibo">
             <i class="fab fa-weibo fa-fw"></i>
         </a></span></div>
         </div>

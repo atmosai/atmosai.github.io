@@ -33,13 +33,9 @@ WRF模式能够正常运行，**猜测可能是陆面方案的问题**。
 
 在运行MCIP时还可以通过更改干沉降速率的选项关闭干沉降速率计算解决此问题，但在运行CCTM时似乎没有提供此选项。只能排查出现此错误的原因了。
 
-```
-Numerical problems can occur in these algorithms because the WRF model input has LAI=0 for grids located over the ocean or in ice-bound regions. The m3dry.F algorithm includes divide-by-LAI without protection for LAI being zero. This can cause the program to generate Inf or NaN values.
-
-The most recent version of MCIP (3.6) includes a correction for this problem: the MCIP file m3dry.F includes separate calculations for land and water, and the solution for water is used whenever vegetation (xveg) is zero. This appears to cover all occurrences of zero LAI. However the CMAQ algorithm still uses solutions that cannot handle zero LAI and are not bypassed.
-
-The inline m3dry.F for bidirectional Hg also includes a call to a numerical solver (ATX) for soil concentrations with control statements that call for the solution for land grids only. (A separate solution is provided for grids representing water.) The solution for soil concentrations can fail to converge or generate negative values if leaf area index and other soil parameters are zero or near-zero. Normally, LAI is 0.1 or higher for land grids. However the WRF output includes a small number of grids that are flagged as 'land' grids even though LAI = 0 and the soil type category is 'water'. (These have been found for grids at the southern end of Hudsons Bay in Canada.)
-```
+> Numerical problems can occur in these algorithms because the WRF model input has LAI=0 for grids located over the ocean or in ice-bound regions. The m3dry.F algorithm includes divide-by-LAI without protection for LAI being zero. This can cause the program to generate Inf or NaN values.
+> The most recent version of MCIP (3.6) includes a correction for this problem: the MCIP file m3dry.F includes separate calculations for land and water, and the solution for water is used whenever vegetation (xveg) is zero. This appears to cover all occurrences of zero LAI. However the CMAQ algorithm still uses solutions that cannot handle zero LAI and are not bypassed.
+> The inline m3dry.F for bidirectional Hg also includes a call to a numerical solver (ATX) for soil concentrations with control statements that call for the solution for land grids only. (A separate solution is provided for grids representing water.) The solution for soil concentrations can fail to converge or generate negative values if leaf area index and other soil parameters are zero or near-zero. Normally, LAI is 0.1 or higher for land grids. However the WRF output includes a small number of grids that are flagged as 'land' grids even though LAI = 0 and the soil type category is 'water'. (These have been found for grids at the southern end of Hudsons Bay in Canada.)
 
 回到MCIP，检查上述错误出现在`m3dry.ff90` 中，定位到计算干沉降速率的地方，发现是部分区域的`canopy wetness` 值为0导致计算过程中出现了`NaN`，下面一行是排查时输出结果，最后一个是 `xlai(90, 57)`的值：
 
