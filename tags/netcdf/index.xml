@@ -1,1 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>netcdf on bugsuse</title><link>https://atmosai.github.io/tags/netcdf/</link><description>Recent content in netcdf on bugsuse</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 13 May 2019 12:20:13 +0800</lastBuildDate><atom:link href="https://atmosai.github.io/tags/netcdf/index.xml" rel="self" type="application/rss+xml"/><item><title>基于netcdf库的nc文件读写</title><link>https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</link><pubDate>Mon, 13 May 2019 12:20:13 +0800</pubDate><guid>https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</guid><description>NetCDF库提供了两种语言的函数API，一种是C，另一种是Fortran，其中又分为F77和F90两种方式的接口。通过函数开头的字符可以区</description></item><item><title>如何处理netCDF文件</title><link>https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/</link><pubDate>Tue, 13 Jun 2017 16:55:27 +0800</pubDate><guid>https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/</guid><description>NetCDF文件是自描述的二进制数据格式。所谓自描述就是自带属性信息，这和一般的雷达基数据格式不同，一般的雷达数据也是二进制的，但不是自描述</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>netcdf on bugsuse</title>
+    <link>https://atmosai.github.io/tags/netcdf/</link>
+    <description>Recent content in netcdf on bugsuse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 13 May 2019 12:20:13 +0800</lastBuildDate>
+    
+	<atom:link href="https://atmosai.github.io/tags/netcdf/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>基于netcdf库的nc文件读写</title>
+      <link>https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</link>
+      <pubDate>Mon, 13 May 2019 12:20:13 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</guid>
+      <description>NetCDF库提供了两种语言的函数API，一种是C，另一种是Fortran，其中又分为F77和F90两种方式的接口。通过函数开头的字符可以区</description>
+    </item>
+    
+    <item>
+      <title>如何处理netCDF文件</title>
+      <link>https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Tue, 13 Jun 2017 16:55:27 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2017/06/2017-06-13-%E4%BD%BF%E7%94%A8python%E5%A4%84%E7%90%86netcdf%E6%96%87%E4%BB%B6/</guid>
+      <description>NetCDF文件是自描述的二进制数据格式。所谓自描述就是自带属性信息，这和一般的雷达基数据格式不同，一般的雷达数据也是二进制的，但不是自描述</description>
+    </item>
+    
+  </channel>
+</rss>

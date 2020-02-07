@@ -1,60 +1,508 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Use statsmodels to Perform Linear Regression in Python | bugsuse</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="About LoveIt Theme"><link rel=prev href=https://atmosai.github.io/2018/11/2018-11-17-mac%E5%AE%89%E8%A3%85qgis/><link rel=next href=https://atmosai.github.io/2018/11/2018-11-19-wrf%E6%A8%A1%E5%BC%8F%E5%B5%8C%E5%A5%97%E6%A8%A1%E6%8B%9F/><link rel=canonical href=https://atmosai.github.io/2018/11/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta property="og:title" content="Use statsmodels to Perform Linear Regression in Python"><meta property="og:description" content="Often times, linear regression is associated with machine learning – a hot topic that receives a lot of attention in recent years. And so, in this tutorial, I’ll show you how to perform a linear regression in Python using statsmodels. I’ll use a simple example about the stock market to demonstrate this concept.
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Use statsmodels to Perform Linear Regression in Python | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="About LoveIt Theme"><link rel="prev" href="https://atmosai.github.io/2018/11/2018-11-17-mac%E5%AE%89%E8%A3%85qgis/" /><link rel="next" href="https://atmosai.github.io/2018/11/2018-11-19-wrf%E6%A8%A1%E5%BC%8F%E5%B5%8C%E5%A5%97%E6%A8%A1%E6%8B%9F/" /><link rel="canonical" href="https://atmosai.github.io/2018/11/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta property="og:title" content="Use statsmodels to Perform Linear Regression in Python" />
+<meta property="og:description" content="Often times, linear regression is associated with machine learning – a hot topic that receives a lot of attention in recent years. And so, in this tutorial, I’ll show you how to perform a linear regression in Python using statsmodels. I’ll use a simple example about the stock market to demonstrate this concept.
 Here are the topics to be covered:
- Background about Linear Regression Review of an Example with the Full Dataset The Python Code Interpreting the Regression Results Making Predictions based on the Regression Results  To start, I’ll share some background about linear regression."><meta property="og:type" content="article"><meta property="og:url" content="https://atmosai.github.io/2018/11/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python/"><meta property="article:published_time" content="2018-11-18T21:06:36+08:00"><meta property="article:modified_time" content="2018-11-18T21:06:36+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Use statsmodels to Perform Linear Regression in Python"><meta name=twitter:description content="Often times, linear regression is associated with machine learning – a hot topic that receives a lot of attention in recent years. And so, in this tutorial, I’ll show you how to perform a linear regression in Python using statsmodels. I’ll use a simple example about the stock market to demonstrate this concept.
+ Background about Linear Regression Review of an Example with the Full Dataset The Python Code Interpreting the Regression Results Making Predictions based on the Regression Results  To start, I’ll share some background about linear regression." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://atmosai.github.io/2018/11/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python/" />
+<meta property="article:published_time" content="2018-11-18T21:06:36+08:00" />
+<meta property="article:modified_time" content="2018-11-18T21:06:36+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Use statsmodels to Perform Linear Regression in Python"/>
+<meta name="twitter:description" content="Often times, linear regression is associated with machine learning – a hot topic that receives a lot of attention in recent years. And so, in this tutorial, I’ll show you how to perform a linear regression in Python using statsmodels. I’ll use a simple example about the stock market to demonstrate this concept.
 Here are the topics to be covered:
- Background about Linear Regression Review of an Example with the Full Dataset The Python Code Interpreting the Regression Results Making Predictions based on the Regression Results  To start, I’ll share some background about linear regression."><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Use statsmodels to Perform Linear Regression in Python","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/atmosai.github.io\/2018\/11\/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python\/"},"image":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"python, statsmodels","wordcount":1101,"url":"https:\/\/atmosai.github.io\/2018\/11\/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python\/","datePublished":"2018-11-18T21:06:36\x2b08:00","dateModified":"2018-11-18T21:06:36\x2b08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=navbar-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文><i class="fas fa-language fa-fw"></i></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">Use statsmodels to Perform Linear Regression in Python</h1><div class=post-meta><div class=post-meta-main><a class=author href=http://i-lightning.cn rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>bugsuse
-</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://atmosai.github.io/categories/tools/>Tools</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2018-11-18>2018-11-18</time>&nbsp;
-<i class="fas fa-pencil-alt fa-fw"></i>about 1101 words&nbsp;
-<i class="far fa-clock fa-fw"></i>6 min&nbsp;</div></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#about-linear-regression>About Linear Regression</a></li><li><a href=#an-example-with-the-dataset-to-be-used>An Example (with the Dataset to be used)</a></li><li><a href=#the-python-code-using-statsmodels>The Python Code using statsmodels</a></li><li><a href=#interpreting-the-regression-results>Interpreting the Regression Results</a></li><li><a href=#making-predictions-based-on-the-regression-results>Making Predictions based on the Regression Results</a></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
-<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#about-linear-regression>About Linear Regression</a></li><li><a href=#an-example-with-the-dataset-to-be-used>An Example (with the Dataset to be used)</a></li><li><a href=#the-python-code-using-statsmodels>The Python Code using statsmodels</a></li><li><a href=#interpreting-the-regression-results>Interpreting the Regression Results</a></li><li><a href=#making-predictions-based-on-the-regression-results>Making Predictions based on the Regression Results</a></li></ul></nav></div></details></div><div class=post-content><p>Often times, linear regression is associated with <em>machine learning</em> – a hot topic that receives a lot of attention in recent years. And so, in this tutorial, I’ll show you how to perform a linear regression in Python using <em>statsmodels.</em> I’ll use a simple example about the stock market to demonstrate this concept.</p><p>Here are the topics to be covered:</p><ul><li>Background about Linear Regression</li><li>Review of an Example with the Full Dataset</li><li>The Python Code</li><li>Interpreting the Regression Results</li><li>Making Predictions based on the Regression Results</li></ul><p>To start, I’ll share some background about linear regression.</p><a class=post-dummy-target id=about-linear-regression></a><h2>About Linear Regression</h2><p>Linear regression is used as a predictive model that assumes a linear relationship between the dependent variable (which is the variable we are trying to predict/estimate) and the independent variable/s (input variable/s used in the prediction).</p><p>For example, you may use linear regression to predict the price of the stock market (your dependent variable) based on the following Macroeconomics input variables:</p><ul><li>Interest Rate</li><li>Unemployment Rate</li></ul><p>Under Simple Linear Regression, only <em>one</em> independent/input variable is used to predict the dependent variable. It has the following structure:</p><center>Y = C + M*X</center><ul><li>Y = Dependent variable (output/outcome/prediction/estimation)</li><li>C = Constant (Y-Intercept)</li><li>M = Slope of the regression line (the effect that X has on Y)</li><li>X = Independent variable (input variable used in the prediction of Y)</li></ul><p>In reality, a relationship may exist between the dependent variable and <em>multiple</em> independent variables. For these types of models (assuming linearity), we can use <a href=https://datatofish.com/multiple-linear-regression-python/ target=_blank>Multiple Linear Regression</a> with the following structure:</p><center>Y = C + M1*X1 + M2*X2 + …</center>
-<a class=post-dummy-target id=an-example-with-the-dataset-to-be-used></a><h2>An Example (with the Dataset to be used)</h2><p>For illustration purposes, let’s suppose that you have a fictitious economy with the following parameters:</p><table><thead><tr><th><strong>Year</strong></th><th><strong>Month</strong></th><th><strong>Interest_Rate</strong></th><th><strong>Unemployment_Rate</strong></th><th><strong>Stock_Index_Price</strong></th></tr></thead><tbody><tr><td>2017</td><td>12</td><td>2.75</td><td>5.3</td><td>1464</td></tr><tr><td>2017</td><td>11</td><td>2.5</td><td>5.3</td><td>1394</td></tr><tr><td>2017</td><td>10</td><td>2.5</td><td>5.3</td><td>1357</td></tr><tr><td>2017</td><td>9</td><td>2.5</td><td>5.3</td><td>1293</td></tr><tr><td>2017</td><td>8</td><td>2.5</td><td>5.4</td><td>1256</td></tr><tr><td>2017</td><td>7</td><td>2.5</td><td>5.6</td><td>1254</td></tr><tr><td>2017</td><td>6</td><td>2.5</td><td>5.5</td><td>1234</td></tr><tr><td>2017</td><td>5</td><td>2.25</td><td>5.5</td><td>1195</td></tr><tr><td>2017</td><td>4</td><td>2.25</td><td>5.5</td><td>1159</td></tr><tr><td>2017</td><td>3</td><td>2.25</td><td>5.6</td><td>1167</td></tr><tr><td>2017</td><td>2</td><td>2</td><td>5.7</td><td>1130</td></tr><tr><td>2017</td><td>1</td><td>2</td><td>5.9</td><td>1075</td></tr><tr><td>2016</td><td>12</td><td>2</td><td>6</td><td>1047</td></tr><tr><td>2016</td><td>11</td><td>1.75</td><td>5.9</td><td>965</td></tr><tr><td>2016</td><td>10</td><td>1.75</td><td>5.8</td><td>943</td></tr><tr><td>2016</td><td>9</td><td>1.75</td><td>6.1</td><td>958</td></tr><tr><td>2016</td><td>8</td><td>1.75</td><td>6.2</td><td>971</td></tr><tr><td>2016</td><td>7</td><td>1.75</td><td>6.1</td><td>949</td></tr><tr><td>2016</td><td>6</td><td>1.75</td><td>6.1</td><td>884</td></tr><tr><td>2016</td><td>5</td><td>1.75</td><td>6.1</td><td>866</td></tr><tr><td>2016</td><td>4</td><td>1.75</td><td>5.9</td><td>876</td></tr><tr><td>2016</td><td>3</td><td>1.75</td><td>6.2</td><td>822</td></tr><tr><td>2016</td><td>2</td><td>1.75</td><td>6.2</td><td>704</td></tr><tr><td>2016</td><td>1</td><td>1.75</td><td>6.1</td><td>719</td></tr></tbody></table><p>The goal here is to predict/estimate the stock index price based on two Macroeconomics variables: the Interest rate and the Unemployment rate.</p><p>We will use <a href=https://datatofish.com/create-pandas-dataframe/ target=_blank>pandas DataFrame</a> to capture the above data in Python. Before we dive into the Python code, make sure that both the <em>statsmodels</em> and <em>pandas</em> packages are installed. You may use the <a href=https://datatofish.com/install-package-python-using-pip/ target=_blank>PIP method</a> to install those packages.</p><a class=post-dummy-target id=the-python-code-using-statsmodels></a><h2>The Python Code using statsmodels</h2><p>The following Python code includes an example of <a href=http://datatofish.com/multiple-linear-regression-python/ target=_blank>Multiple Linear Regression</a>, where the input variables are:</p><ul><li>Interest_Rate</li><li>Unemployment_Rate</li></ul><p>These two variables are used in the prediction of the dependent variable of <em>Stock_Index_Price</em>.</p><p>Alternatively, you can apply a Simple Linear Regression by keeping only one input variable within the code. For example, if you just want to use the interest rate as the input variable, simply use the following syntax of <em>X = df[‘Interest_Rate’]</em>, instead of using X = df[[‘Interest_Rate’,’Unemployment_Rate’]]</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>pandas</span> <span class=kn>import</span> <span class=n>DataFrame</span>
-<span class=kn>import</span> <span class=nn>statsmodels.api</span> <span class=kn>as</span> <span class=nn>sm</span>
+ Background about Linear Regression Review of an Example with the Full Dataset The Python Code Interpreting the Regression Results Making Predictions based on the Regression Results  To start, I’ll share some background about linear regression."/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Use statsmodels to Perform Linear Regression in Python",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/atmosai.github.io\/2018\/11\/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "python, statsmodels","wordcount":  1101 ,
+        "url": "https:\/\/atmosai.github.io\/2018\/11\/2018-11-18-use-statsmodels-to-perform-linear-regression-in-python\/","datePublished": "2018-11-18T21:06:36\x2b08:00","dateModified": "2018-11-18T21:06:36\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "xxxx",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://atmosai.github.io">bugsuse</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://atmosai.github.io">bugsuse</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">Use statsmodels to Perform Linear Regression in Python</h1><div class="post-meta">
+            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
+                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
+                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/tools/">Tools</a>&nbsp;</span></div>
+            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2018-11-18>2018-11-18</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>about 1101 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>6 min&nbsp;</div>
+        </div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#about-linear-regression">About Linear Regression</a></li>
+    <li><a href="#an-example-with-the-dataset-to-be-used">An Example (with the Dataset to be used)</a></li>
+    <li><a href="#the-python-code-using-statsmodels">The Python Code using statsmodels</a></li>
+    <li><a href="#interpreting-the-regression-results">Interpreting the Regression Results</a></li>
+    <li><a href="#making-predictions-based-on-the-regression-results">Making Predictions based on the Regression Results</a></li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#about-linear-regression">About Linear Regression</a></li>
+    <li><a href="#an-example-with-the-dataset-to-be-used">An Example (with the Dataset to be used)</a></li>
+    <li><a href="#the-python-code-using-statsmodels">The Python Code using statsmodels</a></li>
+    <li><a href="#interpreting-the-regression-results">Interpreting the Regression Results</a></li>
+    <li><a href="#making-predictions-based-on-the-regression-results">Making Predictions based on the Regression Results</a></li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><p>Often times, linear regression is associated with <em>machine learning</em> – a hot topic that receives a lot of attention in recent years. And so, in this tutorial, I’ll show you how to perform a linear regression in Python using <em>statsmodels.</em> I’ll use a simple example about the stock market to demonstrate this concept.</p>
+<p>Here are the topics to be covered:</p>
+<ul>
+<li>Background about Linear Regression</li>
+<li>Review of an Example with the Full Dataset</li>
+<li>The Python Code</li>
+<li>Interpreting the Regression Results</li>
+<li>Making Predictions based on the Regression Results</li>
+</ul>
+<p>To start, I’ll share some background about linear regression.</p>
+<a class="post-dummy-target" id="about-linear-regression"></a><h2>About Linear Regression</h2>
+<p>Linear regression is used as a predictive model that assumes a linear relationship between the dependent variable (which is the variable we are trying to predict/estimate) and the independent variable/s (input variable/s used in the prediction).</p>
+<p>For example, you may use linear regression to predict the price of the stock market (your dependent variable) based on the following Macroeconomics input variables:</p>
+<ul>
+<li>Interest Rate</li>
+<li>Unemployment Rate</li>
+</ul>
+<p>Under Simple Linear Regression, only <em>one</em> independent/input variable is used to predict the dependent variable. It has the following structure:</p>
+<center>Y = C + M*X</center>
+<ul>
+<li>Y = Dependent variable (output/outcome/prediction/estimation)</li>
+<li>C = Constant (Y-Intercept)</li>
+<li>M = Slope of the regression line (the effect that X has on Y)</li>
+<li>X = Independent variable (input variable used in the prediction of Y)</li>
+</ul>
+<p>In reality, a relationship may exist between the dependent variable and <em>multiple</em> independent variables. For these types of models (assuming linearity), we can use <a href="https://datatofish.com/multiple-linear-regression-python/" target="_blank">Multiple Linear Regression</a> with the following structure:</p>
+<center>Y = C + M1*X1 + M2*X2 + …</center>
+<a class="post-dummy-target" id="an-example-with-the-dataset-to-be-used"></a><h2>An Example (with the Dataset to be used)</h2>
+<p>For illustration purposes, let’s suppose that you have a fictitious economy with the following parameters:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Year</strong></th>
+<th><strong>Month</strong></th>
+<th><strong>Interest_Rate</strong></th>
+<th><strong>Unemployment_Rate</strong></th>
+<th><strong>Stock_Index_Price</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>12</td>
+<td>2.75</td>
+<td>5.3</td>
+<td>1464</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>11</td>
+<td>2.5</td>
+<td>5.3</td>
+<td>1394</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>10</td>
+<td>2.5</td>
+<td>5.3</td>
+<td>1357</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>9</td>
+<td>2.5</td>
+<td>5.3</td>
+<td>1293</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>8</td>
+<td>2.5</td>
+<td>5.4</td>
+<td>1256</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>7</td>
+<td>2.5</td>
+<td>5.6</td>
+<td>1254</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>6</td>
+<td>2.5</td>
+<td>5.5</td>
+<td>1234</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>5</td>
+<td>2.25</td>
+<td>5.5</td>
+<td>1195</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>4</td>
+<td>2.25</td>
+<td>5.5</td>
+<td>1159</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>3</td>
+<td>2.25</td>
+<td>5.6</td>
+<td>1167</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>2</td>
+<td>2</td>
+<td>5.7</td>
+<td>1130</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>1</td>
+<td>2</td>
+<td>5.9</td>
+<td>1075</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>12</td>
+<td>2</td>
+<td>6</td>
+<td>1047</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>11</td>
+<td>1.75</td>
+<td>5.9</td>
+<td>965</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>10</td>
+<td>1.75</td>
+<td>5.8</td>
+<td>943</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>9</td>
+<td>1.75</td>
+<td>6.1</td>
+<td>958</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>8</td>
+<td>1.75</td>
+<td>6.2</td>
+<td>971</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>7</td>
+<td>1.75</td>
+<td>6.1</td>
+<td>949</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>6</td>
+<td>1.75</td>
+<td>6.1</td>
+<td>884</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>5</td>
+<td>1.75</td>
+<td>6.1</td>
+<td>866</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>4</td>
+<td>1.75</td>
+<td>5.9</td>
+<td>876</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>3</td>
+<td>1.75</td>
+<td>6.2</td>
+<td>822</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>2</td>
+<td>1.75</td>
+<td>6.2</td>
+<td>704</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>1</td>
+<td>1.75</td>
+<td>6.1</td>
+<td>719</td>
+</tr>
+</tbody>
+</table>
+<p>The goal here is to predict/estimate the stock index price based on two Macroeconomics variables: the Interest rate and the Unemployment rate.</p>
+<p>We will use <a href="https://datatofish.com/create-pandas-dataframe/" target="_blank">pandas DataFrame</a> to capture the above data in Python. Before we dive into the Python code, make sure that both the <em>statsmodels</em> and <em>pandas</em> packages are installed. You may use the <a href="https://datatofish.com/install-package-python-using-pip/" target="_blank">PIP method</a> to install those packages.</p>
+<a class="post-dummy-target" id="the-python-code-using-statsmodels"></a><h2>The Python Code using statsmodels</h2>
+<p>The following Python code includes an example of <a href="http://datatofish.com/multiple-linear-regression-python/" target="_blank">Multiple Linear Regression</a>, where the input variables are:</p>
+<ul>
+<li>Interest_Rate</li>
+<li>Unemployment_Rate</li>
+</ul>
+<p>These two variables are used in the prediction of the dependent variable of <em>Stock_Index_Price</em>.</p>
+<p>Alternatively, you can apply a Simple Linear Regression by keeping only one input variable within the code. For example, if you just want to use the interest rate as the input variable, simply use the following syntax of <em>X = df[‘Interest_Rate’]</em>, instead of using X = df[[‘Interest_Rate’,’Unemployment_Rate’]]</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="kn">as</span> <span class="nn">sm</span>
 
-<span class=n>Stock_Market</span> <span class=o>=</span> <span class=p>{</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>Year</span><span class=s1>&#39;</span><span class=p>:</span> <span class=p>[</span><span class=mi>2017</span><span class=p>,</span><span class=mi>2017</span><span class=p>,</span><span class=mi>2017</span><span class=p>,</span><span class=mi>2017</span><span class=p>,</span><span class=mi>2017</span><span class=p>,</span><span class=mi>2017</span><span class=p>,</span><span class=mi>2017</span><span class=p>,</span><span class=mi>2017</span><span class=p>,</span><span class=mi>2017</span><span class=p>,</span><span class=mi>2017</span><span class=p>,</span><span class=mi>2017</span><span class=p>,</span><span class=mi>2017</span><span class=p>,</span><span class=mi>2016</span><span class=p>,</span><span class=mi>2016</span><span class=p>,</span><span class=mi>2016</span><span class=p>,</span><span class=mi>2016</span><span class=p>,</span><span class=mi>2016</span><span class=p>,</span><span class=mi>2016</span><span class=p>,</span><span class=mi>2016</span><span class=p>,</span><span class=mi>2016</span><span class=p>,</span><span class=mi>2016</span><span class=p>,</span><span class=mi>2016</span><span class=p>,</span><span class=mi>2016</span><span class=p>,</span><span class=mi>2016</span><span class=p>]</span><span class=p>,</span>
-                <span class=sa></span><span class=s1>&#39;</span><span class=s1>Month</span><span class=s1>&#39;</span><span class=p>:</span> <span class=p>[</span><span class=mi>12</span><span class=p>,</span> <span class=mi>11</span><span class=p>,</span><span class=mi>10</span><span class=p>,</span><span class=mi>9</span><span class=p>,</span><span class=mi>8</span><span class=p>,</span><span class=mi>7</span><span class=p>,</span><span class=mi>6</span><span class=p>,</span><span class=mi>5</span><span class=p>,</span><span class=mi>4</span><span class=p>,</span><span class=mi>3</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>1</span><span class=p>,</span><span class=mi>12</span><span class=p>,</span><span class=mi>11</span><span class=p>,</span><span class=mi>10</span><span class=p>,</span><span class=mi>9</span><span class=p>,</span><span class=mi>8</span><span class=p>,</span><span class=mi>7</span><span class=p>,</span><span class=mi>6</span><span class=p>,</span><span class=mi>5</span><span class=p>,</span><span class=mi>4</span><span class=p>,</span><span class=mi>3</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>1</span><span class=p>]</span><span class=p>,</span>
-                <span class=sa></span><span class=s1>&#39;</span><span class=s1>Interest_Rate</span><span class=s1>&#39;</span><span class=p>:</span> <span class=p>[</span><span class=mf>2.75</span><span class=p>,</span><span class=mf>2.5</span><span class=p>,</span><span class=mf>2.5</span><span class=p>,</span><span class=mf>2.5</span><span class=p>,</span><span class=mf>2.5</span><span class=p>,</span><span class=mf>2.5</span><span class=p>,</span><span class=mf>2.5</span><span class=p>,</span><span class=mf>2.25</span><span class=p>,</span><span class=mf>2.25</span><span class=p>,</span><span class=mf>2.25</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mf>1.75</span><span class=p>,</span><span class=mf>1.75</span><span class=p>,</span><span class=mf>1.75</span><span class=p>,</span><span class=mf>1.75</span><span class=p>,</span><span class=mf>1.75</span><span class=p>,</span><span class=mf>1.75</span><span class=p>,</span><span class=mf>1.75</span><span class=p>,</span><span class=mf>1.75</span><span class=p>,</span><span class=mf>1.75</span><span class=p>,</span><span class=mf>1.75</span><span class=p>,</span><span class=mf>1.75</span><span class=p>]</span><span class=p>,</span>
-                <span class=sa></span><span class=s1>&#39;</span><span class=s1>Unemployment_Rate</span><span class=s1>&#39;</span><span class=p>:</span> <span class=p>[</span><span class=mf>5.3</span><span class=p>,</span><span class=mf>5.3</span><span class=p>,</span><span class=mf>5.3</span><span class=p>,</span><span class=mf>5.3</span><span class=p>,</span><span class=mf>5.4</span><span class=p>,</span><span class=mf>5.6</span><span class=p>,</span><span class=mf>5.5</span><span class=p>,</span><span class=mf>5.5</span><span class=p>,</span><span class=mf>5.5</span><span class=p>,</span><span class=mf>5.6</span><span class=p>,</span><span class=mf>5.7</span><span class=p>,</span><span class=mf>5.9</span><span class=p>,</span><span class=mi>6</span><span class=p>,</span><span class=mf>5.9</span><span class=p>,</span><span class=mf>5.8</span><span class=p>,</span><span class=mf>6.1</span><span class=p>,</span><span class=mf>6.2</span><span class=p>,</span><span class=mf>6.1</span><span class=p>,</span><span class=mf>6.1</span><span class=p>,</span><span class=mf>6.1</span><span class=p>,</span><span class=mf>5.9</span><span class=p>,</span><span class=mf>6.2</span><span class=p>,</span><span class=mf>6.2</span><span class=p>,</span><span class=mf>6.1</span><span class=p>]</span><span class=p>,</span>
-                <span class=sa></span><span class=s1>&#39;</span><span class=s1>Stock_Index_Price</span><span class=s1>&#39;</span><span class=p>:</span> <span class=p>[</span><span class=mi>1464</span><span class=p>,</span><span class=mi>1394</span><span class=p>,</span><span class=mi>1357</span><span class=p>,</span><span class=mi>1293</span><span class=p>,</span><span class=mi>1256</span><span class=p>,</span><span class=mi>1254</span><span class=p>,</span><span class=mi>1234</span><span class=p>,</span><span class=mi>1195</span><span class=p>,</span><span class=mi>1159</span><span class=p>,</span><span class=mi>1167</span><span class=p>,</span><span class=mi>1130</span><span class=p>,</span><span class=mi>1075</span><span class=p>,</span><span class=mi>1047</span><span class=p>,</span><span class=mi>965</span><span class=p>,</span><span class=mi>943</span><span class=p>,</span><span class=mi>958</span><span class=p>,</span><span class=mi>971</span><span class=p>,</span><span class=mi>949</span><span class=p>,</span><span class=mi>884</span><span class=p>,</span><span class=mi>866</span><span class=p>,</span><span class=mi>876</span><span class=p>,</span><span class=mi>822</span><span class=p>,</span><span class=mi>704</span><span class=p>,</span><span class=mi>719</span><span class=p>]</span>        
-                <span class=p>}</span>
+<span class="n">Stock_Market</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Year</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2017</span><span class="p">,</span><span class="mi">2016</span><span class="p">,</span><span class="mi">2016</span><span class="p">,</span><span class="mi">2016</span><span class="p">,</span><span class="mi">2016</span><span class="p">,</span><span class="mi">2016</span><span class="p">,</span><span class="mi">2016</span><span class="p">,</span><span class="mi">2016</span><span class="p">,</span><span class="mi">2016</span><span class="p">,</span><span class="mi">2016</span><span class="p">,</span><span class="mi">2016</span><span class="p">,</span><span class="mi">2016</span><span class="p">,</span><span class="mi">2016</span><span class="p">]</span><span class="p">,</span>
+                <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Month</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span>
+                <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Interest_Rate</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.75</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">2.25</span><span class="p">,</span><span class="mf">2.25</span><span class="p">,</span><span class="mf">2.25</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mf">1.75</span><span class="p">,</span><span class="mf">1.75</span><span class="p">,</span><span class="mf">1.75</span><span class="p">,</span><span class="mf">1.75</span><span class="p">,</span><span class="mf">1.75</span><span class="p">,</span><span class="mf">1.75</span><span class="p">,</span><span class="mf">1.75</span><span class="p">,</span><span class="mf">1.75</span><span class="p">,</span><span class="mf">1.75</span><span class="p">,</span><span class="mf">1.75</span><span class="p">,</span><span class="mf">1.75</span><span class="p">]</span><span class="p">,</span>
+                <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Unemployment_Rate</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.3</span><span class="p">,</span><span class="mf">5.3</span><span class="p">,</span><span class="mf">5.3</span><span class="p">,</span><span class="mf">5.3</span><span class="p">,</span><span class="mf">5.4</span><span class="p">,</span><span class="mf">5.6</span><span class="p">,</span><span class="mf">5.5</span><span class="p">,</span><span class="mf">5.5</span><span class="p">,</span><span class="mf">5.5</span><span class="p">,</span><span class="mf">5.6</span><span class="p">,</span><span class="mf">5.7</span><span class="p">,</span><span class="mf">5.9</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mf">5.9</span><span class="p">,</span><span class="mf">5.8</span><span class="p">,</span><span class="mf">6.1</span><span class="p">,</span><span class="mf">6.2</span><span class="p">,</span><span class="mf">6.1</span><span class="p">,</span><span class="mf">6.1</span><span class="p">,</span><span class="mf">6.1</span><span class="p">,</span><span class="mf">5.9</span><span class="p">,</span><span class="mf">6.2</span><span class="p">,</span><span class="mf">6.2</span><span class="p">,</span><span class="mf">6.1</span><span class="p">]</span><span class="p">,</span>
+                <span class="sa"></span><span class="s1">&#39;</span><span class="s1">Stock_Index_Price</span><span class="s1">&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1464</span><span class="p">,</span><span class="mi">1394</span><span class="p">,</span><span class="mi">1357</span><span class="p">,</span><span class="mi">1293</span><span class="p">,</span><span class="mi">1256</span><span class="p">,</span><span class="mi">1254</span><span class="p">,</span><span class="mi">1234</span><span class="p">,</span><span class="mi">1195</span><span class="p">,</span><span class="mi">1159</span><span class="p">,</span><span class="mi">1167</span><span class="p">,</span><span class="mi">1130</span><span class="p">,</span><span class="mi">1075</span><span class="p">,</span><span class="mi">1047</span><span class="p">,</span><span class="mi">965</span><span class="p">,</span><span class="mi">943</span><span class="p">,</span><span class="mi">958</span><span class="p">,</span><span class="mi">971</span><span class="p">,</span><span class="mi">949</span><span class="p">,</span><span class="mi">884</span><span class="p">,</span><span class="mi">866</span><span class="p">,</span><span class="mi">876</span><span class="p">,</span><span class="mi">822</span><span class="p">,</span><span class="mi">704</span><span class="p">,</span><span class="mi">719</span><span class="p">]</span>        
+                <span class="p">}</span>
 
-<span class=n>df</span> <span class=o>=</span> <span class=n>DataFrame</span><span class=p>(</span><span class=n>Stock_Market</span><span class=p>,</span><span class=n>columns</span><span class=o>=</span><span class=p>[</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>Year</span><span class=s1>&#39;</span><span class=p>,</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>Month</span><span class=s1>&#39;</span><span class=p>,</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>Interest_Rate</span><span class=s1>&#39;</span><span class=p>,</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>Unemployment_Rate</span><span class=s1>&#39;</span><span class=p>,</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>Stock_Index_Price</span><span class=s1>&#39;</span><span class=p>]</span><span class=p>)</span> 
+<span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">Stock_Market</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Year</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Month</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Interest_Rate</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Unemployment_Rate</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Stock_Index_Price</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">)</span> 
 
-<span class=n>X</span> <span class=o>=</span> <span class=n>df</span><span class=p>[</span><span class=p>[</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>Interest_Rate</span><span class=s1>&#39;</span><span class=p>,</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>Unemployment_Rate</span><span class=s1>&#39;</span><span class=p>]</span><span class=p>]</span> <span class=c1># here we have 2 variables for multiple regression. If you just want to use one variable for simple linear regression, then use X = df[&#39;Interest_Rate&#39;] for example.Alternatively, you may add additional variables within the brackets</span>
-<span class=n>Y</span> <span class=o>=</span> <span class=n>df</span><span class=p>[</span><span class=sa></span><span class=s1>&#39;</span><span class=s1>Stock_Index_Price</span><span class=s1>&#39;</span><span class=p>]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Interest_Rate</span><span class="s1">&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Unemployment_Rate</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">]</span> <span class="c1"># here we have 2 variables for multiple regression. If you just want to use one variable for simple linear regression, then use X = df[&#39;Interest_Rate&#39;] for example.Alternatively, you may add additional variables within the brackets</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">Stock_Index_Price</span><span class="s1">&#39;</span><span class="p">]</span>
 
-<span class=n>X</span> <span class=o>=</span> <span class=n>sm</span><span class=o>.</span><span class=n>add_constant</span><span class=p>(</span><span class=n>X</span><span class=p>)</span> <span class=c1># adding a constant</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="c1"># adding a constant</span>
 
-<span class=n>model</span> <span class=o>=</span> <span class=n>sm</span><span class=o>.</span><span class=n>OLS</span><span class=p>(</span><span class=n>Y</span><span class=p>,</span> <span class=n>X</span><span class=p>)</span><span class=o>.</span><span class=n>fit</span><span class=p>(</span><span class=p>)</span>
-<span class=n>predictions</span> <span class=o>=</span> <span class=n>model</span><span class=o>.</span><span class=n>predict</span><span class=p>(</span><span class=n>X</span><span class=p>)</span> 
+<span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> 
 
-<span class=n>print_model</span> <span class=o>=</span> <span class=n>model</span><span class=o>.</span><span class=n>summary</span><span class=p>(</span><span class=p>)</span>
-<span class=k>print</span><span class=p>(</span><span class=n>print_model</span><span class=p>)</span>
-</code></pre></td></tr></table></div></div><p>This is the result that you’ll get once your run the Python code:</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://ws1.sinaimg.cn/large/006tNbRwly1fxcidznf8gj30m30cvdh7.jpg alt class=lazyload></figure></p><a class=post-dummy-target id=interpreting-the-regression-results></a><h2>Interpreting the Regression Results</h2><p>I highlighted several important components within the results:</p><ol><li><font color=red><strong>Adjusted. R-squared</strong></font>: reflects the fit of the model. R-squared values range from 0 to 1, where a higher value generally indicates a better fit, assuming certain conditions are met.</li><li><font color=green><strong>const coefficient</strong></font>: is your Y-intercept. It means that if both the Interest_Rate and Unemployment_Rate coefficients are zero, then the expected output (i.e., the Y) would be equal to the const coefficient.</li><li><font color=blue><strong>Interest_Rate coefficient</strong></font>: represents the change in the output Y due to a change of one unit in the interest rate (everything else held constant)</li><li><strong>Unemployment_Rate coefficient</strong> represents the change in the output Y due to a change of one unit in the unemployment rate (everything else held constant)</li><li><strong>std err</strong> reflects the level of accuracy of the coefficients. The lower it is, the higher is the level of accuracy</li><li><strong>P >|t|</strong> is your <em>p-value</em>. A p-value of less than 0.05 is considered to be statistically significant</li><li><strong>Confidence Interval</strong> represents the range in which our coefficients are likely to fall (with a likelihood of 95%)</li></ol><a class=post-dummy-target id=making-predictions-based-on-the-regression-results></a><h2>Making Predictions based on the Regression Results</h2><p>Recall that the equation for Multiple Linear Regression is:</p><center>Y = C + M1*X1 + M2*X2 + …</center><p>So for our example, it would look like this:</p><center>Stock_Index_Price = (<font color=green>const coef</font>) + (<font color=blue>Interest_Rate coef</font>)*X1 + (Unemployment_Rate coef)*X2</center><p>And this is how our equation would look like once we plug the coefficients:</p><center>Stock_Index_Price = (<font color=green>1798.4040</font>) + (<font color=blue>345.5401</font>)*X1 + (-250.1466)*X2</center><p>Let’s suppose that you want to predict the stock index price, where you just collected the following values for the first month of 2018:</p><ul><li>Interest Rate = 2.75 (i.e., X1= 2.75)</li><li>Unemployment Rate = 5.3 (i.e., X2= 5.3)</li></ul><p>When you plug those numbers you’ll get:</p><center>Stock_Index_Price = (1798.4040) + (345.5401)*X1 + (-250.1466)*X2</center>
-<center>Stock_Index_Price = (1798.4040) + (345.5401)*(2.75) + (-250.1466)*(5.3) = 1422.86</center><p>The predicted/estimated value for the Stock_Index_Price in January 2018 is therefore 1422.86.</p><p>The predicted value can eventually be compared with the actual value to check the level of accuracy. If, for example, the actual stock index price for that month turned out to be 1435, then the prediction would be off by 1435 – 1422.86 = 12.14</p><p>Disclaimer: this example should not be used as a predictive model for the stock market. It was based on a fictitious economy for illustration purposes only.</p><p>You may want to check the following tutorial that includes an <a href=https://datatofish.com/multiple-linear-regression-python/ target=_blank>example of multiple linear regression</a> using both sklearn and statsmodels.</p><p>Finally, for further information about the <em>statsmodels</em> module*,* please refer to the statsmodels <a href=https://www.statsmodels.org/stable/index.html target=_blank>documentation</a>.</p><p><a href=https://datatofish.com/statsmodels-linear-regression/ target=_blank>Here is original article.</a></p></div><div class=post-footer id=post-footer><div style="padding:10px 0;margin:20px auto;width:100%;font-size:16px;text-align:center"><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
-<span>打赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><a class=fancybox rel=group><img id=wechat_qr src=/img/Wechat.jpeg alt="WeChat Pay"></a><p>微信打赏</p></div><div id=alipay style=display:inline-block><a class=fancybox rel=group><img id=alipay_qr src=/img/Alipay.jpeg alt=Alipay></a><p>支付宝打赏</p></div></div></div><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2018-11-18</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-18-use-statsmodels-to-perform-linear-regression-in-python%2f&text=Use%20statsmodels%20to%20Perform%20Linear%20Regression%20in%20Python&via=xxxx" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-18-use-statsmodels-to-perform-linear-regression-in-python%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-18-use-statsmodels-to-perform-linear-regression-in-python%2f&title=Use%20statsmodels%20to%20Perform%20Linear%20Regression%20in%20Python" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-18-use-statsmodels-to-perform-linear-regression-in-python%2f&appkey=&title=Use%20statsmodels%20to%20Perform%20Linear%20Regression%20in%20Python" target=_blank title="Share on Weibo"><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://atmosai.github.io/tags/python/><i class="fas fa-tag fa-fw"></i>&nbsp;python</a>&nbsp;
-</span><span class=tag><a href=https://atmosai.github.io/tags/statsmodels/><i class="fas fa-tag fa-fw"></i>&nbsp;statsmodels</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://atmosai.github.io>Home</a></span></section></div><div class=post-nav><a href=https://atmosai.github.io/2018/11/2018-11-17-mac%E5%AE%89%E8%A3%85qgis/ class=prev rel=prev title=Mac安装QGIS><i class="fas fa-angle-left fa-fw"></i>Mac安装QGIS</a>
-<a href=https://atmosai.github.io/2018/11/2018-11-19-wrf%E6%A8%A1%E5%BC%8F%E5%B5%8C%E5%A5%97%E6%A8%A1%E6%8B%9F/ class=next rel=next title=WRF模式嵌套模拟>WRF模式嵌套模拟<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
-return;var dsq=document.createElement("script");dsq.type="text/javascript";dsq.async=true;var disqus_shortname="i-lightning-cn";dsq.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2016 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://atmosai.github.io target=_blank>bugsuse</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span></a>
-<script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-112932643-1','auto');ga('set','anonymizeIp',true);ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><script src=/js/blog.min.js></script></body></html>
+<span class="n">print_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">print_model</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This is the result that you’ll get once your run the Python code:</p>
+<p><figure><img src="/svg/loading.min.svg" data-sizes="auto" data-src="https://ws1.sinaimg.cn/large/006tNbRwly1fxcidznf8gj30m30cvdh7.jpg" alt="" class="lazyload"></figure></p>
+<a class="post-dummy-target" id="interpreting-the-regression-results"></a><h2>Interpreting the Regression Results</h2>
+<p>I highlighted several important components within the results:</p>
+<ol>
+<li><font color='red'><strong>Adjusted. R-squared</strong></font>:  reflects the fit of the model. R-squared values range from 0 to 1, where a higher value generally indicates a better fit, assuming certain conditions are met.</li>
+<li><font color='green'><strong>const coefficient</strong></font>:  is your Y-intercept. It means that if both the Interest_Rate and Unemployment_Rate coefficients are zero, then the expected output (i.e., the Y) would be equal to the const coefficient.</li>
+<li><font color='blue'><strong>Interest_Rate coefficient</strong></font>:  represents the change in the output Y due to a change of one unit in the interest rate (everything else held constant)</li>
+<li><strong>Unemployment_Rate coefficient</strong> represents the change in the output Y due to a change of one unit in the unemployment rate (everything else held constant)</li>
+<li><strong>std err</strong> reflects the level of accuracy of the coefficients. The lower it is, the higher is the level of accuracy</li>
+<li><strong>P &gt;|t|</strong> is your <em>p-value</em>. A p-value of less than 0.05 is considered to be statistically significant</li>
+<li><strong>Confidence Interval</strong> represents the range in which our coefficients are likely to fall (with a likelihood of 95%)</li>
+</ol>
+<a class="post-dummy-target" id="making-predictions-based-on-the-regression-results"></a><h2>Making Predictions based on the Regression Results</h2>
+<p>Recall that the equation for Multiple Linear Regression is:</p>
+<center>Y = C + M1*X1 + M2*X2 + …</center>
+<p>So for our example, it would look like this:</p>
+<center>Stock_Index_Price = (<font color='green'>const coef</font>) + (<font color='blue'>Interest_Rate coef</font>)*X1 + (Unemployment_Rate coef)*X2</center>
+<p>And this is how our equation would look like once we plug the coefficients:</p>
+<center>Stock_Index_Price = (<font color='green'>1798.4040</font>) + (<font color='blue'>345.5401</font>)*X1 + (-250.1466)*X2</center>
+<p>Let’s suppose that you want to predict the stock index price, where you just collected the following values for the first month of 2018:</p>
+<ul>
+<li>Interest Rate = 2.75 (i.e., X1= 2.75)</li>
+<li>Unemployment Rate = 5.3 (i.e., X2= 5.3)</li>
+</ul>
+<p>When you plug those numbers you’ll get:</p>
+<center>Stock_Index_Price = (1798.4040) + (345.5401)*X1 + (-250.1466)*X2</center>
+<center>Stock_Index_Price = (1798.4040) + (345.5401)*(2.75) + (-250.1466)*(5.3) = 1422.86</center>
+<p>The predicted/estimated value for the Stock_Index_Price in January 2018 is therefore 1422.86.</p>
+<p>The predicted value can eventually be compared with the actual value to check the level of accuracy. If, for example, the actual stock index price for that month turned out to be 1435, then the prediction would be off by 1435 – 1422.86 = 12.14</p>
+<p>Disclaimer: this example should not be used as a predictive model for the stock market. It was based on a fictitious economy for illustration purposes only.</p>
+<p>You may want to check the following tutorial that includes an <a href="https://datatofish.com/multiple-linear-regression-python/" target="_blank">example of multiple linear regression</a> using both sklearn and statsmodels.</p>
+<p>Finally, for further information about the <em>statsmodels</em> module*,* please refer to the statsmodels <a href="https://www.statsmodels.org/stable/index.html" target="_blank">documentation</a>.</p>
+<p><a href="https://datatofish.com/statsmodels-linear-regression/" target="_blank">Here is original article.</a></p>
+</div><div class="post-footer" id="post-footer">
+        <div style="padding: 10px 0; margin: 20px auto; width: 100%; font-size:16px; text-align: center;">
+        <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+            <span>打赏</span></button>
+        <div id="QR" style="display: none;">
+            <div id="wechat" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="wechat_qr" src="/img/Wechat.jpeg" alt="WeChat Pay"></a>
+                <p>微信打赏</p>
+            </div>
+            <div id="alipay" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="alipay_qr" src="/img/Alipay.jpeg" alt="Alipay"></a>
+                <p>支付宝打赏</p>
+            </div>
+        </div>
+    </div>
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2018-11-18</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-18-use-statsmodels-to-perform-linear-regression-in-python%2f&amp;text=Use%20statsmodels%20to%20Perform%20Linear%20Regression%20in%20Python&amp;via=xxxx" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-18-use-statsmodels-to-perform-linear-regression-in-python%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-18-use-statsmodels-to-perform-linear-regression-in-python%2f&amp;title=Use%20statsmodels%20to%20Perform%20Linear%20Regression%20in%20Python" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2018%2f11%2f2018-11-18-use-statsmodels-to-perform-linear-regression-in-python%2f&amp;appkey=&amp;title=Use%20statsmodels%20to%20Perform%20Linear%20Regression%20in%20Python" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a></span></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section><span class="tag">
+                        <a href="https://atmosai.github.io/tags/python/"><i class="fas fa-tag fa-fw"></i>&nbsp;python</a>&nbsp;
+                    </span><span class="tag">
+                        <a href="https://atmosai.github.io/tags/statsmodels/"><i class="fas fa-tag fa-fw"></i>&nbsp;statsmodels</a>&nbsp;
+                    </span></section>
+        <section>
+            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="https://atmosai.github.io/2018/11/2018-11-17-mac%E5%AE%89%E8%A3%85qgis/" class="prev" rel="prev" title="Mac安装QGIS"><i class="fas fa-angle-left fa-fw"></i>Mac安装QGIS</a>
+            <a href="https://atmosai.github.io/2018/11/2018-11-19-wrf%E6%A8%A1%E5%BC%8F%E5%B5%8C%E5%A5%97%E6%A8%A1%E6%8B%9F/" class="next" rel="next" title="WRF模式嵌套模拟">WRF模式嵌套模拟<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div class="post-comment"><div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                
+                
+                if (window.location.hostname == "localhost")
+                    return;
+                var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+                var disqus_shortname = "i-lightning-cn";
+                dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-112932643-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
+</html>

@@ -1,1 +1,25 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CAMx on bugsuse</title><link>https://atmosai.github.io/tags/camx/</link><description>Recent content in CAMx on bugsuse</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 15 May 2019 10:45:13 +0800</lastBuildDate><atom:link href="https://atmosai.github.io/tags/camx/index.xml" rel="self" type="application/rss+xml"/><item><title>CAMx来源解析模块(SA)</title><link>https://atmosai.github.io/2019/05/camx_chapter7_source_apportionment/</link><pubDate>Wed, 15 May 2019 10:45:13 +0800</pubDate><guid>https://atmosai.github.io/2019/05/camx_chapter7_source_apportionment/</guid><description>光化学模式通常用来制定减排策略来达到空气质量的目标。传统的方法涉及到运行大量的减排策略或**零排放(Zero-Out)**模拟，从而确定特定</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CAMx on bugsuse</title>
+    <link>https://atmosai.github.io/tags/camx/</link>
+    <description>Recent content in CAMx on bugsuse</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 15 May 2019 10:45:13 +0800</lastBuildDate>
+    
+	<atom:link href="https://atmosai.github.io/tags/camx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CAMx来源解析模块(SA)</title>
+      <link>https://atmosai.github.io/2019/05/camx_chapter7_source_apportionment/</link>
+      <pubDate>Wed, 15 May 2019 10:45:13 +0800</pubDate>
+      
+      <guid>https://atmosai.github.io/2019/05/camx_chapter7_source_apportionment/</guid>
+      <description>光化学模式通常用来制定减排策略来达到空气质量的目标。传统的方法涉及到运行大量的减排策略或**零排放(Zero-Out)**模拟，从而确定特定</description>
+    </item>
+    
+  </channel>
+</rss>

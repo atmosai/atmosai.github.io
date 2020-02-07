@@ -1,97 +1,532 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>基于netcdf库的nc文件读写 | bugsuse</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="About LoveIt Theme"><link rel=prev href=https://atmosai.github.io/2019/05/wrf-chem%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/><link rel=next href=https://atmosai.github.io/2019/05/dart_install_and_running/><link rel=canonical href=https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta property="og:title" content="基于netcdf库的nc文件读写"><meta property="og:description" content="NetCDF库提供了两种语言的函数API，一种是C，另一种是Fortran，其中又分为F77和F90两种方式的接口。通过函数开头的字符可以区"><meta property="og:type" content="article"><meta property="og:url" content="https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/"><meta property="article:published_time" content="2019-05-13T12:20:13+08:00"><meta property="article:modified_time" content="2019-05-13T12:20:13+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="基于netcdf库的nc文件读写"><meta name=twitter:description content="NetCDF库提供了两种语言的函数API，一种是C，另一种是Fortran，其中又分为F77和F90两种方式的接口。通过函数开头的字符可以区"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"基于netcdf库的nc文件读写","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/atmosai.github.io\/2019\/05\/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99\/"},"image":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"netcdf","wordcount":3090,"url":"https:\/\/atmosai.github.io\/2019\/05\/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99\/","datePublished":"2019-05-13T12:20:13\x2b08:00","dateModified":"2019-05-13T12:20:13\x2b08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/atmosai.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=navbar-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文><i class="fas fa-language fa-fw"></i></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://atmosai.github.io>bugsuse</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://atmosai.github.io/posts>Posts</a><a class=menu-item href=https://atmosai.github.io/atmos>Atmos</a><a class=menu-item href=https://atmosai.github.io/model>Model</a><a class=menu-item href=https://atmosai.github.io/tools>Tools</a><a class=menu-item href=https://atmosai.github.io/cheats>CheatSheet</a><a class=menu-item href=https://atmosai.github.io/tags>Tags</a><a class=menu-item href=https://atmosai.github.io/categories>Categories</a><a class=menu-item href=https://atmosai.github.io/about>About</a><a class=menu-item href=http://i-lightning.com title=简体中文></a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">基于netcdf库的nc文件读写</h1><div class=post-meta><div class=post-meta-main><a class=author href=http://i-lightning.cn rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>bugsuse
-</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://atmosai.github.io/categories/tools/>Tools</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-05-13>2019-05-13</time>&nbsp;
-<i class="fas fa-pencil-alt fa-fw"></i>about 3090 words&nbsp;
-<i class="far fa-clock fa-fw"></i>7 min&nbsp;</div></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#函数概览>函数概览</a><ul><li><a href=#文件和数据io函数>文件和数据I/O函数</a></li><li><a href=#维度操作函数>维度操作函数</a></li><li><a href=#变量操作函数>变量操作函数</a></li><li><a href=#属性操作函数>属性操作函数</a></li><li><a href=#组操作函数>组操作函数</a></li><li><a href=#错误处理函数>错误处理函数</a></li><li><a href=#用户自定义类型函数>用户自定义类型函数</a></li></ul></li><li><a href=#文件读取>文件读取</a><ul><li><a href=#读取已知名称的netcdf数据>读取已知名称的netCDF数据</a></li><li><a href=#读取未知名称的netcdf数据>读取未知名称的netCDF数据</a></li></ul></li><li><a href=#创建新文件>创建新文件</a><ul><li><a href=#创建新的nc文件对象>创建新的nc文件对象</a></li><li><a href=#定义维度变量>定义维度变量</a></li><li><a href=#定义新的变量>定义新的变量</a></li><li><a href=#结束维度和变量定义>结束维度和变量定义</a></li><li><a href=#写入数据>写入数据</a></li><li><a href=#关闭文件对象>关闭文件对象</a></li></ul></li><li><a href=#字符和数字转换>字符和数字转换</a></li><li><a href=#参考链接>参考链接</a></li><li><a href=#更新记录>更新记录</a></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
-<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#函数概览>函数概览</a><ul><li><a href=#文件和数据io函数>文件和数据I/O函数</a></li><li><a href=#维度操作函数>维度操作函数</a></li><li><a href=#变量操作函数>变量操作函数</a></li><li><a href=#属性操作函数>属性操作函数</a></li><li><a href=#组操作函数>组操作函数</a></li><li><a href=#错误处理函数>错误处理函数</a></li><li><a href=#用户自定义类型函数>用户自定义类型函数</a></li></ul></li><li><a href=#文件读取>文件读取</a><ul><li><a href=#读取已知名称的netcdf数据>读取已知名称的netCDF数据</a></li><li><a href=#读取未知名称的netcdf数据>读取未知名称的netCDF数据</a></li></ul></li><li><a href=#创建新文件>创建新文件</a><ul><li><a href=#创建新的nc文件对象>创建新的nc文件对象</a></li><li><a href=#定义维度变量>定义维度变量</a></li><li><a href=#定义新的变量>定义新的变量</a></li><li><a href=#结束维度和变量定义>结束维度和变量定义</a></li><li><a href=#写入数据>写入数据</a></li><li><a href=#关闭文件对象>关闭文件对象</a></li></ul></li><li><a href=#字符和数字转换>字符和数字转换</a></li><li><a href=#参考链接>参考链接</a></li><li><a href=#更新记录>更新记录</a></li></ul></nav></div></details></div><div class=post-content><p>NetCDF库提供了两种语言的函数API，一种是C，另一种是Fortran，其中又分为F77和F90两种方式的接口。通过函数开头的字符可以区分函数接口，C语言的函数接口以<code>nc_</code>开头，F77函数接口以<code>nf_</code>开头，F90函数接口以<code>nf90_</code>开头。</p><a class=post-dummy-target id=函数概览></a><h2>函数概览</h2><p>NetCDF库的函数操作分为几个类别，以下以C语言API为例，Fortran的API类似，可能函数的参数有些区别。</p><a class=post-dummy-target id=文件和数据io函数></a><h3>文件和数据I/O函数</h3><p>nc文件I/O操作包括文件的读写以及从内存中获取数据的函数，涉及上述操作时，还有一些辅助函数：比如控制打开文件对象定义模式，来操作文件的函数，以及查询函数(查询变量数，变量维度，全剧属性以及记录维度(这里所说的记录维度即是无限维度，即<code>unlimited dimension</code>)等等)。</p><blockquote><p>如果是打开已有文件，对已有文件进行编辑时，如添加新变量，维度，属性等信息，需要进入定义模式，然后修改完成后，为了保证文件中的内容是最新的，可使用<code>nc_sync</code>/<code>nf_sync</code>等函数更新文件。</p></blockquote><blockquote><p>NetCDF库的I/O操作函数除了能够接受文件之外，也可以是URL，但需要DAP支持。</p></blockquote><a class=post-dummy-target id=维度操作函数></a><h3>维度操作函数</h3><p>NetCDF库中提供的维度函数主要用于定义nc文件中数据的形状。定义/添加数据集维度，需要进入<strong>定义模式</strong>。每个维度都有一个名称和长度信息。在NetCDF文件中，维度通常分为<strong>记录维度</strong>/<strong>无限维度</strong>和<strong>非记录维度</strong>(常规维度)，</p><ul><li><strong>记录维度</strong>/<strong>无限维度</strong>：维度的长度是无限制的，变量在此维度可以不断增加，即通常时间维是<strong>记录维度</strong></li><li><strong>非记录维度</strong>：维度的长度是固定不变的，通常空间维度是非记录维度</li></ul><blockquote><p>netCDF classic 和 64位文件，最多只能有一个记录维度，但在netCDF4文件中可以有多个记录维度。</p></blockquote><p>netCDF文件的维度通常不能超过<code>NC_MAX_DIMS</code>所定义的值，变量的维度不能超过<code>NC_MAX_VAR_DIMS</code>的值，并且<code>NC_MAX_VAR_DIMS</code>不能超过<code>NC_MAX_DIMS</code>。</p><blockquote><p>通常，维度的长度和名称是固定的，名称可以在定义模式中改变，但是维度的长度(记录维度除外)是不能改变的。通过<code>nc_rename_dim</code>函数可重命名维度名。</p></blockquote><p>​</p><p>相关操作函数如下：</p><ul><li><code>nc_def_dim</code>：定义新维度</li><li><code>nc_inq_dim</code>：查询维度长度和名称</li><li><code>nc_inq_dimid</code>：根据名称查询维度ID</li><li><code>nc_inq_dimlen</code>：查询维度长度</li><li><code>nc_inq_dimname</code>：查询维度名称</li><li><code>nc_inq_ndims</code>：查询维度数</li><li><code>nc_inq_unlimdim</code>：查询无限维度ID</li><li><code>nc_rename_dim</code>：重命名维度</li></ul><p>​</p><a class=post-dummy-target id=变量操作函数></a><h3>变量操作函数</h3><p>NetCDF库中提供了大量关于变量的操作函数，大致分为以下几类：</p><ul><li><strong>变量定义函数</strong>：用于定义/添加新变量</li><li><strong>变量数据获取函数</strong>：此类函数可从变量中提取数据，此类函数提供了针对不同的数据类型的函数</li><li><strong>变量查询函数</strong>：此类变量用于查询文件中变量的信息</li><li><strong>变量数据I/O函数</strong>：用于写数据到变量，包括标量，向量，矩阵，数组，字符串/文本等操作函数</li><li><strong>变量功能函数</strong>：比如重命名，字符串资源释放，变量缓存等</li></ul><p>​</p><p>关于变量操作的更多信息和相关命令的使用说明见<a href=https://www.unidata.ucar.edu/software/netcdf/docs/group__variables.html target=_blank>这里</a></p><p>​</p><a class=post-dummy-target id=属性操作函数></a><h3>属性操作函数</h3><p>netCDF文件的属性操作通常是给文件添加<strong>全局属性</strong>或者给变量添加属性。NetCDF库中的属性操作包括：</p><ul><li><strong>属性获取函数</strong>：获取属性值</li><li><strong>属性查询函数</strong>：用于查询变量或者全局/组的属性信息</li><li><strong>属性添加函数</strong>：此类函数提供了大量的添加属性操作，而且针对不同的数据类型，提供了特定的函数</li><li><strong>其它功能函数</strong>：比如删除/重命名属性</li></ul><p>​</p><a class=post-dummy-target id=组操作函数></a><h3>组操作函数</h3><p>NetCDF库中关于组的操作是在NetCDF4中添加的，不支持NetCDF3 classic和64-bit offset文件。所谓的组就是支持多个并排存在的数据集合(就是一个年级以前只有一个班，现在可以有多个班)。</p><p>NetCDF库中提供了组的创建，查询，重命名等函数，更多信息见官方文档。</p><p>​</p><a class=post-dummy-target id=错误处理函数></a><h3>错误处理函数</h3><p>无论是C，F77还是F90的API，如果函数成功执行，都会返回0，否则返回对应错误的代码，然后可使用<code>nc_strerror</code>/<code>nf_strerror</code>等函数将错误代码转换为字符串信息。</p><blockquote><p>错误处理是程序设计所必需的，这对于错误的排查是非常关键的，所以在程序中应该时刻考虑这些异常情况的处理。</p></blockquote><p>​</p><a class=post-dummy-target id=用户自定义类型函数></a><h3>用户自定义类型函数</h3><p>NetCDF库支持用户自定义数据结构，并且提供了相当多的函数来自定义数据结构。更多信息见官方文档。</p><p>​</p><a class=post-dummy-target id=文件读取></a><h2>文件读取</h2><a class=post-dummy-target id=读取已知名称的netcdf数据></a><h3>读取已知名称的netCDF数据</h3><p>使用NetCDF库API从已有文件中去读已知变量名称的数据时，通常按照如下步骤：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-C data-lang=C><span class=n>nc_open</span> <span class=o>/</span> <span class=err>打</span><span class=err>开</span><span class=err>已</span><span class=err>有</span><span class=err>文</span><span class=err>件</span> <span class=o>/</span>
-    <span class=n>nc_inq_dimid</span>    <span class=o>/</span> <span class=err>获</span><span class=err>取</span><span class=err>维</span><span class=err>度</span><span class=n>ID</span>
-    <span class=o>/</span> <span class=err>其</span><span class=err>它</span><span class=err>操</span><span class=err>作</span>
-    <span class=n>nc_inq_varid</span>    <span class=o>/</span> <span class=err>获</span><span class=err>取</span><span class=err>变</span><span class=err>量</span><span class=n>ID</span>
-    <span class=o>/</span> <span class=err>其</span><span class=err>它</span><span class=err>操</span><span class=err>作</span>
-    <span class=n>nc_get_att</span>      <span class=o>/</span> <span class=err>获</span><span class=err>取</span><span class=err>属</span><span class=err>性</span><span class=err>值</span>
-    <span class=o>/</span> <span class=err>其</span><span class=err>它</span><span class=err>操</span><span class=err>作</span>
-    <span class=n>nc_get_var</span>      <span class=o>/</span> <span class=err>获</span><span class=err>取</span><span class=err>变</span><span class=err>量</span><span class=err>值</span>
-    <span class=o>/</span> <span class=err>其</span><span class=err>它</span><span class=err>操</span><span class=err>作</span>
-<span class=n>nc_close</span> <span class=o>/</span> <span class=err>关</span><span class=err>闭</span><span class=err>打</span><span class=err>开</span><span class=err>的</span><span class=err>文</span><span class=err>件</span>   
-</code></pre></td></tr></table></div></div><p>如果使用Fortran的API接口，则改为如下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fortran data-lang=fortran><span class=n>nf90_open</span>               <span class=c>! open existing netCDF dataset
-</span><span class=c></span>     <span class=p>.</span><span class=p>.</span><span class=p>.</span>
-   <span class=n>nf90_inq_dimid</span>       <span class=c>! get dimension IDs
-</span><span class=c></span>     <span class=p>.</span><span class=p>.</span><span class=p>.</span>
-   <span class=n>nf90_inq_varid</span>       <span class=c>! get variable IDs
-</span><span class=c></span>     <span class=p>.</span><span class=p>.</span><span class=p>.</span>
-   <span class=n>nf90_get_att</span>         <span class=c>! get attribute values
-</span><span class=c></span>     <span class=p>.</span><span class=p>.</span><span class=p>.</span>
-   <span class=n>nf90_get_var</span>         <span class=c>! get values of variables
-</span><span class=c></span>     <span class=p>.</span><span class=p>.</span><span class=p>.</span>
-<span class=n>nf90_close</span>              <span class=c>! close netcdf dataset
-</span></code></pre></td></tr></table></div></div><p>​</p><a class=post-dummy-target id=读取未知名称的netcdf数据></a><h3>读取未知名称的netCDF数据</h3><p>与已知变量名称不同时，如果不知道变量等信息的名称，那么需要调用查询函数获取关于netCDF对象的信息，操作步骤如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fortran data-lang=fortran><span class=n>nf90_open</span>                 <span class=c>! open existing netCDF dataset
-</span><span class=c></span>  <span class=p>.</span><span class=p>.</span><span class=p>.</span>
-<span class=n>nf90_inquire</span>              <span class=c>! find out what is in it
-</span><span class=c></span>     <span class=p>.</span><span class=p>.</span><span class=p>.</span>
-   <span class=n>nf90_inquire_dimension</span> <span class=c>! get dimension names, lengths
-</span><span class=c></span>     <span class=p>.</span><span class=p>.</span><span class=p>.</span>
-   <span class=n>nf90_inquire_variable</span>  <span class=c>! get variable names, types, shapes
-</span><span class=c></span>        <span class=p>.</span><span class=p>.</span><span class=p>.</span>
-      <span class=n>nf90_inq_attname</span>    <span class=c>! get attribute names
-</span><span class=c></span>        <span class=p>.</span><span class=p>.</span><span class=p>.</span>
-      <span class=n>nf90_inquire_attribute</span> <span class=c>! get other attribute information
-</span><span class=c></span>        <span class=p>.</span><span class=p>.</span><span class=p>.</span>
-      <span class=n>nf90_get_att</span>        <span class=c>! get attribute values
-</span><span class=c></span>        <span class=p>.</span><span class=p>.</span><span class=p>.</span>
-   <span class=n>nf90_get_var</span>           <span class=c>! get values of variables
-</span><span class=c></span>     <span class=p>.</span><span class=p>.</span><span class=p>.</span>
-<span class=n>nf90_close</span>                <span class=c>! close netcdf dataset
-</span></code></pre></td></tr></table></div></div><p>​</p><p>​</p><a class=post-dummy-target id=创建新文件></a><h2>创建新文件</h2><p>使用NetCDF库创建新nc文件，通常遵循如下步骤：</p><a class=post-dummy-target id=创建新的nc文件对象></a><h3>创建新的nc文件对象</h3><p>可以使用如下函数创建新的nc文件：</p><ul><li><code>nc_create</code>：C语言函数接口创建新nc文件函数</li><li><code>nf_create</code>：F77创建新nc文件函数</li><li><code>nf90_create</code>：F90创建新nc文件函数</li></ul><p>​</p><a class=post-dummy-target id=定义维度变量></a><h3>定义维度变量</h3><p>使用如下函数定义维度：</p><ul><li><code>nc_def_dim</code></li><li><code>nf_def_dim</code></li><li><code>nf90_def_dim</code></li></ul><blockquote><p>创建维度时，需要注意的是，维度分为记录维度和非记录维度，非记录维度是固定大小的维度，而记录维度时不知道大小的维度，比如时间维，通常是不知道要写入多少个时刻数据的，而空间维度，通常是可以固定大小。</p></blockquote><p>​</p><a class=post-dummy-target id=定义新的变量></a><h3>定义新的变量</h3><p>使用如下函数定义新变量：</p><ul><li><code>nc_def_var</code></li><li><code>nf_def_var</code></li><li><code>nf90_def_var</code></li></ul><p>定义新变量时通常会添加变量的属性信息，变量的属性有整型，浮点型和字符串等类型，针对不同类型的属性，需要使用特定的函数添加属性：</p><ul><li><code>nc_put_att_int</code>，<code>nf_put_att_int</code>，<code>nf90_put_att_int</code></li><li><code>nc_put_att_text</code>，<code>nf_put_att_text</code>，<code>nf90_put_att_text</code></li></ul><p>​</p><a class=post-dummy-target id=结束维度和变量定义></a><h3>结束维度和变量定义</h3><p>当维度和变量定义完成之后，需要使用定义结束函数结束定义阶段：</p><ul><li><code>nc_enddef</code></li><li><code>nf_enddef</code></li><li><code>nf90_enddef</code></li></ul><p>​</p><a class=post-dummy-target id=写入数据></a><h3>写入数据</h3><p>写入数据时，需要根据所写的变量类型选择相应的函数，比如变量是标量，向量，矩阵还是数组，又或者是字符串。</p><p>​</p><a class=post-dummy-target id=关闭文件对象></a><h3>关闭文件对象</h3><p>当上述步骤已经完成，不需要再添加任何信息时，需要使用如下函数关闭打开的文件对象：</p><ul><li><code>nc_close</code></li><li><code>nf_close</code></li><li><code>nf90_close</code></li></ul><blockquote><p>⚠️：在创建新文件时，如果定义的维度有记录维度，那么要确保记录维度位于最左侧(⚠️：这里所说的最左侧是nc文件中变量的最左侧，但是在程序中定义变量的时候，使用<code>nc_def_var</code>等定义变量时，记录维度应该位于最右侧)，否则会出现 <code>NetCDF: NC_UNLIMITED in the wrong index</code> 的错误。</p></blockquote><blockquote><p>定义变量的维度顺序与添加数据时变量的维度信息大小要一致，否则可能会出现<code>NetCDF: Start+count exceeds dimension bound</code>的错误。</p></blockquote><p>​</p><a class=post-dummy-target id=字符和数字转换></a><h2>字符和数字转换</h2><p>字符和数字间的转换，可以使用<code>write</code>语句，将变量看作<strong>内部文件</strong>。比如:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fortran data-lang=fortran><span class=kt>character</span><span class=p>(</span><span class=nb>len</span><span class=o>=</span><span class=mi>4</span><span class=p>)</span> <span class=kd>::</span> <span class=n>stryear</span>
-<span class=kt>character</span><span class=p>(</span><span class=nb>len</span><span class=o>=</span><span class=mi>2</span><span class=p>)</span> <span class=kd>::</span> <span class=n>strmonth</span>
-<span class=kt>integer</span> <span class=kd>::</span> <span class=n>year</span><span class=p>,</span> <span class=n>month</span>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>基于netcdf库的nc文件读写 | bugsuse</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="About LoveIt Theme"><link rel="prev" href="https://atmosai.github.io/2019/05/wrf-chem%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/" /><link rel="next" href="https://atmosai.github.io/2019/05/dart_install_and_running/" /><link rel="canonical" href="https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff"><meta property="og:title" content="基于netcdf库的nc文件读写" />
+<meta property="og:description" content="NetCDF库提供了两种语言的函数API，一种是C，另一种是Fortran，其中又分为F77和F90两种方式的接口。通过函数开头的字符可以区" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://atmosai.github.io/2019/05/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/" />
+<meta property="article:published_time" content="2019-05-13T12:20:13+08:00" />
+<meta property="article:modified_time" content="2019-05-13T12:20:13+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="基于netcdf库的nc文件读写"/>
+<meta name="twitter:description" content="NetCDF库提供了两种语言的函数API，一种是C，另一种是Fortran，其中又分为F77和F90两种方式的接口。通过函数开头的字符可以区"/>
+<script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "基于netcdf库的nc文件读写",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/atmosai.github.io\/2019\/05\/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "netcdf","wordcount":  3090 ,
+        "url": "https:\/\/atmosai.github.io\/2019\/05\/%E5%9F%BA%E4%BA%8Enetcdf%E5%BA%93%E7%9A%84nc%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99\/","datePublished": "2019-05-13T12:20:13\x2b08:00","dateModified": "2019-05-13T12:20:13\x2b08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "xxxx",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/atmosai.github.io\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"description": ""
+    }
+    </script><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/css/lib/animate/animate.min.css"></head>
+    <body><script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script><div class="wrapper"><nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://atmosai.github.io">bugsuse</a>
+        </div>
+        <div class="navbar-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"><i class="fas fa-language fa-fw"></i></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><nav class="navbar-mobile">
+    <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://atmosai.github.io">bugsuse</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu"><a class="menu-item" href="https://atmosai.github.io/posts" title="">Posts</a><a class="menu-item" href="https://atmosai.github.io/atmos" title="">Atmos</a><a class="menu-item" href="https://atmosai.github.io/model" title="">Model</a><a class="menu-item" href="https://atmosai.github.io/tools" title="">Tools</a><a class="menu-item" href="https://atmosai.github.io/cheats" title="">CheatSheet</a><a class="menu-item" href="https://atmosai.github.io/tags" title="">Tags</a><a class="menu-item" href="https://atmosai.github.io/categories" title="">Categories</a><a class="menu-item" href="https://atmosai.github.io/about" title="">About</a><a class="menu-item" href="http://i-lightning.com" title="简体中文"></a><a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container"><article class="page"><h1 class="post-title animated flipInX">基于netcdf库的nc文件读写</h1><div class="post-meta">
+            <div class="post-meta-main"><a class="author" href="http://i-lightning.cn" rel="author" target="_blank">
+                    <i class="fas fa-user-circle fa-fw"></i>bugsuse
+                </a>&nbsp;<span class="post-category">included in&nbsp;<i class="far fa-folder fa-fw"></i><a href="https://atmosai.github.io/categories/tools/">Tools</a>&nbsp;</span></div>
+            <div class="post-meta-other"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-05-13>2019-05-13</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>about 3090 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>7 min&nbsp;</div>
+        </div><div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">Contents</h2>
+                <div class="post-toc-content"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#函数概览">函数概览</a>
+      <ul>
+        <li><a href="#文件和数据io函数">文件和数据I/O函数</a></li>
+        <li><a href="#维度操作函数">维度操作函数</a></li>
+        <li><a href="#变量操作函数">变量操作函数</a></li>
+        <li><a href="#属性操作函数">属性操作函数</a></li>
+        <li><a href="#组操作函数">组操作函数</a></li>
+        <li><a href="#错误处理函数">错误处理函数</a></li>
+        <li><a href="#用户自定义类型函数">用户自定义类型函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#文件读取">文件读取</a>
+      <ul>
+        <li><a href="#读取已知名称的netcdf数据">读取已知名称的netCDF数据</a></li>
+        <li><a href="#读取未知名称的netcdf数据">读取未知名称的netCDF数据</a></li>
+      </ul>
+    </li>
+    <li><a href="#创建新文件">创建新文件</a>
+      <ul>
+        <li><a href="#创建新的nc文件对象">创建新的nc文件对象</a></li>
+        <li><a href="#定义维度变量">定义维度变量</a></li>
+        <li><a href="#定义新的变量">定义新的变量</a></li>
+        <li><a href="#结束维度和变量定义">结束维度和变量定义</a></li>
+        <li><a href="#写入数据">写入数据</a></li>
+        <li><a href="#关闭文件对象">关闭文件对象</a></li>
+      </ul>
+    </li>
+    <li><a href="#字符和数字转换">字符和数字转换</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+    <li><a href="#更新记录">更新记录</a></li>
+  </ul>
+</nav></div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary>
+                        <div class="post-toc-title">
+                            <span>Contents</span>
+                            <span><i class="details icon fas fa-angle-down"></i></span>
+                        </div>
+                    </summary>
+                    <div class="post-toc-content"><nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#函数概览">函数概览</a>
+      <ul>
+        <li><a href="#文件和数据io函数">文件和数据I/O函数</a></li>
+        <li><a href="#维度操作函数">维度操作函数</a></li>
+        <li><a href="#变量操作函数">变量操作函数</a></li>
+        <li><a href="#属性操作函数">属性操作函数</a></li>
+        <li><a href="#组操作函数">组操作函数</a></li>
+        <li><a href="#错误处理函数">错误处理函数</a></li>
+        <li><a href="#用户自定义类型函数">用户自定义类型函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#文件读取">文件读取</a>
+      <ul>
+        <li><a href="#读取已知名称的netcdf数据">读取已知名称的netCDF数据</a></li>
+        <li><a href="#读取未知名称的netcdf数据">读取未知名称的netCDF数据</a></li>
+      </ul>
+    </li>
+    <li><a href="#创建新文件">创建新文件</a>
+      <ul>
+        <li><a href="#创建新的nc文件对象">创建新的nc文件对象</a></li>
+        <li><a href="#定义维度变量">定义维度变量</a></li>
+        <li><a href="#定义新的变量">定义新的变量</a></li>
+        <li><a href="#结束维度和变量定义">结束维度和变量定义</a></li>
+        <li><a href="#写入数据">写入数据</a></li>
+        <li><a href="#关闭文件对象">关闭文件对象</a></li>
+      </ul>
+    </li>
+    <li><a href="#字符和数字转换">字符和数字转换</a></li>
+    <li><a href="#参考链接">参考链接</a></li>
+    <li><a href="#更新记录">更新记录</a></li>
+  </ul>
+</nav></div>
+                </details>
+            </div><div class="post-content"><p>NetCDF库提供了两种语言的函数API，一种是C，另一种是Fortran，其中又分为F77和F90两种方式的接口。通过函数开头的字符可以区分函数接口，C语言的函数接口以<code>nc_</code>开头，F77函数接口以<code>nf_</code>开头，F90函数接口以<code>nf90_</code>开头。</p>
+<a class="post-dummy-target" id="函数概览"></a><h2>函数概览</h2>
+<p>NetCDF库的函数操作分为几个类别，以下以C语言API为例，Fortran的API类似，可能函数的参数有些区别。</p>
+<a class="post-dummy-target" id="文件和数据io函数"></a><h3>文件和数据I/O函数</h3>
+<p>nc文件I/O操作包括文件的读写以及从内存中获取数据的函数，涉及上述操作时，还有一些辅助函数：比如控制打开文件对象定义模式，来操作文件的函数，以及查询函数(查询变量数，变量维度，全剧属性以及记录维度(这里所说的记录维度即是无限维度，即<code>unlimited dimension</code>)等等)。</p>
+<blockquote>
+<p>如果是打开已有文件，对已有文件进行编辑时，如添加新变量，维度，属性等信息，需要进入定义模式，然后修改完成后，为了保证文件中的内容是最新的，可使用<code>nc_sync</code>/<code>nf_sync</code>等函数更新文件。</p>
+</blockquote>
+<blockquote>
+<p>NetCDF库的I/O操作函数除了能够接受文件之外，也可以是URL，但需要DAP支持。</p>
+</blockquote>
+<a class="post-dummy-target" id="维度操作函数"></a><h3>维度操作函数</h3>
+<p>NetCDF库中提供的维度函数主要用于定义nc文件中数据的形状。定义/添加数据集维度，需要进入<strong>定义模式</strong>。每个维度都有一个名称和长度信息。在NetCDF文件中，维度通常分为<strong>记录维度</strong>/<strong>无限维度</strong>和<strong>非记录维度</strong>(常规维度)，</p>
+<ul>
+<li><strong>记录维度</strong>/<strong>无限维度</strong>：维度的长度是无限制的，变量在此维度可以不断增加，即通常时间维是<strong>记录维度</strong></li>
+<li><strong>非记录维度</strong>：维度的长度是固定不变的，通常空间维度是非记录维度</li>
+</ul>
+<blockquote>
+<p>netCDF classic 和 64位文件，最多只能有一个记录维度，但在netCDF4文件中可以有多个记录维度。</p>
+</blockquote>
+<p>netCDF文件的维度通常不能超过<code>NC_MAX_DIMS</code>所定义的值，变量的维度不能超过<code>NC_MAX_VAR_DIMS</code>的值，并且<code>NC_MAX_VAR_DIMS</code>不能超过<code>NC_MAX_DIMS</code>。</p>
+<blockquote>
+<p>通常，维度的长度和名称是固定的，名称可以在定义模式中改变，但是维度的长度(记录维度除外)是不能改变的。通过<code>nc_rename_dim</code>函数可重命名维度名。</p>
+</blockquote>
+<p>​</p>
+<p>相关操作函数如下：</p>
+<ul>
+<li><code>nc_def_dim</code>：定义新维度</li>
+<li><code>nc_inq_dim</code>：查询维度长度和名称</li>
+<li><code>nc_inq_dimid</code>：根据名称查询维度ID</li>
+<li><code>nc_inq_dimlen</code>：查询维度长度</li>
+<li><code>nc_inq_dimname</code>：查询维度名称</li>
+<li><code>nc_inq_ndims</code>：查询维度数</li>
+<li><code>nc_inq_unlimdim</code>：查询无限维度ID</li>
+<li><code>nc_rename_dim</code>：重命名维度</li>
+</ul>
+<p>​</p>
+<a class="post-dummy-target" id="变量操作函数"></a><h3>变量操作函数</h3>
+<p>NetCDF库中提供了大量关于变量的操作函数，大致分为以下几类：</p>
+<ul>
+<li><strong>变量定义函数</strong>：用于定义/添加新变量</li>
+<li><strong>变量数据获取函数</strong>：此类函数可从变量中提取数据，此类函数提供了针对不同的数据类型的函数</li>
+<li><strong>变量查询函数</strong>：此类变量用于查询文件中变量的信息</li>
+<li><strong>变量数据I/O函数</strong>：用于写数据到变量，包括标量，向量，矩阵，数组，字符串/文本等操作函数</li>
+<li><strong>变量功能函数</strong>：比如重命名，字符串资源释放，变量缓存等</li>
+</ul>
+<p>​</p>
+<p>关于变量操作的更多信息和相关命令的使用说明见<a href="https://www.unidata.ucar.edu/software/netcdf/docs/group__variables.html" target="_blank">这里</a></p>
+<p>​</p>
+<a class="post-dummy-target" id="属性操作函数"></a><h3>属性操作函数</h3>
+<p>netCDF文件的属性操作通常是给文件添加<strong>全局属性</strong>或者给变量添加属性。NetCDF库中的属性操作包括：</p>
+<ul>
+<li><strong>属性获取函数</strong>：获取属性值</li>
+<li><strong>属性查询函数</strong>：用于查询变量或者全局/组的属性信息</li>
+<li><strong>属性添加函数</strong>：此类函数提供了大量的添加属性操作，而且针对不同的数据类型，提供了特定的函数</li>
+<li><strong>其它功能函数</strong>：比如删除/重命名属性</li>
+</ul>
+<p>​</p>
+<a class="post-dummy-target" id="组操作函数"></a><h3>组操作函数</h3>
+<p>NetCDF库中关于组的操作是在NetCDF4中添加的，不支持NetCDF3 classic和64-bit offset文件。所谓的组就是支持多个并排存在的数据集合(就是一个年级以前只有一个班，现在可以有多个班)。</p>
+<p>NetCDF库中提供了组的创建，查询，重命名等函数，更多信息见官方文档。</p>
+<p>​</p>
+<a class="post-dummy-target" id="错误处理函数"></a><h3>错误处理函数</h3>
+<p>无论是C，F77还是F90的API，如果函数成功执行，都会返回0，否则返回对应错误的代码，然后可使用<code>nc_strerror</code>/<code>nf_strerror</code>等函数将错误代码转换为字符串信息。</p>
+<blockquote>
+<p>错误处理是程序设计所必需的，这对于错误的排查是非常关键的，所以在程序中应该时刻考虑这些异常情况的处理。</p>
+</blockquote>
+<p>​</p>
+<a class="post-dummy-target" id="用户自定义类型函数"></a><h3>用户自定义类型函数</h3>
+<p>NetCDF库支持用户自定义数据结构，并且提供了相当多的函数来自定义数据结构。更多信息见官方文档。</p>
+<p>​</p>
+<a class="post-dummy-target" id="文件读取"></a><h2>文件读取</h2>
+<a class="post-dummy-target" id="读取已知名称的netcdf数据"></a><h3>读取已知名称的netCDF数据</h3>
+<p>使用NetCDF库API从已有文件中去读已知变量名称的数据时，通常按照如下步骤：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-C" data-lang="C"><span class="n">nc_open</span> <span class="o">/</span> <span class="err">打</span><span class="err">开</span><span class="err">已</span><span class="err">有</span><span class="err">文</span><span class="err">件</span> <span class="o">/</span>
+    <span class="n">nc_inq_dimid</span>    <span class="o">/</span> <span class="err">获</span><span class="err">取</span><span class="err">维</span><span class="err">度</span><span class="n">ID</span>
+    <span class="o">/</span> <span class="err">其</span><span class="err">它</span><span class="err">操</span><span class="err">作</span>
+    <span class="n">nc_inq_varid</span>    <span class="o">/</span> <span class="err">获</span><span class="err">取</span><span class="err">变</span><span class="err">量</span><span class="n">ID</span>
+    <span class="o">/</span> <span class="err">其</span><span class="err">它</span><span class="err">操</span><span class="err">作</span>
+    <span class="n">nc_get_att</span>      <span class="o">/</span> <span class="err">获</span><span class="err">取</span><span class="err">属</span><span class="err">性</span><span class="err">值</span>
+    <span class="o">/</span> <span class="err">其</span><span class="err">它</span><span class="err">操</span><span class="err">作</span>
+    <span class="n">nc_get_var</span>      <span class="o">/</span> <span class="err">获</span><span class="err">取</span><span class="err">变</span><span class="err">量</span><span class="err">值</span>
+    <span class="o">/</span> <span class="err">其</span><span class="err">它</span><span class="err">操</span><span class="err">作</span>
+<span class="n">nc_close</span> <span class="o">/</span> <span class="err">关</span><span class="err">闭</span><span class="err">打</span><span class="err">开</span><span class="err">的</span><span class="err">文</span><span class="err">件</span>   
+</code></pre></td></tr></table>
+</div>
+</div><p>如果使用Fortran的API接口，则改为如下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fortran" data-lang="fortran"><span class="n">nf90_open</span>               <span class="c">! open existing netCDF dataset
+</span><span class="c"></span>     <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+   <span class="n">nf90_inq_dimid</span>       <span class="c">! get dimension IDs
+</span><span class="c"></span>     <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+   <span class="n">nf90_inq_varid</span>       <span class="c">! get variable IDs
+</span><span class="c"></span>     <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+   <span class="n">nf90_get_att</span>         <span class="c">! get attribute values
+</span><span class="c"></span>     <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+   <span class="n">nf90_get_var</span>         <span class="c">! get values of variables
+</span><span class="c"></span>     <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="n">nf90_close</span>              <span class="c">! close netcdf dataset
+</span></code></pre></td></tr></table>
+</div>
+</div><p>​</p>
+<a class="post-dummy-target" id="读取未知名称的netcdf数据"></a><h3>读取未知名称的netCDF数据</h3>
+<p>与已知变量名称不同时，如果不知道变量等信息的名称，那么需要调用查询函数获取关于netCDF对象的信息，操作步骤如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fortran" data-lang="fortran"><span class="n">nf90_open</span>                 <span class="c">! open existing netCDF dataset
+</span><span class="c"></span>  <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="n">nf90_inquire</span>              <span class="c">! find out what is in it
+</span><span class="c"></span>     <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+   <span class="n">nf90_inquire_dimension</span> <span class="c">! get dimension names, lengths
+</span><span class="c"></span>     <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+   <span class="n">nf90_inquire_variable</span>  <span class="c">! get variable names, types, shapes
+</span><span class="c"></span>        <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+      <span class="n">nf90_inq_attname</span>    <span class="c">! get attribute names
+</span><span class="c"></span>        <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+      <span class="n">nf90_inquire_attribute</span> <span class="c">! get other attribute information
+</span><span class="c"></span>        <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+      <span class="n">nf90_get_att</span>        <span class="c">! get attribute values
+</span><span class="c"></span>        <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+   <span class="n">nf90_get_var</span>           <span class="c">! get values of variables
+</span><span class="c"></span>     <span class="p">.</span><span class="p">.</span><span class="p">.</span>
+<span class="n">nf90_close</span>                <span class="c">! close netcdf dataset
+</span></code></pre></td></tr></table>
+</div>
+</div><p>​</p>
+<p>​</p>
+<a class="post-dummy-target" id="创建新文件"></a><h2>创建新文件</h2>
+<p>使用NetCDF库创建新nc文件，通常遵循如下步骤：</p>
+<a class="post-dummy-target" id="创建新的nc文件对象"></a><h3>创建新的nc文件对象</h3>
+<p>可以使用如下函数创建新的nc文件：</p>
+<ul>
+<li><code>nc_create</code>：C语言函数接口创建新nc文件函数</li>
+<li><code>nf_create</code>：F77创建新nc文件函数</li>
+<li><code>nf90_create</code>：F90创建新nc文件函数</li>
+</ul>
+<p>​</p>
+<a class="post-dummy-target" id="定义维度变量"></a><h3>定义维度变量</h3>
+<p>使用如下函数定义维度：</p>
+<ul>
+<li><code>nc_def_dim</code></li>
+<li><code>nf_def_dim</code></li>
+<li><code>nf90_def_dim</code></li>
+</ul>
+<blockquote>
+<p>创建维度时，需要注意的是，维度分为记录维度和非记录维度，非记录维度是固定大小的维度，而记录维度时不知道大小的维度，比如时间维，通常是不知道要写入多少个时刻数据的，而空间维度，通常是可以固定大小。</p>
+</blockquote>
+<p>​</p>
+<a class="post-dummy-target" id="定义新的变量"></a><h3>定义新的变量</h3>
+<p>使用如下函数定义新变量：</p>
+<ul>
+<li><code>nc_def_var</code></li>
+<li><code>nf_def_var</code></li>
+<li><code>nf90_def_var</code></li>
+</ul>
+<p>定义新变量时通常会添加变量的属性信息，变量的属性有整型，浮点型和字符串等类型，针对不同类型的属性，需要使用特定的函数添加属性：</p>
+<ul>
+<li><code>nc_put_att_int</code>，<code>nf_put_att_int</code>，<code>nf90_put_att_int</code></li>
+<li><code>nc_put_att_text</code>，<code>nf_put_att_text</code>，<code>nf90_put_att_text</code></li>
+</ul>
+<p>​</p>
+<a class="post-dummy-target" id="结束维度和变量定义"></a><h3>结束维度和变量定义</h3>
+<p>当维度和变量定义完成之后，需要使用定义结束函数结束定义阶段：</p>
+<ul>
+<li><code>nc_enddef</code></li>
+<li><code>nf_enddef</code></li>
+<li><code>nf90_enddef</code></li>
+</ul>
+<p>​</p>
+<a class="post-dummy-target" id="写入数据"></a><h3>写入数据</h3>
+<p>写入数据时，需要根据所写的变量类型选择相应的函数，比如变量是标量，向量，矩阵还是数组，又或者是字符串。</p>
+<p>​</p>
+<a class="post-dummy-target" id="关闭文件对象"></a><h3>关闭文件对象</h3>
+<p>当上述步骤已经完成，不需要再添加任何信息时，需要使用如下函数关闭打开的文件对象：</p>
+<ul>
+<li><code>nc_close</code></li>
+<li><code>nf_close</code></li>
+<li><code>nf90_close</code></li>
+</ul>
+<blockquote>
+<p>⚠️：在创建新文件时，如果定义的维度有记录维度，那么要确保记录维度位于最左侧(⚠️：这里所说的最左侧是nc文件中变量的最左侧，但是在程序中定义变量的时候，使用<code>nc_def_var</code>等定义变量时，记录维度应该位于最右侧)，否则会出现 <code>NetCDF: NC_UNLIMITED in the wrong index</code> 的错误。</p>
+</blockquote>
+<blockquote>
+<p>定义变量的维度顺序与添加数据时变量的维度信息大小要一致，否则可能会出现<code>NetCDF: Start+count exceeds dimension bound</code>的错误。</p>
+</blockquote>
+<p>​</p>
+<a class="post-dummy-target" id="字符和数字转换"></a><h2>字符和数字转换</h2>
+<p>字符和数字间的转换，可以使用<code>write</code>语句，将变量看作<strong>内部文件</strong>。比如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fortran" data-lang="fortran"><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="kd">::</span> <span class="n">stryear</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="kd">::</span> <span class="n">strmonth</span>
+<span class="kt">integer</span> <span class="kd">::</span> <span class="n">year</span><span class="p">,</span> <span class="n">month</span>
 
-<span class=k>write</span><span class=p>(</span><span class=n>stryear</span><span class=p>,</span> <span class=s2>&#34;(I4.4)&#34;</span><span class=p>)</span> <span class=n>year</span>
-<span class=k>write</span><span class=p>(</span><span class=n>strmonth</span><span class=p>,</span> <span class=s2>&#34;(I2.2)&#34;</span><span class=p>)</span> <span class=n>month</span> 
-</code></pre></td></tr></table></div></div><p>对于不足两位或者四位的，用0补齐。</p><blockquote><p>进行数字和字符转换时，要注意定义的字符串的长度和转换数字为字符后的长度是否一致，如果长度不一致可能会出错: “output statement overflows record”</p></blockquote><p>​</p><a class=post-dummy-target id=参考链接></a><h2>参考链接</h2><ol><li><p><a href=https://www.unidata.ucar.edu/software/netcdf/docs/modules.html>https://www.unidata.ucar.edu/software/netcdf/docs/modules.html</a></p></li><li><p><a href=https://climate-cms.org/2018/10/12/create-netcdf.html>https://climate-cms.org/2018/10/12/create-netcdf.html</a></p></li><li><p>[http://people.sc.fsu.edu/~jburkardt%20/f_src/netcdf/netcdf.html](<a href=http://people.sc.fsu.edu/~jburkardt>http://people.sc.fsu.edu/~jburkardt</a> /f_src/netcdf/netcdf.html)</p></li><li><p><a href=https://www.unidata.ucar.edu/software/netcdf/fortran/docs/>https://www.unidata.ucar.edu/software/netcdf/fortran/docs/</a></p></li><li><p><a href=http://www.met.reading.ac.uk/~ross/Computing/netCDF.html>http://www.met.reading.ac.uk/~ross/Computing/netCDF.html</a></p></li><li><p><a href=https://stackoverflow.com/questions/29463305/fortran-output-statement-overflows-record-error-when-naming-output-files>https://stackoverflow.com/questions/29463305/fortran-output-statement-overflows-record-error-when-naming-output-files</a></p></li></ol><p>​</p><a class=post-dummy-target id=更新记录></a><h2>更新记录</h2><p>2019.05.13 添加函数概览和创建新文件部分</p><p>2019.05.14 添加文件读取</p><p>2019.05.18 添加字符串和数字转换</p></div><div class=post-footer id=post-footer><div style="padding:10px 0;margin:20px auto;width:100%;font-size:16px;text-align:center"><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
-<span>打赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><a class=fancybox rel=group><img id=wechat_qr src=/img/Wechat.jpeg alt="WeChat Pay"></a><p>微信打赏</p></div><div id=alipay style=display:inline-block><a class=fancybox rel=group><img id=alipay_qr src=/img/Alipay.jpeg alt=Alipay></a><p>支付宝打赏</p></div></div></div><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2019-05-13</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2019%2f05%2f%25E5%259F%25BA%25E4%25BA%258Enetcdf%25E5%25BA%2593%25E7%259A%2584nc%25E6%2596%2587%25E4%25BB%25B6%25E8%25AF%25BB%25E5%2586%2599%2f&text=%e5%9f%ba%e4%ba%8enetcdf%e5%ba%93%e7%9a%84nc%e6%96%87%e4%bb%b6%e8%af%bb%e5%86%99&via=xxxx" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2019%2f05%2f%25E5%259F%25BA%25E4%25BA%258Enetcdf%25E5%25BA%2593%25E7%259A%2584nc%25E6%2596%2587%25E4%25BB%25B6%25E8%25AF%25BB%25E5%2586%2599%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2019%2f05%2f%25E5%259F%25BA%25E4%25BA%258Enetcdf%25E5%25BA%2593%25E7%259A%2584nc%25E6%2596%2587%25E4%25BB%25B6%25E8%25AF%25BB%25E5%2586%2599%2f&title=%e5%9f%ba%e4%ba%8enetcdf%e5%ba%93%e7%9a%84nc%e6%96%87%e4%bb%b6%e8%af%bb%e5%86%99" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2019%2f05%2f%25E5%259F%25BA%25E4%25BA%258Enetcdf%25E5%25BA%2593%25E7%259A%2584nc%25E6%2596%2587%25E4%25BB%25B6%25E8%25AF%25BB%25E5%2586%2599%2f&appkey=&title=%e5%9f%ba%e4%ba%8enetcdf%e5%ba%93%e7%9a%84nc%e6%96%87%e4%bb%b6%e8%af%bb%e5%86%99" target=_blank title="Share on Weibo"><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://atmosai.github.io/tags/netcdf/><i class="fas fa-tag fa-fw"></i>&nbsp;netcdf</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://atmosai.github.io>Home</a></span></section></div><div class=post-nav><a href=https://atmosai.github.io/2019/05/wrf-chem%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/ class=prev rel=prev title=WRF-Chem编译安装及运行指南><i class="fas fa-angle-left fa-fw"></i>WRF-Chem编译安装及运行指南</a>
-<a href=https://atmosai.github.io/2019/05/dart_install_and_running/ class=next rel=next title=DART资料同化模块>DART资料同化模块<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
-return;var dsq=document.createElement("script");dsq.type="text/javascript";dsq.async=true;var disqus_shortname="i-lightning-cn";dsq.src="//"+disqus_shortname+".disqus.com/embed.js";(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(dsq);})();</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2016 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://atmosai.github.io target=_blank>bugsuse</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span></a>
-<script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-112932643-1','auto');ga('set','anonymizeIp',true);ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><script src=/js/blog.min.js></script></body></html>
+<span class="k">write</span><span class="p">(</span><span class="n">stryear</span><span class="p">,</span> <span class="s2">&#34;(I4.4)&#34;</span><span class="p">)</span> <span class="n">year</span>
+<span class="k">write</span><span class="p">(</span><span class="n">strmonth</span><span class="p">,</span> <span class="s2">&#34;(I2.2)&#34;</span><span class="p">)</span> <span class="n">month</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>对于不足两位或者四位的，用0补齐。</p>
+<blockquote>
+<p>进行数字和字符转换时，要注意定义的字符串的长度和转换数字为字符后的长度是否一致，如果长度不一致可能会出错:  “output statement overflows record”</p>
+</blockquote>
+<p>​</p>
+<a class="post-dummy-target" id="参考链接"></a><h2>参考链接</h2>
+<ol>
+<li>
+<p><a href="https://www.unidata.ucar.edu/software/netcdf/docs/modules.html">https://www.unidata.ucar.edu/software/netcdf/docs/modules.html</a></p>
+</li>
+<li>
+<p><a href="https://climate-cms.org/2018/10/12/create-netcdf.html">https://climate-cms.org/2018/10/12/create-netcdf.html</a></p>
+</li>
+<li>
+<p>[http://people.sc.fsu.edu/~jburkardt%20/f_src/netcdf/netcdf.html](<a href="http://people.sc.fsu.edu/~jburkardt">http://people.sc.fsu.edu/~jburkardt</a> /f_src/netcdf/netcdf.html)</p>
+</li>
+<li>
+<p><a href="https://www.unidata.ucar.edu/software/netcdf/fortran/docs/">https://www.unidata.ucar.edu/software/netcdf/fortran/docs/</a></p>
+</li>
+<li>
+<p><a href="http://www.met.reading.ac.uk/~ross/Computing/netCDF.html">http://www.met.reading.ac.uk/~ross/Computing/netCDF.html</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/29463305/fortran-output-statement-overflows-record-error-when-naming-output-files">https://stackoverflow.com/questions/29463305/fortran-output-statement-overflows-record-error-when-naming-output-files</a></p>
+</li>
+</ol>
+<p>​</p>
+<a class="post-dummy-target" id="更新记录"></a><h2>更新记录</h2>
+<p>2019.05.13 添加函数概览和创建新文件部分</p>
+<p>2019.05.14 添加文件读取</p>
+<p>2019.05.18 添加字符串和数字转换</p>
+</div><div class="post-footer" id="post-footer">
+        <div style="padding: 10px 0; margin: 20px auto; width: 100%; font-size:16px; text-align: center;">
+        <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+            <span>打赏</span></button>
+        <div id="QR" style="display: none;">
+            <div id="wechat" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="wechat_qr" src="/img/Wechat.jpeg" alt="WeChat Pay"></a>
+                <p>微信打赏</p>
+            </div>
+            <div id="alipay" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="alipay_qr" src="/img/Alipay.jpeg" alt="Alipay"></a>
+                <p>支付宝打赏</p>
+            </div>
+        </div>
+    </div>
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2019-05-13</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"><span><a href="//twitter.com/share?url=https%3a%2f%2fatmosai.github.io%2f2019%2f05%2f%25E5%259F%25BA%25E4%25BA%258Enetcdf%25E5%25BA%2593%25E7%259A%2584nc%25E6%2596%2587%25E4%25BB%25B6%25E8%25AF%25BB%25E5%2586%2599%2f&amp;text=%e5%9f%ba%e4%ba%8enetcdf%e5%ba%93%e7%9a%84nc%e6%96%87%e4%bb%b6%e8%af%bb%e5%86%99&amp;via=xxxx" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fatmosai.github.io%2f2019%2f05%2f%25E5%259F%25BA%25E4%25BA%258Enetcdf%25E5%25BA%2593%25E7%259A%2584nc%25E6%2596%2587%25E4%25BB%25B6%25E8%25AF%25BB%25E5%2586%2599%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a><a href="//reddit.com/submit?url=https%3a%2f%2fatmosai.github.io%2f2019%2f05%2f%25E5%259F%25BA%25E4%25BA%258Enetcdf%25E5%25BA%2593%25E7%259A%2584nc%25E6%2596%2587%25E4%25BB%25B6%25E8%25AF%25BB%25E5%2586%2599%2f&amp;title=%e5%9f%ba%e4%ba%8enetcdf%e5%ba%93%e7%9a%84nc%e6%96%87%e4%bb%b6%e8%af%bb%e5%86%99" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a><a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fatmosai.github.io%2f2019%2f05%2f%25E5%259F%25BA%25E4%25BA%258Enetcdf%25E5%25BA%2593%25E7%259A%2584nc%25E6%2596%2587%25E4%25BB%25B6%25E8%25AF%25BB%25E5%2586%2599%2f&amp;appkey=&amp;title=%e5%9f%ba%e4%ba%8enetcdf%e5%ba%93%e7%9a%84nc%e6%96%87%e4%bb%b6%e8%af%bb%e5%86%99" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a></span></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section><span class="tag">
+                        <a href="https://atmosai.github.io/tags/netcdf/"><i class="fas fa-tag fa-fw"></i>&nbsp;netcdf</a>&nbsp;
+                    </span></section>
+        <section>
+            <span><a href="javascript:window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="https://atmosai.github.io">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="https://atmosai.github.io/2019/05/wrf-chem%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E5%8F%8A%E8%BF%90%E8%A1%8C%E6%8C%87%E5%8D%97/" class="prev" rel="prev" title="WRF-Chem编译安装及运行指南"><i class="fas fa-angle-left fa-fw"></i>WRF-Chem编译安装及运行指南</a>
+            <a href="https://atmosai.github.io/2019/05/dart_install_and_running/" class="next" rel="next" title="DART资料同化模块">DART资料同化模块<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div class="post-comment"><div id="disqus_thread"></div>
+        <script type="text/javascript">
+            (function() {
+                
+                
+                if (window.location.hostname == "localhost")
+                    return;
+                var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+                var disqus_shortname = "i-lightning-cn";
+                dsq.src = "//" + disqus_shortname + ".disqus.com/embed.js";
+                (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+    </article></div>
+            </main><footer class="footer">
+    <div class="copyright"><div class="copyright-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+
+        <div class="copyright-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2016 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://atmosai.github.io" target="_blank">bugsuse</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+    </div>
+</footer></div><a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll>
+            <span>&nbsp;</span>
+        </a>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-112932643-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="/js/lib/jquery/jquery.slim.min.js"></script><script src="/js/lib/lazysizes/lazysizes.min.js"></script><script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script><script src="/js/blog.min.js"></script></body>
+</html>
