@@ -8,7 +8,7 @@
 * `序列化同化(sequential assimilation)`：这种形式的同化通常应用于实时同化系统，因为所采用的数据是过去一段时间到分析时刻的所有观测
 * `非序列化/回顾性同化(non-sequential/retrospective assimilation)`：这种形式的同化通常是应用于再分析数据的生成系统，因为这种方式所采用的观测数据包含了来自"未来"的数据。比如NCEP的FNL再分析数据，想生成2019.04.17 18UTC时刻的再分析数据，就要用到2019.04.17 18UTC之后以及之前的观测数据
 
-![](img/2019/04/18/DA_fig1.jpg)
+![](/img/2019/04/18/DA_fig1.jpg)
 
 <center><font size=2 color=gray>同化预报系统框架</font></center>
 
@@ -50,7 +50,7 @@
 
 **分析误差协方差矩阵(Analysis Error Covariance Matrix)**：分析变量之间的误差矩阵
 
-![](img/2019/04/18/DA_fig2.jpg)
+![](/img/2019/04/18/DA_fig2.jpg)
 
 <center><font size=2 color=gray>控制变量空间及及计算过程</font></center>
 
