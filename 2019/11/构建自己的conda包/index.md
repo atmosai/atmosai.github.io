@@ -3,21 +3,15 @@
 
 熟悉Python的都知道管理各种库有时候是多么痛苦的一件事！而有了conda包管理器，让库的安装和管理变得方便了不少。开发过程中，为了解决包的安装和管理问题，也方便用户安装，可以构建自己的conda包，并上传到Anaconda Cloud。
 
-
-
 ### 所需文件
 
 * `meta.yaml` ：包含与需要创建的库相关的信息，比如：库的名称、版本、依赖、Github或者源码链接等。
 * `build.sh`：OSX和Linux系统上用于安装库的脚本
 * `bld.bat`：Windows上用于安装库的脚本
 
-
-
 ### 操作流程
 
 此处以`pycwr`为例，`pycwr`的Github链接为：https://github.com/YvZheng/pycwr.git
-
-
 
 {{% admonition note "Note" %}}
 
@@ -28,8 +22,6 @@ conda config --set anaconda_upload yes
 ```
 
 {{% /admonition %}}
-
-​    
 
 1) 执行以下命令，将`pycwr`的源码下载到本地
 
@@ -79,8 +71,6 @@ about:
 * `requirements`：要构建的包的依赖，此部分依赖可通过github源中的`requirements.txt` 文件或 `setup.py` 获取
 * `about`：给出了包遵循的协议以及说明文档等信息
 
-
-
 然后创建`build.sh` 和 `bld.bat` 文件，`build.sh` 内容如下：
 
 ```bash
@@ -89,23 +79,17 @@ about:
 $PYTHON $SRC_DIR/setup.py install --single-version-externally-managed --record=record.txt
 ```
 
-
-
 {{% admonition note "Note" %}}
 
 注意：可使用`bash -x -e`  运行 `build.sh` 脚本，`-x` 表示每执行一个命令就 `echo` 输出，`-e` 表示出现错误就退出。
 
 {{% /admonition  %}}
 
-
-
 {{% admonition note "Note" %}}
 
 注意：`build.sh` 脚本里的 `$SRC_DIR` 环境变量表示 `conda build` 构建时存储`pycwr`源码的目录，如果不给定此变量的话，可能会出现 `setup.py not found` 的错误，从而导致无法顺利构建conda包。
 
 {{% /admonition  %}}
-
-​    
 
 `bld.bat`的内容如下：
 
@@ -114,15 +98,11 @@ $PYTHON $SRC_DIR/setup.py install --single-version-externally-managed --record=r
 if errorlevel 1 exit 1
 ```
 
-​    
-
 {{% admonition note "Note" %}}
 
 注意：在`bld.bat` 脚本中，最好在每一行命令之后都加上`if errorlevel 1 exit 1`，更有利于监控构建过程。
 
 {{% /admonition  %}}
-
-​    
 
 {{% admonition note "Note" %}}
 
@@ -130,15 +110,11 @@ if errorlevel 1 exit 1
 
 {{% /admonition  %}}
 
-
-
 3) 上述文件创建完成后，在`pycwr` 目录下执行以下命令构建包
 
 ```bash
 conda build .
 ```
-
-
 
 如果没有出现错误则表示构建成功，最后会给出如下信息：
 
@@ -167,8 +143,6 @@ There are currently 2 accumulated.
 To remove them, you can run the ```conda build purge``` command
 ```
 
-
-
 4) 构建成功后即可上传到自己的Anaconda Cloud账号中
 
 ```bash
@@ -178,18 +152,13 @@ anaconda upload /usr/local/tools/miniconda3/conda-bld/osx-64/pycwr-0.2-py37_0.ta
 
 等待上传完成即可。至此，所有的步骤就都已经完成了。
 
-
-
 除了构建包之外，也可以直接安装到本地，使用如下命令可以直接在本地安装：
 
 ```bash
 conda install --use-local pycwr # 在 pycwr 源码上层目录执行此命令
 ```
 
-
-
 ### 后续
-
 #### 全平台构建
 
 上面呢就完成了，单个平台的conda包创建，如果想要创建多个平台，那么就需要重复上述操作，而且还要找不同的系统。想想都头大！不过conda提供了直接转换的操作，可以省去很多时间。使用如下命令即可转换到所有平台：
@@ -199,8 +168,6 @@ conda convert --platform all /usr/local/tools/anaconda3/conda-bld/osx-64/pycwr-0
 ```
 
 `allplatform` 目录下不仅包含了`linux-32/64`、`win-32/64`、`osx-64`，还有其他`linux`平台构建好的源码包。
-
-
 
 如果使用Github源码包存在问题，那么可以使用`PyPi` 源码链接。从而可以避免因为git导致的构建问题。
 
@@ -217,27 +184,16 @@ sha256: 5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7
 git_url: https://github.com/Yvzheng/pycwr.git
 ```
 
-​    
-
 {{% admonition note "Note" %}}
-
 注意：`url` 和 `sha256` 可从`pycwr` 的 `PyPi` 页面获取。
-
 {{% /admonition  %}}
 
-​    
-
 {{% admonition note "Tips" %}}
-
 如果想要节省一些时间，可以设置自动上传
-
 ```bash
 conda config --set anaconda_upload yes
 ```
-
 {{% /admonition %}}
-
-
 
 #### 删除已上传包
 
@@ -258,14 +214,11 @@ anaconda remove USERNAME/PACKAGENAME/0.2
 {{% /admonition %}}
 
 
-
 去除版本号可以删除指定包的所有版本：
 
 ```bash
 anaconda remove USERNAME/PACKAGENAME
 ```
-
-​    
 
 #### 复制别人的包
 
@@ -277,26 +230,13 @@ anaconda copy conda-forge/glueviz/0.10.4 --to-owner bugsuse
 
 表示从 `conda-forge` 通道拷贝 `0.10.4` 版本的 `glueviz` 到 `bugsuse` 的Anaconda cloud通道。
 
-
-
-​    
-
 ### 参考链接
 
 1. https://docs.anaconda.com/anaconda-cloud/user-guide/tasks/work-with-packages/#uploading-packages
 
-
-
-​    
-
 ### 更新记录
 
 2019-11-30：更新通过 `scratch` 构建 `conda` 包
-
 2019-12-01：添加删除和复制操作
-
-​    
-
-
 
 
