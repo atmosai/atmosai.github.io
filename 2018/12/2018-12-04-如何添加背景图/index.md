@@ -43,13 +43,9 @@ ax.tick_params(dict(length=0))
 fig.savefig('img.png', dpi=300, bbox_inches='tight')
 ```
 
-<br>
-<div align=center><img src="https://github.com/bugsuse/blogpic/blob/master/2018/12/04/fig1.jpg?raw=true"></div>
+<div align=center><img src="/img/2018/12/04/fig1.jpg"></div>
 
-
-<br>
 ```python
-## 读取图片
 img = mpimg.imread('img.png')
 
 date_range = pd.date_range(datetime(2015, 1, 1), datetime(2015, 12 ,31), freq='1d')
@@ -67,17 +63,13 @@ ax.plot(data['pm2.5'].values, color='k', linewidth=2)
 
 ax.set_yticks(levels)
 _ = ax.set_ylabel('PM$_2.5$($\mu$g/m$^3$)', fontdict=dict(fontfamily='Times New Roman'))
-
 ```
-<br>
-<div align=center><img src="https://github.com/bugsuse/blogpic/blob/master/2018/12/04/fig2.jpg?raw=true"></div>
 
-<br>
+<div align=center><img src="/img/2018/12/04/fig2.jpg"></div>
+
 以上示例展示了如何在图中添加背景图，添加背景图时可以添加多个需要的背景图片，关键在于设置 `imshow` 函数的 `extend` 参数。
-<br>
 
 上面实现的功能，可以通过以下代码完成：
-<br>
 
 ```python
 from datetime import datetime
@@ -128,12 +120,9 @@ _ = ax.set_ylabel('PM$_2.5$($\mu$g/m$^3$)', fontdict=dict(fontfamily='Times New 
 
 ```
 
-<div align=center><img src="https://github.com/bugsuse/blogpic/blob/master/2018/12/04/fig3.jpg?raw=true"></div>
-
-
+<div align=center><img src="/img/2018/12/04/fig3.jpg"></div>
 
 果然还是不喜欢多写字。
-<br>
 
 参考链接:<br>
 1. https://stackoverflow.com/questions/23139595/dates-in-the-xaxis-for-a-matplotlib-plot-with-imshow

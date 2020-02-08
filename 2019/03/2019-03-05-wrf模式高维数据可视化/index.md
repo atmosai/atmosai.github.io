@@ -21,7 +21,7 @@ tar -zxvf vis5d-5.1.tar.Z
 make
 ```
 
-![](https://github.com/bugsuse/blogpic/blob/master/2019/03/15/vis5d1.png?raw=true)
+![](/img/2019/03/15/vis5d1.png)
 
 一般可以选择
 
@@ -31,13 +31,13 @@ make linux-opengl
 
 执行上述编译操作后，开始分块编译，根据错误提示，找到 `lui5` 文件夹，修改其中的 Makefile中对应的 `linux`部分编译选项。
 
-![](https://github.com/bugsuse/blogpic/blob/master/2019/03/15/vis5d2.png?raw=true)
+![](/img/2019/03/15/vis5d2.png)
 
 可以更改`gcc`为`icc`，并删除`-m486`选项，然后继续编译，碰到类似问题继续更高相应的选项。或者批量修改。
 
 **需要修改 `lui5`, `src`, `util`,`import`中的 Makefile，对应`linux`或者`linux-opengl`的编译选项。**
 
-![](https://github.com/bugsuse/blogpic/blob/master/2019/03/15/vis5d5.png?raw=true)
+![](/img/2019/03/15/vis5d5.png)
 
 ### wrf2vis5d安装
 
@@ -64,7 +64,7 @@ FCFLAGS = -g -C -free
 make
 ```
 
-![](https://github.com/bugsuse/blogpic/blob/master/2019/03/15/vis5d4.png?raw=true)
+![](/img/2019/03/15/vis5d4.png)
 
 `wrf_v5d_input`为 `wrf_to_v5d`的参数控制文件，类似WRF模式的namelist文件：
 
@@ -108,6 +108,6 @@ wrf_to_v5d wrf_v5d_input wrf.v5d
 
 然后就可以将wrf.v5d作为vis5d的输入，进行高维数据可视化处理了。下图是处理结果。
 
-![](https://github.com/bugsuse/blogpic/blob/master/2019/03/15/v5d.gif?raw=true)
+![](/img/2019/03/15/v5d.gif)
 
 

@@ -23,11 +23,8 @@ Mac也可以通过安装Homebrewer等包管理器，然后通过这些包管理�
 <br>
 
 * 打开 iTerm2，选择`Preferences`，选择`Profiles`，选择`Advanced`，选择`Triggers`部分`Edit`按钮，然后选择添加新trigger，具体操作流程可见[How to Create a Trigger](https://www.iterm2.com/documentation-triggers.html)
-<br>
-  
 
-  <div align=center><img src="https://github.com/bugsuse/blogpic/blob/master/2019/01/26/fig1.jpg?raw=true" width="100%" height="100%"></div>
-
+<div align=center><img src="/img/2019/01/26/fig1.jpg" width="100%" height="100%"></div>
 
 * 将如下内容添加到相应的选项
 
@@ -45,10 +42,8 @@ Mac也可以通过安装Homebrewer等包管理器，然后通过这些包管理�
 
 操作如下图所示
 
-<div align=center><img src="https://github.com/bugsuse/blogpic/blob/master/2019/01/26/fig2.jpg?raw=true" width="100%" height="100%"></div>
+<div align=center><img src="/img/2019/01/26/fig2.jpg" width="100%" height="100%"></div>
 
-
-<br>
 ### 操作示例
 
 从远程服务器传输文件到本地，在远程服务器终端执行以下命令：
@@ -57,20 +52,14 @@ Mac也可以通过安装Homebrewer等包管理器，然后通过这些包管理�
 sz filename
 ```
 
-![](https://github.com/bugsuse/blogpic/blob/master/2019/01/26/fig3.jpg?raw=true)
+![](/img/2019/01/26/fig3.jpg)
 
-
-<br>
 从本地上传文件到远程服务器，直接在远程服务器终端执行以下命令，即打开图形化界面，选择需要传输的文件即可：
 
 ```bash
 rz
 ```
+![](/img/2019/01/26/fig4.jpg)
 
-![](https://github.com/bugsuse/blogpic/blob/master/2019/01/26/fig4.jpg?raw=true)
-
-
-<br>
 以上为简单的传输示例，`rz` 和 `sz` 命令还支持一系列选项，更多操作待发掘。
-<br>
 
