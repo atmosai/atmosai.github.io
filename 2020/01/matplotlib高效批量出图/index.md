@@ -1,12 +1,10 @@
 # 提高matplotlib的出图效率
 
 
-在数值预报后处理中经常需要批量出图，而基于matplotlib的图形渲染速度较慢，而提高出图的速度通常可通过两个方面来解决：
+在数值预报后处理中经常需要批量出图，而基于matplotlib的图形渲染速度较慢，而提高出图的速度通常可通过两个方面来解决：[^1]
 
 * 多进程进行绘图
 * 图形渲染调整
-
-
 
 ### 多进程
 
@@ -37,17 +35,11 @@ def process_data_set(data):
 
 第一个装饰器中给定了一个参数`processes`：表示进程数，如果没有给定，则使用所有的cpu。
 
-
-
 ### 图形渲染
 
 以数值预报模式的批量出图过程中的气象要素空间分布为例。气象要素的空间分布必然涉及到地理信息的处理，比如添加海岸线、省市边界线、江流河海等。对于空间分布图而言，上述的地理信息是不变的。因此在批量出图时，相同地理范围的图可以使用相同的背景图。以温度的空间分布为例，这里所说的背景图是除了温度的空间分布外的海岸线、省市边界线、轴的标注等信息。
 
-
-
 在绘图的时候都是按照图层进行先后叠加的，而叠加后的图层是可以删除的。批量出图时只需要将会变的信息清空，然后在背景图上叠加新的信息即可。这样，就能节省绘制地图的时间，每次只需要绘制一次地图即可。想想如果需要批量生成的图数量很多的话，这样就能节省很多时间。
-
-
 
 #### 删除图层操作
 
@@ -95,8 +87,6 @@ ax.set_title(None)
 ```python
 ax.set_visible(False)
 ```
-
-​    
 
 ### 测试对比
 
@@ -160,8 +150,6 @@ sys	0m0.670s
 
 相比于之前运行的`31s`，优化后的代码运行时间只有`14s`，速度提升了超过50%。
 
-​    
-
 #### 多核对比
 
 多核并行运行采用`deco`工具，使用3个核进行测试。
@@ -175,8 +163,6 @@ real	0m11.224s
 user	0m55.686s
 sys	0m1.610s
 ```
-
-​    
 
 测试单背景图的多核时出现了问题，`figure.canvas` 为 `NoneType`，导致出错：`AttributeError: 'NoneType' object has no attribute 'print_figure'`
 
@@ -194,13 +180,9 @@ user	0m20.875s
 sys	0m0.857s
 ```
 
-​    
-
 ### 注意事项
 
 通过图形渲染流程来优化绘图时需要注意：`matplotlib`在绘图的时候如果使用`subplots`创建`Figure`对象，添加`colorbar`的时候，图形对象会进行自适应，删除`colorbar`之后`axes`的位置并不会自动适应到原始位置，此时如果添加新的图层和`colorbar`，会导致新的`Figure`对象中的`axes`的位置再次缩小。每重复一次删除/更新操作，`axes`的位置会缩小一些，重复越多，`axes`越小。
-
-​    
 
 {{% admonition note "Note" %}}
 
@@ -228,10 +210,7 @@ fig.canvas.draw()
 
 但是并未解决上述问题。
 
-
-
 ### 参考链接
-
 1. https://stackoverflow.com/questions/27345157/matplotlib-how-to-remove-just-one-contour-element-from-axis-with-other-plotted
 2. https://stackoverflow.com/questions/4981815/how-to-remove-lines-in-a-matplotlib-plot
 3. https://stackoverflow.com/questions/21565445/matplotlib-says-fig-canvas-is-none-so-i-cant-use-fig-canvas-draw
