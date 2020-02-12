@@ -6,7 +6,7 @@
         <img class=avatar src=/img/friends/bugsuse.jpg>
         <div class=friend>
             <div class=name>bugsuse</div>
-            <div class=excerpt>Numerical Weather Prediction, Data Assimilation, Maching Learning</div>
+            <div class=excerpt>Numerical Weather Prediction, Data Assimilation, Machine Learning</div>
         </div>
     </div>
 </a>
