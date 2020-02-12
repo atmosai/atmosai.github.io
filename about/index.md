@@ -1,7 +1,6 @@
 # 
 
 
-
 <a href=http://i-lightning.cn target=_blank>
    <img class=avatar width=120 height=120 src="/img/res.jpg" class="center">
 </a>
