@@ -45,13 +45,51 @@
 &lt;li>&lt;a href="http://www.yinfans.com/" target="_blank">音范丝&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://neets.cc/" target="_blank">neets&lt;/a>&lt;/li>
 &lt;li>&lt;a href="http://gaoqing.la/" target="_blank">中国高清网&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title/><link>https://atmosai.github.io/about/</link><pubDate>Fri, 07 Dec 2018 12:53:51 +0800</pubDate><guid>https://atmosai.github.io/about/</guid><description>&lt;p>Happy coding&amp;hellip;&lt;/p>
-&lt;h3 id="兴趣">兴趣&lt;/h3>
+&lt;/ul></description></item><item><title/><link>https://atmosai.github.io/about/</link><pubDate>Fri, 07 Dec 2018 12:53:51 +0800</pubDate><guid>https://atmosai.github.io/about/</guid><description>&lt;a href=http://i-lightning.cn target=_blank>
+&lt;img class=avatar width=120 height=120 src="https://atmosai.github.io/img/res.jpg" class="center">
+&lt;/a>
+&lt;h3 id="简介">简介&lt;/h3>
+&lt;p>毕业于&lt;a href="https://www.nuist.edu.cn" target="_blank">南京信息工程大学&lt;/a>(2011-2018)，硕士期间主要从事强对流数值模拟。&lt;/p>
+&lt;h3 id="研究兴趣">研究兴趣&lt;/h3>
 &lt;ul>
 &lt;li>数值模式(Numerical Model)和数据同化(Data Assimilation)&lt;/li>
 &lt;li>数据可视化(Data Visualization)&lt;/li>
 &lt;li>机器学习(Machine Learning)&lt;/li>
 &lt;/ul>
+&lt;h3 id="编程语言">编程语言&lt;/h3>
+&lt;ul>
+&lt;li>Python&lt;/li>
+&lt;li>MATLAB&lt;/li>
+&lt;li>NCL&lt;/li>
+&lt;li>Shell&lt;/li>
+&lt;li>Fortran&lt;/li>
+&lt;/ul>
+&lt;h3 id="数值模式">数值模式&lt;/h3>
+&lt;ul>
+&lt;li>WRF&lt;/li>
+&lt;li>WRF-Chem&lt;/li>
+&lt;li>CMAQ&lt;/li>
+&lt;li>CAMx&lt;/li>
+&lt;/ul>
+&lt;h3 id="资料同化">资料同化&lt;/h3>
+&lt;ul>
+&lt;li>GSI&lt;/li>
+&lt;li>DART&lt;/li>
+&lt;/ul>
+&lt;h3 id="项目">项目&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/bugsuse/pyart" target="_blank">PyART&lt;/a>: 气象雷达数据处理及可视化(加入了国内S波段及C波段双偏振雷达数据接口)&lt;/li>
+&lt;li>&lt;a href="https://github.com/bugsuse/mlwrf" target="_blank">mlwrf&lt;/a>: 基于MATLAB的WRF模式后处理工具&lt;/li>
+&lt;li>&lt;a href="https://github.com/bugsuse/mradar" target="_blank">mradar&lt;/a>: 基于MATLAB的S波段和C波段雷达数据处理及可视化工具&lt;/li>
+&lt;li>&lt;a href="">RAQFS&lt;/a>: 基于WRF-CMAQ的区域空气质量预报系统(私有源)&lt;/li>
+&lt;li>&lt;a href="">pyemiss&lt;/a>: 基于Python的CMAQ人为源排放处理模块(私有源)&lt;/li>
+&lt;li>&lt;a href="">pycmaq&lt;/a>: 基于Python的WRF-CMAQ空气质量预报系统后处理及可视化模块(私有源)&lt;/li>
+&lt;li>&lt;a href="https://github.com/bugsuse/pytropomi" target="_blank">pytropomi&lt;/a>: 基于Python的TROPOMI卫星数据下载模块&lt;/li>
+&lt;li>&lt;a href="https://github.com/bugsuse/waqip" target="_blank">waqip&lt;/a>: 空气质量数据下载工具&lt;/li>
+&lt;/ul>
+&lt;br>
+&lt;hr>
+&lt;br>
 &lt;blockquote class="blockquote-center">
 &lt;center>
 You explore the meaning of life in death.&lt;br>
